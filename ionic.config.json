@@ -1,0 +1,7 @@
+{
+  "name": "mobile-op-rpg",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
