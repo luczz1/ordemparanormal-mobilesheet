@@ -1,0 +1,99 @@
+<ion-content>
+  <div class="menu">
+    <ion-grid>
+      <div *ngFor="let attr of character">
+        <ion-row>
+          <ion-col>
+            <span style="font-size: 1.3em; font-family: KyivTypeTitling"
+              >{{attr.name}}</span
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin: 0.6em; width: 100%; margin: auto">
+          <ion-col
+            style="
+              background: var(--ion-color-danger);
+              border-radius: 0.5em;
+              margin: 0.4em;
+            "
+          >
+            <span>{{attr.current_life}}/{{attr.max_life}}</span>
+          </ion-col>
+          <ion-col
+            style="
+              background: var(--ion-color-tertiary);
+              border-radius: 0.5em;
+              margin: 0.4em;
+            "
+          >
+            <span>{{attr.current_sanity}}/{{attr.max_sanity}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%; margin: auto">
+          <ion-col
+            style="
+              background: var(--ion-color-warning);
+              border-radius: 0.5em;
+              margin: 0.4em;
+            "
+          >
+            <span>{{attr.current_effort}}/{{attr.max_effort}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="ion-margin">
+            <span
+              style="
+                font-size: 2.5em;
+                color: #c538d1;
+                -webkit-text-stroke-color: #490142;
+                font-family: KyivTypeTitling;
+              "
+              >{{attr.class}}</span
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
+          <ion-col class="ion-text-center">
+            <img [src]="attr.image_url" style="max-width: 100%" />
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="width: 100%">
+          <ion-col class="ion-text-left">
+            <span>NEX: {{attr.nex}}</span>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <span>{{attr.characteristic}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col class="ion-text-left">
+            <span>Peso: {{attr.weight}}</span>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <span>{{attr.personality}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col class="ion-text-left">
+            <span>{{attr.age}} anos</span>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <span>Jogador(a): {{attr.player}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col class="ion-text-left">
+            <span>{{attr.birthplace}}</span>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <span>Deslocamento: {{attr.displacement}}</span>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </div>
+</ion-content>

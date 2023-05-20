@@ -1,0 +1,24 @@
+{
+    "characters": [
+      {
+        "id": 1,
+        "name": "Agatha Volkomenn",
+        "current_life": 50,
+        "max_life": 50,
+        "current_sanity": 64,
+        "max_sanity": 64,
+        "current_effort": 50,
+        "max_effort": 50,
+        "class": "Ocultista",
+        "image_url": "/assets/image/agatha.png",
+        "nex": 40,
+        "weight": 17.4,
+        "age": 18,
+        "birthplace": "Brasil",
+        "characteristic": "Cultista Arrependida",
+        "personality": "Aniquiladora",
+        "player": "Lucas",
+        "displacement": 9
+      }
+    ]
+  }

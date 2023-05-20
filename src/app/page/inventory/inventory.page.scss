@@ -1,0 +1,25 @@
+.menu {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  background: url(/assets/image/ts.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.card-char {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid red;
+  background-color: #171717;
+  padding: 0.6em;
+  border-radius: 2em;
+  margin: auto;
+}
+
+.card-char div {
+  display: flex;
+  flex-direction: column;
+}
