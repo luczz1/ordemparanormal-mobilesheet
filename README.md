@@ -5,7 +5,7 @@
 
 ![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/edda9610-e8d3-4a9a-b9c0-56a840ec3d45)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/cc4b598d-8c1b-4fbe-911b-c4df4a1247c7)
 
-![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9fc7a55d-6a63-4b32-812a-f449b4db7883)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8664b89d-49d3-43b4-a875-a0dbef089a92)
+![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9a8f0138-8c81-4543-b688-696d7481a24d)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8664b89d-49d3-43b4-a875-a0dbef089a92)
 
 
 
