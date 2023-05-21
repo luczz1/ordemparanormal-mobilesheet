@@ -12,32 +12,72 @@
         <ion-row style="margin: 0.6em; width: 100%; margin: auto">
           <ion-col
             style="
-              background: var(--ion-color-danger);
               border-radius: 0.5em;
               margin: 0.4em;
+              height: 1.5em;
+              position: relative;
             "
           >
-            <span>{{attr.current_life}}/{{attr.max_life}}</span>
+            <div
+              class="progress-bar"
+              style="background-color: var(--ion-color-danger-shade)"
+            >
+              <div
+                class="progress"
+                style="background-color: var(--ion-color-danger)"
+                [style.width.%]="(attr.current_life / attr.max_life) * 100"
+              ></div>
+              <span class="progress-text"
+                >{{attr.current_life}} / {{attr.max_life}}</span
+              >
+            </div>
           </ion-col>
           <ion-col
             style="
-              background: var(--ion-color-tertiary);
               border-radius: 0.5em;
               margin: 0.4em;
+              height: 1.5em;
+              position: relative;
             "
           >
-            <span>{{attr.current_sanity}}/{{attr.max_sanity}}</span>
+            <div
+              class="progress-bar"
+              style="background-color: var(--ion-color-tertiary-shade)"
+            >
+              <div
+                class="progress"
+                style="background-color: var(--ion-color-tertiary)"
+                [style.width.%]="(attr.current_sanity / attr.max_sanity) * 100"
+              ></div>
+              <span class="progress-text"
+                >{{attr.current_sanity}} / {{attr.max_sanity}}</span
+              >
+            </div>
           </ion-col>
         </ion-row>
+
         <ion-row style="width: 100%; margin: auto">
           <ion-col
             style="
-              background: var(--ion-color-warning);
               border-radius: 0.5em;
               margin: 0.4em;
+              height: 1.5em;
+              position: relative;
             "
           >
-            <span>{{attr.current_effort}}/{{attr.max_effort}}</span>
+            <div
+              class="progress-bar"
+              style="background-color: var(--ion-color-warning-shade)"
+            >
+              <div
+                class="progress"
+                style="background-color: var(--ion-color-warning)"
+                [style.width.%]="(attr.current_effort / attr.max_effort) * 100"
+              ></div>
+              <span class="progress-text"
+                >{{attr.current_effort}} / {{attr.max_effort}}</span
+              >
+            </div>
           </ion-col>
         </ion-row>
 
@@ -46,8 +86,8 @@
             <span
               style="
                 font-size: 2.5em;
-                color: #c538d1;
-                -webkit-text-stroke-color: #490142;
+                color: var(--ion-color-light-purple);
+                -webkit-text-stroke-color: var(--ion-color-purple);
                 font-family: KyivTypeTitling;
               "
               >{{attr.class}}</span

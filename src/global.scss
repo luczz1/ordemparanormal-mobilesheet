@@ -31,6 +31,11 @@ ion-button {
   --padding-bottom: 24px;
 }
 
+.menu, ion-tabs {
+  max-width: 393px;
+  margin: auto;
+}
+
 @font-face {
   font-family: KyivTypeTitling;
   src: url(/assets/font/KyivTypeTitling-Regular.otf);

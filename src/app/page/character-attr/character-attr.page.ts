@@ -1,101 +1,96 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ViewDidEnter, ModalController } from '@ionic/angular';
+import {
+  CharacterAttributesModel,
+  CharacterSkillsModel,
+} from 'src/app/models/character';
+import { CharactersService } from 'src/app/services/endpoints/characters.service';
+import { RollQuestionComponent } from './roll-question.component';
 
 @Component({
   selector: 'app-character-attr',
   templateUrl: 'character-attr.page.html',
   styleUrls: ['character-attr.page.scss'],
 })
-export class CharacterAttrPage {
-  public skills: { name: string; value: number }[] = [
-    {
-      name: 'atletismo',
-      value: 0,
-    },
-    {
-      name: 'atualidades',
-      value: 0,
-    },
-    {
-      name: 'ciência',
-      value: 0,
-    },
-    {
-      name: 'diplomacia',
-      value: 0,
-    },
-    {
-      name: 'enganação',
-      value: 0,
-    },
-    {
-      name: 'fortitude',
-      value: 0,
-    },
-    {
-      name: 'furtividade',
-      value: 0,
-    },
-    {
-      name: 'intimidação',
-      value: 0,
-    },
-    {
-      name: 'investigação',
-      value: 0,
-    },
-    {
-      name: 'luta',
-      value: 0,
-    },
-    {
-      name: 'medicina',
-      value: 0,
-    },
-    {
-      name: 'ocultismo',
-      value: 0,
-    },
-    {
-      name: 'percepção',
-      value: 0,
-    },
-    {
-      name: 'pilotagem',
-      value: 0,
-    },
-    {
-      name: 'pontaria',
-      value: 0,
-    },
-    {
-      name: 'prestidigitação',
-      value: 0,
-    },
-    {
-      name: 'profissão',
-      value: 0,
-    },
-    {
-      name: 'reflexos',
-      value: 0,
-    },
-    {
-      name: 'religião',
-      value: 0,
-    },
-    {
-      name: 'tática',
-      value: 0,
-    },
-    {
-      name: 'tecnologia',
-      value: 0,
-    },
-    {
-      name: 'vontade',
-      value: 0,
-    },
-  ];
+export class CharacterAttrPage implements ViewDidEnter {
+  public attributes: CharacterAttributesModel[] = [];
+  public skills: CharacterSkillsModel[] = [];
 
-  constructor() {}
+  public pageLoaded = false;
+
+  public attrForm = new FormGroup({
+    id: new FormControl(0),
+    agility: new FormControl(0),
+    strength: new FormControl(0),
+    intellect: new FormControl(0),
+    force: new FormControl(0),
+    presence: new FormControl(0),
+    normally: new FormControl(0),
+  });
+
+  showModal = false;
+  selectedSkill: any;
+
+  constructor(
+    private charactersService: CharactersService,
+    private activatedRoute: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+    private modalController: ModalController
+  ) {}
+
+  ionViewDidEnter() {
+    const characterID = Number(
+      this.activatedRoute.snapshot.paramMap.get('characterid')
+    );
+
+    this.getCharacterAttributes(characterID);
+  }
+
+  public getCharacterAttributes(id: number) {
+    this.charactersService.getCharacterAttributesByID(id).subscribe(
+      (res) => {
+        this.attrForm.patchValue(res);
+        this.getCharacterSkills(id);
+        this.cdr.detectChanges();
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  public getCharacterSkills(id: number) {
+    this.charactersService.getCharacterSkillsByID(id).subscribe(
+      (res) => {
+        this.skills = res.skills;
+
+        this.pageLoaded = true;
+        this.cdr.detectChanges();
+      },
+      (error) => console.log(error)
+    );
+  }
+  async openModal(skill: any) {
+    const modal = await this.modalController.create({
+      component: RollQuestionComponent,
+      componentProps: {
+        skill: skill,
+      },
+    });
+
+    await modal.present();
+
+    const { data } = await modal.onWillDismiss();
+    if (data.rollValue !== '') {
+      this.redirectToPage(skill.name, skill.value, data.rollValue);
+    }
+  }
+
+  redirectToPage(skillName: string, skillValue: number, rollType: string) {
+    const attrValue = this.attrForm.get(rollType)?.value;
+    const url = `/character/dice-rolling/1/${skillName}/${attrValue}/${skillValue}`;
+    this.router.navigateByUrl(url);
+  }
+
 }

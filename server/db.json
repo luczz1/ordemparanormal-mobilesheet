@@ -1,24 +1,63 @@
 {
-    "characters": [
-      {
-        "id": 1,
-        "name": "Agatha Volkomenn",
-        "current_life": 50,
-        "max_life": 50,
-        "current_sanity": 64,
-        "max_sanity": 64,
-        "current_effort": 50,
-        "max_effort": 50,
-        "class": "Ocultista",
-        "image_url": "/assets/image/agatha.png",
-        "nex": 40,
-        "weight": 17.4,
-        "age": 18,
-        "birthplace": "Brasil",
-        "characteristic": "Cultista Arrependida",
-        "personality": "Aniquiladora",
-        "player": "Lucas",
-        "displacement": 9
-      }
-    ]
-  }
+  "characters": [
+    {
+      "id": 1,
+      "name": "Agatha Volkomenn",
+      "current_life": 18,
+      "max_life": 50,
+      "current_sanity": 49,
+      "max_sanity": 64,
+      "current_effort": 26,
+      "max_effort": 50,
+      "class": "Ocultista",
+      "image_url": "/assets/image/agatha.png",
+      "nex": 40,
+      "weight": 17.4,
+      "age": 18,
+      "birthplace": "Brasil",
+      "characteristic": "Cultista Arrependida",
+      "personality": "Aniquiladora",
+      "player": "Lucas",
+      "displacement": 9
+    }
+  ],
+  "attributes": [
+    {
+      "id": 1,
+      "agility": 0,
+      "strength": 0,
+      "intellect": 3,
+      "force": 0,
+      "presence": 1
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "skills": [
+        {"name": "atletismo", "value": 0},
+        {"name": "atualidades", "value": 0},
+        {"name": "ciência", "value": 0},
+        {"name": "diplomacia", "value": 0},
+        {"name": "enganação", "value": 0},
+        {"name": "fortitude", "value": 0},
+        {"name": "furtividade", "value": 0},
+        {"name": "intimidação", "value": 10},
+        {"name": "investigação", "value": 0},
+        {"name": "luta", "value": 0},
+        {"name": "medicina", "value": 0},
+        {"name": "ocultismo", "value": 0},
+        {"name": "percepção", "value": 0},
+        {"name": "pilotagem", "value": 0},
+        {"name": "pontaria", "value": 0},
+        {"name": "prestidigitação", "value": 0},
+        {"name": "profissão", "value": 0},
+        {"name": "reflexos", "value": 0},
+        {"name": "religião", "value": 0},
+        {"name": "tática", "value": 0},
+        {"name": "tecnologia", "value": 0},
+        {"name": "vontade", "value": 0 }
+      ]
+    }
+  ]
+}

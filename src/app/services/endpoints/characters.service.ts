@@ -18,4 +18,18 @@ export class CharactersService extends BaseService {
       {headers: this.Headers()}
     )
    }
+
+   public getCharacterAttributesByID(id: number): Observable<any> {
+    return this.http.get(
+      `${this.Basepath()}attributes/${id}`,
+      {headers: this.Headers()}
+    )
+   }
+
+   public getCharacterSkillsByID(id: number): Observable<any> {
+    return this.http.get(
+      `${this.Basepath()}skills/${id}`,
+      {headers: this.Headers()}
+    )
+   }
 }

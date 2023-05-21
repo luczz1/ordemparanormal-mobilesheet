@@ -18,3 +18,18 @@ export interface CharacterModel {
   player: string;
   weight: number;
 }
+
+export interface CharacterAttributesModel {
+  id: { name: string; value: number };
+  agility: { name: string; value: number };
+  strength: { name: string; value: number };
+  intellect: { name: string; value: number };
+  force: { name: string; value: number };
+  presence: { name: string; value: number };
+}
+
+export interface CharacterSkillsModel {
+  name: string;
+  value: number;
+  name_url: string;
+}

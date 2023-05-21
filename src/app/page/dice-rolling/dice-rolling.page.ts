@@ -16,20 +16,20 @@ export class DiceRollingPage implements ViewDidEnter {
   public pageLoaded = false;
 
   public diceNumber = 0;
-  public secondDiceNumber = 0;
 
   public diceRolling = false;
 
-  public doubleDice = false;
+  public clickedNumber = 0;
 
-  public advantageRolling = false;
-  public disavantageRolling = false;
-
-  public returnMessage = 'Sucesso Extremo';
+  numberOfDice: number = 1;
+  diceResults: number[] = [];
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ionViewDidEnter(): void {
+    this.diceRolling = false;
+    this.diceResults = [];
+
     this.characterid = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
@@ -38,29 +38,22 @@ export class DiceRollingPage implements ViewDidEnter {
     );
     this.rollvalue = Number(
       this.activatedRoute.snapshot.paramMap.get('rollvalue')
-    );
+    ) + 1;
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));
 
     this.pageLoaded = true;
   }
-
-  rollDice(disadvantage = false, advantage = false) {
-    // this['advantageRolling', 'disavantageRolling'] = [advantage, disadvantage];
-    this.advantageRolling = advantage;
-    this.disavantageRolling = disadvantage;
-
-    if (disadvantage || advantage) {
-      this.doubleDice = true;
-    } else {
-      this.doubleDice = false;
-    }
+  rollDice(numberOfDice = 1) {
+    this.numberOfDice = numberOfDice;
 
     this.diceRolling = true;
 
     let diceInterval = setInterval(() => {
-      this.diceNumber = Math.ceil(Math.random() * (20 - 1) + 1);
-      if (disadvantage || advantage) {
-        this.secondDiceNumber = Math.ceil(Math.random() * (20 - 1) + 1);
+      this.diceResults = [];
+
+      for (let i = 0; i < this.numberOfDice; i++) {
+        const diceNumber = Math.ceil(Math.random() * 20);
+        this.diceResults.push(diceNumber);
       }
     }, 50);
 

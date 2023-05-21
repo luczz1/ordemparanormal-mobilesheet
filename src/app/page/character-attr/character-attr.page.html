@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="menu">
+  <div class="menu" *ngIf="pageLoaded">
     <ion-grid>
       <div>
         <ion-row>
@@ -20,8 +20,8 @@
             <span
               style="
                 font-size: 1.8em;
-                color: #c538d1;
-                -webkit-text-stroke-color: #490142;
+                color: var(--ion-color-light-purple);
+                -webkit-text-stroke-color: var(--ion-color-purple);
                 font-family: KyivTypeTitling;
               "
               >Atributos e Perícias</span
@@ -30,14 +30,24 @@
         </ion-row>
         <ion-row class="ion-align-items-center">
           <ion-col class="ion-text-center">
-            <div>
-              <div style="margin-bottom: 10px" routerLink="/character/dice-rolling/1/agilidade/{{agilidadeIpt.value}}/{{agilidadeIpt.value}}">
+            <form [formGroup]="attrForm">
+              <div
+                style="margin-bottom: 10px"
+                routerLink="/character/dice-rolling/1/agilidade/{{agilidadeIpt.value}}/0"
+              >
                 <label
                   for="agilidade"
                   style="display: block; margin-bottom: 5px"
                   >Agilidade</label
                 >
-                <input type="number" id="agilidade" class="input-attr" [value]="1" readonly #agilidadeIpt/>
+                <input
+                  type="number"
+                  id="agilidade"
+                  class="input-attr"
+                  formControlName="agility"
+                  readonly
+                  #agilidadeIpt
+                />
               </div>
 
               <div
@@ -47,20 +57,40 @@
                   justify-content: space-around;
                 "
               >
-                <div style="margin-bottom: 10px" routerLink="/character/dice-rolling/1/força/{{forcaIpt.value}}/{{forcaIpt.value}}">
+                <div
+                  style="margin-bottom: 10px"
+                  routerLink="/character/dice-rolling/1/força/{{forcaIpt.value}}/0"
+                >
                   <label for="forca" style="display: block; margin-bottom: 5px"
                     >Força</label
                   >
-                  <input type="number" id="forca" class="input-attr" [value]="1" readonly #forcaIpt/>
+                  <input
+                    type="number"
+                    id="forca"
+                    class="input-attr"
+                    formControlName="strength"
+                    readonly
+                    #forcaIpt
+                  />
                 </div>
 
-                <div style="margin-bottom: 10px" routerLink="/character/dice-rolling/1/intelecto/{{intelectoIpt.value}}/{{intelectoIpt.value}}">
+                <div
+                  style="margin-bottom: 10px"
+                  routerLink="/character/dice-rolling/1/intelecto/{{intelectoIpt.value}}/0"
+                >
                   <label
                     for="intelecto"
                     style="display: block; margin-bottom: 5px"
                     >Intelecto</label
                   >
-                  <input type="number" id="intelecto" class="input-attr" [value]="2" readonly #intelectoIpt/>
+                  <input
+                    type="number"
+                    id="intelecto"
+                    class="input-attr"
+                    formControlName="intellect"
+                    readonly
+                    #intelectoIpt
+                  />
                 </div>
               </div>
 
@@ -71,23 +101,43 @@
                   justify-content: space-evenly;
                 "
               >
-                <div style="margin-top: 10px" routerLink="/character/dice-rolling/1/presença/{{presencaIpt.value}}/{{presencaIpt.value}}">
+                <div
+                  style="margin-top: 10px"
+                  routerLink="/character/dice-rolling/1/presença/{{presencaIpt.value}}/0"
+                >
                   <label
                     for="presenca"
                     style="display: block; margin-bottom: 5px"
                     >Presença</label
                   >
-                  <input type="number" id="presenca" class="input-attr" [value]="2" readonly #presencaIpt/>
+                  <input
+                    type="number"
+                    id="presenca"
+                    class="input-attr"
+                    formControlName="presence"
+                    readonly
+                    #presencaIpt
+                  />
                 </div>
 
-                <div style="margin-top: 10px" routerLink="/character/dice-rolling/1/vigor/{{vigorIpt.value}}/{{vigorIpt.value}}">
+                <div
+                  style="margin-top: 10px"
+                  routerLink="/character/dice-rolling/1/vigor/{{vigorIpt.value}}/0"
+                >
                   <label for="vigor" style="display: block; margin-bottom: 5px"
                     >Vigor</label
                   >
-                  <input type="number" id="vigor" class="input-attr" [value]="1" readonly #vigorIpt/>
+                  <input
+                    type="number"
+                    id="vigor"
+                    class="input-attr"
+                    formControlName="force"
+                    readonly
+                    #vigorIpt
+                  />
                 </div>
               </div>
-            </div>
+            </form>
           </ion-col>
         </ion-row>
 
@@ -96,7 +146,7 @@
             <span
               *ngFor="let skill of skills"
               style="font-size: 0.9em; white-space: nowrap; margin-bottom: 1em"
-              routerLink="/character/dice-rolling/1/{{skill.name}}/{{skill.value}}/{{skill.value}}"
+              (click)="openModal(skill)"
             >
               {{skill.name | titlecase}} +{{skill.value}}
             </span>

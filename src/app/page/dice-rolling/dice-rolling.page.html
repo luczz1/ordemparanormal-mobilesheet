@@ -20,8 +20,8 @@
             <span
               style="
                 font-size: 1.3em;
-                color: #c538d1;
-                -webkit-text-stroke-color: #490142;
+                color: var(--ion-color-light-purple);
+                -webkit-text-stroke-color: var(--ion-color-purple);
                 font-family: KyivTypeTitling;
               "
               >Rolagem de {{rollname}}</span
@@ -37,10 +37,11 @@
               --border-color: var(--ion-color-danger);
               font-size: 0.8em;
             "
+            size="small"
             color="danger"
             fill="clear"
             [disabled]="diceRolling"
-            (click)="rollDice(true)"
+            (click)="rollDice(2)"
           >
             Desvantagem
           </ion-button>
@@ -50,7 +51,8 @@
             color="medium"
             fill="clear"
             [disabled]="diceRolling"
-            (click)="rollDice()"
+            (click)="rollDice(rollvalue)"
+            size="small"
           >
             Normal
           </ion-button>
@@ -63,79 +65,57 @@
             "
             color="success"
             fill="clear"
+            size="small"
             [disabled]="diceRolling"
-            (click)="rollDice(false, true)"
+            (click)="rollDice(2)"
           >
             Vantagem
           </ion-button>
         </div>
 
         <ion-row class="ion-align-items-center" style="margin-top: 2em">
-          <ion-col class="ion-text-center">
-            <img src="/assets/image/dice.png" style="max-width: 70%; min-width: 60%" />
-            <div
-              style="
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              "
-            >
-              <span
-                style="font-size: 1.4em"
-                [style]="!diceRolling && advantageRolling && diceNumber >= secondDiceNumber || !diceRolling && disavantageRolling && diceNumber <= secondDiceNumber ? 'color: var(--ion-color-light-purple)' : ''"
-                >{{diceNumber}}</span
+          <ng-container *ngFor="let diceResult of diceResults; let i = index">
+            <ion-col size="6" class="ion-text-center" (click)="clickedNumber = diceResult">
+              <img src="/assets/image/dice.png" style="max-width: 70%; min-width: 60%" />
+              <div
+                class="dice-result"
+                style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
               >
-            </div>
-          </ion-col>
-          <ion-col class="ion-text-center" *ngIf="doubleDice">
-            <img src="/assets/image/dice.png" style="max-width: 70%; min-width: 60%" />
-            <div
-              style="
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              "
-              [style]="!diceRolling && advantageRolling && secondDiceNumber >= diceNumber || !diceRolling && disavantageRolling && secondDiceNumber <= diceNumber ? 'color: var(--ion-color-light-purple)' : ''"
-            >
-              <span style="font-size: 1.4em">{{secondDiceNumber}}</span>
-            </div>
-          </ion-col>
+                <span>{{diceResult}}</span>
+              </div>
+            </ion-col>
+          </ng-container>
         </ion-row>
 
-        <ion-row class="ion-align-items-center" style="margin-top: 2em">
-          <ion-col class="ion-text-center">
-            <ion-label
-              color="success"
-              style="font-size: 32px; font-family: KyivTypeTitling"
-              >{{returnMessage}}</ion-label
-            >
-          </ion-col>
-        </ion-row>
+        <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
+          <ion-row class="ion-align-items-center" style="margin-top: 2em; ">
+            <ion-col class="ion-text-center">
+              <ion-label
+                color="light"
+                style="font-size: 32px; font-family: KyivTypeTitling"
+              >Bônus +{{bonus}} <ion-text *ngIf="clickedNumber">({{clickedNumber + bonus}})</ion-text></ion-label>
+            </ion-col>
+          </ion-row>
 
-        <ion-row class="ion-align-items-center" style="margin-top: 2em">
-          <ion-col class="ion-text-center">
-            <ion-label
-              color="light"
-              style="font-size: 32px; font-family: KyivTypeTitling"
-              >Bônus +{{bonus}}</ion-label
-            >
-          </ion-col>
-        </ion-row>
+          <ion-button
+            class="btn-outline"
+            style="--background: none; --border-color: var(--ion-color-medium);"
+            shape="round"
+            expand="block"
+            color="medium"
+            slot="bottom"
+            fill="clear"
+            routerLink="/character/attributes/1"
+          >
+            Voltar
+          </ion-button>
+        </div>
 
-        <ion-button
-          class="btn-outline"
-          style="--background: none; --border-color: var(--ion-color-medium)"
-          shape="round"
-          expand="block"
-          color="medium"
-          slot="bottom"
-          fill="clear"
-          routerLink="/character/attributes/1"
-        >
-          Voltar
-        </ion-button>
       </div>
     </ion-grid>
   </div>
