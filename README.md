@@ -3,4 +3,9 @@
 ## Projeto em desenvolvimento! Nem perto de ficar pronto.
 ### Talvez algum dia fique pronto, mas talvez não também.
 
-![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/fd3adbb9-ebf6-4aaa-9453-0f3ae85ae263) ![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/51046b0e-8672-4d19-8927-69138c004d67) ![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/b99e1522-1730-4afd-8374-c3ced3c32a5c) ![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/ae3bdf0c-e204-46b8-8cf8-f9400fb3b9fd)
+![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/edda9610-e8d3-4a9a-b9c0-56a840ec3d45)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/cc4b598d-8c1b-4fbe-911b-c4df4a1247c7)
+
+![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9a8f0138-8c81-4543-b688-696d7481a24d)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8664b89d-49d3-43b4-a875-a0dbef089a92)
+
+
+
