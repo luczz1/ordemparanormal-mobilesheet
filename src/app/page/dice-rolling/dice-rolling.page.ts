@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ViewDidEnter } from '@ionic/angular';
+import { ModalController, ViewDidEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-dice-rolling',
@@ -24,7 +24,7 @@ export class DiceRollingPage implements ViewDidEnter {
   numberOfDice: number = 1;
   diceResults: number[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, public modalController: ModalController) {}
 
   ionViewDidEnter(): void {
     this.diceRolling = false;
@@ -43,8 +43,12 @@ export class DiceRollingPage implements ViewDidEnter {
 
     this.pageLoaded = true;
   }
-  rollDice(numberOfDice = 1) {
-    this.numberOfDice = numberOfDice;
+  rollDice(numberOfDice: number | any) {
+    this.numberOfDice = Number(numberOfDice);
+
+    if (this.numberOfDice > 80 || this.numberOfDice <= 0) {
+      return;
+    }
 
     this.diceRolling = true;
 

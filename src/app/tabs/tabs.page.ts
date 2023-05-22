@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class TabsPage {
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {
+    console.log(router.url)
+  }
 
   redirectTo(route: string) {
     this.router.navigate([route]);
