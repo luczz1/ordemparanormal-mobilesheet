@@ -35,28 +35,54 @@
     {
       "id": 1,
       "skills": [
-        {"name": "atletismo", "value": 0},
-        {"name": "atualidades", "value": 0},
-        {"name": "ciência", "value": 0},
-        {"name": "diplomacia", "value": 0},
-        {"name": "enganação", "value": 0},
-        {"name": "fortitude", "value": 0},
-        {"name": "furtividade", "value": 0},
-        {"name": "intimidação", "value": 10},
-        {"name": "investigação", "value": 0},
-        {"name": "luta", "value": 0},
-        {"name": "medicina", "value": 0},
-        {"name": "ocultismo", "value": 0},
-        {"name": "percepção", "value": 0},
-        {"name": "pilotagem", "value": 0},
-        {"name": "pontaria", "value": 0},
-        {"name": "prestidigitação", "value": 0},
-        {"name": "profissão", "value": 0},
-        {"name": "reflexos", "value": 0},
-        {"name": "religião", "value": 0},
-        {"name": "tática", "value": 0},
-        {"name": "tecnologia", "value": 0},
-        {"name": "vontade", "value": 0 }
+        { "name": "atletismo", "value": 0 },
+        { "name": "atualidades", "value": 0 },
+        { "name": "ciência", "value": 0 },
+        { "name": "diplomacia", "value": 0 },
+        { "name": "enganação", "value": 0 },
+        { "name": "fortitude", "value": 0 },
+        { "name": "furtividade", "value": 0 },
+        { "name": "intimidação", "value": 10 },
+        { "name": "investigação", "value": 0 },
+        { "name": "luta", "value": 0 },
+        { "name": "medicina", "value": 0 },
+        { "name": "ocultismo", "value": 0 },
+        { "name": "percepção", "value": 0 },
+        { "name": "pilotagem", "value": 0 },
+        { "name": "pontaria", "value": 0 },
+        { "name": "prestidigitação", "value": 0 },
+        { "name": "profissão", "value": 0 },
+        { "name": "reflexos", "value": 0 },
+        { "name": "religião", "value": 0 },
+        { "name": "tática", "value": 0 },
+        { "name": "tecnologia", "value": 0 },
+        { "name": "vontade", "value": 0 }
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "id": 1,
+      "abilityList": [
+        {
+          "name": "Escolhido pelo Outro Lado (Classe)",
+          "description": "Você pode lançar rituais de 1º círculo."
+        },
+        {
+          "name": "Traços do Outro Lado. (Origem)",
+          "description": "Você possui um poder paranormal à sua escolha. Porém, começa o jogo com metade da Sanidade normal para sua classe."
+        }
+      ]
+    }
+  ],
+  "powers": [
+    {
+      "id": 1,
+      "powersList": [
+        {
+          "name": "Poder",
+          "description": "Este é um poder especial."
+        }
       ]
     }
   ]

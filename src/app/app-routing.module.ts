@@ -27,8 +27,12 @@ const routes: Routes = [
     loadChildren: () => import('./page/dice-rolling/dice-rolling.module').then(m => m.DiceRollingPageModule)
   },
   {
-    path: 'character/inventory/:id',
+    path: 'character/inventory/:characterid',
     loadChildren: () => import('./page/inventory/inventory.module').then(m => m.InventoryPageModule)
+  },
+  {
+    path: 'character/skills-powers/:characterid',
+    loadChildren: () => import('./page/skills-powers/skills-powers.module').then(m => m.SkillsPowersPageModule)
   },
   {
     path: '**',

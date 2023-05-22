@@ -33,3 +33,8 @@ export interface CharacterSkillsModel {
   value: number;
   name_url: string;
 }
+
+export interface AbilitiesListModel {
+  name: string;
+  description: string;
+}
