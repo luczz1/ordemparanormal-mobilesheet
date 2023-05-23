@@ -43,7 +43,8 @@ export class DiceRollingPage implements ViewDidEnter {
 
     this.pageLoaded = true;
   }
-  rollDice(numberOfDice: number | any) {
+
+  public rollDice(numberOfDice: number | any) {
     this.numberOfDice = Number(numberOfDice);
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {

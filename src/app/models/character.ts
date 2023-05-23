@@ -1,4 +1,5 @@
 export interface CharacterModel {
+  [key: string]: any;
   id: number;
   age: number;
   birthplace: string;

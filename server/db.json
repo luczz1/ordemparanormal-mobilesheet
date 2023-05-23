@@ -3,11 +3,11 @@
     {
       "id": 1,
       "name": "Agatha Volkomenn",
-      "current_life": 18,
+      "current_life": 25,
       "max_life": 50,
-      "current_sanity": 49,
-      "max_sanity": 64,
-      "current_effort": 26,
+      "current_sanity": 50,
+      "max_sanity": 68,
+      "current_effort": 28,
       "max_effort": 50,
       "class": "Ocultista",
       "image_url": "/assets/image/agatha.png",
@@ -35,28 +35,94 @@
     {
       "id": 1,
       "skills": [
-        { "name": "atletismo", "value": 0 },
-        { "name": "atualidades", "value": 0 },
-        { "name": "ciência", "value": 0 },
-        { "name": "diplomacia", "value": 0 },
-        { "name": "enganação", "value": 0 },
-        { "name": "fortitude", "value": 0 },
-        { "name": "furtividade", "value": 0 },
-        { "name": "intimidação", "value": 10 },
-        { "name": "investigação", "value": 0 },
-        { "name": "luta", "value": 0 },
-        { "name": "medicina", "value": 0 },
-        { "name": "ocultismo", "value": 0 },
-        { "name": "percepção", "value": 0 },
-        { "name": "pilotagem", "value": 0 },
-        { "name": "pontaria", "value": 0 },
-        { "name": "prestidigitação", "value": 0 },
-        { "name": "profissão", "value": 0 },
-        { "name": "reflexos", "value": 0 },
-        { "name": "religião", "value": 0 },
-        { "name": "tática", "value": 0 },
-        { "name": "tecnologia", "value": 0 },
-        { "name": "vontade", "value": 0 }
+        {
+          "name": "atletismo",
+          "value": 0
+        },
+        {
+          "name": "atualidades",
+          "value": 0
+        },
+        {
+          "name": "ciência",
+          "value": 0
+        },
+        {
+          "name": "diplomacia",
+          "value": 0
+        },
+        {
+          "name": "enganação",
+          "value": 0
+        },
+        {
+          "name": "fortitude",
+          "value": 0
+        },
+        {
+          "name": "furtividade",
+          "value": 0
+        },
+        {
+          "name": "intimidação",
+          "value": 10
+        },
+        {
+          "name": "investigação",
+          "value": 0
+        },
+        {
+          "name": "luta",
+          "value": 0
+        },
+        {
+          "name": "medicina",
+          "value": 0
+        },
+        {
+          "name": "ocultismo",
+          "value": 0
+        },
+        {
+          "name": "percepção",
+          "value": 0
+        },
+        {
+          "name": "pilotagem",
+          "value": 0
+        },
+        {
+          "name": "pontaria",
+          "value": 0
+        },
+        {
+          "name": "prestidigitação",
+          "value": 0
+        },
+        {
+          "name": "profissão",
+          "value": 0
+        },
+        {
+          "name": "reflexos",
+          "value": 0
+        },
+        {
+          "name": "religião",
+          "value": 0
+        },
+        {
+          "name": "tática",
+          "value": 0
+        },
+        {
+          "name": "tecnologia",
+          "value": 0
+        },
+        {
+          "name": "vontade",
+          "value": 0
+        }
       ]
     }
   ],
@@ -65,10 +131,12 @@
       "id": 1,
       "abilityList": [
         {
+          "id": 1,
           "name": "Escolhido pelo Outro Lado (Classe)",
           "description": "Você pode lançar rituais de 1º círculo."
         },
         {
+          "id": 2,
           "name": "Traços do Outro Lado. (Origem)",
           "description": "Você possui um poder paranormal à sua escolha. Porém, começa o jogo com metade da Sanidade normal para sua classe."
         }
@@ -80,6 +148,7 @@
       "id": 1,
       "powersList": [
         {
+          "id": 1,
           "name": "Poder",
           "description": "Este é um poder especial."
         }

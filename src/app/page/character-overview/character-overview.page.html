@@ -11,6 +11,7 @@
         </ion-row>
         <ion-row style="margin: 0.6em; width: 100%; margin: auto">
           <ion-col
+            (click)="openModal('life')"
             style="
               border-radius: 0.5em;
               margin: 0.4em;
@@ -33,6 +34,7 @@
             </div>
           </ion-col>
           <ion-col
+            (click)="openModal('sanity')"
             style="
               border-radius: 0.5em;
               margin: 0.4em;
@@ -58,6 +60,7 @@
 
         <ion-row style="width: 100%; margin: auto">
           <ion-col
+            (click)="openModal('effort')"
             style="
               border-radius: 0.5em;
               margin: 0.4em;
@@ -135,5 +138,126 @@
         </ion-row>
       </div>
     </ion-grid>
+
+    <ion-modal
+      style="--height: 320px; --width: 300px; --border-radius: 40px"
+      [isOpen]="openStatusModal"
+      (willDismiss)="openStatusModal = false;"
+    >
+      <ng-template>
+        <div style="margin: auto">
+          <div
+            style="
+              text-align: center;
+              font-family: KyivTypeTitling;
+              margin-top: 0.6em;
+            "
+          >
+            <ion-text
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              style="font-size: 1.1em"
+              >{{modalType === 'life' ? 'Vida' : modalType === 'sanity' ?
+              'Sanidade' : 'Esforço'}}</ion-text
+            >
+          </div>
+
+          <div class="buttons" style="display: flex">
+            <ion-button
+              fill="clear"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              (click)="increaseOrDecreaseCurrent(1, 'current')"
+            >
+              <ion-icon name="remove"></ion-icon>
+            </ion-button>
+            <ion-input
+              type="number"
+              [(ngModel)]="character[0]['current_' + modalType]"
+              style="width: 20px"
+            ></ion-input>
+            <ion-button
+              fill="clear"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              (click)="increaseOrDecreaseCurrent(0, 'current')"
+            >
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+            <ion-button
+              fill="clear"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              (click)="increaseOrDecreaseCurrent(1, 'max')"
+            >
+              <ion-icon name="remove"></ion-icon>
+            </ion-button>
+            <ion-input
+              type="number"
+              [(ngModel)]="character[0]['max_' + modalType]"
+              style="width: 20px"
+            ></ion-input>
+            <ion-button
+              fill="clear"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              (click)="increaseOrDecreaseCurrent(0, 'max')"
+            >
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+
+        <ion-content class="ion-padding">
+          <ion-button
+            class="btn-outline"
+            style="--background: none"
+            shape="round"
+            expand="block"
+            [style]="modalType === 'life' ? '--border-color: var(--ion-color-danger)' : modalType === 'sanity'
+            ? '--border-color: var(--ion-color-tertiary)' : '--border-color: var(--ion-color-warning)'"
+            [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+            fill="clear"
+            (click)="rollDice(1)"
+          >
+            Teste de {{modalType === 'life' ? 'constituição' : modalType ===
+            'sanity' ? 'sanidade' : 'esforço'}}
+          </ion-button>
+          <ion-row
+            class="ion-align-items-center"
+            style="margin-top: 2em; max-height: 380px; overflow: auto"
+          >
+            <ng-container *ngFor="let diceResult of diceResults; let i = index">
+              <ion-col
+                size="12"
+                class="ion-text-center"
+                *ngIf="diceResults.length > 0"
+              >
+                <img
+                  src="/assets/image/dice.png"
+                  style="max-width: 40%; min-width: 40%"
+                />
+                <div
+                  class="dice-result"
+                  style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                  "
+                >
+                  <span>{{diceResult}}</span>
+                </div>
+              </ion-col>
+            </ng-container>
+            <ion-col
+              size="12"
+              class="ion-text-center"
+              *ngIf="diceResults.length <= 0"
+            >
+              <img
+                src="/assets/image/dice.png"
+                style="max-width: 40%; min-width: 40%"
+              />
+            </ion-col>
+          </ion-row>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>

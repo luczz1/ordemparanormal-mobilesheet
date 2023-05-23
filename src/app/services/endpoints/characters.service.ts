@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { CharacterModel } from 'src/app/models/character';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +40,42 @@ export class CharactersService extends BaseService {
     return this.http.get(`${this.Basepath()}powers/${id}`, {
       headers: this.Headers(),
     });
+  }
+
+  public updateCharacter(character: CharacterModel): Observable<any> {
+    const characterID = character.id;
+    return this.http.put(
+      `${this.Basepath()}characters/${characterID}`,
+      character,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public updateCharacterAbilitiesList(
+    characterId: number,
+    skillsList: { name: string; description: string }
+  ): Observable<any> {
+    return this.http.post(
+      `${this.Basepath()}abilities/${characterId}`,
+      skillsList,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public updateCharacterPowersList(
+    characterId: number,
+    powersList: { name: string; description: string }
+  ): Observable<any> {
+    return this.http.post(
+      `${this.Basepath()}powers/${characterId}`,
+      powersList,
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 }
