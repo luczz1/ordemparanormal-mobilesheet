@@ -134,11 +134,6 @@
           "id": 1,
           "name": "Escolhido pelo Outro Lado (Classe)",
           "description": "Você pode lançar rituais de 1º círculo."
-        },
-        {
-          "id": 2,
-          "name": "Traços do Outro Lado. (Origem)",
-          "description": "Você possui um poder paranormal à sua escolha. Porém, começa o jogo com metade da Sanidade normal para sua classe."
         }
       ]
     }
@@ -148,9 +143,9 @@
       "id": 1,
       "powersList": [
         {
-          "id": 1,
-          "name": "Poder",
-          "description": "Este é um poder especial."
+          "name": "Ritual",
+          "description": "Esse é um ritual",
+          "id": 1
         }
       ]
     }

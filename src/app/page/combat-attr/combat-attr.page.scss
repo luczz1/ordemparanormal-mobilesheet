@@ -1,0 +1,85 @@
+.menu {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.defense-section {
+  text-align: center;
+  color: #fff;
+}
+
+.resistance-list,
+.attack-list {
+  margin-top: 1.5em;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.protection-list h3,
+.resistance-list h3,
+.attack-list h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.attack-list h4 {
+  margin-bottom: 0.5em;
+  color: #fff;
+}
+
+.attack-list p {
+  color: #ccc;
+  margin: 5px 0;
+}
+
+.attack-list ion-list ion-item {
+  --background: none;
+  --padding-start: 0;
+  --inner-padding-end: 10px;
+  --inner-padding-start: 10px;
+}
+
+.attack-list ion-list ion-item::part(item) {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.protection-list {
+  color: #fff;
+  background-color: #121212;
+}
+
+.shield-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.shield-item img {
+  width: 120px;
+  height: 120px;
+}
+
+.protection-number {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.protection-legend {
+  text-align: center;
+}

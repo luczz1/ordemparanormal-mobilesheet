@@ -38,4 +38,5 @@ export interface CharacterSkillsModel {
 export interface AbilitiesListModel {
   name: string;
   description: string;
+  id: number;
 }

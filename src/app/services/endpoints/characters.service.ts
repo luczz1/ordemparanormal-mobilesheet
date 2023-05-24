@@ -78,4 +78,28 @@ export class CharactersService extends BaseService {
       }
     );
   }
+
+  public deleteCharacterPower(
+    characterId: number,
+    itemid: number
+  ): Observable<any> {
+    return this.http.delete(
+      `${this.Basepath()}powers/${characterId}/${itemid}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public deleteCharacterSkill(
+    characterId: number,
+    itemid: number
+  ): Observable<any> {
+    return this.http.delete(
+      `${this.Basepath()}abilities/${characterId}/${itemid}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
 }

@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./page/skills-powers/skills-powers.module').then(m => m.SkillsPowersPageModule)
   },
   {
+    path: 'character/combat-attr/:characterid',
+    loadChildren: () => import('./page/combat-attr/combat-attr.module').then(m => m.CombatAttrPageModule)
+  },
+  {
     path: '**',
     redirectTo: '/',
     pathMatch: 'full',
