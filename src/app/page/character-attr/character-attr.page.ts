@@ -1,20 +1,21 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ViewDidEnter, ModalController } from '@ionic/angular';
+import { ViewDidEnter, ModalController, ViewDidLeave } from '@ionic/angular';
 import {
   CharacterAttributesModel,
   CharacterSkillsModel,
 } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { RollQuestionComponent } from './roll-question.component';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-character-attr',
   templateUrl: 'character-attr.page.html',
   styleUrls: ['character-attr.page.scss'],
 })
-export class CharacterAttrPage implements ViewDidEnter {
+export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public attributes: CharacterAttributesModel[] = [];
   public skills: CharacterSkillsModel[] = [];
 
@@ -38,7 +39,8 @@ export class CharacterAttrPage implements ViewDidEnter {
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private generic: GenericService
   ) {}
 
   ionViewDidEnter() {
@@ -46,7 +48,16 @@ export class CharacterAttrPage implements ViewDidEnter {
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
 
+    this.generic.multLoading(true);
+
     this.getCharacterAttributes(characterID);
+  }
+
+  ionViewDidLeave(): void {
+      this.attributes = [];
+      this.skills = [];
+
+      this.pageLoaded = false;
   }
 
   public getCharacterAttributes(id: number) {
@@ -66,9 +77,10 @@ export class CharacterAttrPage implements ViewDidEnter {
         this.skills = res.skills;
 
         this.pageLoaded = true;
+        this.generic.multLoading(false);
         this.cdr.detectChanges();
       },
-      (error) => console.log(error)
+      (error) => this.generic.multLoading(false)
     );
   }
   async openModal(skill: any) {
@@ -92,5 +104,4 @@ export class CharacterAttrPage implements ViewDidEnter {
     const url = `/character/dice-rolling/1/${skillName}/${attrValue}/${skillValue}`;
     this.router.navigateByUrl(url);
   }
-
 }

@@ -1,12 +1,16 @@
 <ion-content>
-  <div class="menu">
+  <div class="menu" *ngIf="pageLoaded">
     <ion-grid>
       <div *ngFor="let attr of character">
         <ion-row>
-          <ion-col>
-            <span style="font-size: 1.3em; font-family: KyivTypeTitling"
-              >{{attr.name}}</span
-            >
+          <ion-col style="display: flex; align-items: center">
+            <ion-icon
+              name="log-out-outline"
+              color="danger"
+              style="float: left; font-size: 1.1em"
+              routerLink="/"
+            ></ion-icon>
+            <span style="font-size: 1.3em; margin: auto">{{attr.name}}</span>
           </ion-col>
         </ion-row>
         <ion-row style="margin: 0.6em; width: 100%; margin: auto">
@@ -91,7 +95,6 @@
                 font-size: 2.5em;
                 color: var(--ion-color-light-purple);
                 -webkit-text-stroke-color: var(--ion-color-purple);
-                font-family: KyivTypeTitling;
               "
               >{{attr.class}}</span
             >
@@ -105,34 +108,34 @@
         </ion-row>
 
         <ion-row style="width: 100%">
-          <ion-col class="ion-text-left">
+          <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span>NEX: {{attr.nex}}</span>
           </ion-col>
-          <ion-col class="ion-text-right">
+          <ion-col class="ion-text-right" style="font-size: 1.1em">
             <span>{{attr.characteristic}}</span>
           </ion-col>
         </ion-row>
         <ion-row style="width: 100%">
-          <ion-col class="ion-text-left">
+          <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span>Peso: {{attr.weight}}</span>
           </ion-col>
-          <ion-col class="ion-text-right">
+          <ion-col class="ion-text-right" style="font-size: 1.1em">
             <span>{{attr.personality}}</span>
           </ion-col>
         </ion-row>
         <ion-row style="width: 100%">
-          <ion-col class="ion-text-left">
+          <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span>{{attr.age}} anos</span>
           </ion-col>
-          <ion-col class="ion-text-right">
+          <ion-col class="ion-text-right" style="font-size: 1.1em">
             <span>Jogador(a): {{attr.player}}</span>
           </ion-col>
         </ion-row>
         <ion-row style="width: 100%">
-          <ion-col class="ion-text-left">
+          <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span>{{attr.birthplace}}</span>
           </ion-col>
-          <ion-col class="ion-text-right">
+          <ion-col class="ion-text-right" style="font-size: 1.1em">
             <span>Deslocamento: {{attr.displacement}}</span>
           </ion-col>
         </ion-row>
@@ -146,13 +149,7 @@
     >
       <ng-template>
         <div style="margin: auto">
-          <div
-            style="
-              text-align: center;
-              font-family: KyivTypeTitling;
-              margin-top: 0.6em;
-            "
-          >
+          <div style="text-align: center; margin-top: 0.6em">
             <ion-text
               [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
               style="font-size: 1.1em"

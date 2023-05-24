@@ -37,8 +37,12 @@ ion-button {
 }
 
 @font-face {
-  font-family: KyivTypeTitling;
-  src: url(/assets/font/KyivTypeTitling-Regular.otf);
+  font-family: DefaultFont;
+  src: url(/assets/font/adobehebrew-regular.otf);
+}
+
+* {
+  font-family: DefaultFont;
 }
 
 ion-scroll[direction=x] {
@@ -46,4 +50,50 @@ ion-scroll[direction=x] {
 }
 ion-scroll[direction=y] {
   height: 100vh;
+}
+
+.custom-loading {
+  --background: #0e0d0d;
+}
+
+.alert-wrapper {
+  width: 90% !important;
+  max-width: 90% !important;
+}
+
+.error-msg {text-align: center !important;}
+.custom-alert .alert-button-group {margin-top: 1.6em;}
+.sc-ion-alert-ios {margin-top: 0 !important;}
+
+.alert-wrapper.sc-ion-alert-md {
+  button.alert-button.alert-button-confirm {
+    background-color: var(--ion-color-purple);
+    color: var(--ion-color-medium);
+    width: 50%;
+    position: fixed;
+    right: 0;
+    top: 68%;
+    transition: .4s;
+    border-top-right-radius: .5em;
+    border-bottom-right-radius: .5em;
+  }
+
+  .alert-title.sc-ion-alert-md {text-align: center;}
+  .alert-button-inner.sc-ion-alert-md {justify-content: center !important;}
+
+  button.alert-button.alert-button-cancel {
+    background-color: var(--ion-color-medium);
+    color: var(--ion-color-dark);
+    width: 50%;
+    position: fixed;
+    left: 0;
+    top: 68%;
+    margin-left: .5em;
+    transition: .4s;
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+  }
+
+  button.alert-button.alert-button-confirm:hover {background-color: var(--ion-color-primary-shade);}
+  button.alert-button.alert-button-cancel:hover {background-color: var(--ion-color-light-shade);}
 }

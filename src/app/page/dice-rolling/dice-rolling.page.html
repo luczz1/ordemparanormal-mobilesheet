@@ -4,12 +4,12 @@
       <div>
         <ion-row>
           <ion-col size="1" routerLink="/character/attributes/1">
-            <span style="font-size: 1.3em; font-family: KyivTypeTitling"
+            <span style="font-size: 1.3em;"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
           </ion-col>
           <ion-col>
-            <span style="font-size: 1.3em; font-family: KyivTypeTitling"
+            <span style="font-size: 1.3em;"
               >Agatha Volkomenn</span
             >
           </ion-col>
@@ -22,7 +22,6 @@
                 font-size: 1.3em;
                 color: var(--ion-color-light-purple);
                 -webkit-text-stroke-color: var(--ion-color-purple);
-                font-family: KyivTypeTitling;
               "
               >Rolagem de {{rollname}}</span
             >
@@ -96,7 +95,7 @@
                   transform: translate(-50%, -50%);
                 "
               >
-                <span>{{diceResult}}</span>
+                <span style="font-size: 1.1em;">{{diceResult}}</span>
               </div>
             </ion-col>
           </ng-container>
@@ -107,7 +106,7 @@
             <ion-col class="ion-text-center">
               <ion-label
                 color="light"
-                style="font-size: 32px; font-family: KyivTypeTitling"
+                style="font-size: 32px;"
                 >Bônus +{{bonus}}
                 <ion-text *ngIf="clickedNumber"
                   >({{clickedNumber + bonus}})</ion-text

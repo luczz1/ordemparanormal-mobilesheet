@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ViewDidEnter } from '@ionic/angular';
+import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
 import { AbilitiesListModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-skills-powers',
   templateUrl: 'skills-powers.page.html',
   styleUrls: ['skills-powers.page.scss'],
 })
-export class SkillsPowersPage implements ViewDidEnter {
+export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public skillsList: AbilitiesListModel[] = [];
   public powersList: AbilitiesListModel[] = [];
 
@@ -31,10 +32,13 @@ export class SkillsPowersPage implements ViewDidEnter {
 
   constructor(
     private charactersService: CharactersService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private generic: GenericService
   ) {}
 
   ionViewDidEnter(): void {
+    this.generic.multLoading(true);
+
     const characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
@@ -42,6 +46,13 @@ export class SkillsPowersPage implements ViewDidEnter {
     this.characterId = characterID;
 
     this.getSkill(characterID);
+  }
+
+  ionViewDidLeave(): void {
+    this.skillsList = [];
+    this.powersList = [];
+
+    this.pageLoaded = false;
   }
 
   public getSkill(id: number) {
@@ -59,9 +70,10 @@ export class SkillsPowersPage implements ViewDidEnter {
       (res) => {
         this.powersList = res.powersList;
         this.pageLoaded = true;
+        this.generic.multLoading(false);
       },
       (error) => {
-        console.log(error);
+        this.generic.multLoading(false);
         this.pageLoaded = true;
       }
     );
@@ -132,14 +144,25 @@ export class SkillsPowersPage implements ViewDidEnter {
       );
   }
 
-  public deleteItem(type: string, itemid: number) {
+  public async deleteItem(type: string, itemid: number) {
     const functionName = `deleteCharacter` + type;
     const getName = `get` + type;
 
-    this.charactersService[functionName](this.characterId, itemid).subscribe((res: any) => {
-      setTimeout(() => {
-        this[getName](this.characterId);
-      }, 50);
-    })
+    const ok = await this.generic.alertBox(
+      'ATENÇÃO',
+      `Deseja mesmo excluir ${
+        type === 'Skill' ? 'essa habilidade' : 'esse ritual'
+      }?`
+    );
+
+    if (ok) {
+      this.charactersService[functionName](this.characterId, itemid).subscribe(
+        (res: any) => {
+          setTimeout(() => {
+            this[getName](this.characterId);
+          }, 50);
+        }
+      );
+    }
   }
 }

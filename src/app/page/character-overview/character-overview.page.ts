@@ -1,15 +1,21 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController, ViewDidEnter, ViewWillLeave } from '@ionic/angular';
+import {
+  ModalController,
+  ViewDidEnter,
+  ViewDidLeave,
+  ViewWillLeave,
+} from '@ionic/angular';
 import { CharacterModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-character-overview',
   templateUrl: 'character-overview.page.html',
   styleUrls: ['character-overview.page.scss'],
 })
-export class CharacterOverviewPage implements ViewDidEnter, ViewWillLeave {
+export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public character: CharacterModel[] = [];
   public numberOfDice = 0;
   public diceRolling = false;
@@ -18,26 +24,40 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewWillLeave {
   public openStatusModal = false;
   public modalType = '';
 
+  public pageLoaded = false;
+
   constructor(
     private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private generic: GenericService
   ) {}
 
   ionViewDidEnter(): void {
     const characterID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 
+    this.generic.multLoading(true);
+
     this.getCharacterByID(characterID);
   }
 
-  ionViewWillLeave(): void {
+  ionViewDidLeave(): void {
     this.character = [];
+    this.diceResults = [];
+    this.pageLoaded = false;
   }
 
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
-      (res) => this.character.push(res),
-      (error) => console.log(error)
+      (res) => {
+        this.character.push(res);
+        this.generic.multLoading(false);
+        this.pageLoaded = true;
+      },
+      (error) => {
+        this.generic.multLoading(false);
+        this.pageLoaded = true;
+      }
     );
   }
 

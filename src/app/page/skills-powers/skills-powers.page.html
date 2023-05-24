@@ -4,7 +4,7 @@
       <div>
         <ion-row>
           <ion-col size="1" routerLink="/character/1">
-            <span style="font-size: 1.3em; font-family: KyivTypeTitling"
+            <span style="font-size: 1.3em;"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
           </ion-col>
@@ -28,7 +28,7 @@
         <div style="max-height: 210px; overflow: auto">
           <div *ngFor="let skill of skillsList" class="card-char">
             <p>
-              <strong style="font-size: 0.9em">{{skill.name}}</strong>
+              {{skill.name}}
               <span
                 style="float: right"
                 (click)="deleteItem('Skill', skill.id)"
@@ -36,7 +36,7 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
-            <span>{{skill.description}}</span>
+            <span style="color: var(--ion-color-medium)">{{skill.description}}</span>
           </div>
         </div>
 
@@ -56,7 +56,7 @@
         <div style="max-height: 210px; overflow: auto">
           <div *ngFor="let power of powersList" class="card-char">
             <p>
-              <strong style="font-size: 0.9em">{{power.name}}</strong>
+              {{power.name}}
               <span
                 style="float: right"
                 (click)="deleteItem('Power', power.id)"
@@ -64,7 +64,7 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
-            <span>{{power.description}}</span>
+            <span style="color: var(--ion-color-medium)">{{power.description}}</span>
           </div>
         </div>
 
