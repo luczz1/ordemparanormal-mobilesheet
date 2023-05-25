@@ -74,11 +74,11 @@
           >
             <div
               class="progress-bar"
-              style="background-color: var(--ion-color-warning-shade)"
+              style="background-color: var(--ion-color-success-shade)"
             >
               <div
                 class="progress"
-                style="background-color: var(--ion-color-warning)"
+                style="background-color: var(--ion-color-success)"
                 [style.width.%]="(attr.current_effort / attr.max_effort) * 100"
               ></div>
               <span class="progress-text"
@@ -143,7 +143,7 @@
     </ion-grid>
 
     <ion-modal
-      style="--height: 320px; --width: 300px; --border-radius: 40px"
+      style="--height: 120px; --width: 300px; --border-radius: 40px"
       [isOpen]="openStatusModal"
       (willDismiss)="openStatusModal = false;"
     >
@@ -151,7 +151,7 @@
         <div style="margin: auto">
           <div style="text-align: center; margin-top: 0.6em">
             <ion-text
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
               style="font-size: 1.1em"
               >{{modalType === 'life' ? 'Vida' : modalType === 'sanity' ?
               'Sanidade' : 'Esforço'}}</ion-text
@@ -161,7 +161,7 @@
           <div class="buttons" style="display: flex">
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
               (click)="increaseOrDecreaseCurrent(1, 'current')"
             >
               <ion-icon name="remove"></ion-icon>
@@ -173,14 +173,14 @@
             ></ion-input>
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
               (click)="increaseOrDecreaseCurrent(0, 'current')"
             >
               <ion-icon name="add"></ion-icon>
             </ion-button>
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
               (click)="increaseOrDecreaseCurrent(1, 'max')"
             >
               <ion-icon name="remove"></ion-icon>
@@ -192,7 +192,7 @@
             ></ion-input>
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
               (click)="increaseOrDecreaseCurrent(0, 'max')"
             >
               <ion-icon name="add"></ion-icon>
@@ -200,15 +200,15 @@
           </div>
         </div>
 
-        <ion-content class="ion-padding">
+        <!-- <ion-content class="ion-padding">
           <ion-button
             class="btn-outline"
             style="--background: none"
             shape="round"
             expand="block"
             [style]="modalType === 'life' ? '--border-color: var(--ion-color-danger)' : modalType === 'sanity'
-            ? '--border-color: var(--ion-color-tertiary)' : '--border-color: var(--ion-color-warning)'"
-            [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'warning'"
+            ? '--border-color: var(--ion-color-tertiary)' : '--border-color: var(--ion-color-success)'"
+            [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
             fill="clear"
             (click)="rollDice(1)"
           >
@@ -253,7 +253,7 @@
               />
             </ion-col>
           </ion-row>
-        </ion-content>
+        </ion-content> -->
       </ng-template>
     </ion-modal>
   </div>

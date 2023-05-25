@@ -161,6 +161,7 @@
         shape="round"
         expand="block"
         id="custom-dices"
+        (click)="diceResults = []; numberOfDice = 1; diceRolling = false"
       >
         Dados personalizados
       </ion-button>
@@ -206,6 +207,7 @@
             color="medium"
             fill="clear"
             (click)="rollDice(iptCustomQnt.value, facesQnt.value)"
+            [disabled]="diceRolling"
           >
             Rolar
           </ion-button>
