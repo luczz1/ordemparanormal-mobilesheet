@@ -168,8 +168,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         .subscribe({
           next: () => {
             setTimeout(() => {
-              this.getCharacterSkills(this.characterID),
-                this.modalController.dismiss();
+              this.getCharacterSkills(this.characterID);
             }, 50);
           },
           error: (err) => console.log(err),

@@ -25,6 +25,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public modalType = '';
 
   public pageLoaded = false;
+  public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private charactersService: CharactersService,
@@ -123,9 +124,15 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   }
 
   private updateCharacterInDatabase() {
-    this.charactersService.updateCharacter(this.character[0]).subscribe(
-      (res: any) => {},
-      (error: any) => console.log(error)
-    );
+    if (this.timeoutId !== null) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      this.charactersService.updateCharacter(this.character[0]).subscribe(
+        (res: any) => {},
+        (error: any) => console.log(error)
+      );
+    }, 500);
   }
 }
