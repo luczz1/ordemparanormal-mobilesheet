@@ -5,7 +5,7 @@
 
 
 
-<img src="(https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/43a4a93f-a21a-43b2-95cd-5423ed57e176" style="width: 30%"/>
+<img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/43a4a93f-a21a-43b2-95cd-5423ed57e176" style="width: 30%"/>
 
 ![localhost_8100_character_1(Pixel 5)])![localhost_8100_character_1(Pixel 5) (3)](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2095847d-170d-4863-938d-c4f992495d80)
 
