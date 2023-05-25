@@ -11,6 +11,7 @@
               routerLink="/"
             ></ion-icon>
             <span style="font-size: 1.3em; margin: auto">{{attr.name}}</span>
+            <ion-icon name="build-outline" style="float: right;"></ion-icon>
           </ion-col>
         </ion-row>
         <ion-row style="margin: 0.6em; width: 100%; margin: auto">
@@ -62,7 +63,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="width: 100%; margin: auto">
+        <ion-row style="width: 100%; margin: auto;">
           <ion-col
             (click)="openModal('effort')"
             style="
@@ -93,8 +94,8 @@
             <span
               style="
                 font-size: 2.5em;
-                color: var(--ion-color-light-purple);
-                -webkit-text-stroke-color: var(--ion-color-purple);
+                color: var(--ion-color-purple);
+                -webkit-text-stroke-color: var(--ion-color-light-purple);
               "
               >{{attr.class}}</span
             >

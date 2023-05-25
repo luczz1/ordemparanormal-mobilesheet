@@ -10,6 +10,12 @@
           </ion-col>
           <ion-col>
             <span style="font-size: 1.3em">Agatha Volkomenn</span>
+            <ion-icon
+              name="build-outline"
+              style="float: right"
+              (click)="editingMode = !editingMode"
+              [color]="editingMode ? 'tertiary' : 'light'"
+            ></ion-icon>
           </ion-col>
         </ion-row>
 
@@ -30,7 +36,7 @@
             <form [formGroup]="attrForm">
               <div
                 style="margin-bottom: 10px"
-                routerLink="/character/dice-rolling/1/agilidade/{{agilidadeIpt.value}}/0"
+                [routerLink]="editingMode ? null : '/character/dice-rolling/1/agilidade/{{agilidadeIpt.value}}/0'"
               >
                 <label
                   for="agilidade"
@@ -56,7 +62,7 @@
               >
                 <div
                   style="margin-bottom: 10px"
-                  routerLink="/character/dice-rolling/1/força/{{forcaIpt.value}}/0"
+                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/força/{{forcaIpt.value}}/0'"
                 >
                   <label for="forca" style="display: block; margin-bottom: 5px"
                     >Força</label
@@ -73,7 +79,7 @@
 
                 <div
                   style="margin-bottom: 10px"
-                  routerLink="/character/dice-rolling/1/intelecto/{{intelectoIpt.value}}/0"
+                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/intelecto/{{intelectoIpt.value}}/0'"
                 >
                   <label
                     for="intelecto"
@@ -100,7 +106,7 @@
               >
                 <div
                   style="margin-top: 10px"
-                  routerLink="/character/dice-rolling/1/presença/{{presencaIpt.value}}/0"
+                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/presença/{{presencaIpt.value}}/0'"
                 >
                   <label
                     for="presenca"
@@ -119,7 +125,7 @@
 
                 <div
                   style="margin-top: 10px"
-                  routerLink="/character/dice-rolling/1/vigor/{{vigorIpt.value}}/0"
+                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/vigor/{{vigorIpt.value}}/0'"
                 >
                   <label for="vigor" style="display: block; margin-bottom: 5px"
                     >Vigor</label
@@ -142,8 +148,8 @@
           <div class="skills-row">
             <span
               *ngFor="let skill of skills"
+              (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id) : openModal(skill)"
               style="font-size: 1.1em; white-space: nowrap; margin-bottom: 1em"
-              (click)="openModal(skill)"
             >
               {{skill.name | titlecase}} +{{skill.value}}
             </span>
@@ -237,6 +243,40 @@
             </ng-container>
           </ion-row>
         </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal
+      style="--height: 120px; --width: 300px; --border-radius: 40px"
+      [isOpen]="openStatusModal"
+      (willDismiss)="openStatusModal = false;"
+    >
+      <ng-template>
+        <div style="margin: auto">
+          <div style="text-align: center; margin-top: 0.6em">
+            <ion-text style="font-size: 1.1em; color: var(--ion-color-purple)"
+              >{{selectedSkill | titlecase}}</ion-text
+            >
+          </div>
+
+          <div style="text-align: center; margin-top: 0.6em">
+            <ion-text style="font-size: 1.1em">Editar atributo</ion-text>
+          </div>
+
+          <div class="buttons" style="display: flex">
+            <ion-button fill="clear" (click)="increaseOrDecreaseSkill(0)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-button>
+            <ion-input
+              type="number"
+              [(ngModel)]="skillValue"
+              style="width: 20px"
+            ></ion-input>
+            <ion-button fill="clear" (click)="increaseOrDecreaseSkill(1)">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
       </ng-template>
     </ion-modal>
   </div>

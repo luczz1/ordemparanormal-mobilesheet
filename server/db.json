@@ -37,91 +37,113 @@
       "skills": [
         {
           "name": "atletismo",
-          "value": 0
+          "value": 16,
+          "id": 1
         },
         {
           "name": "atualidades",
-          "value": 0
+          "value": 15,
+          "id": 2
         },
         {
           "name": "ciência",
-          "value": 0
+          "value": 18,
+          "id": 3
         },
         {
           "name": "diplomacia",
-          "value": 0
+          "value": 4,
+          "id": 4
         },
         {
           "name": "enganação",
-          "value": 0
+          "value": 13,
+          "id": 5
         },
         {
           "name": "fortitude",
-          "value": 0
+          "value": 8,
+          "id": 6
         },
         {
           "name": "furtividade",
-          "value": 0
+          "value": 0,
+          "id": 7
         },
         {
           "name": "intimidação",
-          "value": 10
+          "value": 1,
+          "id": 8
         },
         {
           "name": "investigação",
-          "value": 0
+          "value": 0,
+          "id": 9
         },
         {
           "name": "luta",
-          "value": 0
+          "value": 0,
+          "id": 10
         },
         {
           "name": "medicina",
-          "value": 0
+          "value": 0,
+          "id": 11
         },
         {
           "name": "ocultismo",
-          "value": 0
+          "value": 0,
+          "id": 12
         },
         {
           "name": "percepção",
-          "value": 0
+          "value": 0,
+          "id": 13
         },
         {
           "name": "pilotagem",
-          "value": 0
+          "value": 0,
+          "id": 14
         },
         {
           "name": "pontaria",
-          "value": 0
+          "value": 0,
+          "id": 15
         },
         {
           "name": "prestidigitação",
-          "value": 0
+          "value": 0,
+          "id": 16
         },
         {
           "name": "profissão",
-          "value": 0
+          "value": 0,
+          "id": 17
         },
         {
           "name": "reflexos",
-          "value": 0
+          "value": 0,
+          "id": 18
         },
         {
           "name": "religião",
-          "value": 0
+          "value": 0,
+          "id": 19
         },
         {
           "name": "tática",
-          "value": 0
+          "value": 0,
+          "id": 20
         },
         {
           "name": "tecnologia",
-          "value": 0
+          "value": 0,
+          "id": 21
         },
         {
           "name": "vontade",
-          "value": 0
+          "value": 0,
+          "id": 22
         }
       ]
     }

@@ -32,7 +32,7 @@ export interface CharacterAttributesModel {
 export interface CharacterSkillsModel {
   name: string;
   value: number;
-  name_url: string;
+  id: number;
 }
 
 export interface AbilitiesListModel {

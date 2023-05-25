@@ -102,4 +102,17 @@ export class CharactersService extends BaseService {
       }
     );
   }
+
+  public updateSkillValue(
+    characterId: number,
+    skillId: number,
+    newValue: number
+  ): Observable<any> {
+    return this.http.put(
+      `${this.Basepath()}skills/${characterId}/${skillId}/${newValue}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
 }

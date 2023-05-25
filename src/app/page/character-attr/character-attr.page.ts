@@ -25,6 +25,12 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public diceResults: number[] = [];
   public diceRolling = false;
 
+  public editingMode = false;
+  public openStatusModal = false;
+
+  public characterID = 0;
+  public timeoutId: ReturnType<typeof setTimeout> | null = null;
+
   public attrForm = new FormGroup({
     id: new FormControl(0),
     agility: new FormControl(0),
@@ -35,8 +41,10 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     normally: new FormControl(0),
   });
 
-  showModal = false;
-  selectedSkill: any;
+  public showModal = false;
+  public selectedSkill: string = '';
+  public skillValue = 0;
+  public skillID = 0;
 
   constructor(
     private charactersService: CharactersService,
@@ -51,6 +59,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     const characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
+
+    this.characterID = characterID;
 
     this.generic.multLoading(true);
 
@@ -107,12 +117,12 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.numberOfDice = Number(numberOfDice);
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
-      alert('Quantidade de dados inválida.')
+      alert('Quantidade de dados inválida.');
       return;
     }
 
     if (faces > 100 || faces <= 0) {
-      alert('Número de faces inválido.')
+      alert('Número de faces inválido.');
       return;
     }
 
@@ -131,6 +141,42 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       clearInterval(diceInterval);
       this.diceRolling = false;
     }, 2000);
+  }
+
+  public openModalAndSaveSkill(
+    skillname: string,
+    skillvalue: number,
+    id: number
+  ) {
+    this.selectedSkill = skillname;
+    this.skillValue = skillvalue;
+    this.skillID = id;
+    this.openStatusModal = true;
+  }
+
+  public increaseOrDecreaseSkill(type: number | string) {
+    if (type === 0) this.skillValue--;
+    else this.skillValue++;
+
+    if (this.timeoutId !== null) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      this.charactersService
+        .updateSkillValue(this.characterID, this.skillID, this.skillValue)
+        .subscribe({
+          next: () => {
+            setTimeout(() => {
+              this.getCharacterSkills(this.characterID),
+                this.modalController.dismiss();
+            }, 50);
+          },
+          error: (err) => console.log(err),
+        });
+
+      this.timeoutId = null;
+    }, 500);
   }
 
   redirectToPage(skillName: string, skillValue: number, rollType: string) {
