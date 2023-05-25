@@ -21,6 +21,10 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
 
   public pageLoaded = false;
 
+  public numberOfDice: number = 1;
+  public diceResults: number[] = [];
+  public diceRolling = false;
+
   public attrForm = new FormGroup({
     id: new FormControl(0),
     agility: new FormControl(0),
@@ -39,7 +43,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private modalController: ModalController,
+    public modalController: ModalController,
     private generic: GenericService
   ) {}
 
@@ -54,10 +58,10 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   ionViewDidLeave(): void {
-      this.attributes = [];
-      this.skills = [];
+    this.attributes = [];
+    this.skills = [];
 
-      this.pageLoaded = false;
+    this.pageLoaded = false;
   }
 
   public getCharacterAttributes(id: number) {
@@ -97,6 +101,36 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     if (data.rollValue !== '') {
       this.redirectToPage(skill.name, skill.value, data.rollValue);
     }
+  }
+
+  public rollDice(numberOfDice: number | any, faces: any = 20) {
+    this.numberOfDice = Number(numberOfDice);
+
+    if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
+      alert('Quantidade de dados inválida.')
+      return;
+    }
+
+    if (faces > 100 || faces <= 0) {
+      alert('Número de faces inválido.')
+      return;
+    }
+
+    this.diceRolling = true;
+
+    let diceInterval = setInterval(() => {
+      this.diceResults = [];
+
+      for (let i = 0; i < this.numberOfDice; i++) {
+        const diceNumber = Math.ceil(Math.random() * faces);
+        this.diceResults.push(diceNumber);
+      }
+    }, 50);
+
+    setTimeout(() => {
+      clearInterval(diceInterval);
+      this.diceRolling = false;
+    }, 2000);
   }
 
   redirectToPage(skillName: string, skillValue: number, rollType: string) {

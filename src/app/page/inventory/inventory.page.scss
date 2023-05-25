@@ -9,10 +9,7 @@
 }
 
 .card-char {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  border: 1px solid red;
   background-color: #171717;
   padding: 0.6em;
   border-radius: 2em;
@@ -22,4 +19,11 @@
 .card-char div {
   display: flex;
   flex-direction: column;
+}
+
+.btn-outline {
+  margin-top: 2em;
+  --background: none;
+  --border-style: solid;
+  --border-width: 1px;
 }

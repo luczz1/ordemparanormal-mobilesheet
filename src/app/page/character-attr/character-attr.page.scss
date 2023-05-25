@@ -47,5 +47,13 @@ input {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   width: 100%;
+}
 
+.btn-outline {
+  margin-top: 2em;
+  --background: none;
+  --border-color: var(--ion-color-light-purple);
+  --color: var(--ion-color-light-purple);
+  --border-style: solid;
+  --border-width: 1px;
 }

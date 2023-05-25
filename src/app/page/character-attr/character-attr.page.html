@@ -4,14 +4,12 @@
       <div>
         <ion-row>
           <ion-col size="1" routerLink="/character/1">
-            <span style="font-size: 1.3em;"
+            <span style="font-size: 1.3em"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
           </ion-col>
           <ion-col>
-            <span style="font-size: 1.3em;"
-              >Agatha Volkomenn</span
-            >
+            <span style="font-size: 1.3em">Agatha Volkomenn</span>
           </ion-col>
         </ion-row>
 
@@ -153,5 +151,91 @@
         </div>
       </div>
     </ion-grid>
+
+    <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
+      <ion-button
+        class="btn-outline"
+        style="--background: none; --border-color: var(--ion-color-light)"
+        color="light"
+        fill="clear"
+        shape="round"
+        expand="block"
+        id="custom-dices"
+      >
+        Dados personalizados
+      </ion-button>
+    </div>
+
+    <ion-modal style="--height: 480px; --width: 300px" trigger="custom-dices">
+      <ng-template>
+        <ion-content class="ion-padding">
+          <ion-input
+            type="number"
+            shape="round"
+            placeholder="min: 1, max: 20"
+            label="Quantidade"
+            labelPlacement="stacked"
+            style="
+              padding: 0.4em;
+              border-bottom: 1px solid var(--ion-color-medium);
+              font-size: 1.3em;
+            "
+            max="80"
+            min="0"
+            #iptCustomQnt
+          ></ion-input>
+          <ion-input
+            type="number"
+            shape="round"
+            label="Faces"
+            labelPlacement="stacked"
+            placeholder="min: 1, max: 100"
+            style="
+              padding: 0.4em;
+              border-bottom: 1px solid var(--ion-color-medium);
+              margin-top: 1.2em;
+              font-size: 1.3em;
+            "
+            #facesQnt
+          ></ion-input>
+          <ion-button
+            class="btn-outline"
+            style="--background: none; --border-color: var(--ion-color-medium)"
+            shape="round"
+            expand="block"
+            color="medium"
+            fill="clear"
+            (click)="rollDice(iptCustomQnt.value, facesQnt.value)"
+          >
+            Rolar
+          </ion-button>
+
+          <ion-row
+            class="ion-align-items-center"
+            style="margin-top: 2em; max-height: 200px; overflow: auto"
+          >
+            <ng-container *ngFor="let diceResult of diceResults; let i = index">
+              <ion-col size="6" class="ion-text-center">
+                <img
+                  src="/assets/image/dice.png"
+                  style="max-width: 70%; min-width: 60%"
+                />
+                <div
+                  class="dice-result"
+                  style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                  "
+                >
+                  <span style="font-size: 1.1em">{{diceResult}}</span>
+                </div>
+              </ion-col>
+            </ng-container>
+          </ion-row>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>

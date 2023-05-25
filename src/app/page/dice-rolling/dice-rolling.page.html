@@ -145,7 +145,7 @@
     </ion-grid>
 
     <ion-modal
-      style="--height: 200px; --width: 300px"
+      style="--height: 220px; --width: 300px"
       trigger="custom-qnt-modal"
     >
       <ng-template>
@@ -162,6 +162,16 @@
             min="0"
             #iptCustomQnt
           ></ion-input>
+          <ion-input
+            type="number"
+            shape="round"
+            placeholder="Faces"
+            style="
+              padding: 0.4em;
+              border-bottom: 1px solid var(--ion-color-medium);
+            "
+            #facesQnt
+          ></ion-input>
           <ion-button
             class="btn-outline"
             style="--background: none; --border-color: var(--ion-color-medium)"
@@ -169,7 +179,7 @@
             expand="block"
             color="medium"
             fill="clear"
-            (click)="modalController.dismiss(); rollDice(iptCustomQnt.value)"
+            (click)="modalController.dismiss(); rollDice(iptCustomQnt.value, facesQnt.value)"
           >
             Rolar
           </ion-button>

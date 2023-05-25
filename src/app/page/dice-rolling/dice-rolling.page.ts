@@ -21,8 +21,8 @@ export class DiceRollingPage implements ViewDidEnter {
 
   public clickedNumber = 0;
 
-  numberOfDice: number = 1;
-  diceResults: number[] = [];
+  public numberOfDice: number = 1;
+  public diceResults: number[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, public modalController: ModalController) {}
 
@@ -44,7 +44,7 @@ export class DiceRollingPage implements ViewDidEnter {
     this.pageLoaded = true;
   }
 
-  public rollDice(numberOfDice: number | any) {
+  public rollDice(numberOfDice: number | any, faces: any = 20) {
     this.numberOfDice = Number(numberOfDice);
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
@@ -57,7 +57,7 @@ export class DiceRollingPage implements ViewDidEnter {
       this.diceResults = [];
 
       for (let i = 0; i < this.numberOfDice; i++) {
-        const diceNumber = Math.ceil(Math.random() * 20);
+        const diceNumber = Math.ceil(Math.random() * faces);
         this.diceResults.push(diceNumber);
       }
     }, 50);
