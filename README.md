@@ -1,6 +1,6 @@
 # Ordem Paranormal - Ficha Mobile
 
-## Projeto em desenvolvimento! Nem perto de ficar pronto.
+### Projeto em desenvolvimento! Nem perto de ficar pronto.
 ### Talvez algum dia fique pronto, mas talvez não também.
 
 
