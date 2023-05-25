@@ -1,11 +1,11 @@
 # Ordem Paranormal - Ficha Mobile
 
-## Projeto em desenvolvimento! Nem perto de ficar pronto.
-### Talvez algum dia fique pronto, mas talvez não também.
-
-![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/edda9610-e8d3-4a9a-b9c0-56a840ec3d45)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/cc4b598d-8c1b-4fbe-911b-c4df4a1247c7)
-
-![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9a8f0138-8c81-4543-b688-696d7481a24d)![image](https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8664b89d-49d3-43b4-a875-a0dbef089a92)
+### Projeto em desenvolvimento! Nem perto de ficar pronto.
+Talvez algum dia fique pronto, mas talvez não também.
 
 
-
+<div style="display: flex; flex-direction: row">
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/43a4a93f-a21a-43b2-95cd-5423ed57e176" style="width: 30%"/>
+  <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2095847d-170d-4863-938d-c4f992495d80" style="width: 30%"/>
+  <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/6c4c6aff-299b-431f-9446-746c10f53ec4" style="width: 30%"/>
+  </div>
