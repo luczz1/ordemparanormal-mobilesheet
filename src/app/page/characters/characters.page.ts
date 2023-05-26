@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class CharactersPage {
 
-  constructor() {}
+  constructor(public router: Router) {}
+
+  public setLocalStorage() {
+    localStorage.setItem('character', '1')
+  }
 
 }

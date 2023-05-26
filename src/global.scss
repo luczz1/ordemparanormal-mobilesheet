@@ -41,6 +41,11 @@ ion-button {
   src: url(/assets/font/adobehebrew-regular.otf);
 }
 
+@font-face {
+  font-family: SpecialFont;
+  src: url(/assets/font/F-STEIN_.TTF);
+}
+
 * {
   font-family: DefaultFont;
 }

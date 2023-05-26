@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   ModalController,
   ViewDidEnter,
@@ -31,7 +31,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
     public modalController: ModalController,
-    private generic: GenericService
+    private generic: GenericService,
+    private router: Router
   ) {}
 
   ionViewDidEnter(): void {
@@ -121,6 +122,11 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
         this.updateCharacterInDatabase();
       }
     }
+  }
+
+  public backToInitialScreen() {
+    this.router.navigate(['/home']);
+    localStorage.clear();
   }
 
   private updateCharacterInDatabase() {

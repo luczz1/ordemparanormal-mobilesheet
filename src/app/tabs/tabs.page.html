@@ -1,4 +1,4 @@
-<ion-tabs [hidden]="router.url === '/' || router.url === '/about'">
+<ion-tabs [hidden]="hideTabs">
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button (click)="redirectTo('/character/attributes/1')">

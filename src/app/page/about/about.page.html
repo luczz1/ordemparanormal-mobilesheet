@@ -4,7 +4,7 @@
       <ion-label class="text-creator"> Sobre</ion-label>
     </ion-item>
 
-    <div style="margin-top: 3em;">
+    <div style="margin-top: 3em">
       <span>
         Este é um projeto sem fins lucrativos criado para fãs da série Ordem
         Paranormal. O objetivo é oferecer uma maneira fácil e acessível de criar
@@ -17,7 +17,9 @@
 
     <div style="margin-top: 1em">
       <img src="/assets/image/equipe_e.png" />
-      <ion-text color="medium" style="font-size: .7em;">(imagem triste acima)</ion-text>
+      <ion-text color="medium" style="font-size: 0.7em"
+        >(imagem triste acima)</ion-text
+      >
     </div>
 
     <ion-button
@@ -25,7 +27,7 @@
       style="--background: none; --border-color: var(--ion-color-medium)"
       shape="round"
       expand="block"
-      routerLink="/"
+      (click)="router.navigate(['/home']);"
     >
       Voltar
     </ion-button>

@@ -62,6 +62,16 @@ server.delete('/powers/:id/:itemid', (req: any, res: any) => {
   }
 });
 
+server.put('/attributes/:id/:attribute/:value', (req: any, res: any) => {
+  const attribute = req.params.attribute;
+  const attributeValue = req.params.value;
+
+  db.attributes[0][attribute] = Number(attributeValue);
+
+  saveDataToJSON(db);
+  res.send({200: 'sucesso'})
+});
+
 server.put('/skills/:id/:skillId/:newValue', (req: any, res: any) => {
   const skillID = req.params.skillId;
   const newSkillValue = req.params.newValue;

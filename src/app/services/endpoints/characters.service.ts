@@ -115,4 +115,17 @@ export class CharactersService extends BaseService {
       }
     );
   }
+
+  public updateAttributeValue(
+    characterId: number,
+    attribute: string,
+    value: number
+  ): Observable<any> {
+    return this.http.put(
+      `${this.Basepath()}attributes/${characterId}/${attribute}/${value}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
 }

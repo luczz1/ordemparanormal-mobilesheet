@@ -154,6 +154,27 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.openStatusModal = true;
   }
 
+  public changeAttributeValue(attribute: string, value: number | string) {
+    if (this.timeoutId !== null) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      this.charactersService
+        .updateAttributeValue(this.characterID, attribute, Number(value))
+        .subscribe({
+          next: () => {
+            setTimeout(() => {
+              this.getCharacterAttributes(this.characterID);
+            }, 50);
+          },
+          error: (err) => console.log(err),
+        });
+
+      this.timeoutId = null;
+    }, 1000);
+  }
+
   public increaseOrDecreaseSkill(type: number | string) {
     if (type === 0) this.skillValue--;
     else this.skillValue++;
@@ -178,9 +199,13 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     }, 500);
   }
 
-  redirectToPage(skillName: string, skillValue: number, rollType: string) {
+  public redirectToPage(skillName: string, skillValue: number, rollType: string) {
     const attrValue = this.attrForm.get(rollType)?.value;
     const url = `/character/dice-rolling/1/${skillName}/${attrValue}/${skillValue}`;
     this.router.navigateByUrl(url);
+  }
+
+  public gotoDiceRolling(skillName: string, skillValue: number | string, bonus: number) {
+    this.router.navigateByUrl(`/character/dice-rolling/1/${skillName}/${skillValue}/${bonus}`)
   }
 }

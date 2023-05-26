@@ -36,7 +36,7 @@
             <form [formGroup]="attrForm">
               <div
                 style="margin-bottom: 10px"
-                [routerLink]="editingMode ? null : '/character/dice-rolling/1/agilidade/{{agilidadeIpt.value}}/0'"
+                (click)="editingMode ? null : gotoDiceRolling('agilidade', agilidadeIpt.value, 0)"
               >
                 <label
                   for="agilidade"
@@ -48,7 +48,8 @@
                   id="agilidade"
                   class="input-attr"
                   formControlName="agility"
-                  readonly
+                  [readonly]="!editingMode"
+                  (input)="changeAttributeValue('agility', agilidadeIpt.value)"
                   #agilidadeIpt
                 />
               </div>
@@ -62,7 +63,7 @@
               >
                 <div
                   style="margin-bottom: 10px"
-                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/força/{{forcaIpt.value}}/0'"
+                  (click)="editingMode ? null : gotoDiceRolling('força', forcaIpt.value, 0)"
                 >
                   <label for="forca" style="display: block; margin-bottom: 5px"
                     >Força</label
@@ -72,14 +73,15 @@
                     id="forca"
                     class="input-attr"
                     formControlName="strength"
-                    readonly
+                    [readonly]="!editingMode"
+                    (input)="changeAttributeValue('strength', forcaIpt.value)"
                     #forcaIpt
                   />
                 </div>
 
                 <div
                   style="margin-bottom: 10px"
-                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/intelecto/{{intelectoIpt.value}}/0'"
+                  (click)="editingMode ? null : gotoDiceRolling('intelecto', intelectoIpt.value, 0)"
                 >
                   <label
                     for="intelecto"
@@ -91,7 +93,8 @@
                     id="intelecto"
                     class="input-attr"
                     formControlName="intellect"
-                    readonly
+                    [readonly]="!editingMode"
+                    (input)="changeAttributeValue('intellect', intelectoIpt.value)"
                     #intelectoIpt
                   />
                 </div>
@@ -106,7 +109,7 @@
               >
                 <div
                   style="margin-top: 10px"
-                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/presença/{{presencaIpt.value}}/0'"
+                  (click)="editingMode ? null : gotoDiceRolling('presença', presencaIpt.value, 0)"
                 >
                   <label
                     for="presenca"
@@ -118,14 +121,15 @@
                     id="presenca"
                     class="input-attr"
                     formControlName="presence"
-                    readonly
+                    [readonly]="!editingMode"
+                    (input)="changeAttributeValue('presence', presencaIpt.value)"
                     #presencaIpt
                   />
                 </div>
 
                 <div
                   style="margin-top: 10px"
-                  [routerLink]="editingMode ? null : '/character/dice-rolling/1/vigor/{{vigorIpt.value}}/0'"
+                  (click)="editingMode ? null : gotoDiceRolling('vigor', vigorIpt.value, 0)"
                 >
                   <label for="vigor" style="display: block; margin-bottom: 5px"
                     >Vigor</label
@@ -135,7 +139,8 @@
                     id="vigor"
                     class="input-attr"
                     formControlName="force"
-                    readonly
+                    [readonly]="!editingMode"
+                    (input)="changeAttributeValue('force', vigorIpt.value)"
                     #vigorIpt
                   />
                 </div>
@@ -251,6 +256,7 @@
         --height: 140px;
         --width: 300px;
         --border-radius: 40px;
+        --background: #161616
       "
       [isOpen]="openStatusModal"
       (willDismiss)="openStatusModal = false;"

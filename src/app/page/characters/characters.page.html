@@ -1,38 +1,56 @@
 <ion-content>
   <div class="menu">
-
     <ion-button
-      class="btn-outline"
+      class="btn-outline-back"
+      style="--background: none; --border-color: var(--ion-color-medium)"
       shape="round"
       expand="block"
+      (click)="router.navigate(['/home']);"
     >
+      Voltar
+    </ion-button>
+
+    <ion-button class="btn-outline" shape="round" expand="block">
       Criar nova ficha
     </ion-button>
 
     <ion-grid>
-      <div class="card-char" routerLink="/character/1">
+      <div
+        class="card-char"
+        routerLink="/character/1"
+        (click)="setLocalStorage()"
+      >
         <div class="left" style="width: 100%">
           <ion-row>
             <ion-col>
               <span>Agatha Volkomenn</span>
             </ion-col>
           </ion-row>
-          <ion-row style="margin: .4em;">
-            <ion-col style="background: var(--ion-color-danger); border-radius: .5em;">
+          <ion-row style="margin: 0.4em">
+            <ion-col
+              style="background: var(--ion-color-danger); border-radius: 0.5em"
+            >
               <span>50/50</span>
             </ion-col>
           </ion-row>
-          <ion-row style="margin: .4em;">
-            <ion-col style="background: var(--ion-color-tertiary); border-radius: .5em;">
+          <ion-row style="margin: 0.4em">
+            <ion-col
+              style="
+                background: var(--ion-color-tertiary);
+                border-radius: 0.5em;
+              "
+            >
               <span>64/64</span>
             </ion-col>
           </ion-row>
-          <ion-row style="margin: .4em;">
-            <ion-col style="background: var(--ion-color-warning); border-radius: .5em;">
+          <ion-row style="margin: 0.4em">
+            <ion-col
+              style="background: var(--ion-color-warning); border-radius: 0.5em"
+            >
               <span>50/50</span>
             </ion-col>
           </ion-row>
-          <ion-row style="width: 100%; font-size: .8em">
+          <ion-row style="width: 100%; font-size: 0.8em">
             <ion-col>
               <span>NEX: 40</span>
             </ion-col>
@@ -45,12 +63,11 @@
         <div class="right">
           <ion-row class="ion-align-items-center ion-justify-content-end">
             <ion-col class="ion-text-end">
-              <img src="/assets/image/agatha.png" style="max-width: 70%;" />
+              <img src="/assets/image/agatha.png" style="max-width: 70%" />
             </ion-col>
           </ion-row>
         </div>
       </div>
     </ion-grid>
-
   </div>
 </ion-content>
