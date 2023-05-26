@@ -7,7 +7,7 @@
 
 .card-char {
   background-color: #171717;
-  border: 1px solid #3F2D42;
+  border: 1px solid var(--ion-color-warning);
   border-radius: 10px;
   padding: 0 20px 10px;
   margin-bottom: 10px;
@@ -23,7 +23,7 @@
 }
 
 .text-area-st {
-  border: 1px solid #3f2d42;
+  border: 1px solid var(--ion-color-warning);
   background-color: #171717;
   height: 90px;
   outline: none;

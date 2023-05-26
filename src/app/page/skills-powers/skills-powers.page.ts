@@ -107,13 +107,13 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       .updateCharacterAbilitiesList(this.characterId, this.newSkill)
       .subscribe(
         () => {
-          this.openStatusModal = false;
           this.newSkill = {
             name: '',
             description: '',
           };
 
           setTimeout(() => {
+            this.openStatusModal = false;
             this.getSkill(this.characterId);
           }, 50);
         },
@@ -128,13 +128,13 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       .updateCharacterPowersList(this.characterId, this.newPower)
       .subscribe(
         (res) => {
-          this.openStatusModal = false;
           this.newPower = {
             name: '',
             description: '',
           };
 
           setTimeout(() => {
+            this.openStatusModal = false;
             this.getPower(this.characterId);
           }, 50);
         },

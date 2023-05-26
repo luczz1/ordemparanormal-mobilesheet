@@ -1,0 +1,35 @@
+<ion-content>
+
+  <div class="menu">
+      <ion-grid>
+
+        <ion-row style="display: flex; align-items: center">
+          <ion-col size="1" routerLink="/character/1">
+            <span style="font-size: 1.8em"
+              ><ion-icon name="chevron-back-outline" style="margin-top: .4em"></ion-icon
+            ></span>
+          </ion-col>
+          <ion-col>
+            <span style="font-size: 1.8em; font-family: SpecialFont;">Criar personagem</span>
+          </ion-col>
+        </ion-row>
+
+
+
+      </ion-grid>
+
+      <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
+        <ion-button
+        class="btn-outline"
+        style="--background: none;"
+        shape="round"
+        expand="block"
+        slot="bottom"
+        fill="clear"
+        routerLink="/character/attributes/1"
+        >
+        Ir para finalização
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

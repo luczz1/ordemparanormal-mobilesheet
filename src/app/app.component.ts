@@ -10,7 +10,8 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    if (!localStorage.getItem('character'))
-        this.router.navigate(['/home']);
+    if (!localStorage.getItem('character')) {
+      this.router.navigate(['/home']);
+    }
   }
 }

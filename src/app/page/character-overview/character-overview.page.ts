@@ -125,8 +125,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public backToInitialScreen() {
-    this.router.navigate(['/home']);
     localStorage.clear();
+    this.router.navigate(['/home']);
   }
 
   private updateCharacterInDatabase() {

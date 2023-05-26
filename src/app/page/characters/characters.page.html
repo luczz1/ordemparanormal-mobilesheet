@@ -10,14 +10,13 @@
       Voltar
     </ion-button>
 
-    <ion-button class="btn-outline" shape="round" expand="block">
+    <ion-button class="btn-outline" shape="round" expand="block" routerLink="/create">
       Criar nova ficha
     </ion-button>
 
     <ion-grid>
       <div
         class="card-char"
-        routerLink="/character/1"
         (click)="setLocalStorage()"
       >
         <div class="left" style="width: 100%">

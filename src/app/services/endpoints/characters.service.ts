@@ -42,6 +42,12 @@ export class CharactersService extends BaseService {
     });
   }
 
+  public createNewCharacter(data: CharacterModel): Observable<any> {
+    return this.http.post(`${this.Basepath()}create`, data, {
+      headers: this.Headers(),
+    });
+  }
+
   public updateCharacter(character: CharacterModel): Observable<any> {
     const characterID = character.id;
     return this.http.put(

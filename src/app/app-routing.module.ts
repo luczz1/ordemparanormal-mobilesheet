@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { RouterGuard } from './guard/route.guard';
 
 const routes: Routes = [
   {
@@ -8,15 +9,23 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./page/home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./page/home/home.module').then(m => m.HomePageModule),
+    canActivate: [RouterGuard]
   },
   {
     path: 'about',
-    loadChildren: () => import('./page/about/about.module').then(m => m.AboutPageModule)
+    loadChildren: () => import('./page/about/about.module').then(m => m.AboutPageModule),
+    canActivate: [RouterGuard]
   },
   {
     path: 'characters',
-    loadChildren: () => import('./page/characters/characters.module').then(m => m.CharactersPageModule)
+    loadChildren: () => import('./page/characters/characters.module').then(m => m.CharactersPageModule),
+    canActivate: [RouterGuard]
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./page/create-char/create-char.module').then(m => m.CreateCharPageModule),
+    canActivate: [RouterGuard]
   }
 ];
 @NgModule({

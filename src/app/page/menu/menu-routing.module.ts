@@ -48,7 +48,7 @@ const routes: Routes = [
           import('../combat-attr/combat-attr.module').then(
             (m) => m.CombatAttrPageModule
           ),
-      },
+      }
     ],
   },
 ];
