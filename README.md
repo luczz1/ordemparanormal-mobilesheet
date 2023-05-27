@@ -22,7 +22,7 @@ Talvez algum dia fique pronto, mas talvez não também.
   </div>
 
 # Tecnologias utilizadas:
-• Ionic (adaptação e importação mobile)
-• Angular (frontend)
-• Node (backend)
+• Ionic (adaptação e importação mobile) <br />
+• Angular (frontend) <br />
+• Node (backend) <br />
 • json-server (banco temporário, será migrado para MySQL)
