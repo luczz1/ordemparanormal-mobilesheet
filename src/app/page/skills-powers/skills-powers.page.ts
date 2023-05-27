@@ -58,7 +58,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public getSkill(id: number) {
     this.charactersService.getCharacterAbilitiesListByID(id).subscribe(
       (res) => {
-        this.skillsList = res.abilityList;
+        this.skillsList = res.abilities;
         this.getPower(id);
       },
       (error) => console.log(error)
@@ -68,7 +68,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public getPower(id: number) {
     this.charactersService.getCharacterPowersListByID(id).subscribe(
       (res) => {
-        this.powersList = res.powersList;
+        this.powersList = res.powers;
         this.pageLoaded = true;
         this.generic.multLoading(false);
       },
@@ -112,10 +112,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             description: '',
           };
 
-          setTimeout(() => {
-            this.openStatusModal = false;
-            this.getSkill(this.characterId);
-          }, 50);
+          this.openStatusModal = false;
+          this.getSkill(this.characterId);
         },
         (error: any) => {
           console.error('Erro ao adicionar habilidade:', error);
@@ -133,10 +131,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             description: '',
           };
 
-          setTimeout(() => {
-            this.openStatusModal = false;
-            this.getPower(this.characterId);
-          }, 50);
+          this.openStatusModal = false;
+          this.getPower(this.characterId);
         },
         (error: any) => {
           console.error('Erro ao adicionar poder:', error);
@@ -158,9 +154,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     if (ok) {
       this.charactersService[functionName](this.characterId, itemid).subscribe(
         (res: any) => {
-          setTimeout(() => {
-            this[getName](this.characterId);
-          }, 50);
+          this[getName](this.characterId);
         }
       );
     }

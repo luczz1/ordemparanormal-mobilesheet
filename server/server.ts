@@ -1,127 +1,348 @@
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('server/db.json');
-const middlewares = jsonServer.defaults();
-const db = require('./db.json');
-const fs = require('fs');
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql2/promise');
 
-server.use(middlewares);
-server.use(jsonServer.bodyParser);
+const app = express();
+const cors = require('cors');
+app.use(cors());
 
-server.post('/create', (req: any, res: any) => {
-  const newCharacter = req.body;
-  const newCharacterId = db.characters.length + 1;
-  newCharacter.id = newCharacterId;
+app.use(bodyParser.json());
+const corsOptions = {
+  origin: 'http://localhost:8100',
+};
+app.use(cors(corsOptions));
 
-  const newAttributes = {
-    id: newCharacterId,
-    agility: 0,
-    strength: 0,
-    intellect: 0,
-    force: 0,
-    presence: 0,
-  };
-  db.attributes.push(newAttributes);
-
-  const skillsTemplate = db.skills[0].skills;
-  const newSkills: any = { id: newCharacterId, skills: [] };
-
-  for (let i = 0; i < skillsTemplate.length; i++) {
-    const skillTemplate = skillsTemplate[i];
-    const newSkill = { ...skillTemplate, value: 0, id: i + 1 };
-    newSkills.skills.push(newSkill);
-  }
-
-  db.skills.push(newSkills);
-
-  db.characters.push(newCharacter);
-  saveDataToJSON(db);
-
-  res.send({
-    character: newCharacter,
-    attributes: newAttributes,
-    skills: newSkills,
-  });
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'lucas123',
+  database: 'ordem-sheet',
 });
 
-server.post('/abilities/:id', (req: any, res: any) => {
-  const ability = req.body;
-  const ids = db.abilities[0].abilityList.map((attr: any) => attr.id);
-  ability.id =
-    db.abilities[0].abilityList.length > 0 ? Number(Math.max(...ids)) + 1 : 1;
+app.get('/characters/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
 
-  db.abilities[0].abilityList.push(ability);
-  saveDataToJSON(db);
-  res.send({ 200: 'sucesso' });
-});
+    const [characterResult] = await pool.execute(
+      'SELECT * FROM characters WHERE id = ?',
+      [characterId]
+    );
 
-server.post('/powers/:id', (req: any, res: any) => {
-  const power = req.body;
-  const ids = db.powers[0].powersList.map((attr: any) => attr.id);
-  power.id =
-    db.powers[0].powersList.length > 0 ? Number(Math.max(...ids)) + 1 : 1;
+    if (characterResult.length === 0) {
+      res.status(404).json({ error: 'Personagem não encontrado' });
+      return;
+    }
 
-  db.powers[0].powersList.push(power);
-  saveDataToJSON(db);
-  res.send({ 200: 'sucesso' });
-});
+    const character = characterResult[0];
+    character.weight = character.weight.toFixed(2);
 
-server.delete('/abilities/:id/:itemid', (req: any, res: any) => {
-  const itemId = req.params.itemid;
 
-  const idIndex = db.abilities[0].abilityList.findIndex(
-    (attr: any) => String(attr.id) === itemId
-  );
-  if (idIndex !== -1) {
-    db.abilities[0].abilityList.splice(idIndex, 1);
-    saveDataToJSON(db);
-    res.send({ '200': 'sucesso' });
-  } else {
-    res.status(404).send({ error: 'Item não encontrado' });
+    res.json({ character });
+  } catch (error) {
+    console.error('Erro ao obter personagem:', error);
+    res.status(500).json({ error: 'Erro ao obter personagem' });
   }
 });
 
-server.delete('/powers/:id/:itemid', (req: any, res: any) => {
-  const itemId = req.params.itemid;
+app.get('/attributes/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
 
-  const idIndex = db.powers[0].powersList.findIndex(
-    (attr: any) => String(attr.id) === itemId
-  );
-  if (idIndex !== -1) {
-    db.powers[0].powersList.splice(idIndex, 1);
-    saveDataToJSON(db);
-    res.send({ '200': 'sucesso' });
-  } else {
-    res.status(404).send({ error: 'Item não encontrado' });
+    const [attributesResult] = await pool.execute(
+      'SELECT * FROM attributes WHERE id = ?',
+      [characterId]
+    );
+
+    if (attributesResult.length === 0) {
+      res.status(404).json({ error: 'Atributos não encontrados' });
+      return;
+    }
+
+    const attributes = attributesResult[0];
+
+    res.json({ attributes });
+  } catch (error) {
+    console.error('Erro ao obter atributos:', error);
+    res.status(500).json({ error: 'Erro ao obter atributos' });
   }
 });
 
-server.put('/attributes/:id/:attribute/:value', (req: any, res: any) => {
-  const attribute = req.params.attribute;
-  const attributeValue = req.params.value;
+app.get('/skills/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
 
-  db.attributes[0][attribute] = Number(attributeValue);
+    const [skillsResult] = await pool.execute(
+      'SELECT * FROM skills WHERE character_id = ?',
+      [characterId]
+    );
 
-  saveDataToJSON(db);
-  res.send({ 200: 'sucesso' });
+    if (skillsResult.length === 0) {
+      res.status(404).json({ error: 'Habilidades não encontradas' });
+      return;
+    }
+
+    const skills = skillsResult;
+
+    res.json({ skills });
+  } catch (error) {
+    console.error('Erro ao obter habilidades:', error);
+    res.status(500).json({ error: 'Erro ao obter habilidades' });
+  }
 });
 
-server.put('/skills/:id/:skillId/:newValue', (req: any, res: any) => {
-  const skillID = req.params.skillId;
-  const newSkillValue = req.params.newValue;
+app.get('/abilities/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
 
-  db.skills[0].skills.find((attr) => attr.id == skillID).value =
-    Number(newSkillValue);
+    const [abilitiesResult] = await pool.execute(
+      'SELECT * FROM abilities WHERE character_id = ?',
+      [characterId]
+    );
 
-  saveDataToJSON(db);
-  res.send({ 200: 'sucesso' });
+    if (abilitiesResult.length === 0) {
+      res.status(404).json({ error: 'Habilidades não encontradas' });
+      return;
+    }
+
+    const abilities = abilitiesResult;
+
+    res.json({ abilities });
+  } catch (error) {
+    console.error('Erro ao obter habilidades:', error);
+    res.status(500).json({ error: 'Erro ao obter habilidades' });
+  }
 });
 
-function saveDataToJSON(data: any) {
-  fs.writeFileSync('./server/db.json', JSON.stringify(data, null, 2));
-}
+app.get('/powers/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
 
-server.use(router);
-server.listen(3000, () => {
-  console.log('JSON Server is running');
+    const [powersResult] = await pool.execute(
+      'SELECT * FROM powers WHERE character_id = ?',
+      [characterId]
+    );
+
+    if (powersResult.length === 0) {
+      res.status(404).json({ error: 'Poderes não encontrados' });
+      return;
+    }
+
+    const powers = powersResult;
+
+    res.json({ powers });
+  } catch (error) {
+    console.error('Erro ao obter poderes:', error);
+    res.status(500).json({ error: 'Erro ao obter poderes' });
+  }
+});
+
+app.post('/create', async (req, res) => {
+  try {
+    const newCharacter = req.body;
+
+    const [characterResult] = await pool.execute(
+      'INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, birthplace, characteristic, personality, player, displacement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [
+        newCharacter.name,
+        newCharacter.current_life,
+        newCharacter.max_life,
+        newCharacter.current_sanity,
+        newCharacter.max_sanity,
+        newCharacter.current_effort,
+        newCharacter.max_effort,
+        newCharacter.class,
+        newCharacter.image_url,
+        newCharacter.nex,
+        newCharacter.weight,
+        newCharacter.age,
+        newCharacter.birthplace,
+        newCharacter.characteristic,
+        newCharacter.personality,
+        newCharacter.player,
+        newCharacter.displacement,
+      ]
+    );
+
+    const newCharacterId = characterResult.insertId;
+
+    await pool.execute(
+      'INSERT INTO attributes (id, agility, strength, intellect, force, presence) VALUES (?, ?, ?, ?, ?, ?)',
+      [
+        newCharacterId,
+        newCharacter.attributes.agility,
+        newCharacter.attributes.strength,
+        newCharacter.attributes.intellect,
+        newCharacter.attributes.force,
+        newCharacter.attributes.presence,
+      ]
+    );
+
+    const skills = newCharacter.skills.skills.map((skill) => [
+      newCharacterId,
+      skill.name,
+      skill.value,
+    ]);
+
+    await pool.query(
+      'INSERT INTO skills (character_id, name, value) VALUES ?',
+      [skills]
+    );
+
+    res.json({
+      character: {
+        id: newCharacterId,
+        ...newCharacter,
+      },
+      attributes: newCharacter.attributes,
+      skills: newCharacter.skills,
+    });
+  } catch (error) {
+    console.error('Erro ao criar um novo personagem:', error);
+    res.status(500).json({ error: 'Erro ao criar um novo personagem' });
+  }
+});
+
+app.put('/characters/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const updatedCharacter = req.body;
+
+    await pool.execute(
+      'UPDATE characters SET name = ?, current_life = ?, max_life = ?, current_sanity = ?, max_sanity = ?, current_effort = ?, max_effort = ?, class = ?, image_url = ?, nex = ?, weight = ?, age = ?, birthplace = ?, characteristic = ?, personality = ?, player = ?, displacement = ? WHERE id = ?',
+      [
+        updatedCharacter.name,
+        updatedCharacter.current_life,
+        updatedCharacter.max_life,
+        updatedCharacter.current_sanity,
+        updatedCharacter.max_sanity,
+        updatedCharacter.current_effort,
+        updatedCharacter.max_effort,
+        updatedCharacter.class,
+        updatedCharacter.image_url,
+        updatedCharacter.nex,
+        updatedCharacter.weight,
+        updatedCharacter.age,
+        updatedCharacter.birthplace,
+        updatedCharacter.characteristic,
+        updatedCharacter.personality,
+        updatedCharacter.player,
+        updatedCharacter.displacement,
+        characterId
+      ]
+    );
+
+    res.status(200).json({ message: 'Personagem atualizado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar personagem:', error);
+    res.status(500).json({ error: 'Erro ao atualizar personagem' });
+  }
+});
+
+
+app.post('/abilities/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const ability = req.body;
+
+    await pool.execute(
+      'INSERT INTO abilities (character_id, name, description) VALUES (?, ?, ?)',
+      [characterId, ability.name, ability.description]
+    );
+
+    res.status(200).json({ message: 'Habilidade criada com sucesso' });
+  } catch (error) {
+    console.error('Erro ao criar uma nova habilidade:', error);
+    res.status(500).json({ error: 'Erro ao criar uma nova habilidade' });
+  }
+});
+
+app.post('/powers/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const power = req.body;
+
+    await pool.execute(
+      'INSERT INTO powers (character_id, name, description) VALUES (?, ?, ?)',
+      [characterId, power.name, power.description]
+    );
+
+    res.status(200).json({ message: 'Poder criado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao criar um novo poder:', error);
+    res.status(500).json({ error: 'Erro ao criar um novo poder' });
+  }
+});
+
+app.delete('/abilities/:id/:itemId', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const itemId = req.params.itemId;
+
+    await pool.execute(
+      'DELETE FROM abilities WHERE character_id = ? AND id = ?',
+      [characterId, itemId]
+    );
+
+    res.status(200).json({ message: 'Habilidade excluída com sucesso' });
+  } catch (error) {
+    console.error('Erro ao excluir uma habilidade:', error);
+    res.status(500).json({ error: 'Erro ao excluir uma habilidade' });
+  }
+});
+
+app.delete('/powers/:id/:itemId', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const itemId = req.params.itemId;
+
+    await pool.execute('DELETE FROM powers WHERE character_id = ? AND id = ?', [
+      characterId,
+      itemId,
+    ]);
+
+    res.status(200).json({ message: 'Poder excluído com sucesso' });
+  } catch (error) {
+    console.error('Erro ao excluir um poder:', error);
+    res.status(500).json({ error: 'Erro ao excluir um poder' });
+  }
+});
+
+app.put('/attributes/:id/:attribute/:value', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const attribute = req.params.attribute;
+    const attributeValue = req.params.value;
+
+    await pool.execute(`UPDATE attributes SET ${attribute} = ? WHERE id = ?`, [
+      attributeValue,
+      characterId,
+    ]);
+
+    res.status(200).json({ message: 'Atributo atualizado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar um atributo:', error);
+    res.status(500).json({ error: 'Erro ao atualizar um atributo' });
+  }
+});
+
+app.put('/skills/:id/:skillId/:newValue', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const skillId = req.params.skillId;
+    const newValue = req.params.newValue;
+
+    await pool.execute(
+      'UPDATE skills SET value = ? WHERE character_id = ? AND id = ?',
+      [newValue, characterId, skillId]
+    );
+
+    res.status(200).json({ message: 'Habilidade atualizada com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar uma habilidade:', error);
+    res.status(500).json({ error: 'Erro ao atualizar uma habilidade' });
+  }
+});
+
+app.listen(3000, () => {
+  console.log('Servidor rodando na porta 3000');
 });

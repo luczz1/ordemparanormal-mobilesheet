@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "parser": "babel-eslint",
   "overrides": [
     {
       "files": ["*.ts"],

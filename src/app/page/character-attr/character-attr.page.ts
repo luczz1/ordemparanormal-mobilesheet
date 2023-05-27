@@ -77,7 +77,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public getCharacterAttributes(id: number) {
     this.charactersService.getCharacterAttributesByID(id).subscribe(
       (res) => {
-        this.attrForm.patchValue(res);
+        this.attrForm.patchValue(res.attributes);
         this.getCharacterSkills(id);
         this.cdr.detectChanges();
       },
@@ -164,9 +164,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         .updateAttributeValue(this.characterID, attribute, Number(value))
         .subscribe({
           next: () => {
-            setTimeout(() => {
-              this.getCharacterAttributes(this.characterID);
-            }, 50);
+            this.getCharacterAttributes(this.characterID);
           },
           error: (err) => console.log(err),
         });
@@ -199,13 +197,23 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     }, 500);
   }
 
-  public redirectToPage(skillName: string, skillValue: number, rollType: string) {
+  public redirectToPage(
+    skillName: string,
+    skillValue: number,
+    rollType: string
+  ) {
     const attrValue = this.attrForm.get(rollType)?.value;
     const url = `/character/dice-rolling/1/${skillName}/${attrValue}/${skillValue}`;
     this.router.navigateByUrl(url);
   }
 
-  public gotoDiceRolling(skillName: string, skillValue: number | string, bonus: number) {
-    this.router.navigateByUrl(`/character/dice-rolling/1/${skillName}/${skillValue}/${bonus}`)
+  public gotoDiceRolling(
+    skillName: string,
+    skillValue: number | string,
+    bonus: number
+  ) {
+    this.router.navigateByUrl(
+      `/character/dice-rolling/1/${skillName}/${skillValue}/${bonus}`
+    );
   }
 }

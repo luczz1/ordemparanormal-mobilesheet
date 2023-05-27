@@ -52,7 +52,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
       (res) => {
-        this.character.push(res);
+        this.character.push(res.character);
+
         this.generic.multLoading(false);
         this.pageLoaded = true;
       },
