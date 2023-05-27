@@ -9,27 +9,16 @@ import { filter } from 'rxjs';
 })
 export class TabsPage implements OnInit {
   public hideTabs: boolean = false;
+  public currentID: string | null | undefined;
 
   constructor(public router: Router) {
-    console.log(router.url);
   }
 
   ngOnInit() {
-    this.router.events
-      .pipe(
-        filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
-        )
-      )
-      .subscribe((event: NavigationEnd) => {
-        this.hideTabs =
-          event.url !== '/' &&
-          event.url !== '/about' &&
-          event.url !== '/characters';
-      });
+    this.currentID = localStorage.getItem('character');
   }
 
   redirectTo(route: string) {
-    this.router.navigate([route]);
+    this.router.navigate([route + '/' + this.currentID]);
   }
 }

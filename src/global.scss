@@ -31,7 +31,8 @@ ion-button {
   --padding-bottom: 24px;
 }
 
-.menu, ion-tabs {
+.menu,
+ion-tabs {
   max-width: 393px;
   margin: auto;
 }
@@ -50,10 +51,10 @@ ion-button {
   font-family: DefaultFont;
 }
 
-ion-scroll[direction=x] {
+ion-scroll[direction="x"] {
   width: 100vw;
 }
-ion-scroll[direction=y] {
+ion-scroll[direction="y"] {
   height: 100vh;
 }
 
@@ -66,9 +67,15 @@ ion-scroll[direction=y] {
   max-width: 90% !important;
 }
 
-.error-msg {text-align: center !important;}
-.custom-alert .alert-button-group {margin-top: 1.6em;}
-.sc-ion-alert-ios {margin-top: 0 !important;}
+.error-msg {
+  text-align: center !important;
+}
+.custom-alert .alert-button-group {
+  margin-top: 1.6em;
+}
+.sc-ion-alert-ios {
+  margin-top: 0 !important;
+}
 
 .alert-wrapper.sc-ion-alert-md {
   button.alert-button.alert-button-confirm {
@@ -77,13 +84,17 @@ ion-scroll[direction=y] {
     position: fixed;
     right: 0;
     top: 68%;
-    transition: .4s;
-    border-top-right-radius: .5em;
-    border-bottom-right-radius: .5em;
+    transition: 0.4s;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
   }
 
-  .alert-title.sc-ion-alert-md {text-align: center;}
-  .alert-button-inner.sc-ion-alert-md {justify-content: center !important;}
+  .alert-title.sc-ion-alert-md {
+    text-align: center;
+  }
+  .alert-button-inner.sc-ion-alert-md {
+    justify-content: center !important;
+  }
 
   button.alert-button.alert-button-cancel {
     color: var(--ion-color-medium);
@@ -91,12 +102,16 @@ ion-scroll[direction=y] {
     position: fixed;
     left: 0;
     top: 68%;
-    margin-left: .5em;
-    transition: .4s;
-    border-top-left-radius: .5em;
-    border-bottom-left-radius: .5em;
+    margin-left: 0.5em;
+    transition: 0.4s;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
   }
 
-  button.alert-button.alert-button-confirm:hover {background-color: var(--ion-color-primary-shade);}
-  button.alert-button.alert-button-cancel:hover {background-color: var(--ion-color-light-shade);}
+  button.alert-button.alert-button-confirm:hover {
+    background-color: var(--ion-color-primary-shade);
+  }
+  button.alert-button.alert-button-cancel:hover {
+    background-color: var(--ion-color-light-shade);
+  }
 }

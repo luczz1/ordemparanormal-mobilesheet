@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController, ViewDidEnter, ViewWillLeave } from '@ionic/angular';
+import { ModalController, ViewDidEnter } from '@ionic/angular';
 import { CharacterModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 
@@ -9,7 +9,8 @@ import { CharactersService } from 'src/app/services/endpoints/characters.service
   templateUrl: 'combat-attr.page.html',
   styleUrls: ['combat-attr.page.scss'],
 })
-export class CombatAttrPage implements ViewDidEnter, ViewWillLeave {
+export class CombatAttrPage implements ViewDidEnter {
+  public characterID = 0;
 
   constructor(
     private charactersService: CharactersService,
@@ -18,13 +19,8 @@ export class CombatAttrPage implements ViewDidEnter, ViewWillLeave {
   ) {}
 
   ionViewDidEnter(): void {
-    const characterID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-
-
-  }
-
-  ionViewWillLeave(): void {
-
+    const characterID = Number(this.activatedRoute.snapshot.paramMap.get('characterid'));
+    this.characterID = characterID;
   }
 
 }

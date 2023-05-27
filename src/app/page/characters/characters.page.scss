@@ -13,8 +13,8 @@
   --border-style: solid;
   --border-width: 1px;
   --background: none;
-  --border-color: var(--ion-color-success);
-  --color: var(--ion-color-success-tint);
+  --border-color: var(--ion-color-warning);
+  --color: var(--ion-color-warning-tint);
 }
 
 .btn-outline-back {
@@ -36,10 +36,36 @@
   padding: 0.6em;
   border-radius: 2em;
   margin: auto;
-  margin-top: 5em;
+  margin-top: 1em;
 }
 
 .card-char div {
   display: flex;
   flex-direction: column;
+}
+
+.progress-bar {
+  border-radius: 0.5em;
+  height: 25px;
+  position: relative;
+}
+
+.btn-outline {
+  --background: none;
+  --border-style: solid;
+  --border-width: 1px;
+}
+
+.progress {
+  border-radius: 0.5em;
+  height: 25px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--ion-color-light);
 }

@@ -1,23 +1,23 @@
-<ion-tabs [hidden]="hideTabs">
+<ion-tabs [hidden]="hideTabs" >
 
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="redirectTo('/character/attributes/1')">
+  <ion-tab-bar slot="bottom" style="--background: none">
+    <ion-tab-button (click)="redirectTo('/character/attributes/')">
       <ion-icon aria-hidden="true" name="dice-outline"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button (click)="redirectTo('/character/skills-powers/1')">
+    <ion-tab-button (click)="redirectTo('/character/skills-powers/')">
       <ion-icon aria-hidden="true" name="eye-outline"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button style="margin-bottom: .5em;" (click)="redirectTo('/character/1')">
-      <ion-img src="/assets/image/ORDO_REALITAS.png"></ion-img>
+    <ion-tab-button style="margin-bottom: .5em;" (click)="redirectTo('/character/')">
+      <ion-img src="/assets/image/ORDO_REALITAS.png" style="width: fit-content"></ion-img>
     </ion-tab-button>
 
-    <ion-tab-button (click)="redirectTo('/character/inventory/1')">
+    <ion-tab-button (click)="redirectTo('/character/inventory/')">
       <ion-icon aria-hidden="true" name="bag-outline"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button (click)="redirectTo('/character/combat-attr/1')">
+    <ion-tab-button (click)="redirectTo('/character/combat-attr/')">
       <ion-icon aria-hidden="true" name="color-wand-outline"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>

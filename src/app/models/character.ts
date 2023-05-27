@@ -1,5 +1,4 @@
 export interface CharacterModel {
-  [key: string]: any;
   id: number;
   age: number;
   birthplace: string;
@@ -25,7 +24,7 @@ export interface CharacterAttributesModel {
   agility: { name: string; value: number };
   strength: { name: string; value: number };
   intellect: { name: string; value: number };
-  force: { name: string; value: number };
+  stamina: { name: string; value: number };
   presence: { name: string; value: number };
 }
 

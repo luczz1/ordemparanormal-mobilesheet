@@ -3,7 +3,7 @@
     <ion-grid>
       <div>
         <ion-row>
-          <ion-col size="1" routerLink="/character/1">
+          <ion-col size="1" routerLink="/character/{{characterID}}">
             <span style="font-size: 1.3em"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
@@ -138,9 +138,9 @@
                     type="number"
                     id="vigor"
                     class="input-attr"
-                    formControlName="force"
+                    formControlName="stamina"
                     [readonly]="!editingMode"
-                    (input)="changeAttributeValue('force', vigorIpt.value)"
+                    (input)="changeAttributeValue('stamina', vigorIpt.value)"
                     #vigorIpt
                   />
                 </div>

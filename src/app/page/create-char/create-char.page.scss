@@ -27,19 +27,43 @@
 }
 
 
-.card-char {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  border: 1px solid #000;
-  background-color: #171717;
-  padding: 0.6em;
-  border-radius: 2em;
-  margin: auto;
-  margin-top: 5em;
+ion-input, ion-textarea {
+  border-radius: 16px;
+  background: #121212;
+  border: 1px solid var(--ion-color-medium);
+  outline: none !important;
 }
 
-.card-char div {
-  display: flex;
-  flex-direction: column;
+input {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: center;
+  outline: none;
+}
+
+ion-label {color: var(--ion-color-medium)}
+
+.has-focus {
+  outline: none;
+}
+
+.progress {
+  border-radius: 0.5em;
+  height: 25px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--ion-color-light);
+}
+
+.progress-bar {
+  border-radius: 0.5em;
+  height: 25px;
+  position: relative;
 }

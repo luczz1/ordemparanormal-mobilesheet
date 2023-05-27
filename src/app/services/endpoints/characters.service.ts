@@ -12,8 +12,20 @@ export class CharactersService extends BaseService {
     super();
   }
 
+  public getCharacters(): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters`, {
+      headers: this.Headers(),
+    });
+  }
+
   public getCharacterByID(id: number): Observable<any> {
     return this.http.get(`${this.Basepath()}characters/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public deleteCharacterByID(id: number): Observable<any> {
+    return this.http.delete(`${this.Basepath()}characters/${id}`, {
       headers: this.Headers(),
     });
   }

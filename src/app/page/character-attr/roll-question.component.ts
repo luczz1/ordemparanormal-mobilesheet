@@ -31,7 +31,7 @@ import { ModalController } from '@ionic/angular';
       </ion-button>
       <ion-button
         class="modal-button"
-        (click)="dismiss('force')"
+        (click)="dismiss('stamina')"
         expand="block"
       >
         Vigor

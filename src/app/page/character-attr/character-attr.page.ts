@@ -36,7 +36,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     agility: new FormControl(0),
     strength: new FormControl(0),
     intellect: new FormControl(0),
-    force: new FormControl(0),
+    stamina: new FormControl(0),
     presence: new FormControl(0),
     normally: new FormControl(0),
   });
@@ -203,7 +203,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     rollType: string
   ) {
     const attrValue = this.attrForm.get(rollType)?.value;
-    const url = `/character/dice-rolling/1/${skillName}/${attrValue}/${skillValue}`;
+    const url = `/character/dice-rolling/${this.characterID}/${skillName}/${attrValue}/${skillValue}`;
     this.router.navigateByUrl(url);
   }
 
@@ -213,7 +213,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     bonus: number
   ) {
     this.router.navigateByUrl(
-      `/character/dice-rolling/1/${skillName}/${skillValue}/${bonus}`
+      `/character/dice-rolling/${this.characterID}/${skillName}/${skillValue}/${bonus}`
     );
   }
 }

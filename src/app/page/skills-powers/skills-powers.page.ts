@@ -61,7 +61,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         this.skillsList = res.abilities;
         this.getPower(id);
       },
-      (error) => console.log(error)
+      (error) => {console.log(error), this.generic.multLoading(false)}
     );
   }
 

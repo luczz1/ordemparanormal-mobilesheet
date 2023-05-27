@@ -3,7 +3,7 @@
     <ion-grid>
       <div>
         <ion-row>
-          <ion-col size="1" routerLink="/character/attributes/1">
+          <ion-col size="1" routerLink="/character/attributes/{{characterid}}">
             <span style="font-size: 1.3em;"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
@@ -136,7 +136,7 @@
             color="medium"
             slot="bottom"
             fill="clear"
-            routerLink="/character/attributes/1"
+            routerLink="/character/attributes/{{characterid}}"
           >
             Voltar
           </ion-button>

@@ -19,6 +19,27 @@ const pool = mysql.createPool({
   database: 'ordem-sheet',
 });
 
+app.get('/characters', async (req, res) => {
+  try {
+    const [characterResults] = await pool.execute('SELECT * FROM characters');
+
+    if (characterResults.length === 0) {
+      res.status(404).json({ error: 'Nenhum personagem encontrado' });
+      return;
+    }
+
+    const characters = characterResults.map((character) => {
+      character.weight = character.weight.toFixed(2);
+      return character;
+    });
+
+    res.json({ characters });
+  } catch (error) {
+    console.error('Erro ao obter personagens:', error);
+    res.status(500).json({ error: 'Erro ao obter personagens' });
+  }
+});
+
 app.get('/characters/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
@@ -35,7 +56,6 @@ app.get('/characters/:id', async (req, res) => {
 
     const character = characterResult[0];
     character.weight = character.weight.toFixed(2);
-
 
     res.json({ character });
   } catch (error) {
@@ -77,7 +97,7 @@ app.get('/skills/:id', async (req, res) => {
     );
 
     if (skillsResult.length === 0) {
-      res.status(404).json({ error: 'Habilidades não encontradas' });
+      res.status(200).json({ error: 'Habilidades não encontradas' });
       return;
     }
 
@@ -100,7 +120,7 @@ app.get('/abilities/:id', async (req, res) => {
     );
 
     if (abilitiesResult.length === 0) {
-      res.status(404).json({ error: 'Habilidades não encontradas' });
+      res.status(200).json({ error: 'Habilidades não encontradas' });
       return;
     }
 
@@ -123,7 +143,7 @@ app.get('/powers/:id', async (req, res) => {
     );
 
     if (powersResult.length === 0) {
-      res.status(404).json({ error: 'Poderes não encontrados' });
+      res.status(200).json({ error: 'Poderes não encontrados' });
       return;
     }
 
@@ -140,65 +160,114 @@ app.post('/create', async (req, res) => {
   try {
     const newCharacter = req.body;
 
+    let {
+      name,
+      current_life,
+      max_life,
+      current_sanity,
+      max_sanity,
+      current_effort,
+      max_effort,
+      charClass,
+      image_url,
+      nex,
+      weight,
+      age,
+      birthplace,
+      characteristic,
+      personality,
+      player,
+      displacement,
+    } = newCharacter;
+
+    image_url = '/assets/image/agatha.png';
+
     const [characterResult] = await pool.execute(
       'INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, birthplace, characteristic, personality, player, displacement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [
-        newCharacter.name,
-        newCharacter.current_life,
-        newCharacter.max_life,
-        newCharacter.current_sanity,
-        newCharacter.max_sanity,
-        newCharacter.current_effort,
-        newCharacter.max_effort,
-        newCharacter.class,
-        newCharacter.image_url,
-        newCharacter.nex,
-        newCharacter.weight,
-        newCharacter.age,
-        newCharacter.birthplace,
-        newCharacter.characteristic,
-        newCharacter.personality,
-        newCharacter.player,
-        newCharacter.displacement,
+        name,
+        current_life,
+        max_life,
+        current_sanity,
+        max_sanity,
+        current_effort,
+        max_effort,
+        charClass,
+        image_url,
+        nex,
+        weight,
+        age,
+        birthplace,
+        characteristic,
+        personality,
+        player,
+        displacement,
       ]
     );
 
     const newCharacterId = characterResult.insertId;
 
     await pool.execute(
-      'INSERT INTO attributes (id, agility, strength, intellect, force, presence) VALUES (?, ?, ?, ?, ?, ?)',
-      [
-        newCharacterId,
-        newCharacter.attributes.agility,
-        newCharacter.attributes.strength,
-        newCharacter.attributes.intellect,
-        newCharacter.attributes.force,
-        newCharacter.attributes.presence,
-      ]
+      'INSERT INTO attributes (id, agility, strength, intellect, stamina, presence) VALUES (?, ?, ?, ?, ?, ?)',
+      [newCharacterId, 0, 0, 0, 0, 0]
     );
 
-    const skills = newCharacter.skills.skills.map((skill) => [
-      newCharacterId,
-      skill.name,
-      skill.value,
-    ]);
+    const skillsName = [
+      'atletismo',
+      'atualidades',
+      'ciência',
+      'diplomacia',
+      'enganação',
+      'fortitude',
+      'furtividade',
+      'intimidação',
+      'investigação',
+      'luta',
+      'medicina',
+      'ocultismo',
+      'percepção',
+      'pilotagem',
+      'pontaria',
+      'prestidigitação',
+      'profissão',
+      'reflexos',
+      'religião',
+      'tática',
+      'tecnologia',
+      'vontade',
+    ];
 
-    await pool.query(
-      'INSERT INTO skills (character_id, name, value) VALUES ?',
-      [skills]
-    );
+    const skillsData = skillsName.map((skill) => [newCharacterId, skill, 0]);
+
+    const query = 'INSERT INTO skills (character_id, name, value) VALUES ?';
+    await pool.query(query, [skillsData]);
 
     res.json({
       character: {
         id: newCharacterId,
         ...newCharacter,
       },
-      attributes: newCharacter.attributes,
-      skills: newCharacter.skills,
     });
   } catch (error) {
     console.error('Erro ao criar um novo personagem:', error);
     res.status(500).json({ error: 'Erro ao criar um novo personagem' });
+  }
+});
+
+app.delete('/characters/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+
+    await pool.execute('DELETE FROM attributes WHERE id = ?', [characterId]);
+    await pool.execute('DELETE FROM powers WHERE character_id = ?', [characterId]);
+    await pool.execute('DELETE FROM abilities WHERE character_id = ?', [characterId]);
+    await pool.execute('DELETE FROM skills WHERE character_id = ?', [characterId]);
+    await pool.execute('DELETE FROM characters WHERE id = ?', [characterId]);
+
+    res.json({ message: 'Personagem deletado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao deletar o personagem:', error);
+    res.status(500).json({ error: 'Erro ao deletar o personagem' });
   }
 });
 
@@ -227,7 +296,7 @@ app.put('/characters/:id', async (req, res) => {
         updatedCharacter.personality,
         updatedCharacter.player,
         updatedCharacter.displacement,
-        characterId
+        characterId,
       ]
     );
 
@@ -237,7 +306,6 @@ app.put('/characters/:id', async (req, res) => {
     res.status(500).json({ error: 'Erro ao atualizar personagem' });
   }
 });
-
 
 app.post('/abilities/:id', async (req, res) => {
   try {
@@ -310,7 +378,8 @@ app.delete('/powers/:id/:itemId', async (req, res) => {
 app.put('/attributes/:id/:attribute/:value', async (req, res) => {
   try {
     const characterId = req.params.id;
-    const attribute = req.params.attribute;
+    let attribute = req.params.attribute;
+
     const attributeValue = req.params.value;
 
     await pool.execute(`UPDATE attributes SET ${attribute} = ? WHERE id = ?`, [
