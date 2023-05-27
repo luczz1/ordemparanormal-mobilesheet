@@ -25,4 +25,4 @@ Talvez algum dia fique pronto, mas talvez não também.
 • Ionic (adaptação e importação mobile) <br />
 • Angular (frontend) <br />
 • Node (backend) <br />
-• json-server (banco temporário, será migrado para MySQL)
+• MySQL (banco de dados)
