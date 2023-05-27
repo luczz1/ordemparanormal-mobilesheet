@@ -21,3 +21,8 @@ Talvez algum dia fique pronto, mas talvez não também.
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/6fc571c5-3b55-4bb5-b0d1-9c6c2dd36613" style="width: 30%"/>
   </div>
 
+# Tecnologias utilizadas:
+• Ionic (adaptação e importação mobile)
+• Angular (frontend)
+• Node (backend)
+• json-server (banco temporário, será migrado para MySQL)
