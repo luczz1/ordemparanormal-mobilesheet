@@ -3,6 +3,15 @@
 ### Projeto em desenvolvimento! Nem perto de ficar pronto.
 Talvez algum dia fique pronto, mas talvez não também.
 
+# Tecnologias utilizadas:
+• Ionic (adaptação e importação mobile) <br />
+• Angular (frontend) <br />
+• NodeJS (backend) <br />
+• MySQL (banco de dados)
+
+# Imagens
+<small style="color: #f7f7f7">(muitas coisas podem mudar)</small>
+
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/bc76f339-37ad-4434-9a44-fedbb5a75ef9" style="width: 30%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/68453ef7-dea1-4da5-a68a-391c39ed795e" style="width: 30%"/>
@@ -21,8 +30,4 @@ Talvez algum dia fique pronto, mas talvez não também.
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/6fc571c5-3b55-4bb5-b0d1-9c6c2dd36613" style="width: 30%"/>
   </div>
 
-# Tecnologias utilizadas:
-• Ionic (adaptação e importação mobile) <br />
-• Angular (frontend) <br />
-• NodeJS (backend) <br />
-• MySQL (banco de dados)
+
