@@ -24,5 +24,5 @@ Talvez algum dia fique pronto, mas talvez não também.
 # Tecnologias utilizadas:
 • Ionic (adaptação e importação mobile) <br />
 • Angular (frontend) <br />
-• Node (backend) <br />
+• NodeJS (backend) <br />
 • MySQL (banco de dados)
