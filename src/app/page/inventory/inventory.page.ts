@@ -9,10 +9,13 @@ import { ViewDidEnter } from '@ionic/angular';
 })
 export class InventoryPage implements ViewDidEnter {
   public characterID = 0;
+  public charName: string | null = '';
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ionViewDidEnter(): void {
+    this.charName = localStorage.getItem('name');
+
     this.characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );

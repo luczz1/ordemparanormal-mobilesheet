@@ -37,25 +37,27 @@ export class CreateCharPage implements ViewDidLeave {
   public imagesArray = [
     { name: 'Agatha', url: '/assets/char/agatha.png' },
     { name: 'Arthur', url: '/assets/char/arthur.png' },
+    { name: 'Balu', url: '/assets/char/balu.png' },
+    { name: 'Beatrice', url: '/assets/char/beatrice.png' },
+    { name: 'Carina', url: '/assets/char/carina.png' },
+    { name: 'Clarissa', url: '/assets/char/clarissa.png' },
     { name: 'Dante', url: '/assets/char/dante.png' },
+    { name: 'Daniel', url: '/assets/char/daniel.png' },
+    { name: 'Elizabeth', url: '/assets/char/liz.png' },
+    { name: 'Erin', url: '/assets/char/erin.png' },
+    { name: 'Fernando', url: '/assets/char/fernando.png' },
+    { name: 'Gal', url: '/assets/char/gal.png' },
     { name: 'Ivete', url: '/assets/char/ivete.png' },
     { name: 'Joui', url: '/assets/char/joui.png' },
-    { name: 'Balu', url: '/assets/char/balu.png' },
-    { name: 'Carina', url: '/assets/char/carina.png' },
-    { name: 'Gal', url: '/assets/char/gal.png' },
     { name: 'Kaiser', url: '/assets/char/kaiser.png' },
     { name: 'Kian', url: '/assets/char/kian.png' },
-    { name: 'Elizabeth', url: '/assets/char/liz.png' },
-    { name: 'Thiago', url: '/assets/char/thiago.png' },
-    { name: 'Rubens', url: '/assets/char/rubens.png' },
-    { name: 'Veríssimo', url: '/assets/char/verissimo.png' },
-    { name: 'Mia', url: '/assets/char/mia.png' },
-    { name: 'Clarissa', url: '/assets/char/clarissa.png' },
-    { name: 'Beatrice', url: '/assets/char/beatrice.png' },
-    { name: 'Fernando', url: '/assets/char/fernando.png' },
-    { name: 'Erin', url: '/assets/char/erin.png' },
-    { name: 'Tristan', url: '/assets/char/tristan.png' },
     { name: 'Magistrada', url: '/assets/char/magistrada.png' },
+    { name: 'Mia', url: '/assets/char/mia.png' },
+    { name: 'Olivia', url: '/assets/char/olivia.png' },
+    { name: 'Rubens', url: '/assets/char/rubens.png' },
+    { name: 'Thiago', url: '/assets/char/thiago.png' },
+    { name: 'Tristan', url: '/assets/char/tristan.png' },
+    { name: 'Veríssimo', url: '/assets/char/verissimo.png' },
   ];
 
   constructor(
@@ -66,8 +68,12 @@ export class CreateCharPage implements ViewDidLeave {
   ) {}
 
   ionViewDidLeave(): void {
-      this.characterForm.reset({id: 0}, {birthplace: ''}, {characterisct: ''});
-      this.selectedImage = '';
+    this.characterForm.reset(
+      { id: 0 },
+      { birthplace: '' },
+      { characterisct: '' }
+    );
+    this.selectedImage = '';
   }
 
   public selectImage(imageurl: string, imagename: string) {
@@ -96,7 +102,9 @@ export class CreateCharPage implements ViewDidLeave {
 
       this.characterService.createNewCharacter(obj).subscribe({
         next: () => this.router.navigate(['/characters']),
-        error: (err) =>{ console.log(err), this.generic.presentToast(err.error.error, 3)},
+        error: (err) => {
+          console.log(err), this.generic.presentToast(err.error.error, 3);
+        },
       });
     } else {
       alert('Formulário inválido. Certifique-se de que não esqueceu nada.');

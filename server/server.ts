@@ -211,6 +211,7 @@ app.post('/characters/create', async (req, res) => {
     );
 
     const skillsName = [
+      'artes',
       'atletismo',
       'atualidades',
       'ciência',
@@ -218,6 +219,8 @@ app.post('/characters/create', async (req, res) => {
       'enganação',
       'fortitude',
       'furtividade',
+      'iniciativa',
+      'intuição',
       'intimidação',
       'investigação',
       'luta',
@@ -230,6 +233,7 @@ app.post('/characters/create', async (req, res) => {
       'profissão',
       'reflexos',
       'religião',
+      'sobrevivência',
       'tática',
       'tecnologia',
       'vontade',

@@ -19,6 +19,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public characterId = 0;
 
   public currentAddName = '';
+  public charName: string | null = '';
 
   public newSkill = {
     name: '',
@@ -44,6 +45,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     );
 
     this.characterId = characterID;
+
+    this.charName = localStorage.getItem('name');
 
     this.getSkill(characterID);
   }

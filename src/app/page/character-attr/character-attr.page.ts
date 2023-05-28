@@ -45,6 +45,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public selectedSkill: string = '';
   public skillValue = 0;
   public skillID = 0;
+  public charName: string | null = '';
 
   constructor(
     private charactersService: CharactersService,
@@ -61,6 +62,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     );
 
     this.characterID = characterID;
+    this.charName = localStorage.getItem('name');
 
     this.generic.multLoading(true);
 
@@ -90,6 +92,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       (res) => {
         this.skills = res.skills;
 
+        this.skills.sort((a, b) => a.name > b.name ? 1 : -1);
+
         this.pageLoaded = true;
         this.generic.multLoading(false);
         this.cdr.detectChanges();
@@ -108,7 +112,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     await modal.present();
 
     const { data } = await modal.onWillDismiss();
-    if (data.rollValue !== '') {
+    if (data && data.rollValue !== '') {
       this.redirectToPage(skill.name, skill.value, data.rollValue);
     }
   }

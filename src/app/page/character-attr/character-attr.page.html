@@ -9,7 +9,7 @@
             ></span>
           </ion-col>
           <ion-col>
-            <span style="font-size: 1.3em">Agatha Volkomenn</span>
+            <span style="font-size: 1.3em">{{charName}}</span>
             <ion-icon
               name="build-outline"
               style="float: right"
@@ -280,6 +280,7 @@
             <ion-input
               type="number"
               [(ngModel)]="skillValue"
+              readonly
               style="width: 20px"
             ></ion-input>
             <ion-button fill="clear" (click)="increaseOrDecreaseSkill(1)">

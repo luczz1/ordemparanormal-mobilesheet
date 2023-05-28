@@ -11,6 +11,7 @@ import { CharactersService } from 'src/app/services/endpoints/characters.service
 })
 export class CombatAttrPage implements ViewDidEnter {
   public characterID = 0;
+  public charName: string | null = '';
 
   constructor(
     private charactersService: CharactersService,
@@ -21,6 +22,8 @@ export class CombatAttrPage implements ViewDidEnter {
   ionViewDidEnter(): void {
     const characterID = Number(this.activatedRoute.snapshot.paramMap.get('characterid'));
     this.characterID = characterID;
+
+    this.charName = localStorage.getItem('name');
   }
 
 }

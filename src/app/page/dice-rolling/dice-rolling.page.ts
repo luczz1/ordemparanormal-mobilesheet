@@ -23,6 +23,7 @@ export class DiceRollingPage implements ViewDidEnter {
 
   public numberOfDice: number = 1;
   public diceResults: number[] = [];
+  public charName: string | null = '';
 
   constructor(private activatedRoute: ActivatedRoute, public modalController: ModalController) {}
 
@@ -40,6 +41,8 @@ export class DiceRollingPage implements ViewDidEnter {
       this.activatedRoute.snapshot.paramMap.get('rollvalue')
     ) + 1;
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));
+
+    this.charName = localStorage.getItem('name');
 
     this.pageLoaded = true;
   }

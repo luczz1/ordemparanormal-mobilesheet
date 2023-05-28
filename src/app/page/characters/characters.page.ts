@@ -37,8 +37,9 @@ export class CharactersPage implements ViewDidEnter {
     );
   }
 
-  public setLocalStorageAndEnterChar(charID: string | number) {
+  public setLocalStorageAndEnterChar(charID: string | number, charName: string) {
     localStorage.setItem('character', `${charID}`);
+    localStorage.setItem('name', `${charName}`);
     this.router.navigateByUrl(`/character/${charID}`);
   }
 
