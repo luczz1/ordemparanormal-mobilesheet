@@ -73,6 +73,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   ) {}
 
   ionViewDidEnter(): void {
+    this.editingMode = false;
+
     this.characterId = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
