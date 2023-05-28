@@ -8,15 +8,15 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class RouterGuard {
+export class CharacterGuard {
   constructor(private router: Router) {}
 
   canActivate(
     next?: ActivatedRouteSnapshot,
     state?: RouterStateSnapshot
   ): boolean {
-    if (localStorage.getItem('character')) {
-      this.router.navigateByUrl(`/character/${localStorage.getItem('character')}`);
+    if (!localStorage.getItem('character')) {
+      this.router.navigateByUrl(`/home`);
       return false;
     }
 

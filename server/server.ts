@@ -64,7 +64,7 @@ app.get('/characters/:id', async (req, res) => {
   }
 });
 
-app.get('/attributes/:id', async (req, res) => {
+app.get('/characters/attributes/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
 
@@ -87,7 +87,7 @@ app.get('/attributes/:id', async (req, res) => {
   }
 });
 
-app.get('/skills/:id', async (req, res) => {
+app.get('/characters/skills/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
 
@@ -110,7 +110,7 @@ app.get('/skills/:id', async (req, res) => {
   }
 });
 
-app.get('/abilities/:id', async (req, res) => {
+app.get('/characters/abilities/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
 
@@ -133,7 +133,7 @@ app.get('/abilities/:id', async (req, res) => {
   }
 });
 
-app.get('/powers/:id', async (req, res) => {
+app.get('/characters/powers/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
 
@@ -156,7 +156,7 @@ app.get('/powers/:id', async (req, res) => {
   }
 });
 
-app.post('/create', async (req, res) => {
+app.post('/characters/create', async (req, res) => {
   try {
     const newCharacter = req.body;
 
@@ -179,8 +179,6 @@ app.post('/create', async (req, res) => {
       player,
       displacement,
     } = newCharacter;
-
-    image_url = '/assets/image/agatha.png';
 
     const [characterResult] = await pool.execute(
       'INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, birthplace, characteristic, personality, player, displacement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -307,7 +305,7 @@ app.put('/characters/:id', async (req, res) => {
   }
 });
 
-app.post('/abilities/:id', async (req, res) => {
+app.post('/characters/abilities/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
     const ability = req.body;
@@ -324,7 +322,7 @@ app.post('/abilities/:id', async (req, res) => {
   }
 });
 
-app.post('/powers/:id', async (req, res) => {
+app.post('/characters/powers/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
     const power = req.body;
@@ -341,7 +339,7 @@ app.post('/powers/:id', async (req, res) => {
   }
 });
 
-app.delete('/abilities/:id/:itemId', async (req, res) => {
+app.delete('/characters/abilities/:id/:itemId', async (req, res) => {
   try {
     const characterId = req.params.id;
     const itemId = req.params.itemId;
@@ -358,7 +356,7 @@ app.delete('/abilities/:id/:itemId', async (req, res) => {
   }
 });
 
-app.delete('/powers/:id/:itemId', async (req, res) => {
+app.delete('/characters/powers/:id/:itemId', async (req, res) => {
   try {
     const characterId = req.params.id;
     const itemId = req.params.itemId;
@@ -375,7 +373,7 @@ app.delete('/powers/:id/:itemId', async (req, res) => {
   }
 });
 
-app.put('/attributes/:id/:attribute/:value', async (req, res) => {
+app.put('/characters/attributes/:id/:attribute/:value', async (req, res) => {
   try {
     const characterId = req.params.id;
     let attribute = req.params.attribute;
@@ -394,7 +392,7 @@ app.put('/attributes/:id/:attribute/:value', async (req, res) => {
   }
 });
 
-app.put('/skills/:id/:skillId/:newValue', async (req, res) => {
+app.put('/characters/skills/:id/:skillId/:newValue', async (req, res) => {
   try {
     const characterId = req.params.id;
     const skillId = req.params.skillId;

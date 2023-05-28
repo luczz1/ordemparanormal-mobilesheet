@@ -81,7 +81,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         this.getCharacterSkills(id);
         this.cdr.detectChanges();
       },
-      (error) => console.log(error)
+      (error) => this.generic.presentToast(error.error.error, 3)
     );
   }
 
@@ -166,7 +166,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
           next: () => {
             this.getCharacterAttributes(this.characterID);
           },
-          error: (err) => console.log(err),
+          error: (err) => this.generic.presentToast(err.error.error, 3),
         });
 
       this.timeoutId = null;
@@ -190,7 +190,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
               this.getCharacterSkills(this.characterID);
             }, 50);
           },
-          error: (err) => console.log(err),
+          error: (err) => this.generic.presentToast(err.error.error, 3),
         });
 
       this.timeoutId = null;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,8 @@ export class GenericService {
 
   constructor(
     private alertController: AlertController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private toastController: ToastController
   ) {}
 
   public async alertBox(header: string, message: string): Promise<boolean> {
@@ -70,5 +71,42 @@ export class GenericService {
         this.loading = false;
       }
     }
+  }
+
+  public async presentToast(
+    message: string,
+    type?: number,
+    showCartItemButton = false
+  ) {
+    let color: string;
+
+    const active = await this.toastController.getTop();
+
+    if (active) {
+      await active.dismiss();
+    }
+
+    switch (type) {
+      case 2:
+        color = 'warning';
+        break;
+      case 3:
+        color = 'danger';
+        break;
+      default:
+        color = 'success';
+        break;
+    }
+
+    const toast = await this.toastController.create({
+      message,
+      color,
+      cssClass: 'defaultToast',
+      duration: 2000,
+      position: 'top',
+      animated: true,
+    });
+
+    toast.present();
   }
 }

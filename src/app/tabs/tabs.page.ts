@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { ViewDidEnter } from '@ionic/angular';
 import { filter } from 'rxjs';
 
 @Component({
@@ -7,15 +8,14 @@ import { filter } from 'rxjs';
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
 })
-export class TabsPage implements OnInit {
+export class TabsPage {
   public hideTabs: boolean = false;
   public currentID: string | null | undefined;
 
   constructor(public router: Router) {
-  }
-
-  ngOnInit() {
-    this.currentID = localStorage.getItem('character');
+    router.events.subscribe((val) => {
+      this.currentID = localStorage.getItem('character');
+  });
   }
 
   redirectTo(route: string) {

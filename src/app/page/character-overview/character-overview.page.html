@@ -104,7 +104,15 @@
 
         <ion-row class="ion-align-items-center">
           <ion-col class="ion-text-center">
-            <img [src]="attr.image_url" style="max-width: 100%" />
+            <img
+              [src]="attr.image_url"
+              style="
+                max-width: 400px;
+                max-height: 400px;
+                min-width: 150px;
+                min-height: 400px;
+              "
+            />
           </ion-col>
         </ion-row>
 

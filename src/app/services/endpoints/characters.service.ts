@@ -31,31 +31,31 @@ export class CharactersService extends BaseService {
   }
 
   public getCharacterAttributesByID(id: number): Observable<any> {
-    return this.http.get(`${this.Basepath()}attributes/${id}`, {
+    return this.http.get(`${this.Basepath()}characters/attributes/${id}`, {
       headers: this.Headers(),
     });
   }
 
   public getCharacterSkillsByID(id: number): Observable<any> {
-    return this.http.get(`${this.Basepath()}skills/${id}`, {
+    return this.http.get(`${this.Basepath()}characters/skills/${id}`, {
       headers: this.Headers(),
     });
   }
 
   public getCharacterAbilitiesListByID(id: number): Observable<any> {
-    return this.http.get(`${this.Basepath()}abilities/${id}`, {
+    return this.http.get(`${this.Basepath()}characters/abilities/${id}`, {
       headers: this.Headers(),
     });
   }
 
   public getCharacterPowersListByID(id: number): Observable<any> {
-    return this.http.get(`${this.Basepath()}powers/${id}`, {
+    return this.http.get(`${this.Basepath()}characters/powers/${id}`, {
       headers: this.Headers(),
     });
   }
 
   public createNewCharacter(data: CharacterModel): Observable<any> {
-    return this.http.post(`${this.Basepath()}create`, data, {
+    return this.http.post(`${this.Basepath()}characters/create`, data, {
       headers: this.Headers(),
     });
   }
@@ -76,7 +76,7 @@ export class CharactersService extends BaseService {
     skillsList: { name: string; description: string }
   ): Observable<any> {
     return this.http.post(
-      `${this.Basepath()}abilities/${characterId}`,
+      `${this.Basepath()}characters/abilities/${characterId}`,
       skillsList,
       {
         headers: this.Headers(),
@@ -89,7 +89,7 @@ export class CharactersService extends BaseService {
     powersList: { name: string; description: string }
   ): Observable<any> {
     return this.http.post(
-      `${this.Basepath()}powers/${characterId}`,
+      `${this.Basepath()}characters/powers/${characterId}`,
       powersList,
       {
         headers: this.Headers(),
@@ -102,7 +102,7 @@ export class CharactersService extends BaseService {
     itemid: number
   ): Observable<any> {
     return this.http.delete(
-      `${this.Basepath()}powers/${characterId}/${itemid}`,
+      `${this.Basepath()}characters/powers/${characterId}/${itemid}`,
       {
         headers: this.Headers(),
       }
@@ -114,7 +114,7 @@ export class CharactersService extends BaseService {
     itemid: number
   ): Observable<any> {
     return this.http.delete(
-      `${this.Basepath()}abilities/${characterId}/${itemid}`,
+      `${this.Basepath()}characters/abilities/${characterId}/${itemid}`,
       {
         headers: this.Headers(),
       }
@@ -127,7 +127,7 @@ export class CharactersService extends BaseService {
     newValue: number
   ): Observable<any> {
     return this.http.put(
-      `${this.Basepath()}skills/${characterId}/${skillId}/${newValue}`,
+      `${this.Basepath()}characters/skills/${characterId}/${skillId}/${newValue}`,
       {
         headers: this.Headers(),
       }
@@ -140,7 +140,7 @@ export class CharactersService extends BaseService {
     value: number
   ): Observable<any> {
     return this.http.put(
-      `${this.Basepath()}attributes/${characterId}/${attribute}/${value}`,
+      `${this.Basepath()}characters/attributes/${characterId}/${attribute}/${value}`,
       {
         headers: this.Headers(),
       }

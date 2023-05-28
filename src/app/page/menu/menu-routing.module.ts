@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuPage } from './menu.page';
+import { CharacterGuard } from 'src/app/guard/character.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
           import('../character-overview/character-overview.module').then(
             (m) => m.CharacterOverviewPageModule
           ),
+          canActivate: [CharacterGuard]
       },
       {
         path: 'character/attributes/:characterid',
@@ -20,6 +22,7 @@ const routes: Routes = [
           import('../character-attr/character-attr.module').then(
             (m) => m.CharacterAttrPageModule
           ),
+          canActivate: [CharacterGuard]
       },
       {
         path: 'character/dice-rolling/:characterid/:rollname/:rollvalue/:bonus',
@@ -27,6 +30,7 @@ const routes: Routes = [
           import('../dice-rolling/dice-rolling.module').then(
             (m) => m.DiceRollingPageModule
           ),
+          canActivate: [CharacterGuard]
       },
       {
         path: 'character/inventory/:characterid',
@@ -34,6 +38,7 @@ const routes: Routes = [
           import('../inventory/inventory.module').then(
             (m) => m.InventoryPageModule
           ),
+          canActivate: [CharacterGuard]
       },
       {
         path: 'character/skills-powers/:characterid',
@@ -41,6 +46,7 @@ const routes: Routes = [
           import('../skills-powers/skills-powers.module').then(
             (m) => m.SkillsPowersPageModule
           ),
+          canActivate: [CharacterGuard]
       },
       {
         path: 'character/combat-attr/:characterid',
@@ -48,6 +54,7 @@ const routes: Routes = [
           import('../combat-attr/combat-attr.module').then(
             (m) => m.CombatAttrPageModule
           ),
+          canActivate: [CharacterGuard]
       }
     ],
   },

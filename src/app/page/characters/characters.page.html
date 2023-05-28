@@ -19,7 +19,7 @@
           <ion-icon color="danger" name="trash-bin-outline"></ion-icon
         ></span>
         <div class="card-char" (click)="setLocalStorageAndEnterChar(char.id)">
-          <div class="left" style="width: 100%">
+          <div class="left" style="max-width: 200px; min-width: 200px">
             <ion-row>
               <ion-col>
                 <span>{{char.name}} </span>
@@ -93,9 +93,9 @@
           </div>
 
           <div class="right">
-            <ion-row class="ion-align-items-center ion-justify-content-end">
-              <ion-col class="ion-text-end">
-                <img [src]="char.image_url" style="max-width: 70%" />
+            <ion-row class="ion-align-items-center ion-justify-content-center">
+              <ion-col class="ion-text-center" >
+                <img [src]="char.image_url" style="max-width: 100px; max-height: 160px; min-width: 60px; min-height: 160px;" />
               </ion-col>
             </ion-row>
           </div>
