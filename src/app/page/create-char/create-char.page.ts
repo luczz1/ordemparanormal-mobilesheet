@@ -148,18 +148,6 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     if (this.characterForm.valid) {
       const obj = this.characterForm.getRawValue();
 
-      obj.current_life = Number(obj.max_life);
-      obj.current_sanity = Number(obj.max_sanity);
-      obj.current_effort = Number(obj.max_effort);
-
-      obj.current_life = Number(obj.current_life);
-      obj.current_sanity = Number(obj.current_sanity);
-      obj.current_effort = Number(obj.current_effort);
-
-      obj.max_life = Number(obj.max_life);
-      obj.max_sanity = Number(obj.max_sanity);
-      obj.max_effort = Number(obj.max_effort);
-
       obj.displacement = Number(obj.displacement);
 
       this.characterService.editCharacter(this.characterId, obj).subscribe({

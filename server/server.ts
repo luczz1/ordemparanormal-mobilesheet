@@ -289,6 +289,41 @@ app.delete('/characters/:id', async (req, res) => {
     res.status(500).json({ error: 'Erro ao deletar o personagem' });
   }
 });
+app.put('/characters/:id', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const updatedCharacter = req.body;
+
+    await pool.execute(
+      'UPDATE characters SET name = ?, current_life = ?, max_life = ?, current_sanity = ?, max_sanity = ?, current_effort = ?, max_effort = ?, class = ?, image_url = ?, nex = ?, weight = ?, age = ?, birthplace = ?, characteristic = ?, personality = ?, player = ?, displacement = ? WHERE id = ?',
+      [
+        updatedCharacter.name,
+        updatedCharacter.current_life,
+        updatedCharacter.max_life,
+        updatedCharacter.current_sanity,
+        updatedCharacter.max_sanity,
+        updatedCharacter.current_effort,
+        updatedCharacter.max_effort,
+        updatedCharacter.class,
+        updatedCharacter.image_url,
+        updatedCharacter.nex,
+        updatedCharacter.weight,
+        updatedCharacter.age,
+        updatedCharacter.birthplace,
+        updatedCharacter.characteristic,
+        updatedCharacter.personality,
+        updatedCharacter.player,
+        updatedCharacter.displacement,
+        characterId,
+      ]
+    );
+
+    res.status(200).json({ message: 'Personagem atualizado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar personagem:', error);
+    res.status(500).json({ error: 'Erro ao atualizar personagem' });
+  }
+});
 
 app.put('/characters/edit/:id', async (req, res) => {
   try {
