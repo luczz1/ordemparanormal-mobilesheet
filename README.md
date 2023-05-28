@@ -5,17 +5,17 @@ Talvez algum dia fique pronto, mas talvez não também.
 
 ### Progresso
 
-✅ Criação de personagem 
-✅ Seleção/exclusão de personagem
-✅ Visualização de personagem
-✅ Editar vida/sanidade/esforço
-✅ Atributos e perícias editáveis
-✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dados dinâmicos com base nos pontos)
-✅ Rolagem de dados personalizados
-✅ Listar, adicionar e excluir rituais e habilidades
-⌛ Já vir inserido habilidades com base na classe escolhida
-⌛ Sistema de invetário (adicionar item, remover, etc)
-⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
+- ✅ Criação de personagem 
+- ✅ Seleção/exclusão de personagem
+- ✅ Visualização de personagem
+- ✅ Editar vida/sanidade/esforço
+- ✅ Atributos e perícias editáveis
+- ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
+- ✅ Rolagem de dados personalizados
+- ✅ Listar, adicionar e excluir rituais e habilidades
+- ⌛ Já vir inserido habilidades com base na classe escolhida
+- ⌛ Sistema de invetário (adicionar item, remover, etc)
+- ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 
 # Tecnologias utilizadas:
 • Ionic (adaptação e importação mobile) <br />
