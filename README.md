@@ -13,9 +13,10 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
 - ✅ Listar, adicionar e excluir rituais e habilidades
-- ⌛ Editar informações do personagem (nex, deslocamento, etc.)
 - ⌛ Sistema de invetário (adicionar item, remover, etc)
+- ⌛ Editar informações do personagem (nex, deslocamento, etc.)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
+- ⌛ Tela de "sobre" no personagem, com informações da sua história, objetivos, personalidade e aparência.
 - ⌛ Painel do mestre
 
 # Tecnologias utilizadas:
