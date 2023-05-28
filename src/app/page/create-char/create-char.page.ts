@@ -149,6 +149,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       const obj = this.characterForm.getRawValue();
 
       obj.displacement = Number(obj.displacement);
+      localStorage.setItem('name', obj.name);
 
       this.characterService.editCharacter(this.characterId, obj).subscribe({
         next: () => this.router.navigate([`/character/${this.characterId}`]),
