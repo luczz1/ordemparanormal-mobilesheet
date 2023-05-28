@@ -17,6 +17,7 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ⌛ Já vir inserido habilidades com base na classe escolhida
 - ⌛ Sistema de invetário (adicionar item, remover, etc)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
+- ⌛ Painel do mestre
 
 # Tecnologias utilizadas:
 • Ionic (adaptação e importação mobile) <br />
