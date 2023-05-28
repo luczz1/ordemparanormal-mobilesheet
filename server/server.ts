@@ -275,6 +275,12 @@ app.delete('/characters/:id', async (req, res) => {
     await pool.execute('DELETE FROM skills WHERE character_id = ?', [
       characterId,
     ]);
+    await pool.execute('DELETE FROM inventory_items WHERE character_id = ?', [
+      characterId,
+    ]);
+    await pool.execute('DELETE FROM inventory_infos WHERE character_id = ?', [
+      characterId,
+    ]);
     await pool.execute('DELETE FROM characters WHERE id = ?', [characterId]);
 
     res.json({ message: 'Personagem deletado com sucesso' });
@@ -284,7 +290,7 @@ app.delete('/characters/:id', async (req, res) => {
   }
 });
 
-app.put('/characters/:id', async (req, res) => {
+app.put('/characters/edit/:id', async (req, res) => {
   try {
     const characterId = req.params.id;
     const updatedCharacter = req.body;
@@ -299,7 +305,7 @@ app.put('/characters/:id', async (req, res) => {
         updatedCharacter.max_sanity,
         updatedCharacter.current_effort,
         updatedCharacter.max_effort,
-        updatedCharacter.class,
+        updatedCharacter.charClass,
         updatedCharacter.image_url,
         updatedCharacter.nex,
         updatedCharacter.weight,

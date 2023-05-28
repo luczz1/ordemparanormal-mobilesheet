@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, ViewDidEnter, ViewDidLeave } from '@ionic/angular';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
@@ -10,7 +10,7 @@ import { GenericService } from 'src/app/services/generic.service';
   templateUrl: 'create-char.page.html',
   styleUrls: ['create-char.page.scss'],
 })
-export class CreateCharPage implements ViewDidLeave {
+export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   public characterForm: any = new FormGroup({
     id: new FormControl(0),
     name: new FormControl(null, [Validators.required]),
@@ -33,6 +33,10 @@ export class CreateCharPage implements ViewDidLeave {
   });
 
   public selectedImage = '';
+  public characterId = 0;
+  public editingMode = false;
+
+  public imagesModalIsOpen = false;
 
   public imagesArray = [
     { name: 'Agatha', url: '/assets/char/agatha.png' },
@@ -62,10 +66,24 @@ export class CreateCharPage implements ViewDidLeave {
 
   constructor(
     private characterService: CharactersService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     public modalController: ModalController,
     private generic: GenericService
   ) {}
+
+  ionViewDidEnter(): void {
+    this.characterId = Number(
+      this.activatedRoute.snapshot.paramMap.get('characterid')
+    );
+
+    if (this.characterId) {
+      this.generic.multLoading(true);
+      this.editingMode = true;
+      this.getCharacterByID();
+    }
+    this.selectedImage = '';
+  }
 
   ionViewDidLeave(): void {
     this.characterForm.reset(
@@ -73,13 +91,26 @@ export class CreateCharPage implements ViewDidLeave {
       { birthplace: '' },
       { characterisct: '' }
     );
-    this.selectedImage = '';
   }
 
   public selectImage(imageurl: string, imagename: string) {
     this.characterForm.get('image_url').patchValue(imageurl);
     this.selectedImage = imagename;
     this.modalController.dismiss();
+  }
+
+  public getCharacterByID() {
+    this.characterService.getCharacterByID(this.characterId).subscribe(
+      (res) => {
+        this.characterForm.patchValue(res.character);
+        this.characterForm.get('charClass').patchValue(res.character.class);
+        this.generic.multLoading(false);
+      },
+      (error) => {
+        this.generic.presentToast(error.error.error, 3);
+        this.generic.multLoading(false);
+      }
+    );
   }
 
   public createCharacter() {
@@ -102,6 +133,35 @@ export class CreateCharPage implements ViewDidLeave {
 
       this.characterService.createNewCharacter(obj).subscribe({
         next: () => this.router.navigate(['/characters']),
+        error: (err) => {
+          console.log(err), this.generic.presentToast(err.error.error, 3);
+        },
+      });
+    } else {
+      alert('Formulário inválido. Certifique-se de que não esqueceu nada.');
+    }
+  }
+
+  public saveCharacterEdit() {
+    if (this.characterForm.valid) {
+      const obj = this.characterForm.getRawValue();
+
+      obj.current_life = Number(obj.max_life);
+      obj.current_sanity = Number(obj.max_sanity);
+      obj.current_effort = Number(obj.max_effort);
+
+      obj.current_life = Number(obj.current_life);
+      obj.current_sanity = Number(obj.current_sanity);
+      obj.current_effort = Number(obj.current_effort);
+
+      obj.max_life = Number(obj.max_life);
+      obj.max_sanity = Number(obj.max_sanity);
+      obj.max_effort = Number(obj.max_effort);
+
+      obj.displacement = Number(obj.displacement);
+
+      this.characterService.editCharacter(this.characterId, obj).subscribe({
+        next: () => this.router.navigate([`/character/${this.characterId}`]),
         error: (err) => {
           console.log(err), this.generic.presentToast(err.error.error, 3);
         },

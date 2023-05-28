@@ -55,7 +55,12 @@ const routes: Routes = [
             (m) => m.CombatAttrPageModule
           ),
           canActivate: [CharacterGuard]
-      }
+      },
+      {
+        path: 'character/edit/:characterid',
+        loadChildren: () => import('../create-char/create-char.module').then(m => m.CreateCharPageModule),
+        canActivate: [CharacterGuard]
+      },
     ],
   },
 ];

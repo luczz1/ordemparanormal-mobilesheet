@@ -125,6 +125,10 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     }
   }
 
+  public gotoEditScreen(characterid: number) {
+    this.router.navigateByUrl(`/character/edit/${characterid}`)
+  }
+
   public backToInitialScreen() {
     localStorage.clear();
     this.router.navigate(['/home']);

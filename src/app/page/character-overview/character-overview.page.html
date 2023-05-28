@@ -11,7 +11,11 @@
               (click)="backToInitialScreen()"
             ></ion-icon>
             <span style="font-size: 1.3em; margin: auto">{{attr.name}}</span>
-            <ion-icon name="build-outline" style="float: right"></ion-icon>
+            <ion-icon
+              name="build-outline"
+              style="float: right"
+              (click)="gotoEditScreen(attr.id)"
+            ></ion-icon>
           </ion-col>
         </ion-row>
         <ion-row style="margin: 0.6em; width: 100%; margin: auto">

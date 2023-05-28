@@ -12,7 +12,7 @@
         </ion-col>
         <ion-col>
           <span style="font-size: 1.8em; font-family: SpecialFont"
-            >Criar personagem</span
+            >{{editingMode ? 'Editar' : 'Criar'}} personagem</span
           >
         </ion-col>
       </ion-row>
@@ -103,7 +103,7 @@
         <ion-row style="margin-top: 1em">
           <ion-col
             size="12"
-            id="images-modal"
+            (click)="imagesModalIsOpen = true"
             style="
               border: 1px solid var(--ion-color-medium);
               background: #121212;
@@ -129,7 +129,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
+        <ion-row *ngIf="!editingMode">
           <ion-col>
             <ion-label
               color="light"
@@ -140,7 +140,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin: 0.6em; width: 100%; margin: auto">
+        <ion-row style="margin: 0.6em; width: 100%; margin: auto" *ngIf="!editingMode">
           <ion-col
             style="
               border-radius: 0.5em;
@@ -184,7 +184,7 @@
             </div>
           </ion-col>
         </ion-row>
-        <ion-row style="width: 100%; margin: auto">
+        <ion-row style="width: 100%; margin: auto" *ngIf="!editingMode">
           <ion-col
             style="
               border-radius: 0.5em;
@@ -230,19 +230,19 @@
         expand="block"
         slot="bottom"
         fill="clear"
-        (click)="createCharacter()"
+        (click)="editingMode ? saveCharacterEdit() : createCharacter()"
       >
         Finalizar
       </ion-button>
     </div>
 
-    <ion-modal trigger="images-modal">
+    <ion-modal [isOpen]="imagesModalIsOpen" (willDismiss)="imagesModalIsOpen= false">
       <ng-template>
         <ion-header>
           <ion-toolbar>
             <ion-title>Escolha uma imagem</ion-title>
             <ion-buttons slot="end">
-              <ion-button (click)="modalController.dismiss()">
+              <ion-button (click)="imagesModalIsOpen = false">
                 <ion-icon name="close"></ion-icon>
               </ion-button>
             </ion-buttons>
