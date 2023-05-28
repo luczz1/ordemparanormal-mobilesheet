@@ -13,16 +13,16 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
 - ✅ Listar, adicionar e excluir rituais e habilidades
+- ✅ Sistema de invetário
 - ⌛ Editar informações do personagem (nex, deslocamento, etc.)
-- ⌛ Já vir inserido habilidades com base na classe escolhida
-- ⌛ Sistema de invetário (adicionar item, remover, etc)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
+- ⌛ Tela de "sobre" no personagem, com informações da sua história, objetivos, personalidade e aparência.
 - ⌛ Painel do mestre
 
 # Tecnologias utilizadas:
-- Ionic (adaptação e importação mobile) <br />
-- Angular (frontend) <br />
-- NodeJS (backend) <br />
+- Ionic (adaptação e importação mobile)
+- Angular (frontend)
+- NodeJS (backend)
 - MySQL (banco de dados)
 
 # Imagens
@@ -42,7 +42,7 @@ Talvez algum dia fique pronto, mas talvez não também.
   </div>
   
   <div style="display: flex; flex-direction: row">
-  <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/abfe3022-ed92-4ba1-b04b-50c2e51ec57e" style="width: 30%"/>
+  <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c92f3a25-a5f4-4ecd-89e6-98399d00fae3" style="width: 30%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/ae6d1b11-138b-4637-8a96-c4a0d008c3ff" style="width: 30%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a35de87a-2c86-480a-ac88-fd9e90e5b4bf" style="width: 30%"/>
   </div>
