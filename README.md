@@ -18,7 +18,8 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ⌛ Tela de "sobre" no personagem, com informações da sua história, objetivos, personalidade e aparência.
-- ⌛ Painel do mestre
+- ⌛ Painel do(a) mestre
+- ⌛ Atualização de dados em tempo real para o(a) mestre
 
 # Tecnologias utilizadas:
 - Ionic (adaptação e importação mobile)
