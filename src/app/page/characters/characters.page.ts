@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ViewDidEnter } from '@ionic/angular';
+import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
 import { CharacterModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
@@ -10,7 +10,7 @@ import { GenericService } from 'src/app/services/generic.service';
   templateUrl: 'characters.page.html',
   styleUrls: ['characters.page.scss'],
 })
-export class CharactersPage implements ViewDidEnter {
+export class CharactersPage implements ViewDidEnter, ViewDidLeave {
   public charactersList: CharacterModel[] = [];
 
   constructor(
@@ -21,6 +21,10 @@ export class CharactersPage implements ViewDidEnter {
 
   ionViewDidEnter(): void {
     this.getCharacters();
+  }
+
+  ionViewDidLeave(): void {
+      this.charactersList = [];
   }
 
   public getCharacters() {

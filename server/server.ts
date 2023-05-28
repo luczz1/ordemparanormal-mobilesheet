@@ -24,7 +24,7 @@ app.get('/characters', async (req, res) => {
     const [characterResults] = await pool.execute('SELECT * FROM characters');
 
     if (characterResults.length === 0) {
-      res.status(404).json({ error: 'Nenhum personagem encontrado' });
+      res.status(200).json({ error: 'Nenhum personagem encontrado' });
       return;
     }
 
