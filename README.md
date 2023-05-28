@@ -13,6 +13,7 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
 - ✅ Listar, adicionar e excluir rituais e habilidades
+- ⌛ Editar outros atributos do personagem (nex, deslocamento, etc.)
 - ⌛ Já vir inserido habilidades com base na classe escolhida
 - ⌛ Sistema de invetário (adicionar item, remover, etc)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
