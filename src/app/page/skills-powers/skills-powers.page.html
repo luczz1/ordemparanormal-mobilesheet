@@ -21,11 +21,18 @@
                 color: var(--ion-color-light-purple);
                 -webkit-text-stroke-color: var(--ion-color-purple);
               "
-              >Habilidades</span
-            >
+              >Habilidades
+              <ion-text (click)="openSkillOrPowerModal('skill')">
+                <ion-icon
+                  style="float: right; font-size: 1em"
+                  name="add-outline"
+                  color="light"
+                >
+                </ion-icon> </ion-text
+            ></span>
           </ion-col>
         </ion-row>
-        <div style="max-height: 210px; overflow: auto">
+        <div style="max-height: 280px; overflow: auto">
           <div *ngFor="let skill of skillsList" class="card-char">
             <p>
               {{skill.name}}
@@ -50,12 +57,19 @@
                 color: var(--ion-color-light-purple);
                 -webkit-text-stroke-color: var(--ion-color-purple);
               "
-              >Rituais</span
-            >
+              >Rituais
+              <ion-text (click)="openSkillOrPowerModal('power')">
+                <ion-icon
+                  style="float: right; font-size: 1em"
+                  name="add-outline"
+                  color="light"
+                >
+                </ion-icon> </ion-text
+            ></span>
           </ion-col>
         </ion-row>
 
-        <div style="max-height: 210px; overflow: auto">
+        <div style="max-height: 280px; overflow: auto">
           <div *ngFor="let power of powersList" class="card-char">
             <p>
               {{power.name}}
@@ -70,44 +84,6 @@
               >{{power.description}}</span
             >
           </div>
-        </div>
-
-        <div
-          style="
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            width: 100%;
-          "
-        >
-          <ion-button
-            class="btn-outline"
-            style="
-              --background: none;
-              --border-color: var(--ion-color-light-purple);
-              --color: var(--ion-color-light-purple);
-            "
-            shape="round"
-            expand="block"
-            (click)="openSkillOrPowerModal('skill')"
-            fill="clear"
-          >
-            Adicionar nova habilidade
-          </ion-button>
-          <ion-button
-            class="btn-outline"
-            style="
-              --background: none;
-              --border-color: var(--ion-color-light-purple);
-              --color: var(--ion-color-light-purple);
-            "
-            shape="round"
-            (click)="openSkillOrPowerModal('power')"
-            expand="block"
-            fill="clear"
-          >
-            Adicionar novo ritual
-          </ion-button>
         </div>
       </div>
     </ion-grid>

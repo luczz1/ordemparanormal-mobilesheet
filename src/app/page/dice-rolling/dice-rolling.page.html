@@ -4,14 +4,12 @@
       <div>
         <ion-row>
           <ion-col size="1" routerLink="/character/attributes/{{characterid}}">
-            <span style="font-size: 1.3em;"
+            <span style="font-size: 1.3em"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
           </ion-col>
           <ion-col>
-            <span style="font-size: 1.3em;"
-              >{{charName}}</span
-            >
+            <span style="font-size: 1.3em">{{charName}}</span>
           </ion-col>
         </ion-row>
 
@@ -33,49 +31,20 @@
             class="options-btn"
             style="
               --background: none;
-              --border-color: var(--ion-color-danger);
-              font-size: 0.8em;
+              --border-color: var(--ion-color-warning);
+              --color: var(--ion-color-light);
             "
-            size="small"
-            color="danger"
-            fill="clear"
-            [disabled]="diceRolling"
-            (click)="rollDice(2)"
-          >
-            Desvantagem
-          </ion-button>
-          <ion-button
-            class="options-btn"
-            style="--background: none; --border-color: var(--ion-color-medium)"
-            color="medium"
-            fill="clear"
+            expand="block"
             [disabled]="diceRolling"
             (click)="rollDice(rollvalue)"
-            size="small"
           >
-            Normal
-          </ion-button>
-          <ion-button
-            class="options-btn"
-            style="
-              --background: none;
-              --border-color: var(--ion-color-success);
-              font-size: 0.8em;
-            "
-            color="success"
-            fill="clear"
-            size="small"
-            [disabled]="diceRolling"
-            (click)="rollDice(2)"
-          >
-            Vantagem
+            Rolar normalmente
           </ion-button>
         </div>
 
         <ion-row
           class="ion-align-items-center"
           style="margin-top: 2em; max-height: 380px; overflow: auto"
-
         >
           <ng-container *ngFor="let diceResult of diceResults; let i = index">
             <ion-col
@@ -84,7 +53,6 @@
               (click)="clickedNumber = diceResult"
             >
               <img
-
                 src="/assets/image/dice.png"
                 style="max-width: 70%; min-width: 60%"
               />
@@ -97,18 +65,18 @@
                   transform: translate(-50%, -50%);
                 "
               >
-                <span style="font-size: 1.1em;">{{diceResult}}</span>
+                <span style="font-size: 1.1em">{{diceResult}}</span>
               </div>
             </ion-col>
           </ng-container>
         </ion-row>
 
-        <div style="position: relative; bottom: 0; margin-bottom: 3em; width: 100%">
+        <div
+          style="position: relative; bottom: 0; margin-bottom: 3em; width: 100%"
+        >
           <ion-row class="ion-align-items-center" style="margin-top: 2em">
             <ion-col class="ion-text-center">
-              <ion-label
-                color="light"
-                style="font-size: 32px;"
+              <ion-label color="light" style="font-size: 32px"
                 >Bônus +{{bonus}}
                 <ion-text *ngIf="clickedNumber"
                   >({{clickedNumber + bonus}})</ion-text
@@ -125,7 +93,7 @@
             [disabled]="diceRolling"
             shape="round"
             expand="block"
-            id="custom-qnt-modal"
+            (click)="openCustomModal = true"
           >
             Quantidade personalizada
           </ion-button>
@@ -148,7 +116,8 @@
 
     <ion-modal
       style="--height: 220px; --width: 300px"
-      trigger="custom-qnt-modal"
+      [isOpen]="openCustomModal"
+      (willDismiss)="openCustomModal = false"
     >
       <ng-template>
         <ion-content class="ion-padding">

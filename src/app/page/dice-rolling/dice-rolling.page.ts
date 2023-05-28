@@ -13,6 +13,7 @@ export class DiceRollingPage implements ViewDidEnter {
   public rollvalue = 0;
   public bonus = 0;
 
+  public openCustomModal = false;
   public pageLoaded = false;
 
   public diceNumber = 0;
@@ -49,6 +50,7 @@ export class DiceRollingPage implements ViewDidEnter {
 
   public rollDice(numberOfDice: number | any, faces: any = 20) {
     this.numberOfDice = Number(numberOfDice);
+    this.clickedNumber = 0;
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
       return;
