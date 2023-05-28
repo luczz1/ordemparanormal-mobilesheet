@@ -161,4 +161,13 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       alert('Formulário inválido. Certifique-se de que não esqueceu nada.');
     }
   }
+
+  public redirectToBackScreen() {
+    if (this.editingMode) {
+      this.router.navigateByUrl(`/character/${this.characterId}`)
+      return;
+    }
+
+    this.router.navigateByUrl('/characters')
+  }
 }
