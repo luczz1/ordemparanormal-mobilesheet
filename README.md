@@ -20,10 +20,10 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ⌛ Painel do mestre
 
 # Tecnologias utilizadas:
-• Ionic (adaptação e importação mobile) <br />
-• Angular (frontend) <br />
-• NodeJS (backend) <br />
-• MySQL (banco de dados)
+- Ionic (adaptação e importação mobile) <br />
+- Angular (frontend) <br />
+- NodeJS (backend) <br />
+- MySQL (banco de dados)
 
 # Imagens
 <small style="color: #f7f7f7">(muitas coisas podem mudar)</small>
