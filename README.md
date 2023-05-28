@@ -35,13 +35,8 @@ Talvez algum dia fique pronto, mas talvez não também.
   </div>
   
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/bd402a7d-5a4c-4153-bf44-0118d2250828" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/01fe2c12-5fae-4127-9ab4-39ead798cd0c" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/fddfae9e-f175-430e-9019-4de8084fbcc6" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8431c994-812b-45c8-b9fd-8f8887ba6246" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c666c32f-317d-4a1c-9af3-12e8107dd04c" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/abfe3022-ed92-4ba1-b04b-50c2e51ec57e" style="width: 30%"/>
   </div>
   
-  <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/ebb2e4af-ff61-45da-b2eb-ef97ce56c7f4" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/69f81a78-60cf-4281-b47b-9cc4c353c2d8" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/6fc571c5-3b55-4bb5-b0d1-9c6c2dd36613" style="width: 30%"/>
-  </div>
