@@ -2,15 +2,12 @@
   width: 90%;
   margin: auto;
   text-align: left;
-  background: url(/assets/image/ts.png);
-  background-position: center;
-  background-repeat: no-repeat;
   height: 100%;
 }
 
 .card-char {
   background-color: #171717;
-  border: 1px solid var(--ion-color-warning);
+  border: 1px solid var(--ion-color-dark);
   border-radius: 10px;
   padding: 0 20px 10px;
   margin-bottom: 10px;

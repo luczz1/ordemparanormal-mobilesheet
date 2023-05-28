@@ -14,14 +14,41 @@
         </ion-row>
 
         <ion-row>
-          <ion-col class="ion-margin">
+          <ion-col style="margin-top: 1em">
             <span
               style="
                 font-size: 1.8em;
                 color: var(--ion-color-light-purple);
                 -webkit-text-stroke-color: var(--ion-color-purple);
+                display: flex;
+                align-items: center;
+                justify-content: center
               "
-              >Inventário</span
+              >Inventário
+              <ion-text
+                [color]="generic.weightStatus === 'Normal' ? 'light' : 'medium'"
+                style="font-size: 0.8em !important; padding-left: .7em"
+                >(carga: {{totalWeight}})</ion-text
+              >
+            </span>
+            <ion-text>
+              <ion-icon
+                style="float: right; font-size: 1.6em"
+                name="add-outline"
+                color="light"
+                (click)="openAddInventoryItemModal = true;"
+              >
+              </ion-icon>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-bottom: 0.5em">
+          <ion-col>
+            <ion-text
+              [color]="generic.weightStatus === 'Normal' ? 'medium' : 'danger'"
+              style="font-size: 1em"
+              >{{generic.weightStatus}}</ion-text
             >
           </ion-col>
         </ion-row>
@@ -87,9 +114,26 @@
           </ion-row>
         </form>
 
+        <ion-row>
+          <ion-col style="margin-top: 1em">
+            <span
+              style="
+                font-size: 1.2em;
+                color: var(--ion-color-light-purple);
+                -webkit-text-stroke-color: var(--ion-color-purple);
+                display: flex;
+                align-items: center;
+                justify-content: center
+              "
+              >Itens
+            </span>
+
+          </ion-col>
+        </ion-row>
+
         <div
           class="card-char"
-          style="border: 1px solid var(--ion-color-warning)"
+          style="border: 1px solid var(--ion-color-medium)"
           *ngFor="let item of inventoryItems"
         >
           <ion-row>
@@ -121,22 +165,6 @@
               >
             </ion-col>
           </ion-row>
-        </div>
-        <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
-          <ion-button
-            class="btn-outline"
-            (click)="openAddInventoryItemModal = true;"
-            style="
-              --background: none;
-              --border-color: var(--ion-color-light-purple);
-              --color: var(--ion-color-light-purple);
-            "
-            shape="round"
-            expand="block"
-            fill="clear"
-          >
-            Adicionar item
-          </ion-button>
         </div>
       </div>
     </ion-grid>

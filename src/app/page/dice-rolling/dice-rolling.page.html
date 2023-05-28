@@ -75,6 +75,7 @@
         <ion-row
           class="ion-align-items-center"
           style="margin-top: 2em; max-height: 380px; overflow: auto"
+
         >
           <ng-container *ngFor="let diceResult of diceResults; let i = index">
             <ion-col
@@ -83,6 +84,7 @@
               (click)="clickedNumber = diceResult"
             >
               <img
+
                 src="/assets/image/dice.png"
                 style="max-width: 70%; min-width: 60%"
               />
@@ -101,7 +103,7 @@
           </ng-container>
         </ion-row>
 
-        <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
+        <div style="position: relative; bottom: 0; margin-bottom: 3em; width: 100%">
           <ion-row class="ion-align-items-center" style="margin-top: 2em">
             <ion-col class="ion-text-center">
               <ion-label

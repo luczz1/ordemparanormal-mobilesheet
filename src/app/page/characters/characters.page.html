@@ -13,7 +13,7 @@
       </ion-col>
     </ion-row>
 
-    <div style="max-height: 60vh; overflow: auto">
+    <div style="overflow: auto">
       <ion-grid *ngFor="let char of charactersList">
         <span style="float: right" (click)="deleteCharacter(char.id, char.name)">
           <ion-icon color="danger" name="trash-bin-outline"></ion-icon
@@ -104,7 +104,7 @@
     </div>
 
 
-    <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
+    <div style="position: relative; margin-top: 2em; margin-bottom: 3em; width: 100%">
       <ion-button
         class="btn-outline"
         style="margin-bottom: 2em"

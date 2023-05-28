@@ -188,6 +188,15 @@ export class CharactersService extends BaseService {
     );
   }
 
+  public getInventoryWeight(characterId: number): Observable<any> {
+    return this.http.get(
+      `${this.Basepath()}characters/inventory_items/total_weight/${characterId}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
   public addInventoryItems(
     characterId: number,
     data: InventoryModel

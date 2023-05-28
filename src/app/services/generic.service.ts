@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  LoadingController,
+  ToastController,
+} from '@ionic/angular';
+import { CharactersService } from './endpoints/characters.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +13,16 @@ export class GenericService {
   public loading: boolean = false;
   private loadingQueue: number = 0;
 
+  public currentWeight = 0;
+  public totalWeight = 0;
+
+  public weightStatus = '';
+
   constructor(
     private alertController: AlertController,
     private loadingCtrl: LoadingController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private charactersService: CharactersService
   ) {}
 
   public async alertBox(header: string, message: string): Promise<boolean> {
@@ -108,5 +119,26 @@ export class GenericService {
     });
 
     toast.present();
+  }
+
+  public getInventoryWeight(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.charactersService
+        .getInventoryWeight(Number(localStorage.getItem('character')))
+        .subscribe(
+          (res) => {
+            this.currentWeight = res.atual;
+            this.totalWeight = res.total;
+
+            this.weightStatus = res.status;
+
+            resolve(true);
+          },
+          (error) => {
+            this.presentToast(error.error.error, 3)
+            resolve(false)
+          }
+        );
+    });
   }
 }

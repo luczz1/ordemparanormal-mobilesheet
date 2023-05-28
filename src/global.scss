@@ -115,3 +115,7 @@ ion-scroll[direction="y"] {
     background-color: var(--ion-color-light-shade);
   }
 }
+
+.custom-loading {
+  --spinner-color: var(--ion-color-warning)
+}

@@ -31,7 +31,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
     public modalController: ModalController,
-    private generic: GenericService,
+    public generic: GenericService,
     private router: Router
   ) {}
 
@@ -40,7 +40,14 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
 
     this.generic.multLoading(true);
 
-    this.getCharacterByID(characterID);
+    this.generic.getInventoryWeight().then((res) => {
+      if (res) {
+        this.getCharacterByID(characterID);
+      } else {
+        this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
+        this.generic.multLoading(false);
+      }
+    });
   }
 
   ionViewDidLeave(): void {
@@ -52,6 +59,9 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
       (res) => {
+        res.character.weight =
+          this.generic.currentWeight + '/' + this.generic.totalWeight;
+
         this.character.push(res.character);
 
         this.generic.multLoading(false);
@@ -126,7 +136,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public gotoEditScreen(characterid: number) {
-    this.router.navigateByUrl(`/character/edit/${characterid}`)
+    this.router.navigateByUrl(`/character/edit/${characterid}`);
   }
 
   public backToInitialScreen() {

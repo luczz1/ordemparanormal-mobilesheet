@@ -4,7 +4,7 @@
       <div>
         <ion-row>
           <ion-col size="1" routerLink="/character/{{characterId}}">
-            <span style="font-size: 1.3em;"
+            <span style="font-size: 1.3em"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
           </ion-col>
@@ -36,7 +36,9 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
-            <span style="color: var(--ion-color-medium)">{{skill.description}}</span>
+            <span style="color: var(--ion-color-medium)"
+              >{{skill.description}}</span
+            >
           </div>
         </div>
 
@@ -64,11 +66,20 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
-            <span style="color: var(--ion-color-medium)">{{power.description}}</span>
+            <span style="color: var(--ion-color-medium)"
+              >{{power.description}}</span
+            >
           </div>
         </div>
 
-        <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            width: 100%;
+          "
+        >
           <ion-button
             class="btn-outline"
             style="

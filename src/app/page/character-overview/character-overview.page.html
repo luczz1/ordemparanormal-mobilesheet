@@ -130,7 +130,13 @@
         </ion-row>
         <ion-row style="width: 100%">
           <ion-col class="ion-text-left" style="font-size: 1.1em">
-            <span>Peso: {{attr.weight}}</span>
+            <span
+              >Carga:
+              <ion-text
+                [color]="generic.weightStatus === 'Normal' ? 'success' : 'danger'"
+                >{{attr.weight}}</ion-text
+              ></span
+            >
           </ion-col>
           <ion-col class="ion-text-right" style="font-size: 1.1em">
             <span>{{attr.personality}}</span>
@@ -149,7 +155,15 @@
             <span>{{attr.birthplace}}</span>
           </ion-col>
           <ion-col class="ion-text-right" style="font-size: 1.1em">
-            <span>Deslocamento: {{attr.displacement}}</span>
+            <span
+              >Deslocamento:
+              <ion-text
+                [color]="generic.weightStatus === 'Sobrecarga' ?
+              'danger' : ''"
+                >{{generic.weightStatus === 'Sobrecarga' ? (attr.displacement -
+                3) : attr.displacement}}</ion-text
+              ></span
+            >
           </ion-col>
         </ion-row>
       </div>
@@ -217,61 +231,6 @@
             </ion-button>
           </div>
         </div>
-
-        <!-- <ion-content class="ion-padding">
-          <ion-button
-            class="btn-outline"
-            style="--background: none"
-            shape="round"
-            expand="block"
-            [style]="modalType === 'life' ? '--border-color: var(--ion-color-danger)' : modalType === 'sanity'
-            ? '--border-color: var(--ion-color-tertiary)' : '--border-color: var(--ion-color-success)'"
-            [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
-            fill="clear"
-            (click)="rollDice(1)"
-          >
-            Teste de {{modalType === 'life' ? 'constituição' : modalType ===
-            'sanity' ? 'sanidade' : 'esforço'}}
-          </ion-button>
-          <ion-row
-            class="ion-align-items-center"
-            style="margin-top: 2em; max-height: 380px; overflow: auto"
-          >
-            <ng-container *ngFor="let diceResult of diceResults; let i = index">
-              <ion-col
-                size="12"
-                class="ion-text-center"
-                *ngIf="diceResults.length > 0"
-              >
-                <img
-                  src="/assets/image/dice.png"
-                  style="max-width: 40%; min-width: 40%"
-                />
-                <div
-                  class="dice-result"
-                  style="
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                  "
-                >
-                  <span>{{diceResult}}</span>
-                </div>
-              </ion-col>
-            </ng-container>
-            <ion-col
-              size="12"
-              class="ion-text-center"
-              *ngIf="diceResults.length <= 0"
-            >
-              <img
-                src="/assets/image/dice.png"
-                style="max-width: 40%; min-width: 40%"
-              />
-            </ion-col>
-          </ion-row>
-        </ion-content> -->
       </ng-template>
     </ion-modal>
   </div>

@@ -16,7 +16,9 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   public charName: string | null = '';
 
   public openAddInventoryItemModal = false;
-  public pageLoaded = false
+  public pageLoaded = false;
+
+  public totalWeight = '';
 
   public inventoryItems: InventoryModel[] = [];
   public inventoryInfos = new FormGroup({
@@ -30,7 +32,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   constructor(
     private activatedRoute: ActivatedRoute,
     private charactersService: CharactersService,
-    private generic: GenericService,
+    public generic: GenericService,
     public modalController: ModalController
   ) {}
 
@@ -43,7 +45,16 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
 
-    this.getInventoryInfos();
+    this.generic.getInventoryWeight().then((res) => {
+      if (res) {
+        this.totalWeight =
+          this.generic.currentWeight + '/' + this.generic.totalWeight;
+        this.getInventoryInfos();
+      } else {
+        this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
+        this.generic.multLoading(false);
+      }
+    });
   }
 
   ionViewDidLeave(): void {
@@ -56,7 +67,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   public getInventoryInfos() {
     this.charactersService.getInventoryInfos(this.characterID).subscribe(
       (res) => {
-        this.inventoryInfos.patchValue(res.inventoryInfo)
+        this.inventoryInfos.patchValue(res.inventoryInfo);
         this.getInventoryItems();
       },
       (error) => {
@@ -69,11 +80,23 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   public editInventoryInfos() {
     let obj = this.inventoryInfos.getRawValue();
 
-    obj.prestige_points = Number(obj.prestige_points)
+    obj.prestige_points = Number(obj.prestige_points);
 
     this.charactersService.editInventoryInfos(this.characterID, obj).subscribe(
       (res) => {
-        this.getInventoryItems();
+        this.generic.getInventoryWeight().then((res) => {
+          if (res) {
+            this.totalWeight =
+              this.generic.currentWeight + '/' + this.generic.totalWeight;
+            this.getInventoryItems();
+          } else {
+            this.generic.presentToast(
+              'Ocorreu um erro ao carregar dados.',
+              3
+            );
+          }
+        });
+
       },
       (error) => {
         this.generic.presentToast(error.error.error, 3);
@@ -95,12 +118,15 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.pageLoaded = true;
 
         this.generic.multLoading(false);
-
       }
     );
   }
 
-  public addInventoryItems(item_name: string | any, category: string | any, slots: number | any,) {
+  public addInventoryItems(
+    item_name: string | any,
+    category: string | any,
+    slots: number | any
+  ) {
     let data = {
       item_id: 0,
       item_name,
@@ -109,7 +135,17 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     };
 
     this.charactersService.addInventoryItems(this.characterID, data).subscribe({
-      next: () => this.getInventoryItems(),
+      next: () => {
+        this.generic.getInventoryWeight().then((res) => {
+          if (res) {
+            this.totalWeight =
+              this.generic.currentWeight + '/' + this.generic.totalWeight;
+            this.getInventoryInfos();
+          } else {
+            this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
+          }
+        });
+      },
       error: (err) => this.generic.presentToast(err.error.error, 3),
     });
   }
@@ -122,7 +158,20 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
     if (ok) {
       this.charactersService.deleteInventoryItems(itemId).subscribe({
-        next: () => this.getInventoryItems(),
+        next: () => {
+          this.generic.getInventoryWeight().then((res) => {
+            if (res) {
+              this.totalWeight =
+                this.generic.currentWeight + '/' + this.generic.totalWeight;
+              this.getInventoryInfos();
+            } else {
+              this.generic.presentToast(
+                'Ocorreu um erro ao carregar dados.',
+                3
+              );
+            }
+          });
+        },
         error: (err) => this.generic.presentToast(err.error.error, 3),
       });
     }

@@ -537,6 +537,38 @@ app.get('/characters/inventory_items/:characterid', async (req, res) => {
   }
 });
 
+app.get('/characters/inventory_items/total_weight/:characterid', async (req, res) => {
+  const characterId = req.params.characterid;
+
+  try {
+    const [inventoryItems] = await pool.query(
+      'SELECT * FROM inventory_items WHERE character_id = ?',
+      [characterId]
+    );
+
+    const [inventoryInfos] = await pool.query(
+      'SELECT * FROM inventory_infos WHERE character_id = ?',
+      [characterId]
+    );
+
+    const cargaAtual = inventoryItems.reduce((acc, total) => {
+      acc += total.slots
+      return acc;
+    }, 0)
+
+    const cargaTotal = inventoryInfos[0].max_load
+
+    res.json({
+      atual: cargaAtual,
+      total: cargaTotal,
+      status: cargaAtual <= cargaTotal ? 'Normal' : 'Sobrecarga'
+  });
+  } catch (error) {
+    console.error('Erro ao obter peso do inventário:', error);
+    res.status(500).json({ error: 'Erro ao obter peso do inventário' });
+  }
+});
+
 app.post('/characters/inventory_items/:characterid', async (req, res) => {
   try {
     const newInventoryItem = req.body;
