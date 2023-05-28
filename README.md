@@ -3,6 +3,19 @@
 ### Projeto em desenvolvimento!
 Talvez algum dia fique pronto, mas talvez não também.
 
+### Progresso
+
+- [x] Criação de personagem
+- [x] Seleção/exclusão de personagem
+- [x] Visualização de personagem
+- [x] Editar vida/sanidade/esforço
+- [x] Atributos e perícias editáveis
+- [x] Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dados dinâmicos com base nos pontos)
+- [x] Rolagem de dados (personalizados também)
+- [x] Listar, adicionar e excluir rituais e habilidades
+- [ ] Sistema de invetário (adicionar item, remover, etc)
+- [ ] Atributos de combate (pontos de defesa, ataques, resistências, etc)
+
 # Tecnologias utilizadas:
 • Ionic (adaptação e importação mobile) <br />
 • Angular (frontend) <br />
