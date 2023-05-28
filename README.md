@@ -14,15 +14,14 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Rolagem de dados personalizados
 - ✅ Listar, adicionar e excluir rituais e habilidades
 - ⌛ Editar informações do personagem (nex, deslocamento, etc.)
-- ⌛ Já vir inserido habilidades com base na classe escolhida
 - ⌛ Sistema de invetário (adicionar item, remover, etc)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ⌛ Painel do mestre
 
 # Tecnologias utilizadas:
-- Ionic (adaptação e importação mobile) <br />
-- Angular (frontend) <br />
-- NodeJS (backend) <br />
+- Ionic (adaptação e importação mobile)
+- Angular (frontend)
+- NodeJS (backend)
 - MySQL (banco de dados)
 
 # Imagens
