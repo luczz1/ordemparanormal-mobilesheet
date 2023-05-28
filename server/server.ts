@@ -244,6 +244,11 @@ app.post('/characters/create', async (req, res) => {
     const query = 'INSERT INTO skills (character_id, name, value) VALUES ?';
     await pool.query(query, [skillsData]);
 
+    await pool.execute(
+      'INSERT INTO inventory_infos (prestige_points, patent, item_limit, credit_limit, max_load, character_id) VALUES (?, ?, ?, ?, ?, ?)',
+      [0, '', 0, 0, 0, newCharacterId]
+    );
+
     res.json({
       character: {
         id: newCharacterId,
@@ -261,9 +266,15 @@ app.delete('/characters/:id', async (req, res) => {
     const characterId = req.params.id;
 
     await pool.execute('DELETE FROM attributes WHERE id = ?', [characterId]);
-    await pool.execute('DELETE FROM powers WHERE character_id = ?', [characterId]);
-    await pool.execute('DELETE FROM abilities WHERE character_id = ?', [characterId]);
-    await pool.execute('DELETE FROM skills WHERE character_id = ?', [characterId]);
+    await pool.execute('DELETE FROM powers WHERE character_id = ?', [
+      characterId,
+    ]);
+    await pool.execute('DELETE FROM abilities WHERE character_id = ?', [
+      characterId,
+    ]);
+    await pool.execute('DELETE FROM skills WHERE character_id = ?', [
+      characterId,
+    ]);
     await pool.execute('DELETE FROM characters WHERE id = ?', [characterId]);
 
     res.json({ message: 'Personagem deletado com sucesso' });
@@ -321,8 +332,8 @@ app.post('/characters/abilities/:id', async (req, res) => {
 
     res.status(200).json({ message: 'Habilidade criada com sucesso' });
   } catch (error) {
-    console.error('Erro ao criar uma nova habilidade:', error);
-    res.status(500).json({ error: 'Erro ao criar uma nova habilidade' });
+    console.error('Erro ao criar nova habilidade:', error);
+    res.status(500).json({ error: 'Erro ao criar nova habilidade' });
   }
 });
 
@@ -338,8 +349,8 @@ app.post('/characters/powers/:id', async (req, res) => {
 
     res.status(200).json({ message: 'Poder criado com sucesso' });
   } catch (error) {
-    console.error('Erro ao criar um novo poder:', error);
-    res.status(500).json({ error: 'Erro ao criar um novo poder' });
+    console.error('Erro ao criar novo poder:', error);
+    res.status(500).json({ error: 'Erro ao criar novo poder' });
   }
 });
 
@@ -355,8 +366,8 @@ app.delete('/characters/abilities/:id/:itemId', async (req, res) => {
 
     res.status(200).json({ message: 'Habilidade excluída com sucesso' });
   } catch (error) {
-    console.error('Erro ao excluir uma habilidade:', error);
-    res.status(500).json({ error: 'Erro ao excluir uma habilidade' });
+    console.error('Erro ao excluir habilidade:', error);
+    res.status(500).json({ error: 'Erro ao excluir habilidade' });
   }
 });
 
@@ -373,7 +384,7 @@ app.delete('/characters/powers/:id/:itemId', async (req, res) => {
     res.status(200).json({ message: 'Poder excluído com sucesso' });
   } catch (error) {
     console.error('Erro ao excluir um poder:', error);
-    res.status(500).json({ error: 'Erro ao excluir um poder' });
+    res.status(500).json({ error: 'Erro ao excluir poder' });
   }
 });
 
@@ -391,8 +402,8 @@ app.put('/characters/attributes/:id/:attribute/:value', async (req, res) => {
 
     res.status(200).json({ message: 'Atributo atualizado com sucesso' });
   } catch (error) {
-    console.error('Erro ao atualizar um atributo:', error);
-    res.status(500).json({ error: 'Erro ao atualizar um atributo' });
+    console.error('Erro ao atualizar atributo:', error);
+    res.status(500).json({ error: 'Erro ao atualizar atributo' });
   }
 });
 
@@ -409,8 +420,121 @@ app.put('/characters/skills/:id/:skillId/:newValue', async (req, res) => {
 
     res.status(200).json({ message: 'Habilidade atualizada com sucesso' });
   } catch (error) {
-    console.error('Erro ao atualizar uma habilidade:', error);
-    res.status(500).json({ error: 'Erro ao atualizar uma habilidade' });
+    console.error('Erro ao atualizar habilidade:', error);
+    res.status(500).json({ error: 'Erro ao atualizar habilidade' });
+  }
+});
+
+app.get('/characters/inventory_infos/:characterId', async (req, res) => {
+  try {
+    const characterId = req.params.characterId;
+
+    const [inventoryInfoResult] = await pool.execute(
+      'SELECT * FROM inventory_infos WHERE character_id = ?',
+      [characterId]
+    );
+
+    if (inventoryInfoResult.length === 0) {
+      res
+        .status(200)
+        .json({ error: 'Informações do inventário não encontradas' });
+      return;
+    }
+
+    const inventoryInfo = inventoryInfoResult[0];
+
+    res.json({ inventoryInfo });
+  } catch (error) {
+    console.error('Erro ao obter informações do inventário:', error);
+    res.status(500).json({ error: 'Erro ao obter informações do inventário' });
+  }
+});
+
+app.put('/characters/inventory_infos/:characterId', async (req, res) => {
+  try {
+    const characterId = req.params.characterId;
+    const updatedInventoryInfo = req.body;
+
+    await pool.execute(
+      'UPDATE inventory_infos SET prestige_points = ?, patent = ?, item_limit = ?, credit_limit = ?, max_load = ? WHERE character_id = ?',
+      [
+        updatedInventoryInfo.prestige_points,
+        updatedInventoryInfo.patent,
+        updatedInventoryInfo.item_limit,
+        updatedInventoryInfo.credit_limit,
+        updatedInventoryInfo.max_load,
+        characterId,
+      ]
+    );
+
+    res
+      .status(200)
+      .json({ message: 'Informações de inventário atualizadas com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar informações de inventário:', error);
+    res
+      .status(500)
+      .json({ error: 'Erro ao atualizar informações de inventário' });
+  }
+});
+
+app.get('/characters/inventory_items/:characterid', async (req, res) => {
+  const characterId = req.params.characterid;
+
+  try {
+    const [inventoryItems] = await pool.query(
+      'SELECT * FROM inventory_items WHERE character_id = ?',
+      [characterId]
+    );
+
+    res.json({
+      inventory_items: inventoryItems,
+    });
+  } catch (error) {
+    console.error('Erro ao obter itens do inventário:', error);
+    res.status(500).json({ error: 'Erro ao obter itens do inventário' });
+  }
+});
+
+app.post('/characters/inventory_items/:characterid', async (req, res) => {
+  try {
+    const newInventoryItem = req.body;
+    const characterId = req.params.characterid;
+
+    const [inventoryItemResult] = await pool.execute(
+      'INSERT INTO inventory_items (item_name, category, slots, character_id) VALUES (?, ?, ?, ?)',
+      [
+        newInventoryItem.item_name,
+        newInventoryItem.category,
+        newInventoryItem.slots,
+        characterId,
+      ]
+    );
+
+    const newInventoryItemId = inventoryItemResult.insertId;
+
+    res.json({
+      inventory_item: {
+        id: newInventoryItemId,
+        ...newInventoryItem,
+      },
+    });
+  } catch (error) {
+    console.error('Erro ao criar um novo item do inventário:', error);
+    res.status(500).json({ error: 'Erro ao criar um novo item do inventário' });
+  }
+});
+
+app.delete('/characters/inventory_items/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    await pool.execute('DELETE FROM inventory_items WHERE item_id = ?', [id]);
+
+    res.json({ message: 'Item do inventário excluído com sucesso' });
+  } catch (error) {
+    console.error('Erro ao excluir item do inventário:', error);
+    res.status(500).json({ error: 'Erro ao excluir item do inventário' });
   }
 });
 

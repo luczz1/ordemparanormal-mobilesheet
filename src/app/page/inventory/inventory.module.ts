@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { InventoryPageRoutingModule } from './inventory-routing.module';
 
@@ -14,6 +14,7 @@ import { TabsPageModule } from '../../tabs/tabs.module';
     CommonModule,
     FormsModule,
     InventoryPageRoutingModule,
+    ReactiveFormsModule,
     TabsPageModule
   ],
   declarations: [InventoryPage]

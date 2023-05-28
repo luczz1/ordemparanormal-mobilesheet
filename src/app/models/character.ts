@@ -39,3 +39,19 @@ export interface AbilitiesListModel {
   description: string;
   id: number;
 }
+
+export interface InventoryModel {
+  item_id: number;
+  item_name: string;
+  category: string;
+  slots: number;
+}
+
+export interface InventoryInfosModel {
+  prestige_points: number;
+  patent: string;
+  item_limit: number;
+  credit_limit: number;
+  max_load: number;
+}
+

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CharacterModel } from 'src/app/models/character';
+import { CharacterModel, InventoryInfosModel, InventoryModel } from 'src/app/models/character';
 
 @Injectable({
   providedIn: 'root',
@@ -141,6 +141,63 @@ export class CharactersService extends BaseService {
   ): Observable<any> {
     return this.http.put(
       `${this.Basepath()}characters/attributes/${characterId}/${attribute}/${value}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public getInventoryInfos(
+    characterId: number,
+  ): Observable<any> {
+    return this.http.get(
+      `${this.Basepath()}characters/inventory_infos/${characterId}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public editInventoryInfos(
+    characterId: number,
+    data: InventoryInfosModel
+  ): Observable<any> {
+    return this.http.put(
+      `${this.Basepath()}characters/inventory_infos/${characterId}`, data,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public getInventoryItems(
+    characterId: number,
+  ): Observable<any> {
+    return this.http.get(
+      `${this.Basepath()}characters/inventory_items/${characterId}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public addInventoryItems(
+    characterId: number,
+    data: InventoryModel
+  ): Observable<any> {
+    return this.http.post(
+      `${this.Basepath()}characters/inventory_items/${characterId}`, data,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
+  public deleteInventoryItems(
+    itemId: number,
+  ): Observable<any> {
+    return this.http.delete(
+      `${this.Basepath()}characters/inventory_items/${itemId}`,
       {
         headers: this.Headers(),
       }

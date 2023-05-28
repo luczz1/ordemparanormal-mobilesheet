@@ -25,15 +25,81 @@
             >
           </ion-col>
         </ion-row>
+
+        <form [formGroup]="inventoryInfos">
+          <ion-row style="margin-top: 0.2em">
+            <ion-col class="ion-text-left" size="6">
+              <ion-label style="padding-left: 0.6em"
+                >Pontos prestígio</ion-label
+              >
+              <ion-input
+                style="width: 100%; text-align: center"
+                (ionChange)="editInventoryInfos()"
+                [debounce]="500"
+                formControlName="prestige_points"
+              >
+              </ion-input>
+            </ion-col>
+            <ion-col class="ion-text-left" size="6">
+              <ion-label style="padding-left: 0.6em">Patente</ion-label>
+              <ion-input
+                type="string"
+                style="width: 100%; text-indent: 8px"
+                (ionChange)="editInventoryInfos()"
+                [debounce]="500"
+                formControlName="patent"
+              >
+              </ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 0.4em">
+            <ion-col class="ion-text-left" size="4">
+              <ion-label style="padding-left: 0.6em">Lim. itens</ion-label>
+              <ion-input
+                style="width: 100%; text-align: center"
+                (ionChange)="editInventoryInfos()"
+                [debounce]="500"
+                formControlName="item_limit"
+              >
+              </ion-input>
+            </ion-col>
+            <ion-col class="ion-text-left" size="4">
+              <ion-label style="padding-left: 0.6em">Lim. créd.</ion-label>
+              <ion-input
+                type="number"
+                style="width: 100%; text-align: center"
+                (ionChange)="editInventoryInfos()"
+                [debounce]="500"
+                formControlName="credit_limit"
+              >
+              </ion-input>
+            </ion-col>
+            <ion-col class="ion-text-left" size="4">
+              <ion-label style="padding-left: 0.6em">Carga max.</ion-label>
+              <ion-input
+                style="width: 100%; text-align: center"
+                (ionChange)="editInventoryInfos()"
+                [debounce]="500"
+                formControlName="max_load"
+              >
+              </ion-input>
+            </ion-col>
+          </ion-row>
+        </form>
+
         <div
           class="card-char"
           style="border: 1px solid var(--ion-color-warning)"
+          *ngFor="let item of inventoryItems"
         >
           <ion-row>
             <ion-col class="ion-text-center">
               <span
-                >Sinalizador
-                <span style="position: absolute; right: 0; margin-right: 1em">
+                >{{item.item_name}}
+                <span
+                  style="position: absolute; right: 0; margin-right: 1em"
+                  (click)="deleteInventoryItems(item.item_id, item.item_name)"
+                >
                   <ion-icon
                     color="danger"
                     name="trash-bin-outline"
@@ -42,31 +108,24 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col class="ion-text-center">
-              <img
-                src="/assets/image/sinalizador.png"
-                style="max-width: 20%; margin-top: 0.3em"
-              />
-            </ion-col>
-          </ion-row>
-          <ion-row>
             <ion-col>
-              <span><ion-text color="medium">Peso:</ion-text> 5</span>
+              <span
+                ><ion-text color="medium">Caterogia:</ion-text>
+                {{item.category}}</span
+              >
             </ion-col>
             <ion-col>
-              <span><ion-text color="medium">Alcance:</ion-text> 4</span>
-            </ion-col>
-            <ion-col>
-              <span><ion-text color="medium">Dano:</ion-text> 2d6</span>
-            </ion-col>
-            <ion-col>
-              <span><ion-text color="medium">Recarga:</ion-text> 9</span>
+              <span
+                ><ion-text color="medium">Espaços:</ion-text>
+                {{item.slots}}</span
+              >
             </ion-col>
           </ion-row>
         </div>
         <div style="position: fixed; bottom: 0; margin-bottom: 3em; width: 90%">
           <ion-button
             class="btn-outline"
+            (click)="openAddInventoryItemModal = true;"
             style="
               --background: none;
               --border-color: var(--ion-color-light-purple);
@@ -81,5 +140,74 @@
         </div>
       </div>
     </ion-grid>
+
+    <ion-modal
+      style="--height: 380px; --width: 300px"
+      [isOpen]="openAddInventoryItemModal"
+      (willDismiss)="openAddInventoryItemModal = false;"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Adicionar item</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="openAddInventoryItemModal = false">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-input
+            type="text"
+            shape="round"
+            placeholder="Nome"
+            style="
+              padding: 0.4em;
+              text-indent: 8px;
+              border-bottom: 1px solid var(--ion-color-medium);
+            "
+            max="80"
+            min="0"
+            #iptName
+          ></ion-input>
+          <ion-input
+            type="text"
+            shape="round"
+            placeholder="Categoria"
+            style="
+              padding: 0.4em;
+              text-indent: 8px;
+              margin-top: 0.8em;
+              border-bottom: 1px solid var(--ion-color-medium);
+            "
+            #iptCategory
+          ></ion-input>
+          <ion-input
+            type="number"
+            shape="round"
+            placeholder="Peso"
+            style="
+              padding: 0.4em;
+              text-indent: 8px;
+              margin-top: 0.8em;
+              border-bottom: 1px solid var(--ion-color-medium);
+            "
+            #iptSlots
+          ></ion-input>
+          <ion-button
+            class="btn-outline"
+            style="--background: none; --border-color: var(--ion-color-warning)"
+            shape="round"
+            expand="block"
+            color="warning"
+            fill="clear"
+            (click)="modalController.dismiss(); addInventoryItems(iptName.value, iptCategory.value, iptSlots.value)"
+          >
+            Adicionar
+          </ion-button>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>
