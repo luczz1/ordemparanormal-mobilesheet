@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="menu">
+  <div class="menu" *ngIf="pageLoaded">
     <ion-grid>
       <ion-row style="display: flex; align-items: center">
         <ion-col size="1" (click)="redirectToBackScreen()">

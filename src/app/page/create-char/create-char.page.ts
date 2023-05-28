@@ -38,6 +38,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
 
   public imagesModalIsOpen = false;
 
+  public pageLoaded = false;
+
   public imagesArray = [
     { name: 'Agatha', url: '/assets/char/agatha.png' },
     { name: 'Arthur', url: '/assets/char/arthur.png' },
@@ -80,14 +82,20 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     );
 
     if (this.characterId) {
+      this.pageLoaded = false;
+
       this.generic.multLoading(true);
       this.editingMode = true;
       this.getCharacterByID();
+    } else {
+      this.pageLoaded = true;
     }
     this.selectedImage = '';
   }
 
   ionViewDidLeave(): void {
+    this.pageLoaded = false;
+
     this.characterForm.reset(
       { id: 0 },
       { birthplace: '' },
@@ -106,10 +114,16 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       (res) => {
         this.characterForm.patchValue(res.character);
         this.characterForm.get('charClass').patchValue(res.character.class);
+
+        this.pageLoaded = true;
+
         this.generic.multLoading(false);
       },
       (error) => {
         this.generic.presentToast(error.error.error, 3);
+
+        this.pageLoaded = true;
+
         this.generic.multLoading(false);
       }
     );
@@ -164,10 +178,10 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
 
   public redirectToBackScreen() {
     if (this.editingMode) {
-      this.router.navigateByUrl(`/character/${this.characterId}`)
+      this.router.navigateByUrl(`/character/${this.characterId}`);
       return;
     }
 
-    this.router.navigateByUrl('/characters')
+    this.router.navigateByUrl('/characters');
   }
 }

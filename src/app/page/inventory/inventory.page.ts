@@ -16,6 +16,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   public charName: string | null = '';
 
   public openAddInventoryItemModal = false;
+  public pageLoaded = false
 
   public inventoryItems: InventoryModel[] = [];
   public inventoryInfos = new FormGroup({
@@ -46,7 +47,10 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   }
 
   ionViewDidLeave(): void {
+    this.pageLoaded = false;
+
     this.inventoryItems = [];
+    this.inventoryInfos.reset();
   }
 
   public getInventoryInfos() {
@@ -82,11 +86,16 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService.getInventoryItems(this.characterID).subscribe(
       (res) => {
         this.inventoryItems = res.inventory_items;
+        this.pageLoaded = true;
+
         this.generic.multLoading(false);
       },
       (error) => {
         this.generic.presentToast(error.error.error);
+        this.pageLoaded = true;
+
         this.generic.multLoading(false);
+
       }
     );
   }
