@@ -17,7 +17,7 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Editar informações do personagem (nex, deslocamento, etc.)
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
 - ⌛ Atributos de combate (pontos de defesa, ataques, resistências, etc)
-- ⌛ Tela de "sobre" no personagem, com informações da sua história, objetivos, personalidade e aparência.
+- ⌛ Tela de "sobre" no personagem, com infos da sua história, objetivos, personalidade, aparência e anotações.
 - ⌛ Painel do(a) mestre
 - ⌛ Atualização de dados em tempo real para o(a) mestre
 
