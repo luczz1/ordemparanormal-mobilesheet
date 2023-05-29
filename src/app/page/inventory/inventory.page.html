@@ -22,24 +22,15 @@
                 -webkit-text-stroke-color: var(--ion-color-purple);
                 display: flex;
                 align-items: center;
-                justify-content: center
+                justify-content: center;
               "
               >Inventário
               <ion-text
                 [color]="generic.weightStatus === 'Normal' ? 'light' : 'medium'"
-                style="font-size: 0.8em !important; padding-left: .7em"
+                style="font-size: 0.8em !important; padding-left: 0.7em"
                 >(carga: {{totalWeight}})</ion-text
               >
             </span>
-            <ion-text>
-              <ion-icon
-                style="float: right; font-size: 1.6em"
-                name="add-outline"
-                color="light"
-                (click)="openAddInventoryItemModal = true;"
-              >
-              </ion-icon>
-            </ion-text>
           </ion-col>
         </ion-row>
 
@@ -56,9 +47,7 @@
         <form [formGroup]="inventoryInfos">
           <ion-row style="margin-top: 0.2em">
             <ion-col class="ion-text-left" size="6">
-              <ion-label style="padding-left: 0.6em"
-                >Pontos prestígio</ion-label
-              >
+              <ion-label style="padding-left: 0.6em">Pts. prestígio</ion-label>
               <ion-input
                 style="width: 100%; text-align: center"
                 (ionChange)="editInventoryInfos()"
@@ -80,7 +69,7 @@
             </ion-col>
           </ion-row>
           <ion-row style="margin-top: 0.4em">
-            <ion-col class="ion-text-left" size="4">
+            <ion-col class="ion-text-left" size="6">
               <ion-label style="padding-left: 0.6em">Lim. itens</ion-label>
               <ion-input
                 style="width: 100%; text-align: center"
@@ -90,24 +79,26 @@
               >
               </ion-input>
             </ion-col>
-            <ion-col class="ion-text-left" size="4">
-              <ion-label style="padding-left: 0.6em">Lim. créd.</ion-label>
+            <ion-col class="ion-text-left" size="6">
+              <ion-label style="padding-left: 0.6em">Carga max.</ion-label>
               <ion-input
                 type="number"
                 style="width: 100%; text-align: center"
                 (ionChange)="editInventoryInfos()"
                 [debounce]="500"
-                formControlName="credit_limit"
+                formControlName="max_load"
               >
               </ion-input>
             </ion-col>
-            <ion-col class="ion-text-left" size="4">
-              <ion-label style="padding-left: 0.6em">Carga max.</ion-label>
+            <ion-col class="ion-text-left" size="12">
+              <ion-label style="padding-left: 0.6em"
+                >Limite de créditos</ion-label
+              >
               <ion-input
                 style="width: 100%; text-align: center"
                 (ionChange)="editInventoryInfos()"
                 [debounce]="500"
-                formControlName="max_load"
+                formControlName="credit_limit"
               >
               </ion-input>
             </ion-col>
@@ -123,11 +114,19 @@
                 -webkit-text-stroke-color: var(--ion-color-purple);
                 display: flex;
                 align-items: center;
-                justify-content: center
+                justify-content: center;
               "
               >Itens
+              <ion-text>
+                <strong><ion-icon
+                  style="float: right; font-size: 1.4em;"
+                  name="add-outline"
+                  color="light"
+                  (click)="openAddInventoryItemModal = true;"
+                >
+                </ion-icon></strong>
+              </ion-text>
             </span>
-
           </ion-col>
         </ion-row>
 

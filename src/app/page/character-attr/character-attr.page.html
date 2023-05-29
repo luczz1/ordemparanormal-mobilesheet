@@ -172,13 +172,13 @@
         shape="round"
         expand="block"
         id="custom-dices"
-        (click)="diceResults = []; numberOfDice = 1; diceRolling = false"
+        (click)="diceResults = []; numberOfDice = 1; diceResultTotal = 0; diceRolling = false"
       >
         Dados personalizados
       </ion-button>
     </div>
 
-    <ion-modal style="--height: 480px; --width: 300px" trigger="custom-dices">
+    <ion-modal style="--height: 490px; --width: 300px" trigger="custom-dices">
       <ng-template>
         <ion-content class="ion-padding">
           <ion-input
@@ -223,9 +223,15 @@
             Rolar
           </ion-button>
 
+          <ion-row style="margin-top: .8em; text-align: center">
+            <ion-col>
+              Total: {{diceResultTotal}}
+            </ion-col>
+          </ion-row>
+
           <ion-row
             class="ion-align-items-center"
-            style="margin-top: 2em; max-height: 200px; overflow: auto"
+            style="max-height: 220px; overflow: auto"
           >
             <ng-container *ngFor="let diceResult of diceResults; let i = index">
               <ion-col size="6" class="ion-text-center">

@@ -29,6 +29,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public openStatusModal = false;
 
   public characterID = 0;
+  public diceResultTotal = 0;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   public attrForm = new FormGroup({
@@ -92,7 +93,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       (res) => {
         this.skills = res.skills;
 
-        this.skills.sort((a, b) => a.name > b.name ? 1 : -1);
+        this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
 
         this.pageLoaded = true;
         this.generic.multLoading(false);
@@ -119,6 +120,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
 
   public rollDice(numberOfDice: number | any, faces: any = 20) {
     this.numberOfDice = Number(numberOfDice);
+    this.diceResultTotal = 0;
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
       alert('Quantidade de dados inválida.');
@@ -144,6 +146,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     setTimeout(() => {
       clearInterval(diceInterval);
       this.diceRolling = false;
+
+      this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
     }, 2000);
   }
 

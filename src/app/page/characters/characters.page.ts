@@ -12,6 +12,7 @@ import { GenericService } from 'src/app/services/generic.service';
 })
 export class CharactersPage implements ViewDidEnter, ViewDidLeave {
   public charactersList: CharacterModel[] = [];
+  public pageLoaded = false;
 
   constructor(
     public router: Router,
@@ -24,7 +25,9 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
   }
 
   ionViewDidLeave(): void {
-      this.charactersList = [];
+    this.pageLoaded = false;
+
+    this.charactersList = [];
   }
 
   public getCharacters() {
@@ -32,16 +35,23 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
     this.characterService.getCharacters().subscribe(
       (res) => {
         this.charactersList = res.characters;
+        this.pageLoaded = true;
+
         this.generic.multLoading(false);
       },
       (error) => {
         this.generic.presentToast(error.error.error, 3);
+        this.pageLoaded = true;
+
         this.generic.multLoading(false);
       }
     );
   }
 
-  public setLocalStorageAndEnterChar(charID: string | number, charName: string) {
+  public setLocalStorageAndEnterChar(
+    charID: string | number,
+    charName: string
+  ) {
     localStorage.setItem('character', `${charID}`);
     localStorage.setItem('name', `${charName}`);
     this.router.navigateByUrl(`/character/${charID}`);

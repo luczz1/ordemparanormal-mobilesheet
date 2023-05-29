@@ -134,7 +134,7 @@
               >Carga:
               <ion-text
                 [color]="generic.weightStatus === 'Normal' ? 'success' : 'danger'"
-                >{{attr.weight}}</ion-text
+                >{{weightShow}}</ion-text
               ></span
             >
           </ion-col>
@@ -147,7 +147,7 @@
             <span>{{attr.age}} anos</span>
           </ion-col>
           <ion-col class="ion-text-right" style="font-size: 1.1em">
-            <span>Jogador(a): {{attr.player}}</span>
+            <span>Player: {{attr.player}}</span>
           </ion-col>
         </ion-row>
         <ion-row style="width: 100%">

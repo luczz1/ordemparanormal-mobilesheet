@@ -24,6 +24,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public openStatusModal = false;
   public modalType = '';
 
+  public weightShow = '';
+
   public pageLoaded = false;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
@@ -59,7 +61,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
       (res) => {
-        res.character.weight =
+        res.character.weight = this.generic.currentWeight;
+        this.weightShow =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
 
         this.character.push(res.character);
