@@ -40,7 +40,7 @@ Talvez algum dia fique pronto, mas talvez não também.
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/fa9726bd-0768-4073-94f3-f40756a60c55" style="width: 30%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8431c994-812b-45c8-b9fd-8f8887ba6246" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c666c32f-317d-4a1c-9af3-12e8107dd04c" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/6a70ea12-d5b3-4805-a9aa-cc02eee19e00" style="width: 30%"/>
   </div>
   
   <div style="display: flex; flex-direction: row">
