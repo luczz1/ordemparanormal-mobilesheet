@@ -117,5 +117,9 @@ ion-scroll[direction="y"] {
 }
 
 .custom-loading {
-  --spinner-color: var(--ion-color-warning)
+  --spinner-color: var(--ion-color-purple)
+}
+
+.active-tab {
+  color: var(--ion-color-purple);
 }

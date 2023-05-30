@@ -249,6 +249,16 @@ app.post('/characters/create', async (req, res) => {
       [0, '', 0, 0, 0, newCharacterId]
     );
 
+    await pool.execute(
+      'INSERT INTO defense (defense_total, protection, resistances, character_id) VALUES (?, ?, ?, ?)',
+      [0, '', '', newCharacterId]
+    );
+
+    await pool.execute(
+      'INSERT INTO attacks (attack_name, test, damage, critical_or_range_or_special, character_id) VALUES (?, ?, ?, ?, ?)',
+      ['', '', 0, '', newCharacterId]
+    );
+
     res.json({
       character: {
         id: newCharacterId,
@@ -279,6 +289,12 @@ app.delete('/characters/:id', async (req, res) => {
       characterId,
     ]);
     await pool.execute('DELETE FROM inventory_infos WHERE character_id = ?', [
+      characterId,
+    ]);
+    await pool.execute('DELETE FROM defense WHERE character_id = ?', [
+      characterId,
+    ]);
+    await pool.execute('DELETE FROM attacks WHERE character_id = ?', [
       characterId,
     ]);
     await pool.execute('DELETE FROM characters WHERE id = ?', [characterId]);
@@ -537,37 +553,40 @@ app.get('/characters/inventory_items/:characterid', async (req, res) => {
   }
 });
 
-app.get('/characters/inventory_items/total_weight/:characterid', async (req, res) => {
-  const characterId = req.params.characterid;
+app.get(
+  '/characters/inventory_items/total_weight/:characterid',
+  async (req, res) => {
+    const characterId = req.params.characterid;
 
-  try {
-    const [inventoryItems] = await pool.query(
-      'SELECT * FROM inventory_items WHERE character_id = ?',
-      [characterId]
-    );
+    try {
+      const [inventoryItems] = await pool.query(
+        'SELECT * FROM inventory_items WHERE character_id = ?',
+        [characterId]
+      );
 
-    const [inventoryInfos] = await pool.query(
-      'SELECT * FROM inventory_infos WHERE character_id = ?',
-      [characterId]
-    );
+      const [inventoryInfos] = await pool.query(
+        'SELECT * FROM inventory_infos WHERE character_id = ?',
+        [characterId]
+      );
 
-    const cargaAtual = inventoryItems.reduce((acc, total) => {
-      acc += total.slots
-      return acc;
-    }, 0)
+      const cargaAtual = inventoryItems.reduce((acc, total) => {
+        acc += total.slots;
+        return acc;
+      }, 0);
 
-    const cargaTotal = inventoryInfos[0].max_load
+      const cargaTotal = inventoryInfos[0].max_load;
 
-    res.json({
-      atual: cargaAtual,
-      total: cargaTotal,
-      status: cargaAtual <= cargaTotal ? 'Normal' : 'Sobrecarga'
-  });
-  } catch (error) {
-    console.error('Erro ao obter peso do inventário:', error);
-    res.status(500).json({ error: 'Erro ao obter peso do inventário' });
+      res.json({
+        atual: cargaAtual,
+        total: cargaTotal,
+        status: cargaAtual <= cargaTotal ? 'Normal' : 'Sobrecarga',
+      });
+    } catch (error) {
+      console.error('Erro ao obter peso do inventário:', error);
+      res.status(500).json({ error: 'Erro ao obter peso do inventário' });
+    }
   }
-});
+);
 
 app.post('/characters/inventory_items/:characterid', async (req, res) => {
   try {
@@ -610,6 +629,70 @@ app.delete('/characters/inventory_items/:id', async (req, res) => {
     res.status(500).json({ error: 'Erro ao excluir item do inventário' });
   }
 });
+
+app.get('/characters/attacks/:characterid', async (req, res) => {
+  const { characterid } = req.params;
+
+  try {
+    const [attackResults] = await pool.execute(
+      'SELECT * FROM attacks WHERE character_id = ?',
+      [characterid]
+    );
+
+    if (attackResults.length === 0) {
+      res.status(200).json({ error: 'Nenhum ataque encontrado.' });
+      return;
+    }
+
+    res.json(attackResults);
+  } catch (error) {
+    console.error('Erro ao obter ataques:', error);
+    res.status(500).json({ error: 'Erro ao obter ataques' });
+  }
+});
+
+app.get('/characters/defenses/:characterid', async (req, res) => {
+  const { characterid } = req.params;
+
+  try {
+    const [defenseResults] = await pool.execute(
+      'SELECT * FROM defense WHERE character_id = ?',
+      [characterid]
+    );
+
+    if (defenseResults.length === 0) {
+      res.status(200).json({ error: 'Nenhuma defesa encontrada.' });
+      return;
+    }
+
+    res.json(defenseResults);
+  } catch (error) {
+    console.error('Erro ao obter defesas:', error);
+    res.status(500).json({ error: 'Erro ao obter defesas' });
+  }
+});
+
+app.get('/characters/defense/:characterid', async (req, res) => {
+  const { characterid } = req.params;
+
+  try {
+    const [defenseResults] = await pool.execute(
+      'SELECT * FROM character_defense WHERE character_id = ?',
+      [characterid]
+    );
+
+    if (defenseResults.length === 0) {
+      res.status(200).json({ error: 'Nenhuma defesa encontrada.' });
+      return;
+    }
+
+    res.json(defenseResults);
+  } catch (error) {
+    console.error('Erro ao obter defesas:', error);
+    res.status(500).json({ error: 'Erro ao obter defesas' });
+  }
+});
+
 
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');

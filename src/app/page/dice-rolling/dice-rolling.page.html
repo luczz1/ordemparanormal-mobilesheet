@@ -50,7 +50,7 @@
             <ion-col
               size="6"
               class="ion-text-center"
-              (click)="clickedNumber = diceResult"
+              (click)="!diceRolling ? clickedNumber = diceResult : null"
             >
               <img
                 src="/assets/image/dice.png"

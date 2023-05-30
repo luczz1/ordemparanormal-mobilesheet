@@ -1,16 +1,14 @@
 <ion-content>
-  <div class="menu">
+  <div class="menu" *ngIf="pageLoaded">
     <ion-row>
       <ion-col size="1" routerLink="/character/{{characterID}}">
-        <span style="font-size: 1.3em;"
+        <span style="font-size: 1.3em"
           ><ion-icon name="chevron-back-outline"></ion-icon
         ></span>
       </ion-col>
       <ion-col>
-        <span style="font-size: 1.3em;"
-          >{{charName}}</span
-        >
-        <ion-icon name="build-outline" style="float: right;"></ion-icon>
+        <span style="font-size: 1.3em">{{charName}}</span>
+        <ion-icon name="build-outline" style="float: right"></ion-icon>
       </ion-col>
     </ion-row>
 
@@ -26,48 +24,60 @@
         >
       </ion-col>
     </ion-row>
-      <div class="protection-list">
-        <div class="shield-item">
-          <img src="/assets/image/shield.png" alt="Escudo" />
-          <span class="protection-number">14</span>
-        </div>
-        <ion-text class="protection-legend" color="medium"
-          >= 10 + AGI + Equip + Outros</ion-text
-        >
+    <div class="protection-list">
+      <div class="shield-item">
+        <img src="/assets/image/shield.png" alt="Escudo" />
+        <span class="protection-number">
+          <input
+            type="number"
+            [(ngModel)]="totalDefense"
+            style="
+              width: 25%;
+              background: none;
+              outline: none;
+              text-align: center;
+              border: none;
+            "
+          />
+        </span>
       </div>
-
-      <div class="resistance-list">
-        <h3>Resistência</h3>
-        <ion-list>
-          <ion-item>
-            <ion-label>Resistência 1</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Resistência 2</ion-label>
-          </ion-item>
-        </ion-list>
-      </div>
-
-      <div class="attack-list">
-        <h3>Ataques</h3>
-        <ion-list>
-          <ion-item>
-            <ion-label>
-              <h4>Ataque 1</h4>
-              <p>Teste/Dano/Crítico: Teste1/Dano1/Crítico1</p>
-              <p>Alcance: Alcance1</p>
-              <p>Especial: Especial1</p>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <h4>Ataque 2</h4>
-              <p>Teste/Dano/Crítico: Teste2/Dano2/Crítico2</p>
-              <p>Alcance: Alcance2</p>
-              <p>Especial: Especial2</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </div>
+      <ion-text class="protection-legend" color="medium"
+        >= 10 + AGI + Equip + Outros</ion-text
+      >
     </div>
+
+    <div class="resistance-list">
+      <h3>Resistência</h3>
+      <ion-list>
+        <ion-item>
+          <ion-label>Resistência 1</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Resistência 2</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="attack-list">
+      <h3>Ataques</h3>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h4>Ataque 1</h4>
+            <p>Teste/Dano/Crítico: Teste1/Dano1/Crítico1</p>
+            <p>Alcance: Alcance1</p>
+            <p>Especial: Especial1</p>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h4>Ataque 2</h4>
+            <p>Teste/Dano/Crítico: Teste2/Dano2/Crítico2</p>
+            <p>Alcance: Alcance2</p>
+            <p>Especial: Especial2</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

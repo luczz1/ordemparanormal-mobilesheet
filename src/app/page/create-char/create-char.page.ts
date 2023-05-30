@@ -154,7 +154,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         },
       });
     } else {
-      alert('Formulário inválido. Certifique-se de que não esqueceu nada.');
+      this.generic.presentToast('Formulário inválido. Certifique-se de que não esqueceu nada.', 3)
     }
   }
 
@@ -172,7 +172,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         },
       });
     } else {
-      alert('Formulário inválido. Certifique-se de que não esqueceu nada.');
+      this.generic.presentToast('Formulário inválido. Certifique-se de que não esqueceu nada.', 3)
     }
   }
 

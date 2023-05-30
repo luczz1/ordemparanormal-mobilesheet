@@ -123,12 +123,12 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.diceResultTotal = 0;
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
-      alert('Quantidade de dados inválida.');
+      this.generic.presentToast('Quantidade de dados inválida', 3)
       return;
     }
 
     if (faces > 100 || faces <= 0) {
-      alert('Número de faces inválido.');
+      this.generic.presentToast('Número de faces inválido', 3)
       return;
     }
 

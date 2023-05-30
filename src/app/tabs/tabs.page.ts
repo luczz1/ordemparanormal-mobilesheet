@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { ViewDidEnter } from '@ionic/angular';
-import { filter } from 'rxjs';
-
+import { Component, } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPage {
-  public hideTabs: boolean = false;
   public currentID: string | null | undefined;
+  public currentRoute: string = '';
+  public currentCharacterId: string | null = '';
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private activatedRoute: ActivatedRoute) {
     router.events.subscribe((val) => {
       this.currentID = localStorage.getItem('character');
+      this.currentRoute = router.url.split('/')[2];
   });
   }
+
 
   redirectTo(route: string) {
     this.router.navigate([route + '/' + this.currentID]);
