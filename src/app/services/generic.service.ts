@@ -135,7 +135,7 @@ export class GenericService {
             resolve(true);
           },
           (error) => {
-            this.presentToast(error.error.error, 3)
+            this.presentToast(error.error, 3)
             resolve(false)
           }
         );

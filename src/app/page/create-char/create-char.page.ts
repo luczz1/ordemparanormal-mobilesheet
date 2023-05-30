@@ -120,7 +120,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         this.generic.multLoading(false);
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
 
         this.pageLoaded = true;
 
@@ -150,7 +150,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       this.characterService.createNewCharacter(obj).subscribe({
         next: () => this.router.navigate(['/characters']),
         error: (err) => {
-          console.log(err), this.generic.presentToast(err.error.error, 3);
+          console.log(err), this.generic.presentToast(err.error, 3);
         },
       });
     } else {
@@ -168,7 +168,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       this.characterService.editCharacter(this.characterId, obj).subscribe({
         next: () => this.router.navigate([`/character/${this.characterId}`]),
         error: (err) => {
-          console.log(err), this.generic.presentToast(err.error.error, 3);
+          console.log(err), this.generic.presentToast(err.error, 3);
         },
       });
     } else {

@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CombatAttrPageRoutingModule } from './combat-attr-routing.module';
 
@@ -13,6 +13,7 @@ import { TabsPageModule } from '../../tabs/tabs.module';
     IonicModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     CombatAttrPageRoutingModule,
     TabsPageModule
   ],

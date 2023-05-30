@@ -47,7 +47,7 @@
     </div>
 
     <div class="resistance-list">
-      <h3>Resistência</h3>
+      <h3>Resistências</h3>
       <ion-list>
         <ion-item>
           <ion-label>Resistência 1</ion-label>
@@ -59,25 +59,80 @@
     </div>
 
     <div class="attack-list">
-      <h3>Ataques</h3>
+      <h3>
+        Ataques
+        <ion-text (click)="attacksForm.reset({id: 0, damage: 0}); openStatusModal = true">
+          <ion-icon
+            style="float: right; font-size: 1.3em"
+            name="add-outline"
+            color="light"
+          >
+          </ion-icon>
+        </ion-text>
+      </h3>
       <ion-list>
-        <ion-item>
+        <ion-item *ngFor="let attack of attacksList">
           <ion-label>
-            <h4>Ataque 1</h4>
-            <p>Teste/Dano/Crítico: Teste1/Dano1/Crítico1</p>
-            <p>Alcance: Alcance1</p>
-            <p>Especial: Especial1</p>
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            <h4>Ataque 2</h4>
-            <p>Teste/Dano/Crítico: Teste2/Dano2/Crítico2</p>
-            <p>Alcance: Alcance2</p>
-            <p>Especial: Especial2</p>
+            <h4>{{attack.attack_name}}</h4>
+            <p>Dano: {{attack.damage}}</p>
+            <p>Teste:: {{attack.test}}</p>
+            <p>
+              Crítico, alcance ou especial:
+              {{attack.critical_or_range_or_special}}
+            </p>
           </ion-label>
         </ion-item>
       </ion-list>
     </div>
+
+    <ion-modal
+      [isOpen]="openStatusModal"
+      style="--height: 350px; --width: 380px; --border-radius: 40px"
+      (willDismiss)="openStatusModal = false;"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Adicionar ataques</ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+          <form [formGroup]="attacksForm" style="padding: 0.8em">
+            <ion-input
+              formControlName="attack_name"
+              type="text"
+              label="Nome"
+            ></ion-input>
+
+            <ion-input
+              formControlName="test"
+              type="text"
+              label="Teste"
+            ></ion-input>
+
+            <ion-input
+              formControlName="damage"
+              type="number"
+              label="Dano"
+            ></ion-input>
+
+            <ion-input
+              formControlName="critical_or_range_or_special"
+              type="text"
+              label="Crítico, alcance ou especial"
+            ></ion-input>
+          </form>
+        </ion-content>
+
+        <ion-footer>
+          <ion-toolbar>
+            <ion-buttons slot="end">
+              <ion-button (click)="addAttacks()">Adicionar</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-footer>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>

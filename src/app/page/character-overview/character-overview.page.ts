@@ -155,7 +155,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.timeoutId = setTimeout(() => {
       this.charactersService.updateCharacter(this.character[0]).subscribe(
         (res: any) => {},
-        (error: any) => this.generic.presentToast(error.error.error, 3)
+        (error: any) => this.generic.presentToast(error.error, 3)
       );
     }, 500);
   }

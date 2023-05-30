@@ -24,7 +24,7 @@ app.get('/characters', async (req, res) => {
     const [characterResults] = await pool.execute('SELECT * FROM characters');
 
     if (characterResults.length === 0) {
-      res.status(200).json({ error: 'Nenhum personagem encontrado' });
+      res.status(200).json('Nenhum personagem encontrado');
       return;
     }
 
@@ -36,7 +36,7 @@ app.get('/characters', async (req, res) => {
     res.json({ characters });
   } catch (error) {
     console.error('Erro ao obter personagens:', error);
-    res.status(500).json({ error: 'Erro ao obter personagens' });
+    res.status(500).json('Erro ao obter personagens');
   }
 });
 
@@ -50,7 +50,7 @@ app.get('/characters/:id', async (req, res) => {
     );
 
     if (characterResult.length === 0) {
-      res.status(404).json({ error: 'Personagem não encontrado' });
+      res.status(404).json('Personagem não encontrado');
       return;
     }
 
@@ -60,7 +60,7 @@ app.get('/characters/:id', async (req, res) => {
     res.json({ character });
   } catch (error) {
     console.error('Erro ao obter personagem:', error);
-    res.status(500).json({ error: 'Erro ao obter personagem' });
+    res.status(500).json('Erro ao obter personagem');
   }
 });
 
@@ -74,7 +74,7 @@ app.get('/characters/attributes/:id', async (req, res) => {
     );
 
     if (attributesResult.length === 0) {
-      res.status(404).json({ error: 'Atributos não encontrados' });
+      res.status(404).json('Atributos não encontrados');
       return;
     }
 
@@ -83,7 +83,7 @@ app.get('/characters/attributes/:id', async (req, res) => {
     res.json({ attributes });
   } catch (error) {
     console.error('Erro ao obter atributos:', error);
-    res.status(500).json({ error: 'Erro ao obter atributos' });
+    res.status(500).json('Erro ao obter atributos');
   }
 });
 
@@ -97,7 +97,7 @@ app.get('/characters/skills/:id', async (req, res) => {
     );
 
     if (skillsResult.length === 0) {
-      res.status(200).json({ error: 'Habilidades não encontradas' });
+      res.status(200).json('Habilidades não encontradas');
       return;
     }
 
@@ -106,7 +106,7 @@ app.get('/characters/skills/:id', async (req, res) => {
     res.json({ skills });
   } catch (error) {
     console.error('Erro ao obter habilidades:', error);
-    res.status(500).json({ error: 'Erro ao obter habilidades' });
+    res.status(500).json('Erro ao obter habilidades');
   }
 });
 
@@ -120,7 +120,7 @@ app.get('/characters/abilities/:id', async (req, res) => {
     );
 
     if (abilitiesResult.length === 0) {
-      res.status(200).json({ error: 'Habilidades não encontradas' });
+      res.status(200).json('Habilidades não encontradas');
       return;
     }
 
@@ -129,7 +129,7 @@ app.get('/characters/abilities/:id', async (req, res) => {
     res.json({ abilities });
   } catch (error) {
     console.error('Erro ao obter habilidades:', error);
-    res.status(500).json({ error: 'Erro ao obter habilidades' });
+    res.status(500).json('Erro ao obter habilidades');
   }
 });
 
@@ -143,7 +143,7 @@ app.get('/characters/powers/:id', async (req, res) => {
     );
 
     if (powersResult.length === 0) {
-      res.status(200).json({ error: 'Poderes não encontrados' });
+      res.status(200).json('Poderes não encontrados');
       return;
     }
 
@@ -152,7 +152,7 @@ app.get('/characters/powers/:id', async (req, res) => {
     res.json({ powers });
   } catch (error) {
     console.error('Erro ao obter poderes:', error);
-    res.status(500).json({ error: 'Erro ao obter poderes' });
+    res.status(500).json('Erro ao obter poderes');
   }
 });
 
@@ -267,7 +267,7 @@ app.post('/characters/create', async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao criar um novo personagem:', error);
-    res.status(500).json({ error: 'Erro ao criar um novo personagem' });
+    res.status(500).json('Erro ao criar um novo personagem');
   }
 });
 
@@ -302,7 +302,7 @@ app.delete('/characters/:id', async (req, res) => {
     res.json({ message: 'Personagem deletado com sucesso' });
   } catch (error) {
     console.error('Erro ao deletar o personagem:', error);
-    res.status(500).json({ error: 'Erro ao deletar o personagem' });
+    res.status(500).json('Erro ao deletar o personagem');
   }
 });
 app.put('/characters/:id', async (req, res) => {
@@ -337,7 +337,7 @@ app.put('/characters/:id', async (req, res) => {
     res.status(200).json({ message: 'Personagem atualizado com sucesso' });
   } catch (error) {
     console.error('Erro ao atualizar personagem:', error);
-    res.status(500).json({ error: 'Erro ao atualizar personagem' });
+    res.status(500).json('Erro ao atualizar personagem');
   }
 });
 
@@ -373,7 +373,7 @@ app.put('/characters/edit/:id', async (req, res) => {
     res.status(200).json({ message: 'Personagem atualizado com sucesso' });
   } catch (error) {
     console.error('Erro ao atualizar personagem:', error);
-    res.status(500).json({ error: 'Erro ao atualizar personagem' });
+    res.status(500).json('Erro ao atualizar personagem');
   }
 });
 
@@ -390,7 +390,7 @@ app.post('/characters/abilities/:id', async (req, res) => {
     res.status(200).json({ message: 'Habilidade criada com sucesso' });
   } catch (error) {
     console.error('Erro ao criar nova habilidade:', error);
-    res.status(500).json({ error: 'Erro ao criar nova habilidade' });
+    res.status(500).json('Erro ao criar nova habilidade');
   }
 });
 
@@ -407,7 +407,7 @@ app.post('/characters/powers/:id', async (req, res) => {
     res.status(200).json({ message: 'Poder criado com sucesso' });
   } catch (error) {
     console.error('Erro ao criar novo poder:', error);
-    res.status(500).json({ error: 'Erro ao criar novo poder' });
+    res.status(500).json('Erro ao criar novo poder');
   }
 });
 
@@ -424,7 +424,7 @@ app.delete('/characters/abilities/:id/:itemId', async (req, res) => {
     res.status(200).json({ message: 'Habilidade excluída com sucesso' });
   } catch (error) {
     console.error('Erro ao excluir habilidade:', error);
-    res.status(500).json({ error: 'Erro ao excluir habilidade' });
+    res.status(500).json('Erro ao excluir habilidade');
   }
 });
 
@@ -441,7 +441,7 @@ app.delete('/characters/powers/:id/:itemId', async (req, res) => {
     res.status(200).json({ message: 'Poder excluído com sucesso' });
   } catch (error) {
     console.error('Erro ao excluir um poder:', error);
-    res.status(500).json({ error: 'Erro ao excluir poder' });
+    res.status(500).json('Erro ao excluir poder');
   }
 });
 
@@ -460,7 +460,7 @@ app.put('/characters/attributes/:id/:attribute/:value', async (req, res) => {
     res.status(200).json({ message: 'Atributo atualizado com sucesso' });
   } catch (error) {
     console.error('Erro ao atualizar atributo:', error);
-    res.status(500).json({ error: 'Erro ao atualizar atributo' });
+    res.status(500).json('Erro ao atualizar atributo');
   }
 });
 
@@ -478,7 +478,7 @@ app.put('/characters/skills/:id/:skillId/:newValue', async (req, res) => {
     res.status(200).json({ message: 'Habilidade atualizada com sucesso' });
   } catch (error) {
     console.error('Erro ao atualizar habilidade:', error);
-    res.status(500).json({ error: 'Erro ao atualizar habilidade' });
+    res.status(500).json('Erro ao atualizar habilidade');
   }
 });
 
@@ -492,9 +492,7 @@ app.get('/characters/inventory_infos/:characterId', async (req, res) => {
     );
 
     if (inventoryInfoResult.length === 0) {
-      res
-        .status(200)
-        .json({ error: 'Informações do inventário não encontradas' });
+      res.status(200).json('Informações do inventário não encontradas');
       return;
     }
 
@@ -503,7 +501,7 @@ app.get('/characters/inventory_infos/:characterId', async (req, res) => {
     res.json({ inventoryInfo });
   } catch (error) {
     console.error('Erro ao obter informações do inventário:', error);
-    res.status(500).json({ error: 'Erro ao obter informações do inventário' });
+    res.status(500).json('Erro ao obter informações do inventário');
   }
 });
 
@@ -529,9 +527,7 @@ app.put('/characters/inventory_infos/:characterId', async (req, res) => {
       .json({ message: 'Informações de inventário atualizadas com sucesso' });
   } catch (error) {
     console.error('Erro ao atualizar informações de inventário:', error);
-    res
-      .status(500)
-      .json({ error: 'Erro ao atualizar informações de inventário' });
+    res.status(500).json('Erro ao atualizar informações de inventário');
   }
 });
 
@@ -549,7 +545,7 @@ app.get('/characters/inventory_items/:characterid', async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao obter itens do inventário:', error);
-    res.status(500).json({ error: 'Erro ao obter itens do inventário' });
+    res.status(500).json('Erro ao obter itens do inventário');
   }
 });
 
@@ -583,7 +579,7 @@ app.get(
       });
     } catch (error) {
       console.error('Erro ao obter peso do inventário:', error);
-      res.status(500).json({ error: 'Erro ao obter peso do inventário' });
+      res.status(500).json('Erro ao obter peso do inventário');
     }
   }
 );
@@ -613,7 +609,7 @@ app.post('/characters/inventory_items/:characterid', async (req, res) => {
     });
   } catch (error) {
     console.error('Erro ao criar um novo item do inventário:', error);
-    res.status(500).json({ error: 'Erro ao criar um novo item do inventário' });
+    res.status(500).json('Erro ao criar um novo item do inventário');
   }
 });
 
@@ -626,7 +622,7 @@ app.delete('/characters/inventory_items/:id', async (req, res) => {
     res.json({ message: 'Item do inventário excluído com sucesso' });
   } catch (error) {
     console.error('Erro ao excluir item do inventário:', error);
-    res.status(500).json({ error: 'Erro ao excluir item do inventário' });
+    res.status(500).json('Erro ao excluir item do inventário');
   }
 });
 
@@ -640,14 +636,58 @@ app.get('/characters/attacks/:characterid', async (req, res) => {
     );
 
     if (attackResults.length === 0) {
-      res.status(200).json({ error: 'Nenhum ataque encontrado.' });
+      res.status(200).json('Nenhum ataque encontrado.');
       return;
     }
 
     res.json(attackResults);
   } catch (error) {
     console.error('Erro ao obter ataques:', error);
-    res.status(500).json({ error: 'Erro ao obter ataques' });
+    res.status(500).json('Erro ao obter ataques');
+  }
+});
+
+app.post('/characters/attacks/:characterid', async (req, res) => {
+  try {
+    const attackItem = req.body;
+    const characterId = req.params.characterid;
+
+    const [attackItemResult] = await pool.execute(
+      'INSERT INTO attacks (attack_name, test, damage, critical_or_range_or_special, character_id) VALUES (?, ?, ?, ?, ?)',
+      [
+        attackItem.attack_name,
+        attackItem.test,
+        attackItem.damage,
+        attackItem.critical_or_range_or_special,
+        characterId,
+      ]
+    );
+
+    const attackItemId = attackItemResult.insertId;
+
+    res.json({
+      id: attackItemId,
+      ...attackItem,
+    });
+  } catch (error) {
+    console.error('Erro ao criar um adicionar um ataque:', error);
+    res.status(500).json('Erro ao criar um adicionar um ataque');
+  }
+});
+
+app.delete('/characters/attacks/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [attackResults] = await pool.execute(
+      'DELETE * FROM attacks WHERE id = ?',
+      [id]
+    );
+
+    res.json({ message: 'Ataque excluído.' });
+  } catch (error) {
+    console.error('Erro ao excluir ataque:', error);
+    res.status(500).json('Erro ao excluir ataque');
   }
 });
 
@@ -661,15 +701,23 @@ app.get('/characters/defenses/:characterid', async (req, res) => {
     );
 
     if (defenseResults.length === 0) {
-      res.status(200).json({ error: 'Nenhuma defesa encontrada.' });
+      res.status(200).json('Nenhuma defesa encontrada.');
       return;
     }
 
     res.json(defenseResults);
   } catch (error) {
     console.error('Erro ao obter defesas:', error);
-    res.status(500).json({ error: 'Erro ao obter defesas' });
+    res.status(500).json('Erro ao obter defesas');
   }
+});
+
+app.post('/characters/defenses/:characterid', async (req, res) => {
+
+});
+
+app.delete('/characters/defenses/:characterid', async (req, res) => {
+
 });
 
 app.get('/characters/defense/:characterid', async (req, res) => {
@@ -682,17 +730,16 @@ app.get('/characters/defense/:characterid', async (req, res) => {
     );
 
     if (defenseResults.length === 0) {
-      res.status(200).json({ error: 'Nenhuma defesa encontrada.' });
+      res.status(200).json('Nenhuma defesa encontrada.');
       return;
     }
 
     res.json(defenseResults);
   } catch (error) {
     console.error('Erro ao obter defesas:', error);
-    res.status(500).json({ error: 'Erro ao obter defesas' });
+    res.status(500).json('Erro ao obter defesas');
   }
 });
-
 
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');

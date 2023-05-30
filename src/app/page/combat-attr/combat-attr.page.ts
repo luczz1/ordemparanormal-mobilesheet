@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, ViewDidEnter, ViewDidLeave } from '@ionic/angular';
-import { CharacterModel } from 'src/app/models/character';
+import { AttackModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
 
@@ -14,9 +15,19 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   public characterID = 0;
   public charName: string | null = '';
 
+  public attacksList: AttackModel[] = [];
   public totalDefense = 0;
 
   public pageLoaded = false;
+  public openStatusModal = false;
+
+  public attacksForm: any = new FormGroup({
+    id: new FormControl(0),
+    attack_name: new FormControl('', [Validators.required]),
+    test: new FormControl(''),
+    damage: new FormControl(0, [Validators.required]),
+    critical_or_range_or_special: new FormControl(''),
+  });
 
   constructor(
     private charactersService: CharactersService,
@@ -48,7 +59,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
         this.getDefenses();
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
         this.pageLoaded = true;
 
         this.generic.multLoading(false);
@@ -56,25 +67,13 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     );
   }
 
-  // public editTotalDefense() {
-  //   this.charactersService.getCharacterTotalDefense(this.characterID).subscribe(
-  //     (res) => {
-  //       this.totalDefense = res.defense_total;
-  //     },
-  //     (error) => {
-  //       this.generic.presentToast(error.error.error, 3);
-  //     }
-  //   );
-  // }
-
   public getDefenses() {
     this.charactersService.getCharacterDefenses(this.characterID).subscribe(
       (res) => {
-        console.log('defesas: ', res);
         this.getAttacks();
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
         this.pageLoaded = true;
 
         this.generic.multLoading(false);
@@ -85,17 +84,35 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   public getAttacks() {
     this.charactersService.getCharacterAttacks(this.characterID).subscribe(
       (res) => {
-        console.log('ataques', res);
+        this.attacksList = res;
         this.generic.multLoading(false);
 
         this.pageLoaded = true;
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
         this.pageLoaded = true;
 
         this.generic.multLoading(false);
       }
     );
+  }
+
+  public addAttacks() {
+    if (this.attacksForm.valid) {
+      const obj = this.attacksForm.getRawValue();
+
+      this.charactersService
+        .addCharacterAttacks(this.characterID, obj)
+        .subscribe(
+          (res) => {
+            this.getTotalDefense();
+            this.openStatusModal = false;
+          },
+          (error) => {
+            this.generic.presentToast(error.error, 3);
+          }
+        );
+    }
   }
 }

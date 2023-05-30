@@ -64,7 +64,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         this.skillsList = res.abilities;
         this.getPower(id);
       },
-      (error) => {this.generic.presentToast(error.error.error, 3), this.generic.multLoading(false)}
+      (error) => {this.generic.presentToast(error.error, 3), this.generic.multLoading(false)}
     );
   }
 
@@ -119,7 +119,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
           this.getSkill(this.characterId);
         },
         (error: any) => {
-          this.generic.presentToast(error.error.error, 3);
+          this.generic.presentToast(error.error, 3);
         }
       );
   }
@@ -138,7 +138,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
           this.getPower(this.characterId);
         },
         (error: any) => {
-          this.generic.presentToast(error.error.error, 3);
+          this.generic.presentToast(error.error, 3);
         }
       );
   }

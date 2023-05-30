@@ -71,7 +71,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.getInventoryItems();
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
         this.generic.multLoading(false);
       }
     );
@@ -99,7 +99,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
         this.generic.multLoading(false);
       }
     );
@@ -114,7 +114,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.generic.multLoading(false);
       },
       (error) => {
-        this.generic.presentToast(error.error.error);
+        this.generic.presentToast(error.error);
         this.pageLoaded = true;
 
         this.generic.multLoading(false);
@@ -146,7 +146,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
           }
         });
       },
-      error: (err) => this.generic.presentToast(err.error.error, 3),
+      error: (err) => this.generic.presentToast(err.error, 3),
     });
   }
 
@@ -172,7 +172,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
             }
           });
         },
-        error: (err) => this.generic.presentToast(err.error.error, 3),
+        error: (err) => this.generic.presentToast(err.error, 3),
       });
     }
   }

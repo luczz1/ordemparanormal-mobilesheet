@@ -40,7 +40,7 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
         this.generic.multLoading(false);
       },
       (error) => {
-        this.generic.presentToast(error.error.error, 3);
+        this.generic.presentToast(error.error, 3);
         this.pageLoaded = true;
 
         this.generic.multLoading(false);
@@ -68,7 +68,7 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
         next: () => {
           this.getCharacters();
         },
-        error: (err) => this.generic.presentToast(err.error.error, 3),
+        error: (err) => this.generic.presentToast(err.error, 3),
       });
     }
   }

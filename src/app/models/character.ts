@@ -55,3 +55,10 @@ export interface InventoryInfosModel {
   max_load: number;
 }
 
+export interface AttackModel {
+  id: number;
+  attack_name: string;
+  test: string;
+  damage: number;
+  critical_or_range_or_special: string;
+}
