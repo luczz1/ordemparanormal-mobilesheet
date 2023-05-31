@@ -711,11 +711,44 @@ app.get('/characters/defenses/:characterid', async (req, res) => {
 });
 
 app.post('/characters/defenses/:characterid', async (req, res) => {
+  try {
+    const defenseItem = req.body;
+    const characterId = req.params.characterid;
 
+    const [defenseItemResult] = await pool.execute(
+      'INSERT INTO defense (protection, character_id) VALUES (?, ?)',
+      [
+        defenseItem.protection,
+        characterId,
+      ]
+    );
+
+    const defenseItemId = defenseItemResult.insertId;
+
+    res.json({
+      id: defenseItemId,
+      ...defenseItem,
+    });
+  } catch (error) {
+    console.error('Erro ao criar um adicionar uma defesa:', error);
+    res.status(500).json('Erro ao criar um adicionar uma defesa');
+  }
 });
 
-app.delete('/characters/defenses/:characterid', async (req, res) => {
+app.delete('/characters/defenses/:id', async (req, res) => {
+  const { id } = req.params;
 
+  try {
+    await pool.execute(
+      'DELETE FROM defense WHERE id = ?',
+      [id]
+    );
+
+    res.json({ message: 'Defesa excluído.' });
+  } catch (error) {
+    console.error('Erro ao excluir defesa:', error);
+    res.status(500).json('Erro ao excluir defesa');
+  }
 });
 
 app.get('/characters/defense/:characterid', async (req, res) => {

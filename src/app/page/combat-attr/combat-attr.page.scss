@@ -12,7 +12,7 @@
 .resistance-list,
 .attack-list {
   margin-top: 1.5em;
-  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--ion-color-medium);
   border-radius: 10px;
   padding: 10px;
   max-height: 250px;
@@ -25,18 +25,21 @@
   font-size: 1.2em;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
 }
 
 .attack-list h4 {
   margin-bottom: 0.5em;
   color: #fff;
+  padding: .3em;
+  font-size: 1.1em;
 }
 
 .attack-list p {
   color: #ccc;
   margin: 5px 0;
+  padding: .3em;
+  font-size: 1.1em;
 }
 
 .attack-list ion-list ion-item {
@@ -85,3 +88,22 @@
 .protection-legend {
   text-align: center;
 }
+
+ion-input, ion-textarea {
+  border-radius: 16px;
+  background: #121212;
+  border: 1px solid var(--ion-color-medium);
+  outline: none !important;
+  text-indent: 8px;
+}
+
+input {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: center;
+  outline: none;
+  text-indent: 8px;
+}
+
+ion-label {color: var(--ion-color-medium)}

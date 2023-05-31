@@ -62,3 +62,9 @@ export interface AttackModel {
   damage: number;
   critical_or_range_or_special: string;
 }
+
+export interface DefenseModel {
+  id: number;
+  protection: string;
+  character_id: number;
+}

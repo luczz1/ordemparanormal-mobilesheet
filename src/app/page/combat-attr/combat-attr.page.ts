@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, ViewDidEnter, ViewDidLeave } from '@ionic/angular';
-import { AttackModel } from 'src/app/models/character';
+import { AttackModel, DefenseModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
 
@@ -16,10 +16,15 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   public charName: string | null = '';
 
   public attacksList: AttackModel[] = [];
+  public defensesList: DefenseModel[] = [];
   public totalDefense = 0;
 
   public pageLoaded = false;
   public openStatusModal = false;
+
+  public protectionValue = '';
+
+  public defenseMode = false;
 
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
@@ -76,19 +81,27 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     }
 
     this.timeoutId = setTimeout(() => {
-      this.charactersService
-        .editCharacterTotalDefense(this.characterID, this.totalDefense)
-        .subscribe({
-          next: () => this.getTotalDefense(false),
-          error: (err) => this.generic.presentToast(err.error, 3),
-        });
+      if (this.totalDefense) {
+        this.charactersService
+          .editCharacterTotalDefense(this.characterID, this.totalDefense)
+          .subscribe({
+            next: () => this.getTotalDefense(false),
+            error: (err) => this.generic.presentToast(err.error, 3),
+          });
+      }
     }, 500);
   }
 
-  public getDefenses() {
+  public getDefenses(getAtt = true) {
     this.charactersService.getCharacterDefenses(this.characterID).subscribe(
       (res) => {
-        this.getAttacks();
+        if (typeof res !== 'string') {
+        this.defensesList = res;
+        } else {
+          this.defensesList = [];
+        }
+
+        if (getAtt) this.getAttacks();
       },
       (error) => {
         this.generic.presentToast(error.error, 3);
@@ -97,6 +110,34 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
         this.generic.multLoading(false);
       }
     );
+  }
+
+  public addDefenses() {
+    this.charactersService
+      .addCharacterDefenses(this.characterID, this.protectionValue)
+      .subscribe(
+        (res) => {
+          this.getDefenses(false);
+          this.openStatusModal = false;
+        },
+        (error) => {
+          this.generic.presentToast(error.error, 3);
+        }
+      );
+  }
+
+  public async deleteDefense(defenseID: number, defenseName: string) {
+    const ok = await this.generic.alertBox(
+      'ATENÇÃO',
+      `Deseja mesmo excluir ${defenseName}?`
+    );
+
+    if (ok) {
+      this.charactersService.deleteCharacterDefenses(defenseID).subscribe({
+        next: () => this.getDefenses(false),
+        error: (err) => this.generic.presentToast(err.error, 3),
+      });
+    }
   }
 
   public getAttacks() {
@@ -141,7 +182,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   public async deleteAttack(attackID: number, attackName: string) {
     const ok = await this.generic.alertBox(
       'ATENÇÃO',
-      `Deseja mesmo excluir o item ${attackName}?`
+      `Deseja mesmo excluir o ataque ${attackName}?`
     );
 
     if (ok) {
