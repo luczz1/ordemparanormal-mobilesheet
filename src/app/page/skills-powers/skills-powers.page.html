@@ -38,7 +38,7 @@
               {{skill.name}}
               <span
                 style="float: right"
-                (click)="deleteItem('Skill', skill.id)"
+                (click)="deleteItem('Skill', skill.id, skill.name)"
               >
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
@@ -75,7 +75,7 @@
               {{power.name}}
               <span
                 style="float: right"
-                (click)="deleteItem('Power', power.id)"
+                (click)="deleteItem('Power', power.id, power.name)"
               >
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>

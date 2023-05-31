@@ -679,8 +679,8 @@ app.delete('/characters/attacks/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const [attackResults] = await pool.execute(
-      'DELETE * FROM attacks WHERE id = ?',
+    await pool.execute(
+      'DELETE FROM attacks WHERE id = ?',
       [id]
     );
 
@@ -740,6 +740,27 @@ app.get('/characters/defense/:characterid', async (req, res) => {
     res.status(500).json('Erro ao obter defesas');
   }
 });
+
+app.put('/characters/defense/:id/:defense_total', async (req, res) => {
+  try {
+    const characterId = req.params.id;
+    const updatedDefense = req.params.defense_total;
+
+    await pool.execute(
+      'UPDATE character_defense SET defense_total = ? WHERE character_id = ?',
+      [
+        updatedDefense,
+        characterId,
+      ]
+    );
+
+    res.status(200).json({ message: 'Defesa atualizada com sucesso' });
+  } catch (error) {
+    console.error('Erro ao atualizar defesa:', error);
+    res.status(500).json('Erro ao atualizar defesa');
+  }
+});
+
 
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');

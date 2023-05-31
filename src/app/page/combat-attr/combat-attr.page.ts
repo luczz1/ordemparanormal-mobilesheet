@@ -21,11 +21,13 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   public pageLoaded = false;
   public openStatusModal = false;
 
+  public timeoutId: ReturnType<typeof setTimeout> | null = null;
+
   public attacksForm: any = new FormGroup({
     id: new FormControl(0),
     attack_name: new FormControl('', [Validators.required]),
     test: new FormControl(''),
-    damage: new FormControl(0, [Validators.required]),
+    damage: new FormControl('', [Validators.required]),
     critical_or_range_or_special: new FormControl(''),
   });
 
@@ -52,11 +54,12 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     this.pageLoaded = false;
   }
 
-  public getTotalDefense() {
+  public getTotalDefense(call = true) {
     this.charactersService.getCharacterTotalDefense(this.characterID).subscribe(
       (res) => {
         this.totalDefense = res[0].defense_total;
-        this.getDefenses();
+
+        if (call) this.getDefenses();
       },
       (error) => {
         this.generic.presentToast(error.error, 3);
@@ -65,6 +68,21 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
         this.generic.multLoading(false);
       }
     );
+  }
+
+  public editTotalDefense() {
+    if (this.timeoutId !== null) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
+      this.charactersService
+        .editCharacterTotalDefense(this.characterID, this.totalDefense)
+        .subscribe({
+          next: () => this.getTotalDefense(false),
+          error: (err) => this.generic.presentToast(err.error, 3),
+        });
+    }, 500);
   }
 
   public getDefenses() {
@@ -84,7 +102,11 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   public getAttacks() {
     this.charactersService.getCharacterAttacks(this.characterID).subscribe(
       (res) => {
-        this.attacksList = res;
+        if (typeof res !== 'string') {
+          this.attacksList = res;
+        } else {
+          this.attacksList = [];
+        }
         this.generic.multLoading(false);
 
         this.pageLoaded = true;
@@ -106,13 +128,27 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
         .addCharacterAttacks(this.characterID, obj)
         .subscribe(
           (res) => {
-            this.getTotalDefense();
+            this.getAttacks();
             this.openStatusModal = false;
           },
           (error) => {
             this.generic.presentToast(error.error, 3);
           }
         );
+    }
+  }
+
+  public async deleteAttack(attackID: number, attackName: string) {
+    const ok = await this.generic.alertBox(
+      'ATENÇÃO',
+      `Deseja mesmo excluir o item ${attackName}?`
+    );
+
+    if (ok) {
+      this.charactersService.deleteCharacterAttacks(attackID).subscribe({
+        next: () => this.getAttacks(),
+        error: (err) => this.generic.presentToast(err.error, 3),
+      });
     }
   }
 }

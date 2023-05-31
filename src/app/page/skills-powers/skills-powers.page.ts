@@ -143,14 +143,14 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       );
   }
 
-  public async deleteItem(type: string, itemid: number) {
+  public async deleteItem(type: string, itemid: number, itemname: string) {
     const functionName = `deleteCharacter` + type;
     const getName = `get` + type;
 
     const ok = await this.generic.alertBox(
       'ATENÇÃO',
       `Deseja mesmo excluir ${
-        type === 'Skill' ? 'essa habilidade' : 'esse ritual'
+        type === 'Skill' ? `a habilidade ${itemname}` : `o ritual ${itemname}`
       }?`
     );
 

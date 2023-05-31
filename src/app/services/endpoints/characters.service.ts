@@ -226,6 +226,12 @@ export class CharactersService extends BaseService {
     });
   }
 
+  public editCharacterTotalDefense(id: number, defense_total: number): Observable<any> {
+    return this.http.put(`${this.Basepath()}characters/defense/${id}/${defense_total}`, {
+      headers: this.Headers(),
+    });
+  }
+
   public getCharacterDefenses(id: number): Observable<any> {
     return this.http.get(`${this.Basepath()}characters/defenses/${id}`, {
       headers: this.Headers(),

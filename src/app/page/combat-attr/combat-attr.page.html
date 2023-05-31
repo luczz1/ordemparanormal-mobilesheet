@@ -30,6 +30,7 @@
         <span class="protection-number">
           <input
             type="number"
+            (change)="editTotalDefense()"
             [(ngModel)]="totalDefense"
             style="
               width: 25%;
@@ -73,7 +74,15 @@
       <ion-list>
         <ion-item *ngFor="let attack of attacksList">
           <ion-label>
-            <h4>{{attack.attack_name}}</h4>
+            <h4>{{attack.attack_name}} <span
+              style="position: absolute; right: 0; margin-right: 1em"
+              (click)="deleteAttack(attack.id, attack.attack_name)"
+            >
+              <ion-icon
+                color="danger"
+                name="trash-bin-outline"
+              ></ion-icon></span>
+          </h4>
             <p>Dano: {{attack.damage}}</p>
             <p>Teste:: {{attack.test}}</p>
             <p>
@@ -113,7 +122,7 @@
 
             <ion-input
               formControlName="damage"
-              type="number"
+              type="string"
               label="Dano"
             ></ion-input>
 
