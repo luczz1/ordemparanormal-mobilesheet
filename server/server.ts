@@ -250,13 +250,8 @@ app.post('/characters/create', async (req, res) => {
     );
 
     await pool.execute(
-      'INSERT INTO defense (defense_total, protection, resistances, character_id) VALUES (?, ?, ?, ?)',
-      [0, '', '', newCharacterId]
-    );
-
-    await pool.execute(
-      'INSERT INTO attacks (attack_name, test, damage, critical_or_range_or_special, character_id) VALUES (?, ?, ?, ?, ?)',
-      ['', '', 0, '', newCharacterId]
+      'INSERT INTO character_defense (defense_total, character_id) VALUES (?, ?)',
+      [0, newCharacterId]
     );
 
     res.json({
@@ -295,6 +290,9 @@ app.delete('/characters/:id', async (req, res) => {
       characterId,
     ]);
     await pool.execute('DELETE FROM attacks WHERE character_id = ?', [
+      characterId,
+    ]);
+    await pool.execute('DELETE FROM character_defense WHERE character_id = ?', [
       characterId,
     ]);
     await pool.execute('DELETE FROM characters WHERE id = ?', [characterId]);
