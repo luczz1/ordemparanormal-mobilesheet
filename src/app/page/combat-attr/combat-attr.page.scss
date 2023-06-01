@@ -15,8 +15,25 @@
   border: 1px solid var(--ion-color-medium);
   border-radius: 10px;
   padding: 10px;
-  max-height: 250px;
+  max-height: 260px;
   overflow: auto;
+}
+
+.resistance-list::-webkit-scrollbar,
+.attack-list::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.resistance-list::-webkit-scrollbar-thumb,
+.attack-list::-webkit-scrollbar-thumb {
+  background-color: var(--ion-color-purple);
+  border-radius: 12px;
+}
+
+.resistance-list::-webkit-scrollbar-track,
+.attack-list::-webkit-scrollbar-track {
+  background-color: #565656;
 }
 
 .protection-list h3,
@@ -25,20 +42,19 @@
   font-size: 1.2em;
   font-weight: bold;
   color: #fff;
-
 }
 
 .attack-list h4 {
   margin-bottom: 0.5em;
   color: #fff;
-  padding: .3em;
+  padding: 0.3em;
   font-size: 1.1em;
 }
 
 .attack-list p {
   color: #ccc;
   margin: 5px 0;
-  padding: .3em;
+  padding: 0.3em;
   font-size: 1.1em;
 }
 
@@ -89,7 +105,8 @@
   text-align: center;
 }
 
-ion-input, ion-textarea {
+ion-input,
+ion-textarea {
   border-radius: 16px;
   background: #121212;
   border: 1px solid var(--ion-color-medium);
@@ -106,4 +123,6 @@ input {
   text-indent: 8px;
 }
 
-ion-label {color: var(--ion-color-medium)}
+ion-label {
+  color: var(--ion-color-medium);
+}

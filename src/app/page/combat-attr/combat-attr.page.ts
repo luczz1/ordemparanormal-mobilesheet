@@ -26,8 +26,6 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
 
   public defenseMode = false;
 
-  public timeoutId: ReturnType<typeof setTimeout> | null = null;
-
   public attacksForm: any = new FormGroup({
     id: new FormControl(0),
     attack_name: new FormControl('', [Validators.required]),
@@ -76,27 +74,19 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public editTotalDefense() {
-    if (this.timeoutId !== null) {
-      clearTimeout(this.timeoutId);
-    }
-
-    this.timeoutId = setTimeout(() => {
-      if (this.totalDefense) {
-        this.charactersService
-          .editCharacterTotalDefense(this.characterID, this.totalDefense)
-          .subscribe({
-            next: () => this.getTotalDefense(false),
-            error: (err) => this.generic.presentToast(err.error, 3),
-          });
-      }
-    }, 500);
+    this.charactersService
+      .editCharacterTotalDefense(this.characterID, this.totalDefense)
+      .subscribe({
+        next: () => this.getTotalDefense(false),
+        error: (err) => this.generic.presentToast(err.error, 3),
+      });
   }
 
   public getDefenses(getAtt = true) {
     this.charactersService.getCharacterDefenses(this.characterID).subscribe(
       (res) => {
         if (typeof res !== 'string') {
-        this.defensesList = res;
+          this.defensesList = res;
         } else {
           this.defensesList = [];
         }
@@ -113,6 +103,11 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public addDefenses() {
+    if (!this.protectionValue) {
+      this.generic.presentToast('O campo não pode ser vazio.', 3);
+      return;
+    }
+
     this.charactersService
       .addCharacterDefenses(this.characterID, this.protectionValue)
       .subscribe(
@@ -176,6 +171,8 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
             this.generic.presentToast(error.error, 3);
           }
         );
+    } else {
+      this.generic.presentToast('Há dados incorretos no formulário.', 3);
     }
   }
 

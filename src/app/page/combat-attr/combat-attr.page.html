@@ -1,6 +1,6 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
-    <ion-row>
+    <ion-row style="margin-top: .3em">
       <ion-col size="1" routerLink="/character/{{characterID}}">
         <span style="font-size: 1.3em"
           ><ion-icon name="chevron-back-outline"></ion-icon
@@ -8,7 +8,6 @@
       </ion-col>
       <ion-col>
         <span style="font-size: 1.3em">{{charName}}</span>
-        <ion-icon name="build-outline" style="float: right"></ion-icon>
       </ion-col>
     </ion-row>
 
@@ -81,7 +80,7 @@
       <h3>
         Ataques
         <ion-text
-          (click)="defenseMode = false; attacksForm.reset({id: 0, damage: 0}); openStatusModal = true"
+          (click)="defenseMode = false; attacksForm.reset({id: 0}); openStatusModal = true"
         >
           <ion-icon
             style="float: right; font-size: 1.3em"
