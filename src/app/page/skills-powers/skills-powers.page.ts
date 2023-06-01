@@ -64,7 +64,10 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         this.skillsList = res.abilities;
         this.getPower(id);
       },
-      (error) => {this.generic.presentToast(error.error, 3), this.generic.multLoading(false)}
+      (error) => {
+        this.generic.presentToast(error.error, 3),
+          this.generic.multLoading(false);
+      }
     );
   }
 
@@ -106,41 +109,49 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public addSkill() {
-    this.charactersService
-      .updateCharacterAbilitiesList(this.characterId, this.newSkill)
-      .subscribe(
-        () => {
-          this.newSkill = {
-            name: '',
-            description: '',
-          };
+    if (this.newSkill.name) {
+      this.charactersService
+        .updateCharacterAbilitiesList(this.characterId, this.newSkill)
+        .subscribe(
+          () => {
+            this.newSkill = {
+              name: '',
+              description: '',
+            };
 
-          this.openStatusModal = false;
-          this.getSkill(this.characterId);
-        },
-        (error: any) => {
-          this.generic.presentToast(error.error, 3);
-        }
-      );
+            this.openStatusModal = false;
+            this.getSkill(this.characterId);
+          },
+          (error: any) => {
+            this.generic.presentToast(error.error, 3);
+          }
+        );
+    } else {
+      this.generic.presentToast('O nome é obrigatório.', 3);
+    }
   }
 
   public addPower() {
-    this.charactersService
-      .updateCharacterPowersList(this.characterId, this.newPower)
-      .subscribe(
-        (res) => {
-          this.newPower = {
-            name: '',
-            description: '',
-          };
+    if (this.newPower.name) {
+      this.charactersService
+        .updateCharacterPowersList(this.characterId, this.newPower)
+        .subscribe(
+          (res) => {
+            this.newPower = {
+              name: '',
+              description: '',
+            };
 
-          this.openStatusModal = false;
-          this.getPower(this.characterId);
-        },
-        (error: any) => {
-          this.generic.presentToast(error.error, 3);
-        }
-      );
+            this.openStatusModal = false;
+            this.getPower(this.characterId);
+          },
+          (error: any) => {
+            this.generic.presentToast(error.error, 3);
+          }
+        );
+    } else {
+      this.generic.presentToast('O nome é obrigatório.', 3);
+    }
   }
 
   public async deleteItem(type: string, itemid: number, itemname: string) {

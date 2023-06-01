@@ -33,7 +33,7 @@ ion-button {
 
 .menu,
 ion-tabs {
-  max-width: 393px;
+  max-width: 900px;
   margin: auto;
 }
 
@@ -106,13 +106,6 @@ ion-scroll[direction="y"] {
     transition: 0.4s;
     border-top-left-radius: 0.5em;
     border-bottom-left-radius: 0.5em;
-  }
-
-  button.alert-button.alert-button-confirm:hover {
-    background-color: var(--ion-color-primary-shade);
-  }
-  button.alert-button.alert-button-cancel:hover {
-    background-color: var(--ion-color-light-shade);
   }
 }
 
