@@ -32,7 +32,10 @@
             ></span>
           </ion-col>
         </ion-row>
-        <div class="abilities-rituals-list" style="max-height: 280px; overflow: auto">
+        <div
+          class="abilities-rituals-list"
+          style="max-height: 280px; overflow: auto"
+        >
           <div *ngFor="let skill of skillsList" class="card-char">
             <p>
               {{skill.name}}
@@ -43,6 +46,21 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.7em;
+              "
+            >
+              <span style="color: var(--ion-color-medium)"
+                ><strong>Custo: {{skill.price}}</strong></span
+              >
+              <span style="color: var(--ion-color-medium)"
+                ><strong>Pagína: {{skill.pages}}</strong></span
+              >
+            </div>
+
             <span style="color: var(--ion-color-medium)"
               >{{skill.description}}</span
             >
@@ -69,7 +87,10 @@
           </ion-col>
         </ion-row>
 
-        <div  class="abilities-rituals-list" style="max-height: 280px; overflow: auto">
+        <div
+          class="abilities-rituals-list"
+          style="max-height: 280px; overflow: auto"
+        >
           <div *ngFor="let power of powersList" class="card-char">
             <p>
               {{power.name}}
@@ -80,6 +101,20 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.7em;
+              "
+            >
+              <span style="color: var(--ion-color-medium)"
+                ><strong>Custo: {{power.price}}</strong></span
+              >
+              <span style="color: var(--ion-color-medium)"
+                ><strong>Pagína: {{power.pages}}</strong></span
+              >
+            </div>
             <span style="color: var(--ion-color-medium)"
               >{{power.description}}</span
             >
@@ -90,7 +125,7 @@
 
     <ion-modal
       [isOpen]="openStatusModal"
-      style="--height: 320px; --width: 300px; --border-radius: 40px;"
+      style="--height: 100%; --width: 100%"
       (willDismiss)="openStatusModal = false;"
     >
       <ng-template>
@@ -100,54 +135,87 @@
               >Adicionar {{currentAddName === 'skill' ? 'habilidade' :
               'ritual'}}</ion-title
             >
+            <ion-buttons slot="end">
+              <ion-button (click)="openStatusModal = false">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
           </ion-toolbar>
         </ion-header>
 
-        <ion-content>
+        <ion-content class="ion-padding">
           <ion-list>
-            <ion-item lines="none" *ngIf="currentAddName === 'skill'">
-              <ion-input
-                label="Nome"
-                [(ngModel)]="newSkill.name"
-                type="text"
-              ></ion-input>
-            </ion-item>
+            <ion-input
+              *ngIf="currentAddName === 'skill'"
+              placeholder="Nome"
+              [(ngModel)]="newSkill.name"
+              type="text"
+            ></ion-input>
 
-            <ion-item lines="none" *ngIf="currentAddName === 'power'">
-              <ion-input
-                label="Nome"
-                [(ngModel)]="newPower.name"
-                type="text"
-              ></ion-input>
-            </ion-item>
+            <ion-input
+              *ngIf="currentAddName === 'power'"
+              placeholder="Nome"
+              [(ngModel)]="newPower.name"
+              type="text"
+            ></ion-input>
 
-            <ion-item lines="none" *ngIf="currentAddName === 'skill'">
-              <ion-textarea
-                class="text-area-st"
-                placeholder="Descrição"
-                [(ngModel)]="newSkill.description"
-              ></ion-textarea>
-            </ion-item>
+            <ion-input
+              *ngIf="currentAddName === 'skill'"
+              placeholder="Custo"
+              [(ngModel)]="newSkill.price"
+              type="text"
+            ></ion-input>
 
-            <ion-item lines="none" *ngIf="currentAddName === 'power'">
-              <ion-textarea
-                class="text-area-st"
-                placeholder="Descrição"
-                [(ngModel)]="newPower.description"
-              ></ion-textarea>
-            </ion-item>
+            <ion-input
+              *ngIf="currentAddName === 'power'"
+              placeholder="Custo"
+              [(ngModel)]="newPower.price"
+              type="text"
+            ></ion-input>
+
+            <ion-input
+              placeholder="Página"
+              *ngIf="currentAddName === 'skill'"
+              [(ngModel)]="newSkill.pages"
+              type="text"
+            ></ion-input>
+
+            <ion-input
+              placeholder="Página"
+              *ngIf="currentAddName === 'power'"
+              [(ngModel)]="newPower.pages"
+              type="text"
+            ></ion-input>
+
+            <ion-textarea
+              class="text-area-st"
+              *ngIf="currentAddName === 'skill'"
+              placeholder="Descrição"
+              [(ngModel)]="newSkill.description"
+            ></ion-textarea>
+
+            <ion-textarea
+              class="text-area-st"
+              *ngIf="currentAddName === 'power'"
+              placeholder="Descrição"
+              [(ngModel)]="newPower.description"
+            ></ion-textarea>
           </ion-list>
+          <ion-button
+            class="btn-outline"
+            style="
+              --background: none;
+              --border-color: var(--ion-color-warning);
+            "
+            shape="round"
+            expand="block"
+            color="warning"
+            fill="clear"
+            (click)="addSkillOrPower(currentAddName)"
+          >
+            Adicionar
+          </ion-button>
         </ion-content>
-
-        <ion-footer>
-          <ion-toolbar>
-            <ion-buttons slot="end">
-              <ion-button (click)="addSkillOrPower(currentAddName)"
-                >Adicionar</ion-button
-              >
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-footer>
       </ng-template>
     </ion-modal>
   </div>

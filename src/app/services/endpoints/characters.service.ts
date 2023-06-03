@@ -84,7 +84,7 @@ export class CharactersService extends BaseService {
 
   public updateCharacterAbilitiesList(
     characterId: number,
-    skillsList: { name: string; description: string }
+    skillsList: { name: string; description: string, price: string, pages: string }
   ): Observable<any> {
     return this.http.post(
       `${this.Basepath()}characters/abilities/${characterId}`,
@@ -97,7 +97,7 @@ export class CharactersService extends BaseService {
 
   public updateCharacterPowersList(
     characterId: number,
-    powersList: { name: string; description: string }
+    powersList: { name: string; description: string, price: string, pages: string }
   ): Observable<any> {
     return this.http.post(
       `${this.Basepath()}characters/powers/${characterId}`,

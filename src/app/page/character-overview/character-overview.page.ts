@@ -115,26 +115,20 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     const currentKey = 'current_' + this.modalType;
     const maxKey = 'max_' + this.modalType;
 
-    const currentValue = this.character[0][currentKey];
-    const maxValue = this.character[0][maxKey];
-
     if (currentOrMax === 'current') {
-      if (type === 0 && currentValue < maxValue) {
+      if (type === 0) {
         this.character[0][currentKey]++;
         this.updateCharacterInDatabase();
-      } else if (type === 1 && currentValue > 0) {
+      } else {
         this.character[0][currentKey]--;
         this.updateCharacterInDatabase();
       }
     } else if (currentOrMax === 'max') {
-      if (type === 0 && maxValue > 0) {
+      if (type === 0) {
         this.character[0][maxKey]++;
         this.updateCharacterInDatabase();
-      } else if (type === 1 && maxValue > 1) {
+      } else {
         this.character[0][maxKey]--;
-        if (currentValue > this.character[0][maxKey]) {
-          this.character[0][currentKey] = this.character[0][maxKey];
-        }
         this.updateCharacterInDatabase();
       }
     }

@@ -1,6 +1,6 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
-    <ion-row style="margin-top: .3em">
+    <ion-row style="margin-top: 0.3em">
       <ion-col size="1" routerLink="/character/{{characterID}}">
         <span style="font-size: 1.3em"
           ><ion-icon name="chevron-back-outline"></ion-icon
@@ -115,8 +115,7 @@
 
     <ion-modal
       [isOpen]="openStatusModal"
-      style="--width: 330px; --border-radius: 40px"
-      [style]="defenseMode ? '--height: 260px' : '--height: 420px'"
+      [style]="defenseMode ? '--height: 260px; --width: 330px; --border-radius: 40px' : '--height: 100%; --width: 100%'"
       (willDismiss)="openStatusModal = false;"
     >
       <ng-template>
@@ -126,11 +125,16 @@
               >Adicionar {{defenseMode ? 'proteção/resistência' :
               'ataques'}}</ion-title
             >
+            <ion-buttons slot="end">
+              <ion-button (click)="openStatusModal = false">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
           </ion-toolbar>
         </ion-header>
 
-        <ion-content *ngIf="!defenseMode">
-          <form [formGroup]="attacksForm" style="padding: 0.8em">
+        <ion-content class="ion-padding" *ngIf="!defenseMode">
+          <form [formGroup]="attacksForm">
             <ion-input
               formControlName="attack_name"
               type="text"
@@ -140,46 +144,60 @@
             <ion-input
               formControlName="test"
               type="text"
-              style="margin-top: 1em"
               placeholder="Teste"
             ></ion-input>
 
             <ion-input
               formControlName="damage"
               type="text"
-              style="margin-top: 1em"
               placeholder="Dano"
             ></ion-input>
 
             <ion-input
               formControlName="critical_or_range_or_special"
               type="text"
-              style="margin-top: 1em"
               placeholder="Crítico, alcance ou especial"
             ></ion-input>
           </form>
+          <ion-button
+            class="btn-outline"
+            style="
+              --background: none;
+              --border-color: var(--ion-color-warning);
+            "
+            shape="round"
+            expand="block"
+            color="warning"
+            fill="clear"
+            (click)="defenseMode ? addDefenses() : addAttacks()"
+          >
+            Adicionar
+          </ion-button>
         </ion-content>
 
-        <ion-content *ngIf="defenseMode">
-          <div style="padding: 0.8em">
+        <ion-content class="ion-padding" *ngIf="defenseMode">
+          <div>
             <ion-input
               type="text"
-              style="margin-top: 1em"
               placeholder="Proteção/resistênica"
               [(ngModel)]="protectionValue"
             ></ion-input>
           </div>
+          <ion-button
+            class="btn-outline"
+            style="
+              --background: none;
+              --border-color: var(--ion-color-warning);
+            "
+            shape="round"
+            expand="block"
+            color="warning"
+            fill="clear"
+            (click)="defenseMode ? addDefenses() : addAttacks()"
+          >
+            Adicionar
+          </ion-button>
         </ion-content>
-
-        <ion-footer>
-          <ion-toolbar>
-            <ion-buttons slot="end">
-              <ion-button (click)="defenseMode ? addDefenses() : addAttacks()"
-                >Adicionar</ion-button
-              >
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-footer>
       </ng-template>
     </ion-modal>
   </div>

@@ -24,11 +24,15 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public newSkill = {
     name: '',
     description: '',
+    price: '',
+    pages: '',
   };
 
   public newPower = {
     name: '',
     description: '',
+    price: '',
+    pages: '',
   };
 
   constructor(
@@ -89,11 +93,15 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     this.newSkill = {
       name: '',
       description: '',
+      price: '',
+      pages: '',
     };
 
     this.newPower = {
       name: '',
       description: '',
+      price: '',
+      pages: '',
     };
 
     this.currentAddName = type;
@@ -117,6 +125,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             this.newSkill = {
               name: '',
               description: '',
+              price: '',
+              pages: '',
             };
 
             this.openStatusModal = false;
@@ -140,6 +150,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             this.newPower = {
               name: '',
               description: '',
+              price: '',
+              pages: '',
             };
 
             this.openStatusModal = false;

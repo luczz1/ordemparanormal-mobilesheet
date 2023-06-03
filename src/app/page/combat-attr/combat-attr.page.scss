@@ -109,20 +109,23 @@ ion-input,
 ion-textarea {
   border-radius: 16px;
   background: #121212;
-  border: 1px solid var(--ion-color-medium);
+  border: 1px solid var(--ion-color-dark-tint);
   outline: none !important;
-  text-indent: 8px;
-}
-
-input {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: center;
-  outline: none;
-  text-indent: 8px;
+  text-indent: 12px;
 }
 
 ion-label {
   color: var(--ion-color-medium);
+}
+
+
+ion-input, ion-textarea {
+  margin-top: 1em;
+}
+
+.btn-outline {
+  margin-top: 2em;
+  --background: none;
+  --border-style: solid;
+  --border-width: 1px;
 }

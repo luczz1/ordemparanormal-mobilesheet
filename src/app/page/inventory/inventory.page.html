@@ -118,13 +118,15 @@
               "
               >Itens
               <ion-text>
-                <strong><ion-icon
-                  style="float: right; font-size: 1.4em; padding-left: .6em;"
-                  name="add-outline"
-                  color="light"
-                  (click)="openAddInventoryItemModal = true;"
-                >
-                </ion-icon></strong>
+                <strong
+                  ><ion-icon
+                    style="float: right; font-size: 1.4em; padding-left: 0.6em"
+                    name="add-outline"
+                    color="light"
+                    (click)="openAddInventoryItemModal = true;"
+                  >
+                  </ion-icon
+                ></strong>
               </ion-text>
             </span>
           </ion-col>
@@ -169,7 +171,7 @@
     </ion-grid>
 
     <ion-modal
-      style="--height: 380px; --width: 300px"
+      style="--height: 100%; --width: 100%"
       [isOpen]="openAddInventoryItemModal"
       (willDismiss)="openAddInventoryItemModal = false;"
     >
@@ -189,11 +191,7 @@
             type="text"
             shape="round"
             placeholder="Nome"
-            style="
-              padding: 0.4em;
-              text-indent: 8px;
-              border-bottom: 1px solid var(--ion-color-medium);
-            "
+            style="margin-top: 1em;"
             max="80"
             min="0"
             #iptName
@@ -202,24 +200,14 @@
             type="text"
             shape="round"
             placeholder="Categoria"
-            style="
-              padding: 0.4em;
-              text-indent: 8px;
-              margin-top: 0.8em;
-              border-bottom: 1px solid var(--ion-color-medium);
-            "
+            style="margin-top: 1em;"
             #iptCategory
           ></ion-input>
           <ion-input
             type="number"
             shape="round"
             placeholder="Peso"
-            style="
-              padding: 0.4em;
-              text-indent: 8px;
-              margin-top: 0.8em;
-              border-bottom: 1px solid var(--ion-color-medium);
-            "
+            style="margin-top: 1em;"
             #iptSlots
           ></ion-input>
           <ion-button

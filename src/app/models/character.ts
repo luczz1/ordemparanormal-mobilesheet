@@ -39,6 +39,8 @@ export interface AbilitiesListModel {
   name: string;
   description: string;
   id: number;
+  price: string;
+  pages: string;
 }
 
 export interface InventoryModel {

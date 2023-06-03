@@ -53,8 +53,8 @@ class AbilitiesController {
       const ability = req.body;
 
       await pool.execute(
-        'INSERT INTO abilities (character_id, name, description) VALUES (?, ?, ?)',
-        [characterId, ability.name, ability.description]
+        'INSERT INTO abilities (character_id, name, description, price, pages) VALUES (?, ?, ?, ?, ?)',
+        [characterId, ability.name, ability.description, ability.price, ability.pages]
       );
 
       res.status(200).json({ message: 'Habilidade criada com sucesso' });
@@ -70,8 +70,8 @@ class AbilitiesController {
       const power = req.body;
 
       await pool.execute(
-        'INSERT INTO powers (character_id, name, description) VALUES (?, ?, ?)',
-        [characterId, power.name, power.description]
+        'INSERT INTO powers (character_id, name, description, price, pages) VALUES (?, ?, ?, ?, ?)',
+        [characterId, power.name, power.description, power.price, power.pages]
       );
 
       res.status(200).json({ message: 'Ritual criado com sucesso' });

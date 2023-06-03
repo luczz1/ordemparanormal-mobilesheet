@@ -36,10 +36,15 @@
   --border-width: 1px;
 }
 
-.text-area-st {
-  border: 1px solid var(--ion-color-warning);
-  background-color: #171717;
-  outline: none;
-  border-radius: 10px;
-  padding-left: 7px;
+ion-input, ion-textarea {
+  border-radius: 16px;
+  background: #121212;
+  border: 1px solid var(--ion-color-dark-tint);
+  outline: none !important;
+  text-indent: 12px;
+  height: 5px !important;
+}
+
+ion-input, ion-textarea {
+  margin-top: 1em;
 }

@@ -32,6 +32,7 @@ ion-input, ion-textarea {
   border: 1px solid var(--ion-color-dark-tint);
   outline: none !important;
   height: 5px !important;
+  text-indent: 12px;
 }
 
 input {
@@ -41,6 +42,7 @@ input {
   text-align: center;
   outline: none;
 }
+
 
 ion-label {color: var(--ion-color-medium)}
 
