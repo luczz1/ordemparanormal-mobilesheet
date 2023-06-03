@@ -28,7 +28,7 @@ Talvez algum dia fique pronto, mas talvez não também.
 - MySQL (banco de dados)
 
 # Imagens
-<small style="color: #f7f7f7">(muitas coisas podem mudar)</small>
+<small style="color: #f7f7f7">(imagens desatualizadas)</small>
 
 
 <div style="display: flex; flex-direction: row">
