@@ -94,6 +94,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         this.skills = res.skills;
 
         this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
+        this.skills.sort((a, b) => (a.favorite > b.favorite ? -1 : 1));
 
         this.pageLoaded = true;
         this.generic.multLoading(false);
@@ -123,12 +124,12 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.diceResultTotal = 0;
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
-      this.generic.presentToast('Quantidade de dados inválida', 3)
+      this.generic.presentToast('Quantidade de dados inválida', 3);
       return;
     }
 
     if (faces > 100 || faces <= 0) {
-      this.generic.presentToast('Número de faces inválido', 3)
+      this.generic.presentToast('Número de faces inválido', 3);
       return;
     }
 
@@ -203,6 +204,16 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
 
       this.timeoutId = null;
     }, 500);
+  }
+
+  public favoriteSkill(id: number, favorite: number) {
+    let favoriteVal = favorite === 0 ? 1 : 0
+    this.charactersService.favoriteSkill(id, favoriteVal).subscribe(
+      (res) => {
+        this.getCharacterSkills(this.characterID);
+      },
+      (error) => this.generic.presentToast(error.error, 3)
+    );
   }
 
   public redirectToPage(

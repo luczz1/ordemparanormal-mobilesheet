@@ -28,7 +28,7 @@ class AttributesController {
       const [skillsResult] = await pool.execute('SELECT * FROM skills WHERE character_id = ?', [characterId]);
 
       if (skillsResult.length === 0) {
-        res.status(200).json('Habilidades não encontradas');
+        res.status(200).json('Perícias não encontradas');
         return;
       }
 
@@ -36,8 +36,8 @@ class AttributesController {
 
       res.json({ skills });
     } catch (error) {
-      console.error('Erro ao obter habilidades:', error);
-      res.status(500).json('Erro ao obter habilidades');
+      console.error('Erro ao obter perícias:', error);
+      res.status(500).json('Erro ao obter perícias');
     }
   }
 
@@ -64,10 +64,25 @@ class AttributesController {
 
       await pool.execute('UPDATE skills SET value = ? WHERE character_id = ? AND id = ?', [newValue, characterId, skillId]);
 
-      res.status(200).json({ message: 'Habilidade atualizada com sucesso' });
+      res.status(200).json({ message: 'Perícia atualizada com sucesso' });
     } catch (error) {
-      console.error('Erro ao atualizar habilidade:', error);
-      res.status(500).json('Erro ao atualizar habilidade');
+      console.error('Erro ao atualizar perícia:', error);
+      res.status(500).json('Erro ao atualizar perícia');
+    }
+  }
+
+
+  async favoriteSkill(req, res) {
+    try {
+      const skillID = req.params.skillId;
+      const newValue = req.params.newValue;
+
+      await pool.execute('UPDATE skills SET favorite = ? WHERE id = ?', [newValue, skillID]);
+
+      res.status(200).json({ message: 'Perícia atualizada com sucesso' });
+    } catch (error) {
+      console.error('Erro ao atualizar perícia:', error);
+      res.status(500).json('Erro ao atualizar perícia');
     }
   }
 }

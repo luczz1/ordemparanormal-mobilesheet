@@ -153,17 +153,38 @@
           <div class="skills-row">
             <span
               *ngFor="let skill of skills"
-              (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id) : openModal(skill)"
-              style="font-size: 1.1em; white-space: nowrap; margin-bottom: 1em"
+              style="
+                font-size: 1em;
+                white-space: nowrap;
+                margin-bottom: 1em;
+                display: flex;
+                align-items: center;
+              "
             >
-              {{skill.name | titlecase}} +{{skill.value}}
+              <ion-text (click)="favoriteSkill(skill.id, skill.favorite)"
+                ><ion-icon style="padding-right: .8em;"
+                  [name]="skill.favorite ? 'star' : 'star-outline'"
+                  [style]="skill.favorite ? 'color: var(--ion-color-purple)' : ''"
+                ></ion-icon
+              ></ion-text>
+              <span
+                (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id) : openModal(skill)"
+                >{{skill.name | titlecase}} +{{skill.value}}</span
+              >
             </span>
           </div>
         </div>
       </div>
     </ion-grid>
 
-    <div style="position: relative; margin-top: 2em; margin-bottom: 3em; width: 100%">
+    <div
+      style="
+        position: relative;
+        margin-top: 2em;
+        margin-bottom: 3em;
+        width: 100%;
+      "
+    >
       <ion-button
         class="btn-outline"
         style="--background: none; --border-color: var(--ion-color-light)"
@@ -223,10 +244,8 @@
             Rolar
           </ion-button>
 
-          <ion-row style="margin-top: .8em; text-align: center">
-            <ion-col>
-              Total: {{diceResultTotal}}
-            </ion-col>
+          <ion-row style="margin-top: 0.8em; text-align: center">
+            <ion-col> Total: {{diceResultTotal}} </ion-col>
           </ion-row>
 
           <ion-row
@@ -262,7 +281,7 @@
         --height: 140px;
         --width: 300px;
         --border-radius: 40px;
-        --background: #161616
+        --background: #161616;
       "
       [isOpen]="openStatusModal"
       (willDismiss)="openStatusModal = false;"

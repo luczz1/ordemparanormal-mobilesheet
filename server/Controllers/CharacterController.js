@@ -129,9 +129,9 @@ class CharacterController {
         "vontade",
       ];
 
-      const skillsData = skillsName.map((skill) => [newCharacterId, skill, 0]);
+      const skillsData = skillsName.map((skill) => [newCharacterId, skill, 0, 0]);
 
-      const query = "INSERT INTO skills (character_id, name, value) VALUES ?";
+      const query = "INSERT INTO skills (character_id, name, value, favorite) VALUES ?";
       await pool.query(query, [skillsData]);
 
       await pool.execute(

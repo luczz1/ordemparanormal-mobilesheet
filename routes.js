@@ -40,6 +40,7 @@ routes.get("/characters/attributes/:id", AttributtesController.getAttributes);
 routes.get("/characters/skills/:id", AttributtesController.getSkills);
 routes.put("/characters/attributes/:id/:attribute/:value", AttributtesController.editAttributes);
 routes.put("/characters/skills/:id/:skillId/:newValue", AttributtesController.editSkills);
+routes.put("/characters/skills/:skillId/:newValue", AttributtesController.favoriteSkill);
 
 //habilidades e rituais
 routes.get("/characters/abilities/:id", AbilitiesController.getAbilities);
