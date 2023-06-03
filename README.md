@@ -23,9 +23,8 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ⌛ Atualização de dados em tempo real para o(a) mestre
 
 # Tecnologias utilizadas:
-- Ionic (adaptação e importação mobile)
-- Angular (frontend)
-- NodeJS (backend)
+- Angular com Ionic (frontend, adaptação e importação mobile)
+- NodeJS com Express (backend)
 - MySQL (banco de dados)
 
 # Imagens
