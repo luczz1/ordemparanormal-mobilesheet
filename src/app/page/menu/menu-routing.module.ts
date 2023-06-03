@@ -61,6 +61,11 @@ const routes: Routes = [
         loadChildren: () => import('../create-char/create-char.module').then(m => m.CreateCharPageModule),
         canActivate: [CharacterGuard]
       },
+      {
+        path: 'character/notes/:characterid',
+        loadChildren: () => import('../character-notes/character-notes.module').then(m => m.CharacterNotesPageModule),
+        canActivate: [CharacterGuard]
+      },
     ],
   },
 ];

@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="menu" *ngIf="pageLoaded">
+    <ion-row>
+      <ion-col class="ion-text-center" size="1" routerLink="/character/{{characterID}}">
+        <span style="font-size: 1.3em"
+          ><ion-icon name="chevron-back-outline"></ion-icon
+        ></span>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <span style="font-size: 1.3em">{{charName}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-margin ion-text-center">
+        <span
+          style="
+            font-size: 1.8em;
+            color: var(--ion-color-light-purple);
+            -webkit-text-stroke-color: var(--ion-color-purple);
+          "
+          >Anotações</span
+        >
+      </ion-col>
+    </ion-row>
+
+    <div class="NgxEditor__Wrapper">
+      <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
+      <ngx-editor
+        [editor]="editor"
+        [(ngModel)]="html"
+        [disabled]="false"
+        [placeholder]="'Escreva aqui...'"
+        (keyup)="saveNotations()"
+      ></ngx-editor>
+    </div>
+  </div>
+</ion-content>

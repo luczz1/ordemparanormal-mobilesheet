@@ -150,6 +150,7 @@
             <span>Player: {{attr.player}}</span>
           </ion-col>
         </ion-row>
+
         <ion-row style="width: 100%">
           <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span>{{attr.birthplace}}</span>
@@ -164,6 +165,21 @@
                 3) : attr.displacement}}</ion-text
               ></span
             >
+          </ion-col>
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col
+            class="ion-text-center"
+            style="font-size: 1.1em"
+            size="12"
+            (click)="gotoNotesScreen()"
+          >
+            <span
+              ><ion-icon
+                name="document-text-outline"
+                color="tertiary"
+              ></ion-icon
+            ></span>
           </ion-col>
         </ion-row>
       </div>

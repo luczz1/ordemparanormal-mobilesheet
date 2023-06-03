@@ -138,6 +138,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
       next: () => {
         this.generic.getInventoryWeight().then((res) => {
           if (res) {
+            this.modalController.dismiss();
             this.totalWeight =
               this.generic.currentWeight + '/' + this.generic.totalWeight;
             this.getInventoryInfos();

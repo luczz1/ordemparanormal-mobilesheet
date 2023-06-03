@@ -25,6 +25,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public modalType = '';
 
   public weightShow = '';
+  public characterID = 0;
 
   public pageLoaded = false;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -39,6 +40,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
 
   ionViewDidEnter(): void {
     const characterID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.characterID = characterID;
 
     this.generic.multLoading(true);
 
@@ -142,8 +144,14 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.router.navigateByUrl(`/character/edit/${characterid}`);
   }
 
+  public gotoNotesScreen() {
+    this.router.navigateByUrl(`/character/notes/${this.characterID}`);
+  }
+
   public backToInitialScreen() {
-    localStorage.clear();
+    localStorage.removeItem('character');
+    localStorage.removeItem('name');
+
     this.router.navigate(['/home']);
   }
 

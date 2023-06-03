@@ -23,7 +23,7 @@
       "dom"
     ],
     "useDefineForClassFields": false,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "noImplicitAny": false,
     "noImplicitThis": true,
   },

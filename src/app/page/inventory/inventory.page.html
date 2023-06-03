@@ -132,7 +132,7 @@
 
         <div
           class="card-char"
-          style="border: 1px solid var(--ion-color-medium)"
+          style="border: 1px solid var(--ion-color-dark)"
           *ngFor="let item of inventoryItems"
         >
           <ion-row>
@@ -229,7 +229,7 @@
             expand="block"
             color="warning"
             fill="clear"
-            (click)="modalController.dismiss(); addInventoryItems(iptName.value, iptCategory.value, iptSlots.value)"
+            (click)="addInventoryItems(iptName.value, iptCategory.value, iptSlots.value)"
           >
             Adicionar
           </ion-button>

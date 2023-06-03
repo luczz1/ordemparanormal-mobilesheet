@@ -110,9 +110,47 @@ ion-scroll[direction="y"] {
 }
 
 .custom-loading {
-  --spinner-color: var(--ion-color-purple)
+  --spinner-color: var(--ion-color-purple);
 }
 
 .active-tab {
   color: var(--ion-color-purple);
+}
+
+.NgxEditor__MenuBar,
+.NgxEditor, .NgxEditor__MenuItem--Button,
+.NgxEditor__Popup--Form > button {
+  background: none !important;
+}
+.NgxEditor {
+  color: #fff !important;
+}
+.NgxEditor__MenuBar {
+  border-bottom: 1px solid #3b3b3b !important;
+}
+
+.NgxEditor__Dropdown .NgxEditor__Dropdown--DropdownMenu,
+.NgxEditor__Popup,
+.NgxEditor__MenuItem--Active,
+.NgxEditor__MenuItem:hover {
+  background-color: #222222 !important;
+}
+
+.NgxEditor__Content {
+  min-height: 60vh !important;
+}
+
+.NgxEditor__Wrapper {
+  border: 1px solid #3b3b3b !important;
+}
+
+.NgxEditor__Dropdown .NgxEditor__Dropdown--Active,
+.NgxEditor__Dropdown .NgxEditor__Dropdown--Selected,
+.NgxEditor__Dropdown .NgxEditor__Dropdown--Item:hover,
+.NgxEditor__Dropdown .NgxEditor__Dropdown--Open {
+  background-color: #1a1a1a !important;
+}
+
+.NgxEditor__Popup {
+  margin-right: 6em;
 }
