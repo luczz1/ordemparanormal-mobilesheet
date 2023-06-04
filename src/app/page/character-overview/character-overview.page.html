@@ -217,7 +217,9 @@
             <ion-input
               type="number"
               [(ngModel)]="character[0]['current_' + modalType]"
-              style="width: 20px"
+              (input)="updateCharacterInDatabase()"
+              [debounce]="200"
+              style="width: 30px; text-align: center"
             ></ion-input>
             <ion-button
               fill="clear"
@@ -236,7 +238,9 @@
             <ion-input
               type="number"
               [(ngModel)]="character[0]['max_' + modalType]"
-              style="width: 20px"
+              (input)="updateCharacterInDatabase()"
+              [debounce]="200"
+              style="width: 30px; text-align: center"
             ></ion-input>
             <ion-button
               fill="clear"

@@ -149,7 +149,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.router.navigate(['/home']);
   }
 
-  private updateCharacterInDatabase() {
+  public updateCharacterInDatabase() {
     if (this.timeoutId !== null) {
       clearTimeout(this.timeoutId);
     }
