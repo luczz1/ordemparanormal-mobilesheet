@@ -10,7 +10,15 @@
               style="float: left; font-size: 1.1em"
               (click)="backToInitialScreen()"
             ></ion-icon>
-            <span style="font-size: 1.3em; margin: auto">{{attr.name}}</span>
+            <span
+              style="
+                font-size: 1.3em;
+                margin: auto;
+                display: flex;
+                align-items: center;
+              "
+              >{{attr.name}}
+            </span>
             <ion-icon
               name="build-outline"
               style="float: right"
@@ -172,14 +180,22 @@
             class="ion-text-center"
             style="font-size: 1.1em"
             size="12"
-            (click)="gotoNotesScreen()"
+
           >
-            <span
-              ><ion-icon
-                name="document-text-outline"
-                color="tertiary"
-              ></ion-icon
-            ></span>
+            <div style="justify-content: space-between; display: flex">
+              <span (click)="gotoNotesOrAboutScreen('notes')"
+                ><ion-icon
+                  name="document-text-outline"
+                  color="tertiary"
+                ></ion-icon
+              ></span>
+              <span (click)="gotoNotesOrAboutScreen('about')"
+                ><ion-icon
+                  name="information-circle-outline"
+                  color="warning"
+                ></ion-icon
+              ></span>
+            </div>
           </ion-col>
         </ion-row>
       </div>

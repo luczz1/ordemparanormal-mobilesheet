@@ -138,8 +138,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.router.navigateByUrl(`/character/edit/${characterid}`);
   }
 
-  public gotoNotesScreen() {
-    this.router.navigateByUrl(`/character/notes/${this.characterID}`);
+  public gotoNotesOrAboutScreen(screen: string) {
+    this.router.navigateByUrl(`/character/${screen}/${this.characterID}`);
   }
 
   public backToInitialScreen() {

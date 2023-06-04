@@ -1,0 +1,51 @@
+.menu {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  height: 100%;
+}
+
+.card-char {
+  width: 100%;
+  background-color: #171717;
+  padding: 0.6em;
+  border-radius: 2em;
+  margin: auto;
+  margin-top: .9em;
+}
+
+.card-char div {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-outline {
+  margin-top: 2em;
+  --background: none;
+  --border-style: solid;
+  --border-width: 1px;
+}
+
+ion-input, ion-textarea {
+  border-radius: 16px;
+  background: #121212;
+  border: 1px solid var(--ion-color-dark-tint);
+  outline: none !important;
+  height: 5px !important;
+  text-indent: 12px;
+}
+
+input {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: center;
+  outline: none;
+}
+
+
+ion-label {color: var(--ion-color-medium)}
+
+.has-focus {
+  outline: none;
+}

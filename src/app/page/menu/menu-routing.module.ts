@@ -66,6 +66,11 @@ const routes: Routes = [
         loadChildren: () => import('../character-notes/character-notes.module').then(m => m.CharacterNotesPageModule),
         canActivate: [CharacterGuard]
       },
+      {
+        path: 'character/about/:characterid',
+        loadChildren: () => import('../character-about/character-about.module').then(m => m.CharacterAboutPageModule),
+        canActivate: [CharacterGuard]
+      },
     ],
   },
 ];
