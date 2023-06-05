@@ -5,6 +5,7 @@ import CombatController from "./server/Controllers/CombatController.js";
 import CharacterController from "./server/Controllers/CharacterController.js";
 import AttributtesController from "./server/Controllers/AttributtesController.js";
 import AbilitiesController from "./server/Controllers/AbilitiesController.js";
+import AboutController from "./server/Controllers/AboutController.js";
 
 
 const routes = Router();
@@ -49,5 +50,9 @@ routes.post("/characters/abilities/:id", AbilitiesController.addAbilities);
 routes.post("/characters/powers/:id", AbilitiesController.addRituals);
 routes.delete("/characters/abilities/:id/:itemId", AbilitiesController.deleteAbilities);
 routes.delete("/characters/powers/:id/:itemId", AbilitiesController.deleteRituals);
+
+//sobre
+routes.get("/characters/about/:characterId", AboutController.getCharacterAbout);
+routes.put("/characters/about/:characterId", AboutController.editCharacterAbout);
 
 export default routes;

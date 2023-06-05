@@ -144,6 +144,11 @@ class CharacterController {
         [0, newCharacterId]
       );
 
+      await pool.execute(
+        "INSERT INTO character_about (`history`, personality, appearance, character_id) VALUES (?, ?, ?, ?)",
+        ['', '', '', newCharacterId]
+      );
+
       res.json({
         character: {
           id: newCharacterId,
@@ -184,6 +189,10 @@ class CharacterController {
       ]);
       await pool.execute(
         "DELETE FROM character_defense WHERE character_id = ?",
+        [characterId]
+      );
+      await pool.execute(
+        "DELETE FROM character_about WHERE character_id = ?",
         [characterId]
       );
       await pool.execute("DELETE FROM characters WHERE id = ?", [characterId]);

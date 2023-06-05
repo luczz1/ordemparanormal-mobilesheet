@@ -1,15 +1,54 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
     <ion-grid>
-      <div>
+      <ion-row>
+        <ion-col size="1" routerLink="/character/{{characterID}}">
+          <span style="font-size: 1.3em"
+            ><ion-icon name="chevron-back-outline"></ion-icon
+          ></span>
+        </ion-col>
+        <ion-col>
+          <span style="font-size: 1.3em">{{charName}}</span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="margin-top: 1em">
+          <span
+            style="
+              font-size: 1.8em;
+              color: var(--ion-color-light-purple);
+              -webkit-text-stroke-color: var(--ion-color-purple);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+            >Sobre
+          </span>
+        </ion-col>
+      </ion-row>
+
+      <form [formGroup]="aboutForm">
         <ion-row>
-          <ion-col size="1" routerLink="/character/{{characterID}}">
-            <span style="font-size: 1.3em"
-              ><ion-icon name="chevron-back-outline"></ion-icon
-            ></span>
-          </ion-col>
-          <ion-col>
-            <span style="font-size: 1.3em">{{charName}}</span>
+          <ion-col style="margin-top: 1em">
+            <span
+              style="
+                font-size: 1.2em;
+                color: var(--ion-color-light);
+                -webkit-text-stroke-color: var(--ion-color-light);
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                margin-bottom: 0.3em;
+              "
+              >História
+            </span>
+            <ion-textarea
+              style="height: 150px !important"
+              (keyup)="editAboutInfos()"
+              formControlName="history"
+            >
+            </ion-textarea>
           </ion-col>
         </ion-row>
 
@@ -17,18 +56,48 @@
           <ion-col style="margin-top: 1em">
             <span
               style="
-                font-size: 1.8em;
-                color: var(--ion-color-light-purple);
-                -webkit-text-stroke-color: var(--ion-color-purple);
+                font-size: 1.2em;
+                color: var(--ion-color-light);
+                -webkit-text-stroke-color: var(--ion-color-light);
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                justify-content: left;
+                margin-bottom: 0.3em;
               "
-              >Sobre
+              >Personalidade
             </span>
+            <ion-textarea
+              style="height: 150px !important"
+              (keyup)="editAboutInfos()"
+              formControlName="personality"
+            >
+            </ion-textarea>
           </ion-col>
         </ion-row>
-      </div>
+
+        <ion-row>
+          <ion-col style="margin-top: 1em">
+            <span
+              style="
+                font-size: 1.2em;
+                color: var(--ion-color-light);
+                -webkit-text-stroke-color: var(--ion-color-light);
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                margin-bottom: 0.3em;
+              "
+              >Aparência
+            </span>
+            <ion-textarea
+              style="height: 150px !important"
+              (keyup)="editAboutInfos()"
+              formControlName="appearance"
+            >
+            </ion-textarea>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-grid>
   </div>
 </ion-content>

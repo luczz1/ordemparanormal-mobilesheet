@@ -3,6 +3,7 @@ import { BaseService } from '../base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
+  AboutModel,
   AttackModel,
   CharacterModel,
   InventoryInfosModel,
@@ -280,6 +281,18 @@ export class CharactersService extends BaseService {
 
   public deleteCharacterAttacks(id: number): Observable<any> {
     return this.http.delete(`${this.Basepath()}characters/attacks/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public getCharacterAbout(id: number): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters/about/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public editCharacterAbout(id: number, data: AboutModel): Observable<any> {
+    return this.http.put(`${this.Basepath()}characters/about/${id}`, data, {
       headers: this.Headers(),
     });
   }

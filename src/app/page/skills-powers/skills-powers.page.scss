@@ -45,6 +45,11 @@ ion-input, ion-textarea {
   height: 5px !important;
 }
 
+ion-textarea {
+  text-indent: 0;
+  padding: 0 1em 0;
+}
+
 ion-input, ion-textarea {
   margin-top: 1em;
 }

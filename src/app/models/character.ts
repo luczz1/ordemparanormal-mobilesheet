@@ -71,3 +71,11 @@ export interface DefenseModel {
   protection: string;
   character_id: number;
 }
+
+export interface AboutModel {
+  id: number;
+  history: string;
+  personality: string;
+  appearance: string;
+  character_id: number;
+}
