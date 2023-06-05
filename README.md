@@ -28,9 +28,6 @@
 - MySQL (banco de dados)
 
 # Imagens
-<small style="color: #f7f7f7">(imagens desatualizadas)</small>
-
-
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
