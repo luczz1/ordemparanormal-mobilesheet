@@ -18,7 +18,7 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
 - ✅ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ✅ Tela de anotações, um bloco de texto com diversas opção de fonte, anexar imagem, cores, e +
-- ⌛ Tela de "sobre" da personagem, com infos da sua história, personalidade e aparência.
+- ✅ Tela de "sobre" da personagem, com infos da sua história, personalidade e aparência.
 - ⌛ Painel do(a) mestre
 - ⌛ Atualização de dados em tempo real para o(a) mestre
 
