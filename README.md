@@ -1,8 +1,5 @@
 # Ordem Paranormal - Ficha Mobile
 
-### Projeto em desenvolvimento!
-Talvez algum dia fique pronto, mas talvez não também.
-
 ### Progresso
 
 - ✅ Criação de personagem 
