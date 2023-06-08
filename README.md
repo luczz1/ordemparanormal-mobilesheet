@@ -1,5 +1,14 @@
 # Ordem Paranormal - Ficha Mobile
 
+### Sobre
+
+Este é um projeto sem fins lucrativos criado para fãs da série Ordem Paranormal. <br />
+O objetivo é oferecer uma maneira fácil e acessível de criar
+fichas de personagens para os jogadores. <br /> O aplicativo é gratuito e
+possui uma interface simples, <br /> permitindo que os jogadores criem
+personagens únicos e interessantes com facilidade. <br /> Ordem Paranormal é
+criada por Rafael Lange e todos os direitos da marca pertencem a ele.
+
 ### Progresso
 
 - ✅ Criação de personagem 
