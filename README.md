@@ -2,12 +2,7 @@
 
 ### Sobre
 
-Este é um projeto sem fins lucrativos criado para fãs da série Ordem Paranormal. 
-  O objetivo é oferecer uma maneira fácil e acessível de criar
-fichas de personagens para  os jogadores. 
-  O aplicativo é gratuito e
-possui uma interface simples, permitindo que os jogadores criem
-personagens únicos e interessantes com facilidade.
+Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de Ordem Paranormal, com o intuito de proporcionar uma maneira conveniente e acessível de criar fichas de personagens. O aplicativo oferece uma interface simples, permitindo que os jogadores criem seus personagens de forma fácil e rápida, garantindo a construção de personagens únicos e cativantes.
 
  Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
 
