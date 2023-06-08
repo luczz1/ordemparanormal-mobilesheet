@@ -26,6 +26,10 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
 
   public defenseMode = false;
 
+  public editingMode = false;
+
+  public selectedDefenseID = 0;
+
   public attacksForm: any = new FormGroup({
     id: new FormControl(0),
     attack_name: new FormControl('', [Validators.required]),
@@ -156,6 +160,39 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     );
   }
 
+  public getAttackByID(attackID: number) {
+    this.editingMode = true;
+    this.defenseMode = false;
+
+    this.charactersService.getCharacterAttackByID(attackID).subscribe(
+      (res) => {
+        this.attacksForm.patchValue(res[0]);
+
+        this.openStatusModal = true;
+      },
+      (error) => {
+        this.generic.presentToast(error.error, 3);
+      }
+    );
+  }
+
+  public getDefenseByID(defenseID: number) {
+    this.editingMode = true;
+    this.defenseMode = true;
+
+    this.charactersService.getCharacterDefenseByID(defenseID).subscribe(
+      (res) => {
+        this.protectionValue = res[0].protection;
+        this.selectedDefenseID = res[0].id;
+
+        this.openStatusModal = true;
+      },
+      (error) => {
+        this.generic.presentToast(error.error, 3);
+      }
+    );
+  }
+
   public addAttacks() {
     if (this.attacksForm.valid) {
       const obj = this.attacksForm.getRawValue();
@@ -173,6 +210,46 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
         );
     } else {
       this.generic.presentToast('Há dados incorretos no formulário.', 3);
+    }
+  }
+
+  public editAttack() {
+    if (this.attacksForm.valid) {
+      const obj = this.attacksForm.getRawValue();
+
+      this.charactersService.editCharacterAttack(obj.id, obj).subscribe(
+        (res) => {
+          this.getAttacks();
+          this.openStatusModal = false;
+        },
+        (error) => {
+          this.openStatusModal = false;
+
+          this.generic.presentToast(error.error, 3);
+        }
+      );
+    } else {
+      this.generic.presentToast('Há dados incorretos no formulário.', 3);
+    }
+  }
+
+  public editDefense() {
+    if (this.protectionValue) {
+      this.charactersService
+        .editCharacterDefenses(this.selectedDefenseID, this.protectionValue)
+        .subscribe(
+          (res) => {
+            this.getDefenses(false);
+            this.openStatusModal = false;
+          },
+          (error) => {
+            this.openStatusModal = false;
+
+            this.generic.presentToast(error.error, 3);
+          }
+        );
+    } else {
+      this.generic.presentToast('O campo não pode ser vazio..', 3);
     }
   }
 

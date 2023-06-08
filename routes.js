@@ -20,10 +20,14 @@ routes.delete("/characters/inventory_items/:id", InventoryController.deleteInven
 
 //combate
 routes.get("/characters/attacks/:characterid", CombatController.getAttacks);
+routes.get("/characters/attack/:id", CombatController.getAttackByID);
 routes.post("/characters/attacks/:characterid", CombatController.addAttacks);
+routes.put("/characters/attack/:id", CombatController.editAttack);
 routes.delete("/characters/attacks/:id", CombatController.deleteAttacks);
 routes.get("/characters/defenses/:characterid", CombatController.getDefenses);
+routes.get("/characters/defenses/e/:id", CombatController.getDefenseByID);
 routes.post("/characters/defenses/:characterid", CombatController.addDefenses);
+routes.put("/characters/defenses/e/:id", CombatController.editDefense);
 routes.delete("/characters/defenses/:id", CombatController.deleteDefenses);
 routes.get("/characters/defense/:characterid", CombatController.getTotalDefense);
 routes.put("/characters/defense/:id/:defense_total", CombatController.editTotalDefense);

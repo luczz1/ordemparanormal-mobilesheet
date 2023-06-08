@@ -49,7 +49,7 @@
     <div class="resistance-list">
       <h3>
         Proteções & Resistências<ion-text
-          (click)="protectionValue = ''; defenseMode = true; openStatusModal = true"
+          (click)="editingMode = false; protectionValue = ''; defenseMode = true; openStatusModal = true"
         >
           <ion-icon
             style="float: right; font-size: 1.3em"
@@ -63,11 +63,15 @@
         <ion-item *ngFor="let defense of defensesList">
           <ion-label>
             {{defense.protection}}
-            <span
-              style="position: absolute; right: 0; margin-right: 1em"
-              (click)="deleteDefense(defense.id, defense.protection)"
-            >
+            <span style="position: absolute; right: 0; margin-right: 1em">
               <ion-icon
+                color="tertiary"
+                style="padding-right: 0.5em"
+                name="create-outline"
+                (click)="getDefenseByID(defense.id)"
+              ></ion-icon>
+              <ion-icon
+                (click)="deleteDefense(defense.id, defense.protection)"
                 color="danger"
                 name="trash-bin-outline"
               ></ion-icon></span
@@ -80,7 +84,7 @@
       <h3>
         Ataques
         <ion-text
-          (click)="defenseMode = false; attacksForm.reset({id: 0}); openStatusModal = true"
+          (click)="editingMode = false; defenseMode = false; attacksForm.reset({id: 0}); openStatusModal = true"
         >
           <ion-icon
             style="float: right; font-size: 1.3em"
@@ -95,17 +99,26 @@
           <ion-label>
             <p>
               {{attack.attack_name}}
-              <span
-                style="position: absolute; right: 0; margin-right: 1em"
-                (click)="deleteAttack(attack.id, attack.attack_name)"
-              >
-                <ion-icon color="danger" name="trash-bin-outline"></ion-icon
+              <span style="position: absolute; right: 0; margin-right: 1em">
+                <ion-icon
+                  color="tertiary"
+                  style="padding-right: 0.5em"
+                  name="create-outline"
+                  (click)="getAttackByID(attack.id)"
+                ></ion-icon>
+                <ion-icon
+                  (click)="deleteAttack(attack.id, attack.attack_name)"
+                  color="danger"
+                  name="trash-bin-outline"
+                ></ion-icon
               ></span>
             </p>
-            <p><strong>Dano:</strong> {{attack.damage}}</p>
             <p><strong>Teste:</strong> {{attack.test}}</p>
+            <p><strong>Dano:</strong> {{attack.damage}}</p>
             <p>
-              <strong>Crítico, alcance ou especial:</strong>
+              <strong style="font-size: 0.8em"
+                >Crítico, alcance ou especial:</strong
+              >
               {{attack.critical_or_range_or_special}}
             </p>
           </ion-label>
@@ -161,17 +174,14 @@
           </form>
           <ion-button
             class="btn-outline"
-            style="
-              --background: none;
-              --border-color: var(--ion-color-warning);
-            "
+            style="--background: none; --border-color: var(--ion-color-warning)"
             shape="round"
             expand="block"
             color="warning"
             fill="clear"
-            (click)="defenseMode ? addDefenses() : addAttacks()"
+            (click)="editingMode ? editAttack() : addAttacks()"
           >
-            Adicionar
+            {{editingMode ? 'Editar' : 'Adicionar'}}
           </ion-button>
         </ion-content>
 
@@ -185,17 +195,14 @@
           </div>
           <ion-button
             class="btn-outline"
-            style="
-              --background: none;
-              --border-color: var(--ion-color-warning);
-            "
+            style="--background: none; --border-color: var(--ion-color-warning)"
             shape="round"
             expand="block"
             color="warning"
             fill="clear"
-            (click)="defenseMode ? addDefenses() : addAttacks()"
+            (click)="editingMode ? editDefense() : addDefenses()"
           >
-            Adicionar
+            {{editingMode ? 'Editar' : 'Adicionar'}}
           </ion-button>
         </ion-content>
       </ng-template>

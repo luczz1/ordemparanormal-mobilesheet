@@ -273,8 +273,38 @@ export class CharactersService extends BaseService {
     });
   }
 
+  public getCharacterAttackByID(id: number): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters/attack/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public getCharacterDefenseByID(id: number): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters/defenses/e/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
   public addCharacterAttacks(id: number, data: AttackModel): Observable<any> {
     return this.http.post(`${this.Basepath()}characters/attacks/${id}`, data, {
+      headers: this.Headers(),
+    });
+  }
+
+  public editCharacterAttack(id: number, data: AttackModel): Observable<any> {
+    return this.http.put(`${this.Basepath()}characters/attack/${id}`, data, {
+      headers: this.Headers(),
+    });
+  }
+
+  public editCharacterDefenses(id: number, data: string): Observable<any> {
+    return this.http.put(`${this.Basepath()}characters/defenses/e/${id}`, {protection_value: data}, {
+      headers: this.Headers(),
+    });
+  }
+
+  public editCharacterDefense(id: number, data: AttackModel): Observable<any> {
+    return this.http.put(`${this.Basepath()}characters/attack/${id}`, data, {
       headers: this.Headers(),
     });
   }
