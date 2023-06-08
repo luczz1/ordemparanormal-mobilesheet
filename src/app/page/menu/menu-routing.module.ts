@@ -71,6 +71,11 @@ const routes: Routes = [
         loadChildren: () => import('../character-about/character-about.module').then(m => m.CharacterAboutPageModule),
         canActivate: [CharacterGuard]
       },
+      {
+        path: '',
+        redirectTo: `character/${localStorage.getItem('character')}`,
+        pathMatch: 'full'
+      },
     ],
   },
 ];
