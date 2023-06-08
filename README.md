@@ -4,7 +4,7 @@
 
 Este é um projeto sem fins lucrativos criado para fãs da série Ordem Paranormal. <br />
   O objetivo é oferecer uma maneira fácil e acessível de criar
-fichas de personagens para os jogadores. <br /> 
+fichas de personagens para <br /> os jogadores. <br /> 
   O aplicativo é gratuito e
 possui uma interface simples, permitindo que os jogadores<br />  criem
 personagens únicos e interessantes com facilidade. <br /> 
