@@ -59,6 +59,14 @@ personagens únicos e interessantes com facilidade.
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2db6fa53-3467-4a0f-8440-1d20ebcfa88b" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a1c03b9a-e5f9-4719-a266-633d50fc0739" style="width: 20%"/>
   </div>
+  
+  ## Download tabelas do banco de dados
+  Caso você queira rodar o projeto, precisará do banco de dados, abaixo estarei disponibilizando as tabelas, é só criar um banco de dados e importar essas tabelas
+  O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js, lembre-se de no connection.js também mudar o host, user
+  e password de acordo com as credenciais do seu banco.
+  
+[Dump20230608.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11683748/Dump20230608.zip)
+
 
 
 
