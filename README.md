@@ -1,8 +1,5 @@
 # Ordem Paranormal - Ficha Mobile
 
-### Projeto em desenvolvimento!
-Talvez algum dia fique pronto, mas talvez não também.
-
 ### Progresso
 
 - ✅ Criação de personagem 
@@ -18,7 +15,10 @@ Talvez algum dia fique pronto, mas talvez não também.
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
 - ✅ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ✅ Tela de anotações, um bloco de texto com diversas opção de fonte, anexar imagem, cores, e +
-- ⌛ Tela de "sobre" da personagem, com infos da sua história, personalidade e aparência.
+- ✅ Tela de "sobre" da personagem, com infos da sua história, personalidade e aparência.
+
+### Adicionais
+
 - ⌛ Painel do(a) mestre
 - ⌛ Atualização de dados em tempo real para o(a) mestre
 
@@ -28,25 +28,26 @@ Talvez algum dia fique pronto, mas talvez não também.
 - MySQL (banco de dados)
 
 # Imagens
-<small style="color: #f7f7f7">(imagens desatualizadas)</small>
-
-
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/f3c0b59c-0fdb-4761-9f55-35dec18235b6" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/74bd2837-4e53-488d-8394-ca5e24fed44c" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/0f935d22-2357-45c5-bfbf-1cb9e0604eec" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/95138340-550f-4164-9996-614ff8f8eb6d" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/eaf3bd72-5140-429c-85af-5e24e80d0ea3" style="width: 20%"/>
   </div>
   
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/fa9726bd-0768-4073-94f3-f40756a60c55" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8431c994-812b-45c8-b9fd-8f8887ba6246" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/6a70ea12-d5b3-4805-a9aa-cc02eee19e00" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c2254def-9abc-4c7f-87a3-522684aa98da" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/481dacd1-da58-41ad-8fca-4564238e256c" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/b6f28e68-526e-4f97-865f-dabe64e8d629" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/e11bade7-0131-497c-8c54-27fd796dd1c8" style="width: 20%"/>
   </div>
   
   <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/fd4e283a-50f0-4851-99ab-d353cf09555b" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/92ce7a78-4e44-4def-a5ee-82c4e2a0f90f" style="width: 30%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a8840e14-8b3c-408c-9bda-4dee7932c1c9" style="width: 30%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/330d4f5f-cd19-4437-ae4e-7107195121c4" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/bf6fae52-1de2-4cf7-ae0b-3a0ccfba4162" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2db6fa53-3467-4a0f-8440-1d20ebcfa88b" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a1c03b9a-e5f9-4719-a266-633d50fc0739" style="width: 20%"/>
   </div>
+
 
 
