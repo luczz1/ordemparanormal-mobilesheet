@@ -19,6 +19,7 @@ export class DiceRollingPage implements ViewDidEnter {
   public diceNumber = 0;
 
   public diceRolling = false;
+  public diceResultTotal = 0;
 
   public clickedNumber = 0;
 
@@ -51,6 +52,7 @@ export class DiceRollingPage implements ViewDidEnter {
   public rollDice(numberOfDice: number | any, faces: any = 20) {
     this.numberOfDice = Number(numberOfDice);
     this.clickedNumber = 0;
+    this.diceResultTotal = 0;
 
     if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
       return;
@@ -70,6 +72,8 @@ export class DiceRollingPage implements ViewDidEnter {
     setTimeout(() => {
       clearInterval(diceInterval);
       this.diceRolling = false;
+
+      this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
     }, 2000);
   }
 }
