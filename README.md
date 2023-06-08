@@ -46,7 +46,7 @@
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/330d4f5f-cd19-4437-ae4e-7107195121c4" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/bf6fae52-1de2-4cf7-ae0b-3a0ccfba4162" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2db6fa53-3467-4a0f-8440-1d20ebcfa88b" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/16787b84-95c6-4b2d-839c-798bed48d0ca" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a1c03b9a-e5f9-4719-a266-633d50fc0739" style="width: 20%"/>
   </div>
 
 
