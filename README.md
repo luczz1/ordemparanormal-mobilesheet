@@ -6,7 +6,7 @@ Este é um projeto sem fins lucrativos criado para fãs da série Ordem Paranorm
   O objetivo é oferecer uma maneira fácil e acessível de criar
 fichas de personagens para os jogadores. <br /> 
   O aplicativo é gratuito e
-possui uma interface simples, permitindo que os jogadores criem
+possui uma interface simples, permitindo que os jogadores<br />  criem
 personagens únicos e interessantes com facilidade. <br /> 
 
  Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
