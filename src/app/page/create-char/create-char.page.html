@@ -42,9 +42,7 @@
 
         <ion-row style="margin-top: 1em">
           <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em"
-              >Nascimento</ion-label
-            >
+            <ion-label style="padding-left: 0.6em">Nascimento</ion-label>
             <ion-input
               formControlName="birthplace"
               style="width: 100%; text-indent: 12px"
@@ -52,9 +50,9 @@
             </ion-input>
           </ion-col>
           <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em">Origem</ion-label>
+            <ion-label style="padding-left: 0.6em">Trilha</ion-label>
             <ion-input
-              formControlName="personality"
+              formControlName="path"
               style="width: 100%; text-indent: 12px"
             >
             </ion-input>
@@ -83,9 +81,9 @@
 
         <ion-row style="margin-top: 1em">
           <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em">Trilha</ion-label>
+            <ion-label style="padding-left: 0.6em">Ocupação</ion-label>
             <ion-input
-              formControlName="characteristic"
+              formControlName="occupation"
               style="width: 100%; text-indent: 12px"
             >
             </ion-input>
@@ -124,7 +122,8 @@
                 name="image-outline"
                 style="padding-right: 0.6em"
               ></ion-icon
-              >{{selectedImage ? selectedImage : 'Selecionar imagem'}}</ion-label
+              >{{selectedImage ? selectedImage : 'Selecionar
+              imagem'}}</ion-label
             >
           </ion-col>
         </ion-row>
@@ -140,7 +139,10 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin: 0.6em; width: 100%; margin: auto" *ngIf="!editingMode">
+        <ion-row
+          style="margin: 0.6em; width: 100%; margin: auto"
+          *ngIf="!editingMode"
+        >
           <ion-col
             style="
               border-radius: 0.5em;
@@ -222,7 +224,9 @@
       </ion-grid>
     </form>
 
-    <div style="position: relative; margin-top: 2em; margin-bottom: 3em; width: 100%">
+    <div
+      style="position: relative; margin-top: 2em; padding: 0 0 2em; width: 100%"
+    >
       <ion-button
         class="btn-outline"
         style="--background: none"
@@ -236,7 +240,10 @@
       </ion-button>
     </div>
 
-    <ion-modal [isOpen]="imagesModalIsOpen" (willDismiss)="imagesModalIsOpen= false">
+    <ion-modal
+      [isOpen]="imagesModalIsOpen"
+      (willDismiss)="imagesModalIsOpen= false"
+    >
       <ng-template>
         <ion-header>
           <ion-toolbar>
@@ -252,7 +259,7 @@
           <ion-grid>
             <ion-row>
               <div style="margin: auto; text-align: center">
-              <ion-col *ngFor="let image of imagesArray">
+                <ion-col *ngFor="let image of imagesArray">
                   <img
                     [src]="image.url"
                     (click)="selectImage(image.url, image.name)"
@@ -261,7 +268,7 @@
                       max-height: 160px;
                       min-width: 60px;
                       min-height: 160px;
-                      margin: .5em
+                      margin: 0.5em;
                     "
                   />
                 </ion-col>

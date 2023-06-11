@@ -16,9 +16,9 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     name: new FormControl(null, [Validators.required]),
     age: new FormControl(null, [Validators.required]),
     birthplace: new FormControl(''),
-    personality: new FormControl(null, [Validators.required]),
+    path: new FormControl(null, [Validators.required]),
     charClass: new FormControl(null, [Validators.required]),
-    characteristic: new FormControl(''),
+    occupation: new FormControl(''),
     current_effort: new FormControl(null),
     current_life: new FormControl(null),
     current_sanity: new FormControl(null),
@@ -99,7 +99,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     this.characterForm.reset(
       { id: 0 },
       { birthplace: '' },
-      { characterisct: '' }
+      { occupation: '' }
     );
   }
 

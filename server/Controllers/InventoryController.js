@@ -1,4 +1,4 @@
-import pool from '../../connection.js';
+import pool from "../../connection.js";
 
 class InventoryController {
   async getInventoryInfo(req, res) {
@@ -6,12 +6,12 @@ class InventoryController {
       const characterId = req.params.characterId;
 
       const [inventoryInfoResult] = await pool.execute(
-        'SELECT * FROM inventory_infos WHERE character_id = ?',
+        "SELECT * FROM inventory_infos WHERE character_id = ?",
         [characterId]
       );
 
       if (inventoryInfoResult.length === 0) {
-        res.status(200).json('Informações do inventário não encontradas');
+        res.status(200).json("Informações do inventário não encontradas");
         return;
       }
 
@@ -19,8 +19,8 @@ class InventoryController {
 
       res.json({ inventoryInfo });
     } catch (error) {
-      console.error('Erro ao obter informações do inventário:', error);
-      res.status(500).json('Erro ao obter informações do inventário');
+      console.error("Erro ao obter informações do inventário:", error);
+      res.status(500).json("Erro ao obter informações do inventário");
     }
   }
 
@@ -30,7 +30,7 @@ class InventoryController {
       const updatedInventoryInfo = req.body;
 
       await pool.execute(
-        'UPDATE inventory_infos SET prestige_points = ?, patent = ?, item_limit = ?, credit_limit = ?, max_load = ? WHERE character_id = ?',
+        "UPDATE inventory_infos SET prestige_points = ?, patent = ?, item_limit = ?, credit_limit = ?, max_load = ? WHERE character_id = ?",
         [
           updatedInventoryInfo.prestige_points,
           updatedInventoryInfo.patent,
@@ -42,11 +42,11 @@ class InventoryController {
       );
 
       res.status(200).json({
-        message: 'Informações de inventário atualizadas com sucesso',
+        message: "Informações de inventário atualizadas com sucesso",
       });
     } catch (error) {
-      console.error('Erro ao atualizar informações de inventário:', error);
-      res.status(500).json('Erro ao atualizar informações de inventário');
+      console.error("Erro ao atualizar informações de inventário:", error);
+      res.status(500).json("Erro ao atualizar informações de inventário");
     }
   }
 
@@ -55,7 +55,7 @@ class InventoryController {
 
     try {
       const [inventoryItems] = await pool.query(
-        'SELECT * FROM inventory_items WHERE character_id = ?',
+        "SELECT * FROM inventory_items WHERE character_id = ?",
         [characterId]
       );
 
@@ -63,8 +63,8 @@ class InventoryController {
         inventory_items: inventoryItems,
       });
     } catch (error) {
-      console.error('Erro ao obter itens do inventário:', error);
-      res.status(500).json('Erro ao obter itens do inventário');
+      console.error("Erro ao obter itens do inventário:", error);
+      res.status(500).json("Erro ao obter itens do inventário");
     }
   }
 
@@ -73,12 +73,12 @@ class InventoryController {
 
     try {
       const [inventoryItems] = await pool.query(
-        'SELECT * FROM inventory_items WHERE character_id = ?',
+        "SELECT * FROM inventory_items WHERE character_id = ?",
         [characterId]
       );
 
       const [inventoryInfos] = await pool.query(
-        'SELECT * FROM inventory_infos WHERE character_id = ?',
+        "SELECT * FROM inventory_infos WHERE character_id = ?",
         [characterId]
       );
 
@@ -92,11 +92,11 @@ class InventoryController {
       res.json({
         atual: cargaAtual,
         total: cargaTotal,
-        status: cargaAtual <= cargaTotal ? 'Normal' : 'Sobrecarga',
+        status: cargaAtual <= cargaTotal ? "Normal" : "Sobrecarga",
       });
     } catch (error) {
-      console.error('Erro ao obter peso do inventário:', error);
-      res.status(500).json('Erro ao obter peso do inventário');
+      console.error("Erro ao obter peso do inventário:", error);
+      res.status(500).json("Erro ao obter peso do inventário");
     }
   }
 
@@ -105,17 +105,24 @@ class InventoryController {
       const newInventoryItem = req.body;
       const characterId = req.params.characterid;
 
-      const [inventoryItemResult] = await pool.execute(
-        'INSERT INTO inventory_items (item_name, category, slots, character_id) VALUES (?, ?, ?, ?)',
-        [
-          newInventoryItem.item_name,
-          newInventoryItem.category,
-          newInventoryItem.slots,
-          characterId,
-        ]
-      );
+      const sqlInsert =
+        "INSERT INTO inventory_items (item_name, category, slots, character_id) VALUES (?, ?, ?, ?)";
+      const sqlUpdate = `
+        UPDATE characters
+        SET weight = weight + ?
+        WHERE id = ?
+      `;
+
+      const [inventoryItemResult] = await pool.execute(sqlInsert, [
+        newInventoryItem.item_name,
+        newInventoryItem.category,
+        newInventoryItem.slots,
+        characterId,
+      ]);
 
       const newInventoryItemId = inventoryItemResult.insertId;
+
+      await pool.execute(sqlUpdate, [newInventoryItem.slots, characterId]);
 
       res.json({
         inventory_item: {
@@ -124,25 +131,36 @@ class InventoryController {
         },
       });
     } catch (error) {
-      console.error('Erro ao criar um novo item do inventário:', error);
-      res.status(500).json('Erro ao criar um novo item do inventário');
+      console.error("Erro ao criar um novo item do inventário:", error);
+      res.status(500).json("Erro ao criar um novo item do inventário");
     }
   }
 
   async deleteInventoryItems(req, res) {
     try {
-      const id = req.params.id;
+      const itemId = req.params.id;
 
-      await pool.execute('DELETE FROM inventory_items WHERE item_id = ?', [
-        id,
-      ]);
+      const sqlSelect =
+        "SELECT character_id, slots FROM inventory_items WHERE item_id = ?";
+      const sqlDelete = "DELETE FROM inventory_items WHERE item_id = ?";
+      const sqlUpdate = `
+        UPDATE characters
+        SET weight = weight - ?
+        WHERE id = ?
+      `;
 
-      res.json({ message: 'Item do inventário excluído com sucesso' });
+      const [characterResult] = await pool.execute(sqlSelect, [itemId]);
+      const { character_id, slots } = characterResult[0];
+
+      await pool.execute(sqlDelete, [itemId]);
+      await pool.execute(sqlUpdate, [slots, character_id]);
+
+      res.json({ message: "Item do inventário excluído com sucesso" });
     } catch (error) {
-      console.error('Erro ao excluir item do inventário:', error);
-      res.status(500).json('Erro ao excluir item do inventário');
+      console.error("Erro ao excluir item do inventário:", error);
+      res.status(500).json("Erro ao excluir item do inventário");
     }
   }
 }
 
-export default new InventoryController()
+export default new InventoryController();

@@ -63,7 +63,6 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
       (res) => {
-        res.character.weight = this.generic.currentWeight;
         this.weightShow =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
 

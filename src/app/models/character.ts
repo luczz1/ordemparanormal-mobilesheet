@@ -2,7 +2,7 @@ export interface CharacterModel {
   id: number;
   age: number;
   birthplace: string;
-  characteristic: string;
+  occupation: string;
   class: string;
   current_effort: number;
   current_life: number;
@@ -14,7 +14,7 @@ export interface CharacterModel {
   max_sanity: number;
   name: string;
   nex: number;
-  personality: string;
+  path: string;
   player: string;
   weight: number;
 }
