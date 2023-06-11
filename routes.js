@@ -39,6 +39,7 @@ routes.post("/characters/create", CharacterController.addCharacter);
 routes.delete("/characters/:id", CharacterController.deleteCharacter);
 routes.put("/characters/:id", CharacterController.editCharacterStatus);
 routes.put("/characters/edit/:id", CharacterController.editCharacter);
+routes.put("/characters/hidden-status/:id", CharacterController.occultStatus);
 
 //atributos e pericias
 routes.get("/characters/attributes/:id", AttributtesController.getAttributes);

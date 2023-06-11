@@ -71,7 +71,7 @@ class CharacterController {
       } = newCharacter;
 
       const [characterResult] = await pool.execute(
-        "INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, birthplace, occupation, `path`, player, displacement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, birthplace, occupation, `path`, player, displacement, hidden_life, hidden_sanity, hidden_effort) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           name,
           current_life,
@@ -90,6 +90,9 @@ class CharacterController {
           path,
           player,
           displacement,
+          0,
+          0,
+          0,
         ]
       );
 
@@ -129,9 +132,15 @@ class CharacterController {
         "vontade",
       ];
 
-      const skillsData = skillsName.map((skill) => [newCharacterId, skill, 0, 0]);
+      const skillsData = skillsName.map((skill) => [
+        newCharacterId,
+        skill,
+        0,
+        0,
+      ]);
 
-      const query = "INSERT INTO skills (character_id, name, value, favorite) VALUES ?";
+      const query =
+        "INSERT INTO skills (character_id, name, value, favorite) VALUES ?";
       await pool.query(query, [skillsData]);
 
       await pool.execute(
@@ -146,7 +155,7 @@ class CharacterController {
 
       await pool.execute(
         "INSERT INTO character_about (`history`, personality, appearance, character_id) VALUES (?, ?, ?, ?)",
-        ['', '', '', newCharacterId]
+        ["", "", "", newCharacterId]
       );
 
       res.json({
@@ -191,10 +200,9 @@ class CharacterController {
         "DELETE FROM character_defense WHERE character_id = ?",
         [characterId]
       );
-      await pool.execute(
-        "DELETE FROM character_about WHERE character_id = ?",
-        [characterId]
-      );
+      await pool.execute("DELETE FROM character_about WHERE character_id = ?", [
+        characterId,
+      ]);
       await pool.execute("DELETE FROM characters WHERE id = ?", [characterId]);
 
       res.json({ message: "Personagem deletado com sucesso" });
@@ -255,6 +263,28 @@ class CharacterController {
           updatedCharacter.path,
           updatedCharacter.player,
           updatedCharacter.displacement,
+          characterId,
+        ]
+      );
+
+      res.status(200).json({ message: "Personagem atualizado com sucesso" });
+    } catch (error) {
+      console.error("Erro ao atualizar personagem:", error);
+      res.status(500).json("Erro ao atualizar personagem");
+    }
+  }
+
+  async occultStatus(req, res) {
+    try {
+      const characterId = req.params.id;
+      const updatedCharacter = req.body;
+
+      await pool.execute(
+        "UPDATE characters SET hidden_life = ?, hidden_sanity = ?, hidden_effort = ? WHERE id = ?",
+        [
+          updatedCharacter.hidden_life,
+          updatedCharacter.hidden_sanity,
+          updatedCharacter.hidden_effort,
           characterId,
         ]
       );

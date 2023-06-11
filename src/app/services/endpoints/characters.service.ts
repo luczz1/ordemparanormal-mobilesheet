@@ -83,9 +83,31 @@ export class CharactersService extends BaseService {
     );
   }
 
+  public hiddenCharacterStatus(
+    status: {
+      hidden_life: number;
+      hidden_sanity: number;
+      hidden_effort: number;
+    },
+    characterID: number
+  ): Observable<any> {
+    return this.http.put(
+      `${this.Basepath()}characters/hidden-status/${characterID}`,
+      status,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
   public updateCharacterAbilitiesList(
     characterId: number,
-    skillsList: { name: string; description: string, price: string, pages: string }
+    skillsList: {
+      name: string;
+      description: string;
+      price: string;
+      pages: string;
+    }
   ): Observable<any> {
     return this.http.post(
       `${this.Basepath()}characters/abilities/${characterId}`,
@@ -98,7 +120,12 @@ export class CharactersService extends BaseService {
 
   public updateCharacterPowersList(
     characterId: number,
-    powersList: { name: string; description: string, price: string, pages: string }
+    powersList: {
+      name: string;
+      description: string;
+      price: string;
+      pages: string;
+    }
   ): Observable<any> {
     return this.http.post(
       `${this.Basepath()}characters/powers/${characterId}`,
@@ -146,10 +173,7 @@ export class CharactersService extends BaseService {
     );
   }
 
-  public favoriteSkill(
-    skillId: number,
-    newValue: number
-  ): Observable<any> {
+  public favoriteSkill(skillId: number, newValue: number): Observable<any> {
     return this.http.put(
       `${this.Basepath()}characters/skills/${skillId}/${newValue}`,
       {
@@ -239,10 +263,16 @@ export class CharactersService extends BaseService {
     });
   }
 
-  public editCharacterTotalDefense(id: number, defense_total: number): Observable<any> {
-    return this.http.put(`${this.Basepath()}characters/defense/${id}/${defense_total}`, {
-      headers: this.Headers(),
-    });
+  public editCharacterTotalDefense(
+    id: number,
+    defense_total: number
+  ): Observable<any> {
+    return this.http.put(
+      `${this.Basepath()}characters/defense/${id}/${defense_total}`,
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 
   public getCharacterDefenses(id: number): Observable<any> {
@@ -253,8 +283,8 @@ export class CharactersService extends BaseService {
 
   public addCharacterDefenses(id: number, data: string): Observable<any> {
     let obj = {
-      protection: data
-    }
+      protection: data,
+    };
 
     return this.http.post(`${this.Basepath()}characters/defenses/${id}`, obj, {
       headers: this.Headers(),
@@ -298,9 +328,13 @@ export class CharactersService extends BaseService {
   }
 
   public editCharacterDefenses(id: number, data: string): Observable<any> {
-    return this.http.put(`${this.Basepath()}characters/defenses/e/${id}`, {protection_value: data}, {
-      headers: this.Headers(),
-    });
+    return this.http.put(
+      `${this.Basepath()}characters/defenses/e/${id}`,
+      { protection_value: data },
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 
   public editCharacterDefense(id: number, data: AttackModel): Observable<any> {

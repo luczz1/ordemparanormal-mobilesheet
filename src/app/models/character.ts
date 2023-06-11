@@ -17,6 +17,9 @@ export interface CharacterModel {
   path: string;
   player: string;
   weight: number;
+  hidden_life: number;
+  hidden_sanity: number;
+  hidden_effort: number;
 }
 
 export interface CharacterAttributesModel {

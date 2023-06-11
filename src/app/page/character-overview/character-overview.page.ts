@@ -30,6 +30,12 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public pageLoaded = false;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
+  public hiddenStatus = {
+    hidden_life: 0,
+    hidden_sanity: 0,
+    hidden_effort: 0,
+  };
+
   constructor(
     private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
@@ -65,6 +71,13 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
       (res) => {
         this.weightShow =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
+
+        const { hidden_life, hidden_sanity, hidden_effort } = res.character;
+        this.hiddenStatus = {
+          hidden_life,
+          hidden_sanity,
+          hidden_effort,
+        };
 
         this.character.push(res.character);
 
@@ -159,5 +172,19 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
         (error: any) => this.generic.presentToast(error.error, 3)
       );
     }, 500);
+  }
+
+  public fnHiddenStatus(type: string) {
+    const formattedType = `hidden_${type}`;
+    this.hiddenStatus[formattedType] = !this.hiddenStatus[formattedType]
+      ? 1
+      : 0;
+
+    this.charactersService
+      .hiddenCharacterStatus(this.hiddenStatus, this.characterID)
+      .subscribe(
+        (res: any) => {},
+        (error: any) => this.generic.presentToast(error.error, 3)
+      );
   }
 }

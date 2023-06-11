@@ -46,7 +46,7 @@
                 [style.width.%]="((attr.current_life / attr.max_life) * 100) > 100 ? 100 : ((attr.current_life / attr.max_life) * 100)"
               ></div>
               <span class="progress-text"
-                >{{attr.current_life}} / {{attr.max_life}}</span
+                >{{hiddenStatus.hidden_life ? '?' : attr.current_life}} / {{hiddenStatus.hidden_life ? '?' : attr.max_life}}</span
               >
             </div>
           </ion-col>
@@ -69,7 +69,7 @@
                 [style.width.%]="((attr.current_sanity / attr.max_sanity) * 100) > 100 ? 100 : ((attr.current_sanity / attr.max_sanity) * 100)"
               ></div>
               <span class="progress-text"
-                >{{attr.current_sanity}} / {{attr.max_sanity}}</span
+                >{{hiddenStatus.hidden_sanity ? '?' : attr.current_sanity}} / {{ hiddenStatus.hidden_sanity ? '?' : attr.max_sanity}}</span
               >
             </div>
           </ion-col>
@@ -95,7 +95,7 @@
                 [style.width.%]="((attr.current_effort / attr.max_effort) * 100) > 100 ? 100 : ((attr.current_effort / attr.max_effort) * 100)"
               ></div>
               <span class="progress-text"
-                >{{attr.current_effort}} / {{attr.max_effort}}</span
+                >{{hiddenStatus.hidden_effort ? '?' : attr.current_effort}} / {{hiddenStatus.hidden_effort ? '?' : attr.max_effort}}</span
               >
             </div>
           </ion-col>
@@ -176,12 +176,7 @@
           </ion-col>
         </ion-row>
         <ion-row style="width: 100%">
-          <ion-col
-            class="ion-text-center"
-            style="font-size: 1.1em"
-            size="12"
-
-          >
+          <ion-col class="ion-text-center" style="font-size: 1.1em" size="12">
             <div style="justify-content: space-between; display: flex">
               <span (click)="gotoNotesOrAboutScreen('notes')"
                 ><ion-icon
@@ -213,13 +208,27 @@
     >
       <ng-template>
         <div style="margin: auto">
-          <div style="text-align: center; margin-top: 0.6em">
+          <div
+            style="
+              text-align: center;
+              margin-top: 0.6em;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
             <ion-text
               [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
-              style="font-size: 1.1em"
+              style="font-size: 1.1em; padding-right: 0.5em"
               >{{modalType === 'life' ? 'Vida' : modalType === 'sanity' ?
               'Sanidade' : 'Esforço'}}</ion-text
             >
+            <ion-icon
+              [name]="modalType === 'life' ? hiddenStatus.hidden_life ? 'eye-off-outline' : 'eye-outline' : modalType === 'sanity' ?
+            hiddenStatus.hidden_sanity ? 'eye-off-outline' : 'eye-outline' : hiddenStatus.hidden_effort ? 'eye-off-outline' : 'eye-outline'"
+              (click)="fnHiddenStatus(modalType)"
+              style="padding-left: 0.5em"
+            ></ion-icon>
           </div>
 
           <div class="buttons" style="display: flex">
