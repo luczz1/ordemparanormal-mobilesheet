@@ -38,7 +38,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/95138340-550f-4164-9996-614ff8f8eb6d" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/eaf3bd72-5140-429c-85af-5e24e80d0ea3" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/23ab9842-92ed-4c9f-9dd7-700c75663ce4" style="width: 20%"/>
   </div>
   
 <div style="display: flex; flex-direction: row">
@@ -50,7 +50,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   
   <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/330d4f5f-cd19-4437-ae4e-7107195121c4" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/bf6fae52-1de2-4cf7-ae0b-3a0ccfba4162" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/d628263f-d055-4c4b-ac47-9ae59c8df852" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2db6fa53-3467-4a0f-8440-1d20ebcfa88b" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a1c03b9a-e5f9-4719-a266-633d50fc0739" style="width: 20%"/>
   </div>
@@ -60,7 +60,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js, lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
   
-[Dump20230608.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11683748/Dump20230608.zip)
+[Dump20230611.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11713937/Dump20230611.zip)
+
 
 
 
