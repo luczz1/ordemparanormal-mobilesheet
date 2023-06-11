@@ -184,7 +184,12 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
       .hiddenCharacterStatus(this.hiddenStatus, this.characterID)
       .subscribe(
         (res: any) => {},
-        (error: any) => this.generic.presentToast(error.error, 3)
+        (error: any) => {
+          this.generic.presentToast(error.error, 3);
+          this.hiddenStatus[formattedType] = !this.hiddenStatus[formattedType]
+            ? 1
+            : 0;
+        }
       );
   }
 }
