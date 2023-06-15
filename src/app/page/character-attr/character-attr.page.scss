@@ -9,6 +9,15 @@ input {
   text-align: center;
 }
 .input-attr {
+  background: none;
+  outline: none;
+  max-width: 50px;
+  border: none;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.input-attr-max {
   width: 80px;
   height: 40px;
   font-size: 1.2em;
@@ -24,7 +33,7 @@ input {
   overflow: auto;
   scrollbar-color: #490142 #565656;
   scrollbar-width: thin;
-  margin-top: 25%;
+  margin-top: 0.2em;
 }
 
 .skills-container::-webkit-scrollbar {

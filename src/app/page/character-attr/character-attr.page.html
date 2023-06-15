@@ -31,7 +31,155 @@
             >
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center">
+        <ion-row class="ion-align-items-center"  *ngIf="pageWidth >= 340">
+          <ion-col class="ion-text-center">
+            <form [formGroup]="attrForm">
+              <div style="position: relative">
+                <img
+                  src="/assets/image/attr1.png"
+                  style="
+                    width: 300px;
+                    height: 300px;
+                    margin-bottom: 10px;
+                    pointer-events: none;
+                  "
+                />
+
+                <form
+                  [formGroup]="attrForm"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      margin-top: 2.3em;
+                    "
+                    (click)="editingMode ? null : gotoDiceRolling('agilidade', agilidadeIpt.value, 0)"
+                  >
+                    <input
+                      type="number"
+                      id="agilidade"
+                      class="input-attr"
+                      formControlName="agility"
+                      [readonly]="!editingMode"
+                      (input)="changeAttributeValue('agility', agilidadeIpt.value)"
+                      #agilidadeIpt
+                    />
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: space-around;
+                      margin-top: 1.8em;
+                    "
+                  >
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-right: 107.2px;
+                      "
+                      (click)="editingMode ? null : gotoDiceRolling('força', forcaIpt.value, 0)"
+                    >
+                      <input
+                        type="number"
+                        id="forca"
+                        class="input-attr"
+                        formControlName="strength"
+                        [readonly]="!editingMode"
+                        (input)="changeAttributeValue('strength', forcaIpt.value)"
+                        #forcaIpt
+                      />
+                    </div>
+
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                      (click)="editingMode ? null : gotoDiceRolling('intelecto', intelectoIpt.value, 0)"
+                    >
+                      <input
+                        type="number"
+                        id="intelecto"
+                        style="margin-left: 1em"
+                        class="input-attr"
+                        formControlName="intellect"
+                        [readonly]="!editingMode"
+                        (input)="changeAttributeValue('intellect', intelectoIpt.value)"
+                        #intelectoIpt
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: space-evenly;
+                      margin-top: 4.8em;
+                    "
+                  >
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-right: 80px;
+                      "
+                      (click)="editingMode ? null : gotoDiceRolling('presença', presencaIpt.value, 0)"
+                    >
+                      <input
+                        type="number"
+                        id="presenca"
+                        class="input-attr"
+                        formControlName="presence"
+                        [readonly]="!editingMode"
+                        (input)="changeAttributeValue('presence', presencaIpt.value)"
+                        #presencaIpt
+                      />
+                    </div>
+
+                    <div
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      "
+                      (click)="editingMode ? null : gotoDiceRolling('vigor', vigorIpt.value, 0)"
+                    >
+                      <input
+                        type="number"
+                        id="vigor"
+                        class="input-attr"
+                        formControlName="stamina"
+                        [readonly]="!editingMode"
+                        (input)="changeAttributeValue('stamina', vigorIpt.value)"
+                        #vigorIpt
+                      />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </form>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center" *ngIf="pageWidth < 340" style="margin-bottom: 2em;">
           <ion-col class="ion-text-center">
             <form [formGroup]="attrForm">
               <div
@@ -46,7 +194,7 @@
                 <input
                   type="number"
                   id="agilidade"
-                  class="input-attr"
+                  class="input-attr-max"
                   formControlName="agility"
                   [readonly]="!editingMode"
                   (input)="changeAttributeValue('agility', agilidadeIpt.value)"
@@ -71,7 +219,7 @@
                   <input
                     type="number"
                     id="forca"
-                    class="input-attr"
+                    class="input-attr-max"
                     formControlName="strength"
                     [readonly]="!editingMode"
                     (input)="changeAttributeValue('strength', forcaIpt.value)"
@@ -91,7 +239,7 @@
                   <input
                     type="number"
                     id="intelecto"
-                    class="input-attr"
+                    class="input-attr-max"
                     formControlName="intellect"
                     [readonly]="!editingMode"
                     (input)="changeAttributeValue('intellect', intelectoIpt.value)"
@@ -119,7 +267,7 @@
                   <input
                     type="number"
                     id="presenca"
-                    class="input-attr"
+                    class="input-attr-max"
                     formControlName="presence"
                     [readonly]="!editingMode"
                     (input)="changeAttributeValue('presence', presencaIpt.value)"
@@ -137,7 +285,7 @@
                   <input
                     type="number"
                     id="vigor"
-                    class="input-attr"
+                    class="input-attr-max"
                     formControlName="stamina"
                     [readonly]="!editingMode"
                     (input)="changeAttributeValue('stamina', vigorIpt.value)"
@@ -162,7 +310,8 @@
               "
             >
               <ion-text (click)="favoriteSkill(skill.id, skill.favorite)"
-                ><ion-icon style="padding-right: .8em;"
+                ><ion-icon
+                  style="padding-right: 0.8em"
                   [name]="skill.favorite ? 'star' : 'star-outline'"
                   [style]="skill.favorite ? 'color: var(--ion-color-purple)' : ''"
                 ></ion-icon
@@ -177,16 +326,10 @@
       </div>
     </ion-grid>
 
-    <div
-      style="
-        position: relative;
-        width: 100%;
-        padding: 0 0 2em
-      "
-    >
+    <div style="position: relative; width: 100%; padding: 0 0 2em">
       <ion-button
         class="btn-outline"
-        style="--background: none; --border-color: var(--ion-color-light);"
+        style="--background: none; --border-color: var(--ion-color-light)"
         color="light"
         fill="clear"
         shape="round"

@@ -41,7 +41,10 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   public pageLoaded = false;
 
   public imagesArray = [
+    { name: 'Aaron', url: '/assets/char/aaron.png' },
     { name: 'Agatha', url: '/assets/char/agatha.png' },
+    { name: 'Alexia', url: '/assets/char/alexia.png' },
+    { name: 'Anfitrião', url: '/assets/char/anfitriao.png' },
     { name: 'Arthur', url: '/assets/char/arthur.png' },
     { name: 'Balu', url: '/assets/char/balu.png' },
     { name: 'Beatrice', url: '/assets/char/beatrice.png' },
@@ -49,18 +52,23 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     { name: 'Clarissa', url: '/assets/char/clarissa.png' },
     { name: 'Dante', url: '/assets/char/dante.png' },
     { name: 'Daniel', url: '/assets/char/daniel.png' },
+    { name: 'Diabo', url: '/assets/char/diabo.png' },
     { name: 'Elizabeth', url: '/assets/char/liz.png' },
     { name: 'Erin', url: '/assets/char/erin.png' },
     { name: 'Fernando', url: '/assets/char/fernando.png' },
     { name: 'Gal', url: '/assets/char/gal.png' },
     { name: 'Ivete', url: '/assets/char/ivete.png' },
+    { name: 'Johnny', url: '/assets/char/johnny.png' },
     { name: 'Joui', url: '/assets/char/joui.png' },
     { name: 'Kaiser', url: '/assets/char/kaiser.png' },
     { name: 'Kian', url: '/assets/char/kian.png' },
+    { name: 'Letícia', url: '/assets/char/leticia.png' },
     { name: 'Magistrada', url: '/assets/char/magistrada.png' },
     { name: 'Mia', url: '/assets/char/mia.png' },
     { name: 'Olivia', url: '/assets/char/olivia.png' },
     { name: 'Rubens', url: '/assets/char/rubens.png' },
+    { name: 'Samuel', url: '/assets/char/samuel.png' },
+    { name: 'Samantha', url: '/assets/char/samantha.png' },
     { name: 'Thiago', url: '/assets/char/thiago.png' },
     { name: 'Tristan', url: '/assets/char/tristan.png' },
     { name: 'Veríssimo', url: '/assets/char/verissimo.png' },
@@ -96,11 +104,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   ionViewDidLeave(): void {
     this.pageLoaded = false;
 
-    this.characterForm.reset(
-      { id: 0 },
-      { birthplace: '' },
-      { occupation: '' }
-    );
+    this.characterForm.reset({ id: 0 }, { birthplace: '' }, { occupation: '' });
   }
 
   public selectImage(imageurl: string, imagename: string) {
@@ -154,7 +158,10 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         },
       });
     } else {
-      this.generic.presentToast('Formulário inválido. Certifique-se de que não esqueceu nada.', 3)
+      this.generic.presentToast(
+        'Formulário inválido. Certifique-se de que não esqueceu nada.',
+        3
+      );
     }
   }
 
@@ -172,7 +179,10 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         },
       });
     } else {
-      this.generic.presentToast('Formulário inválido. Certifique-se de que não esqueceu nada.', 3)
+      this.generic.presentToast(
+        'Formulário inválido. Certifique-se de que não esqueceu nada.',
+        3
+      );
     }
   }
 

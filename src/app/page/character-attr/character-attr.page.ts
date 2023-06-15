@@ -1,4 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewDidEnter, ModalController, ViewDidLeave } from '@ionic/angular';
@@ -32,6 +37,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public diceResultTotal = 0;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
+  public pageWidth = 0;
+
   public attrForm = new FormGroup({
     id: new FormControl(0),
     agility: new FormControl(0),
@@ -57,10 +64,17 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     private generic: GenericService
   ) {}
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.pageWidth = event.target.innerWidth;
+  }
+
   ionViewDidEnter() {
     const characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
+
+    this.pageWidth = window.innerWidth;
 
     this.characterID = characterID;
     this.charName = localStorage.getItem('name');
@@ -207,7 +221,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public favoriteSkill(id: number, favorite: number) {
-    let favoriteVal = favorite === 0 ? 1 : 0
+    let favoriteVal = favorite === 0 ? 1 : 0;
     this.charactersService.favoriteSkill(id, favoriteVal).subscribe(
       (res) => {
         this.getCharacterSkills(this.characterID);
