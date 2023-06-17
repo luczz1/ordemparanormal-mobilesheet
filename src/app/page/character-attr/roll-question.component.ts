@@ -17,13 +17,6 @@ import { ModalController } from '@ionic/angular';
     <ion-content class="ion-padding">
       <ion-button
         class="modal-button"
-        (click)="dismiss('strength')"
-        expand="block"
-      >
-        Força
-      </ion-button>
-      <ion-button
-        class="modal-button"
         (click)="dismiss('agility')"
         expand="block"
       >
@@ -31,10 +24,10 @@ import { ModalController } from '@ionic/angular';
       </ion-button>
       <ion-button
         class="modal-button"
-        (click)="dismiss('stamina')"
+        (click)="dismiss('strength')"
         expand="block"
       >
-        Vigor
+        Força
       </ion-button>
       <ion-button
         class="modal-button"
@@ -52,8 +45,17 @@ import { ModalController } from '@ionic/angular';
       </ion-button>
       <ion-button
         class="modal-button"
+        (click)="dismiss('stamina')"
+        expand="block"
+      >
+        Vigor
+      </ion-button>
+      <ion-button
+        class="modal-button"
         (click)="dismiss('normally')"
         expand="block"
+        style=" --border-color: var(--ion-color-light);
+        --color: var(--ion-color-light);"
       >
         Normalmente
       </ion-button>
