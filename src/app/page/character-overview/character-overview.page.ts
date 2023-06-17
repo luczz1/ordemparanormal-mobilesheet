@@ -51,9 +51,13 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.generic.getInventoryWeight().then((res) => {
       if (res) {
         this.character = [];
-        if (localStorage.getItem('characterInfos') && !localStorage.getItem('updatedChar')) {
+        if (
+          localStorage.getItem('characterInfos') &&
+          localStorage.getItem('hiddenStatus') &&
+          !localStorage.getItem('updatedChar')
+        ) {
           this.weightShow =
-          this.generic.currentWeight + '/' + this.generic.totalWeight;
+            this.generic.currentWeight + '/' + this.generic.totalWeight;
 
           this.character.push(
             JSON.parse(localStorage.getItem('characterInfos'))
@@ -82,7 +86,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
 
   ionViewDidLeave() {
     this.pageLoaded = false;
-}
+  }
 
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
@@ -99,7 +103,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
 
         this.character.push(res.character);
 
-        localStorage.removeItem('updatedChar')
+        localStorage.removeItem('updatedChar');
 
         localStorage.setItem('characterInfos', JSON.stringify(res.character));
         localStorage.setItem('hiddenStatus', JSON.stringify(this.hiddenStatus));

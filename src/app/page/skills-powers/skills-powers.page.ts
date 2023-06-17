@@ -50,7 +50,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
 
     this.charName = localStorage.getItem('name');
 
-    if (localStorage.getItem('skillsList')) {
+    if (localStorage.getItem('skillsList') && localStorage.getItem('powersList')) {
       this.skillsList = JSON.parse(localStorage.getItem('skillsList'));
       this.powersList = JSON.parse(localStorage.getItem('powersList'));
 

@@ -52,7 +52,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     this.characterID = characterID;
 
 
-    if (localStorage.getItem('defensesList')) {
+    if (localStorage.getItem('defensesList') && localStorage.getItem('attacksList')) {
       this.defensesList = JSON.parse(localStorage.getItem('defensesList'));
       this.attacksList = JSON.parse(localStorage.getItem('attacksList'));
 

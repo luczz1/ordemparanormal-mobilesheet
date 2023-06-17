@@ -49,7 +49,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.totalWeight =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
 
-        if (localStorage.getItem('inventoryInfos')) {
+        if (localStorage.getItem('inventoryInfos') && localStorage.getItem('inventoryItems')) {
           this.inventoryInfos.patchValue(
             JSON.parse(localStorage.getItem('inventoryInfos'))
           );

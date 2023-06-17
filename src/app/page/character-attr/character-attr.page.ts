@@ -79,7 +79,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.characterID = characterID;
     this.charName = localStorage.getItem('name');
 
-    if (localStorage.getItem('attr')) {
+    if (localStorage.getItem('attr') && localStorage.getItem('skills')) {
       this.attrForm.patchValue(JSON.parse(localStorage.getItem('attr')))
       this.skills = JSON.parse(localStorage.getItem('skills'))
 
