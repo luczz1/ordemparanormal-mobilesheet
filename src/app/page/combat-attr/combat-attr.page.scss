@@ -129,3 +129,10 @@ ion-input, ion-textarea {
   --border-style: solid;
   --border-width: 1px;
 }
+
+.shield {
+  height: 85px;
+  width: 80px;
+  border: 2px solid #fff;
+  border-radius: 50% 50% 50% 50% / 12% 12% 88% 88%;
+}
