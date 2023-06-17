@@ -46,6 +46,7 @@
             <ion-textarea
               style="height: 150px !important"
               (keyup)="editAboutInfos()"
+              maxlength="250"
               formControlName="history"
             >
             </ion-textarea>
@@ -67,6 +68,7 @@
               >Personalidade
             </span>
             <ion-textarea
+              maxlength="250"
               style="height: 150px !important"
               (keyup)="editAboutInfos()"
               formControlName="personality"
@@ -90,6 +92,7 @@
               >Aparência
             </span>
             <ion-textarea
+              maxlength="250"
               style="height: 150px !important"
               (keyup)="editAboutInfos()"
               formControlName="appearance"

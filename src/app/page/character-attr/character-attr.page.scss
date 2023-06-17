@@ -65,3 +65,18 @@ input {
   --border-style: solid;
   --border-width: 1px;
 }
+
+@media (min-width: 500px) {
+  .skills-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media (min-width: 770px) {
+  .skills-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+}
+

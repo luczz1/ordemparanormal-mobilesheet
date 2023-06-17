@@ -444,12 +444,13 @@
             <ion-button fill="clear" (click)="increaseOrDecreaseSkill(0)">
               <ion-icon name="remove"></ion-icon>
             </ion-button>
-            <ion-input
-              type="number"
-              [(ngModel)]="skillValue"
-              readonly
-              style="width: 20px"
-            ></ion-input>
+              <ion-input
+                type="number"
+                style="max-width: 40px; text-align: center"
+                [(ngModel)]="skillValue"
+                readonly
+              ></ion-input>
+
             <ion-button fill="clear" (click)="increaseOrDecreaseSkill(1)">
               <ion-icon name="add"></ion-icon>
             </ion-button>

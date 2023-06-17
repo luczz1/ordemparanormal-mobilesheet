@@ -199,7 +199,7 @@
     <ion-modal
       style="
         --height: 120px;
-        --width: 300px;
+        --width: 320px;
         --border-radius: 40px;
         --background: #161616;
       "
@@ -244,7 +244,7 @@
               [(ngModel)]="character[0]['current_' + modalType]"
               (input)="updateCharacterInDatabase()"
               [debounce]="200"
-              style="width: 30px; text-align: center"
+              style="max-width: 45px; text-align: center"
             ></ion-input>
             <ion-button
               fill="clear"
@@ -265,7 +265,7 @@
               [(ngModel)]="character[0]['max_' + modalType]"
               (input)="updateCharacterInDatabase()"
               [debounce]="200"
-              style="width: 30px; text-align: center"
+              style="max-width: 45px; text-align: center"
             ></ion-input>
             <ion-button
               fill="clear"
