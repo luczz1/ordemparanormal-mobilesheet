@@ -19,6 +19,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   public pageLoaded = false;
 
   public totalWeight = '';
+  public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   public inventoryItems: InventoryModel[] = [];
   public inventoryInfos = new FormGroup({
@@ -37,8 +38,6 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   ) {}
 
   ionViewDidEnter(): void {
-    this.generic.multLoading(true);
-
     this.charName = localStorage.getItem('name');
 
     this.characterID = Number(
@@ -49,7 +48,21 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
       if (res) {
         this.totalWeight =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
-        this.getInventoryInfos();
+
+        if (localStorage.getItem('inventoryInfos')) {
+          this.inventoryInfos.patchValue(
+            JSON.parse(localStorage.getItem('inventoryInfos'))
+          );
+          this.inventoryItems = JSON.parse(
+            localStorage.getItem('inventoryItems')
+          );
+
+          this.pageLoaded = true;
+        } else {
+          this.generic.multLoading(true);
+
+          this.getInventoryInfos();
+        }
       } else {
         this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
         this.generic.multLoading(false);
@@ -57,17 +70,18 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     });
   }
 
-  ionViewDidLeave(): void {
+  ionViewDidLeave() {
     this.pageLoaded = false;
-
-    this.inventoryItems = [];
-    this.inventoryInfos.reset();
-  }
+}
 
   public getInventoryInfos() {
     this.charactersService.getInventoryInfos(this.characterID).subscribe(
       (res) => {
         this.inventoryInfos.patchValue(res.inventoryInfo);
+        localStorage.setItem(
+          'inventoryInfos',
+          JSON.stringify(res.inventoryInfo)
+        );
         this.getInventoryItems();
       },
       (error) => {
@@ -78,6 +92,11 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public editInventoryInfos() {
+    if (this.timeoutId !== null) {
+      clearTimeout(this.timeoutId);
+    }
+
+    this.timeoutId = setTimeout(() => {
     let obj = this.inventoryInfos.getRawValue();
 
     obj.prestige_points = Number(obj.prestige_points);
@@ -88,27 +107,31 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
           if (res) {
             this.totalWeight =
               this.generic.currentWeight + '/' + this.generic.totalWeight;
-            this.getInventoryItems();
+
+            localStorage.removeItem('inventoryInfos');
+
+            localStorage.setItem('inventoryInfos', JSON.stringify(obj));
           } else {
-            this.generic.presentToast(
-              'Ocorreu um erro ao carregar dados.',
-              3
-            );
+            this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
           }
         });
-
       },
       (error) => {
         this.generic.presentToast(error.error, 3);
         this.generic.multLoading(false);
       }
     );
+  }, 500);
   }
 
   public getInventoryItems() {
     this.charactersService.getInventoryItems(this.characterID).subscribe(
       (res) => {
         this.inventoryItems = res.inventory_items;
+        localStorage.setItem(
+          'inventoryItems',
+          JSON.stringify(res.inventory_items)
+        );
         this.pageLoaded = true;
 
         this.generic.multLoading(false);

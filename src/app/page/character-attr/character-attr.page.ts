@@ -79,21 +79,30 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.characterID = characterID;
     this.charName = localStorage.getItem('name');
 
-    this.generic.multLoading(true);
+    if (localStorage.getItem('attr')) {
+      this.attrForm.patchValue(JSON.parse(localStorage.getItem('attr')))
+      this.skills = JSON.parse(localStorage.getItem('skills'))
 
-    this.getCharacterAttributes(characterID);
+      this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.skills.sort((a, b) => (a.favorite > b.favorite ? -1 : 1));
+
+      this.pageLoaded = true;
+    } else {
+      this.generic.multLoading(true);
+
+      this.getCharacterAttributes(characterID);
+    }
+
   }
 
-  ionViewDidLeave(): void {
-    this.attributes = [];
-    this.skills = [];
-
+  ionViewDidLeave() {
     this.pageLoaded = false;
-  }
+}
 
   public getCharacterAttributes(id: number) {
     this.charactersService.getCharacterAttributesByID(id).subscribe(
       (res) => {
+        localStorage.setItem('attr', JSON.stringify(res.attributes))
         this.attrForm.patchValue(res.attributes);
         this.getCharacterSkills(id);
         this.cdr.detectChanges();
@@ -106,6 +115,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService.getCharacterSkillsByID(id).subscribe(
       (res) => {
         this.skills = res.skills;
+        localStorage.setItem('skills', JSON.stringify(res.skills))
 
         this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
         this.skills.sort((a, b) => (a.favorite > b.favorite ? -1 : 1));

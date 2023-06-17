@@ -33,27 +33,34 @@ export class CharacterAboutPage implements ViewDidEnter, ViewDidLeave {
   ) {}
 
   ionViewDidEnter(): void {
-    this.generic.multLoading(true);
-
     this.charName = localStorage.getItem('name');
 
     this.characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
 
-    this.getAboutInfos();
+    if (localStorage.getItem('characterAbout')) {
+      this.aboutForm.patchValue(
+        JSON.parse(localStorage.getItem('characterAbout'))
+      );
+
+      this.pageLoaded = true;
+    } else {
+      this.generic.multLoading(true);
+      this.getAboutInfos();
+    }
   }
 
-  ionViewDidLeave(): void {
+  ionViewDidLeave() {
     this.pageLoaded = false;
-    this.aboutForm.reset();
-  }
+}
 
   public getAboutInfos() {
     this.charactersService.getCharacterAbout(this.characterID).subscribe(
       (res) => {
         if (res) {
           this.aboutForm.patchValue(res);
+          localStorage.setItem('characterAbout', JSON.stringify(res));
         }
 
         this.generic.multLoading(false);
@@ -76,7 +83,11 @@ export class CharacterAboutPage implements ViewDidEnter, ViewDidLeave {
       const obj = this.aboutForm.getRawValue();
       this.charactersService
         .editCharacterAbout(this.characterID, obj)
-        .subscribe({ error: (err) => this.generic.presentToast(err.error, 3) });
+        .subscribe({
+          next: () =>
+            localStorage.setItem('characterAbout', JSON.stringify(obj)),
+          error: (err) => this.generic.presentToast(err.error, 3),
+        });
       this.timeoutId = null;
     }, 500);
   }

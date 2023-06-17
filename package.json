@@ -11,8 +11,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "server": "ts-node server.js",
-    "serverw": "nodemon server.js"
+    "server": "nodemon server.js"
   },
   "private": true,
   "dependencies": {

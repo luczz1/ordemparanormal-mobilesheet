@@ -42,8 +42,6 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   ) {}
 
   ionViewDidEnter(): void {
-    this.generic.multLoading(true);
-
     const characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
@@ -52,20 +50,26 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
 
     this.charName = localStorage.getItem('name');
 
-    this.getSkill(characterID);
+    if (localStorage.getItem('skillsList')) {
+      this.skillsList = JSON.parse(localStorage.getItem('skillsList'));
+      this.powersList = JSON.parse(localStorage.getItem('powersList'));
+
+      this.pageLoaded = true;
+    } else {
+      this.generic.multLoading(true);
+      this.getSkill(characterID);
+    }
   }
 
-  ionViewDidLeave(): void {
-    this.skillsList = [];
-    this.powersList = [];
-
-    this.pageLoaded = false;
+  ionViewDidLeave() {
+      this.pageLoaded = false;
   }
 
   public getSkill(id: number) {
     this.charactersService.getCharacterAbilitiesListByID(id).subscribe(
       (res) => {
         this.skillsList = res.abilities;
+        localStorage.setItem('skillsList', JSON.stringify(res.abilities));
         this.getPower(id);
       },
       (error) => {
@@ -79,6 +83,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService.getCharacterPowersListByID(id).subscribe(
       (res) => {
         this.powersList = res.powers;
+        localStorage.setItem('powersList', JSON.stringify(res.powers));
         this.pageLoaded = true;
         this.generic.multLoading(false);
       },

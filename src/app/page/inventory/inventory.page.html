@@ -50,8 +50,7 @@
               <ion-label style="padding-left: 0.6em">Pts. prestígio</ion-label>
               <ion-input
                 style="width: 100%; text-align: center"
-                (ionChange)="editInventoryInfos()"
-                [debounce]="500"
+                (input)="editInventoryInfos()"
                 formControlName="prestige_points"
                 type="number"
               >
@@ -62,8 +61,7 @@
               <ion-input
                 type="string"
                 style="width: 100%; text-indent: 8px"
-                (ionChange)="editInventoryInfos()"
-                [debounce]="500"
+                (input)="editInventoryInfos()"
                 formControlName="patent"
               >
               </ion-input>
@@ -74,8 +72,7 @@
               <ion-label style="padding-left: 0.6em">Lim. itens</ion-label>
               <ion-input
                 style="width: 100%; text-align: center"
-                (ionChange)="editInventoryInfos()"
-                [debounce]="500"
+                (input)="editInventoryInfos()"
                 formControlName="item_limit"
                 type="number"
               >
@@ -86,8 +83,7 @@
               <ion-input
                 type="number"
                 style="width: 100%; text-align: center"
-                (ionChange)="editInventoryInfos()"
-                [debounce]="500"
+                (input)="editInventoryInfos()"
                 formControlName="max_load"
                 type="number"
               >
@@ -99,8 +95,7 @@
               >
               <ion-input
                 style="width: 100%; text-align: center"
-                (ionChange)="editInventoryInfos()"
-                [debounce]="500"
+                (input)="editInventoryInfos()"
                 formControlName="credit_limit"
                 type="number"
               >

@@ -46,20 +46,29 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
   ) {}
 
   ionViewDidEnter(): void {
-    this.generic.multLoading(true);
-
     const characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
     this.characterID = characterID;
 
-    this.getTotalDefense();
+
+    if (localStorage.getItem('defensesList')) {
+      this.defensesList = JSON.parse(localStorage.getItem('defensesList'));
+      this.attacksList = JSON.parse(localStorage.getItem('attacksList'));
+
+      this.pageLoaded = true;
+      this.getTotalDefense(false);
+    } else {
+      this.generic.multLoading(true);
+      this.getTotalDefense();
+    }
+
     this.charName = localStorage.getItem('name');
   }
 
-  ionViewDidLeave(): void {
+  ionViewDidLeave() {
     this.pageLoaded = false;
-  }
+}
 
   public getTotalDefense(call = true) {
     this.charactersService.getCharacterTotalDefense(this.characterID).subscribe(
@@ -91,6 +100,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
       (res) => {
         if (typeof res !== 'string') {
           this.defensesList = res;
+          localStorage.setItem('defensesList', JSON.stringify(res));
         } else {
           this.defensesList = [];
         }
@@ -144,6 +154,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
       (res) => {
         if (typeof res !== 'string') {
           this.attacksList = res;
+          localStorage.setItem('attacksList', JSON.stringify(res));
         } else {
           this.attacksList = [];
         }

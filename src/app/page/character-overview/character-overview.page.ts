@@ -48,11 +48,31 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     const characterID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.characterID = characterID;
 
-    this.generic.multLoading(true);
-
     this.generic.getInventoryWeight().then((res) => {
       if (res) {
-        this.getCharacterByID(characterID);
+        this.character = [];
+        if (localStorage.getItem('characterInfos') && !localStorage.getItem('updatedChar')) {
+          this.weightShow =
+          this.generic.currentWeight + '/' + this.generic.totalWeight;
+
+          this.character.push(
+            JSON.parse(localStorage.getItem('characterInfos'))
+          );
+
+          const { hidden_life, hidden_sanity, hidden_effort } = JSON.parse(
+            localStorage.getItem('hiddenStatus')
+          );
+          this.hiddenStatus = {
+            hidden_life,
+            hidden_sanity,
+            hidden_effort,
+          };
+
+          this.pageLoaded = true;
+        } else {
+          this.generic.multLoading(true);
+          this.getCharacterByID(characterID);
+        }
       } else {
         this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
         this.generic.multLoading(false);
@@ -60,11 +80,9 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     });
   }
 
-  ionViewDidLeave(): void {
-    this.character = [];
-    this.diceResults = [];
+  ionViewDidLeave() {
     this.pageLoaded = false;
-  }
+}
 
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
@@ -80,6 +98,11 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
         };
 
         this.character.push(res.character);
+
+        localStorage.removeItem('updatedChar')
+
+        localStorage.setItem('characterInfos', JSON.stringify(res.character));
+        localStorage.setItem('hiddenStatus', JSON.stringify(this.hiddenStatus));
 
         this.generic.multLoading(false);
         this.pageLoaded = true;
@@ -155,8 +178,10 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public backToInitialScreen() {
-    localStorage.removeItem('character');
-    localStorage.removeItem('name');
+    const notation = localStorage.getItem(`notation${this.characterID}`);
+    localStorage.clear();
+
+    localStorage.setItem(`notation${this.characterID}`, notation);
 
     this.router.navigate(['/home']);
   }
@@ -168,7 +193,12 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
 
     this.timeoutId = setTimeout(() => {
       this.charactersService.updateCharacter(this.character[0]).subscribe(
-        (res: any) => {},
+        (res: any) => {
+          localStorage.setItem(
+            'characterInfos',
+            JSON.stringify(this.character[0])
+          );
+        },
         (error: any) => this.generic.presentToast(error.error, 3)
       );
     }, 500);
@@ -183,12 +213,21 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService
       .hiddenCharacterStatus(this.hiddenStatus, this.characterID)
       .subscribe(
-        (res: any) => {},
+        (res: any) => {
+          localStorage.setItem(
+            'hiddenStatus',
+            JSON.stringify(this.hiddenStatus)
+          );
+        },
         (error: any) => {
           this.generic.presentToast(error.error, 3);
           this.hiddenStatus[formattedType] = !this.hiddenStatus[formattedType]
             ? 1
             : 0;
+          localStorage.setItem(
+            'hiddenStatus',
+            JSON.stringify(this.hiddenStatus)
+          );
         }
       );
   }
