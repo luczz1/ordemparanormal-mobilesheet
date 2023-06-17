@@ -182,10 +182,10 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public backToInitialScreen() {
-    const notation = localStorage.getItem(`notation${this.characterID}`);
+    const notation = localStorage.getItem(`notation-${this.characterID}`);
     localStorage.clear();
 
-    localStorage.setItem(`notation${this.characterID}`, notation);
+    notation && localStorage.setItem(`notation-${this.characterID}`, notation);
 
     this.router.navigate(['/home']);
   }

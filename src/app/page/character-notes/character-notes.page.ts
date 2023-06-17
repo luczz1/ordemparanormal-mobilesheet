@@ -26,8 +26,8 @@ export class CharacterNotesPage implements ViewDidEnter, ViewDidLeave {
     );
     this.charName = localStorage.getItem('name');
 
-    if (localStorage.getItem(`notation${this.characterID}`)) {
-      this.html = localStorage.getItem(`notation${this.characterID}`);
+    if (localStorage.getItem(`notation-${this.characterID}`)) {
+      this.html = localStorage.getItem(`notation-${this.characterID}`);
     }
 
     this.editor = new Editor();
@@ -49,9 +49,9 @@ export class CharacterNotesPage implements ViewDidEnter, ViewDidLeave {
     this.timeoutId = setTimeout(() => {
       const cleanedHtml = this.removeTagsAndCheckEmpty(this.html);
       if (cleanedHtml.length === 0) {
-        localStorage.removeItem(`notation${this.characterID}`);
+        localStorage.removeItem(`notation-${this.characterID}`);
       } else {
-        localStorage.setItem(`notation${this.characterID}`, this.html);
+        localStorage.setItem(`notation-${this.characterID}`, this.html);
       }
     }, 200);
   }

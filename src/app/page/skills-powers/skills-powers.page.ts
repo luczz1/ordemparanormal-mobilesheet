@@ -69,7 +69,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService.getCharacterAbilitiesListByID(id).subscribe(
       (res) => {
         this.skillsList = res.abilities;
-        localStorage.setItem('skillsList', JSON.stringify(res.abilities));
+        localStorage.setItem('skillsList', JSON.stringify(res.abilities) ?? '[]');
         this.getPower(id);
       },
       (error) => {
@@ -83,7 +83,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService.getCharacterPowersListByID(id).subscribe(
       (res) => {
         this.powersList = res.powers;
-        localStorage.setItem('powersList', JSON.stringify(res.powers));
+        localStorage.setItem('powersList', JSON.stringify(res.powers) ?? '[]');
         this.pageLoaded = true;
         this.generic.multLoading(false);
       },

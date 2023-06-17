@@ -51,13 +51,17 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     );
     this.characterID = characterID;
 
-
-    if (localStorage.getItem('defensesList') && localStorage.getItem('attacksList')) {
+    if (
+      localStorage.getItem('defensesList') &&
+      localStorage.getItem('attacksList') &&
+      localStorage.getItem('totalDefense')
+    ) {
       this.defensesList = JSON.parse(localStorage.getItem('defensesList'));
       this.attacksList = JSON.parse(localStorage.getItem('attacksList'));
 
+      this.totalDefense = Number(localStorage.getItem('totalDefense'));
+
       this.pageLoaded = true;
-      this.getTotalDefense(false);
     } else {
       this.generic.multLoading(true);
       this.getTotalDefense();
@@ -68,12 +72,13 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
 
   ionViewDidLeave() {
     this.pageLoaded = false;
-}
+  }
 
   public getTotalDefense(call = true) {
     this.charactersService.getCharacterTotalDefense(this.characterID).subscribe(
       (res) => {
         this.totalDefense = res[0].defense_total;
+        localStorage.setItem('totalDefense', res[0].defense_total);
 
         if (call) this.getDefenses();
       },
@@ -103,6 +108,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
           localStorage.setItem('defensesList', JSON.stringify(res));
         } else {
           this.defensesList = [];
+          localStorage.setItem('defensesList', '[]');
         }
 
         if (getAtt) this.getAttacks();
@@ -157,6 +163,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
           localStorage.setItem('attacksList', JSON.stringify(res));
         } else {
           this.attacksList = [];
+          localStorage.setItem('attacksList', '[]');
         }
         this.generic.multLoading(false);
 
