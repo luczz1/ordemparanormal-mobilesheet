@@ -46,7 +46,8 @@
                 [style.width.%]="((attr.current_life / attr.max_life) * 100) > 100 ? 100 : ((attr.current_life / attr.max_life) * 100)"
               ></div>
               <span class="progress-text"
-                >{{hiddenStatus.hidden_life ? '?' : attr.current_life}} / {{hiddenStatus.hidden_life ? '?' : attr.max_life}}</span
+                >{{hiddenStatus.hidden_life ? '?' : attr.current_life}} /
+                {{hiddenStatus.hidden_life ? '?' : attr.max_life}}</span
               >
             </div>
           </ion-col>
@@ -69,7 +70,8 @@
                 [style.width.%]="((attr.current_sanity / attr.max_sanity) * 100) > 100 ? 100 : ((attr.current_sanity / attr.max_sanity) * 100)"
               ></div>
               <span class="progress-text"
-                >{{hiddenStatus.hidden_sanity ? '?' : attr.current_sanity}} / {{ hiddenStatus.hidden_sanity ? '?' : attr.max_sanity}}</span
+                >{{hiddenStatus.hidden_sanity ? '?' : attr.current_sanity}} / {{
+                hiddenStatus.hidden_sanity ? '?' : attr.max_sanity}}</span
               >
             </div>
           </ion-col>
@@ -95,7 +97,8 @@
                 [style.width.%]="((attr.current_effort / attr.max_effort) * 100) > 100 ? 100 : ((attr.current_effort / attr.max_effort) * 100)"
               ></div>
               <span class="progress-text"
-                >{{hiddenStatus.hidden_effort ? '?' : attr.current_effort}} / {{hiddenStatus.hidden_effort ? '?' : attr.max_effort}}</span
+                >{{hiddenStatus.hidden_effort ? '?' : attr.current_effort}} /
+                {{hiddenStatus.hidden_effort ? '?' : attr.max_effort}}</span
               >
             </div>
           </ion-col>
@@ -108,6 +111,7 @@
                 font-size: 2.1em;
                 color: var(--ion-color-light);
                 font-family: SpecialFont;
+                text-shadow: 0 0 10px var(--ion-color-main);
               "
               >{{attr.class}}</span
             >
