@@ -74,8 +74,8 @@ import { ModalController } from '@ionic/angular';
         --border-width: 1px;
         --background: none;
         --border-radius: 16px;
-        --border-color: var(--ion-color-light-purple);
-        --color: var(--ion-color-light-purple);
+        --border-color: var(--ion-color-light-main);
+        --color: var(--ion-color-light-main);
       }
     `,
   ],

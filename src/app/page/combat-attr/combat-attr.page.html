@@ -16,8 +16,8 @@
         <span
           style="
             font-size: 1.8em;
-            color: var(--ion-color-light-purple);
-            -webkit-text-stroke-color: var(--ion-color-purple);
+            color: var(--ion-color-light-main);
+            -webkit-text-stroke-color: var(--ion-color-main);
           "
           >Atributos de combate</span
         >
@@ -174,10 +174,9 @@
           </form>
           <ion-button
             class="btn-outline"
-            style="--background: none; --border-color: var(--ion-color-warning)"
+            style="--background: none; --border-color: var(--ion-color-main); --color: var(--ion-color-main)"
             shape="round"
             expand="block"
-            color="warning"
             fill="clear"
             (click)="editingMode ? editAttack() : addAttacks()"
           >
@@ -195,10 +194,9 @@
           </div>
           <ion-button
             class="btn-outline"
-            style="--background: none; --border-color: var(--ion-color-warning)"
+            style="--background: none; --border-color: var(--ion-color-main); --color: var(--ion-color-main)"
             shape="round"
             expand="block"
-            color="warning"
             fill="clear"
             (click)="editingMode ? editDefense() : addDefenses()"
           >

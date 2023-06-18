@@ -147,7 +147,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.numberOfDice = Number(numberOfDice);
     this.diceResultTotal = 0;
 
-    if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
+    if (this.numberOfDice > 100 || this.numberOfDice <= 0) {
       this.generic.presentToast('Quantidade de dados inválida', 3);
       return;
     }

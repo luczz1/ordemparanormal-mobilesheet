@@ -54,7 +54,7 @@ export class DiceRollingPage implements ViewDidEnter {
     this.clickedNumber = 0;
     this.diceResultTotal = 0;
 
-    if (this.numberOfDice > 20 || this.numberOfDice <= 0) {
+    if (this.numberOfDice > 100 || this.numberOfDice <= 0) {
       return;
     }
 

@@ -79,7 +79,7 @@ ion-scroll[direction="y"] {
 
 .alert-wrapper.sc-ion-alert-md {
   button.alert-button.alert-button-confirm {
-    color: var(--ion-color-purple);
+    color: var(--ion-color-main);
     width: 50%;
     position: fixed;
     right: 0;
@@ -110,11 +110,11 @@ ion-scroll[direction="y"] {
 }
 
 .custom-loading {
-  --spinner-color: var(--ion-color-purple);
+  --spinner-color: var(--ion-color-main);
 }
 
 .active-tab {
-  color: var(--ion-color-purple);
+  color: var(--ion-color-main);
 }
 
 .NgxEditor__MenuBar,

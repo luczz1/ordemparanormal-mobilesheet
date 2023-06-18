@@ -24,8 +24,8 @@
             <span
               style="
                 font-size: 1.8em;
-                color: var(--ion-color-light-purple);
-                -webkit-text-stroke-color: var(--ion-color-purple);
+                color: var(--ion-color-light-main);
+                -webkit-text-stroke-color: var(--ion-color-main);
               "
               >Atributos e Perícias</span
             >
@@ -313,7 +313,7 @@
                 ><ion-icon
                   style="padding-right: 0.8em"
                   [name]="skill.favorite ? 'star' : 'star-outline'"
-                  [style]="skill.favorite ? 'color: var(--ion-color-purple)' : ''"
+                  [style]="skill.favorite ? 'color: var(--ion-color-main)' : ''"
                   [class]="!skill.favorite ? 'to-favorite-star' : 'already-favorite-star'"
                 ></ion-icon
               ></ion-text>
@@ -348,7 +348,7 @@
           <ion-input
             type="number"
             shape="round"
-            placeholder="min: 1, max: 20"
+            placeholder="min: 1, max: 100"
             label="Quantidade"
             labelPlacement="stacked"
             style="
@@ -432,7 +432,7 @@
       <ng-template>
         <div style="margin: auto">
           <div style="text-align: center; margin-top: 0.6em">
-            <ion-text style="font-size: 1.1em; color: var(--ion-color-purple)"
+            <ion-text style="font-size: 1.1em; color: var(--ion-color-main)"
               >{{selectedSkill | titlecase}}</ion-text
             >
           </div>
