@@ -54,7 +54,7 @@ export class GenericService {
     return alertHandler;
   }
 
-  public async multLoading(activate: boolean, message = true) {
+  public async multLoading(activate: boolean) {
     const mult = activate ? 1 : -1;
     this.loadingQueue += mult;
 
@@ -64,7 +64,7 @@ export class GenericService {
         const loading = await this.loadingCtrl.create({
           cssClass: 'custom-loading',
           mode: 'md',
-          message: message ? 'O primeiro loading pode demorar um pouco' : 'Carregando...'
+          message: 'Carregando...'
         });
         await loading.present();
 

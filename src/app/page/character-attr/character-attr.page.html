@@ -62,7 +62,7 @@
                       display: flex;
                       flex-direction: column;
                       align-items: center;
-                      margin-top: 2.3em;
+                      margin-top: 2em;
                     "
                     (click)="editingMode ? null : gotoDiceRolling('agilidade', agilidadeIpt.value, 0)"
                   >
@@ -82,7 +82,7 @@
                       display: flex;
                       flex-direction: row;
                       justify-content: space-around;
-                      margin-top: 1.8em;
+                      margin-top: 1.3em;
                     "
                   >
                     <div
@@ -90,7 +90,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        margin-right: 107.2px;
+                        margin-right: 104.2px;
                       "
                       (click)="editingMode ? null : gotoDiceRolling('força', forcaIpt.value, 0)"
                     >
@@ -131,7 +131,7 @@
                       display: flex;
                       flex-direction: row;
                       justify-content: space-evenly;
-                      margin-top: 4.8em;
+                      margin-top: 4.5em;
                     "
                   >
                     <div
@@ -314,9 +314,10 @@
                   style="padding-right: 0.8em"
                   [name]="skill.favorite ? 'star' : 'star-outline'"
                   [style]="skill.favorite ? 'color: var(--ion-color-purple)' : ''"
+                  [class]="!skill.favorite ? 'to-favorite-star' : 'already-favorite-star'"
                 ></ion-icon
               ></ion-text>
-              <span
+              <span style="cursor: pointer;"
                 (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id) : openModal(skill)"
                 >{{skill.name | titlecase}} +{{skill.value}}</span
               >

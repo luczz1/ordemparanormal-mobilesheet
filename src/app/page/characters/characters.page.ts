@@ -31,7 +31,7 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public getCharacters() {
-    this.generic.multLoading(true, false);
+    this.generic.multLoading(true);
     this.characterService.getCharacters().subscribe(
       (res) => {
         this.charactersList = res.characters;

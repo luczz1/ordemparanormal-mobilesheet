@@ -163,6 +163,8 @@ ion-modal {
   --max-width: 800px !important;
 }
 
+ion-icon:hover {cursor: pointer;}
+
 @media (min-width: 500px) {
   ion-modal {
     --min-width: 500px

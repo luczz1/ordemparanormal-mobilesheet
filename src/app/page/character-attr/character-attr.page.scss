@@ -13,10 +13,12 @@ input {
   outline: none;
   max-width: 50px;
   border: none;
-  font-size: 1.4em;
+  font-size: 1.8em;
   text-align: center;
   opacity: 0.7;
 }
+
+.input-attr:hover {cursor: pointer;}
 
 .input-attr-max {
   width: 80px;
@@ -65,6 +67,9 @@ input {
   --border-style: solid;
   --border-width: 1px;
 }
+
+.to-favorite-star:hover {color: var(--ion-color-purple);}
+.already-favorite-star:hover {color: var(--ion-color-medium) !important;}
 
 @media (min-width: 500px) {
   .skills-row {

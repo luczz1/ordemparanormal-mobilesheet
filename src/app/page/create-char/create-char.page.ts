@@ -92,7 +92,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     if (this.characterId) {
       this.pageLoaded = false;
 
-      this.generic.multLoading(true, false);
+      this.generic.multLoading(true);
       this.editingMode = true;
       this.getCharacterByID();
     } else {
