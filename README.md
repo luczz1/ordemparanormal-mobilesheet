@@ -49,7 +49,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   </div>
   
   <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/330d4f5f-cd19-4437-ae4e-7107195121c4" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/5b2ef618-008d-45fa-b47a-b97cbadb364f" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/d628263f-d055-4c4b-ac47-9ae59c8df852" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2db6fa53-3467-4a0f-8440-1d20ebcfa88b" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a1c03b9a-e5f9-4719-a266-633d50fc0739" style="width: 20%"/>
@@ -59,9 +59,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   Caso você queira rodar o projeto, precisará do banco de dados, abaixo estarei disponibilizando as tabelas, é só criar um banco de dados e importar essas tabelas.
   O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js, lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
-  
-[Dump20230611.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11713937/Dump20230611.zip)
 
+[Dump20230618.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11781792/Dump20230618.zip)
 
 
 
