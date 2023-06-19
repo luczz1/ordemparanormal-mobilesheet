@@ -52,7 +52,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/5b2ef618-008d-45fa-b47a-b97cbadb364f" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/d628263f-d055-4c4b-ac47-9ae59c8df852" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2db6fa53-3467-4a0f-8440-1d20ebcfa88b" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a1c03b9a-e5f9-4719-a266-633d50fc0739" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/3a81db23-a154-477f-978f-9554c6884dac" style="width: 20%"/>
   </div>
   
   ## Download tabelas do banco de dados
