@@ -38,11 +38,11 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/95138340-550f-4164-9996-614ff8f8eb6d" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/23ab9842-92ed-4c9f-9dd7-700c75663ce4" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/0f2303a1-2f87-4121-b2d6-66305f1d592e" style="width: 20%"/>
   </div>
   
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c2254def-9abc-4c7f-87a3-522684aa98da" style="width: 20%"/>
+    <img src=https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9dc05f36-8933-4a00-922b-cfb7523c4638" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/04f9dc56-a1e8-4b73-82d7-1903b7e92964" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8a7c1c98-db8e-40ef-a62a-4110ceeb1494" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/e11bade7-0131-497c-8c54-27fd796dd1c8" style="width: 20%"/>
