@@ -63,15 +63,15 @@ class CharacterController {
         nex,
         weight,
         age,
-        birthplace,
         occupation,
         path,
         player,
         displacement,
+        origin,
       } = newCharacter;
 
       const [characterResult] = await pool.execute(
-        "INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, birthplace, occupation, `path`, player, displacement, hidden_life, hidden_sanity, hidden_effort) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, occupation, `path`, player, displacement, hidden_life, hidden_sanity, hidden_effort, origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           name,
           current_life,
@@ -85,7 +85,6 @@ class CharacterController {
           nex,
           weight,
           age,
-          birthplace,
           occupation,
           path,
           player,
@@ -93,6 +92,7 @@ class CharacterController {
           0,
           0,
           0,
+          origin
         ]
       );
 
@@ -244,7 +244,7 @@ class CharacterController {
       const updatedCharacter = req.body;
 
       await pool.execute(
-        "UPDATE characters SET name = ?, current_life = ?, max_life = ?, current_sanity = ?, max_sanity = ?, current_effort = ?, max_effort = ?, class = ?, image_url = ?, nex = ?, weight = ?, age = ?, birthplace = ?, occupation = ?, `path` = ?, player = ?, displacement = ? WHERE id = ?",
+        "UPDATE characters SET name = ?, current_life = ?, max_life = ?, current_sanity = ?, max_sanity = ?, current_effort = ?, max_effort = ?, class = ?, image_url = ?, nex = ?, weight = ?, age = ?, occupation = ?, `path` = ?, player = ?, displacement = ?, origin = ? WHERE id = ?",
         [
           updatedCharacter.name,
           updatedCharacter.current_life,
@@ -258,11 +258,11 @@ class CharacterController {
           updatedCharacter.nex,
           updatedCharacter.weight,
           updatedCharacter.age,
-          updatedCharacter.birthplace,
           updatedCharacter.occupation,
           updatedCharacter.path,
           updatedCharacter.player,
           updatedCharacter.displacement,
+          updatedCharacter.origin,
           characterId,
         ]
       );

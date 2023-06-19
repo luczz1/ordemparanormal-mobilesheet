@@ -1,7 +1,6 @@
 export interface CharacterModel {
   id: number;
   age: number;
-  birthplace: string;
   occupation: string;
   class: string;
   current_effort: number;
@@ -20,6 +19,7 @@ export interface CharacterModel {
   hidden_life: number;
   hidden_sanity: number;
   hidden_effort: number;
+  origin: string;
 }
 
 export interface CharacterAttributesModel {
@@ -79,6 +79,6 @@ export interface AboutModel {
   id: number;
   history: string;
   personality: string;
-  appearance: string;
+  goals: string;
   character_id: number;
 }

@@ -22,7 +22,7 @@ export class CharacterAboutPage implements ViewDidEnter, ViewDidLeave {
     id: new FormControl(null),
     history: new FormControl(null),
     personality: new FormControl(null),
-    appearance: new FormControl(null),
+    goals: new FormControl(null),
     character_id: new FormControl(null),
   });
 
@@ -89,6 +89,6 @@ export class CharacterAboutPage implements ViewDidEnter, ViewDidLeave {
           error: (err) => this.generic.presentToast(err.error, 3),
         });
       this.timeoutId = null;
-    }, 500);
+    }, 1000);
   }
 }

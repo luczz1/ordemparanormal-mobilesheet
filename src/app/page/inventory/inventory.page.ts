@@ -121,7 +121,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.generic.multLoading(false);
       }
     );
-  }, 500);
+  }, 1000);
   }
 
   public getInventoryItems() {

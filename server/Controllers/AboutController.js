@@ -30,11 +30,11 @@ class AboutController {
       const updatedCharacterAbout = req.body;
 
       await pool.execute(
-        "UPDATE character_about SET `history` = ?, personality = ?, appearance = ? WHERE character_id = ?",
+        "UPDATE character_about SET `history` = ?, personality = ?, goals = ? WHERE character_id = ?",
         [
           updatedCharacterAbout.history,
           updatedCharacterAbout.personality,
-          updatedCharacterAbout.appearance,
+          updatedCharacterAbout.goals,
           characterId,
         ]
       );

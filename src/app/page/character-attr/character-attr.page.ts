@@ -203,7 +203,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         });
 
       this.timeoutId = null;
-    }, 1000);
+    }, 500);
   }
 
   public increaseOrDecreaseSkill(type: number | string) {

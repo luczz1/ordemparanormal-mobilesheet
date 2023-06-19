@@ -15,7 +15,6 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     id: new FormControl(0),
     name: new FormControl(null, [Validators.required]),
     age: new FormControl(null, [Validators.required]),
-    birthplace: new FormControl(''),
     path: new FormControl(null, [Validators.required]),
     charClass: new FormControl(null, [Validators.required]),
     occupation: new FormControl(''),
@@ -30,6 +29,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     nex: new FormControl(null, [Validators.required]),
     player: new FormControl(null, [Validators.required]),
     weight: new FormControl(0),
+    origin: new FormControl('', [Validators.required]),
   });
 
   public selectedImage = '';
@@ -53,6 +53,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     { name: 'Dante', url: '/assets/char/dante.png' },
     { name: 'Daniel', url: '/assets/char/daniel.png' },
     { name: 'Diabo', url: '/assets/char/diabo.png' },
+    { name: 'Dominic', url: '/assets/char/dominic.png' },
     { name: 'Elizabeth', url: '/assets/char/liz.png' },
     { name: 'Erin', url: '/assets/char/erin.png' },
     { name: 'Fernando', url: '/assets/char/fernando.png' },
@@ -72,6 +73,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     { name: 'Thiago', url: '/assets/char/thiago.png' },
     { name: 'Tristan', url: '/assets/char/tristan.png' },
     { name: 'Veríssimo', url: '/assets/char/verissimo.png' },
+    { name: 'Yuki', url: '/assets/char/yuki.png' },
   ];
 
   constructor(
