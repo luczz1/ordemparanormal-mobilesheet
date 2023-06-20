@@ -319,7 +319,7 @@
               ></ion-text>
               <span style="cursor: pointer;"
                 (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id) : openModal(skill)"
-                >{{skill.name | titlecase}} +{{skill.value}}</span
+                >{{skill.name | titlecase}} {{skill.value >= 0 ? '+' + skill.value : skill.value}}</span
               >
             </span>
           </div>

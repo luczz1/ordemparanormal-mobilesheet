@@ -27,7 +27,12 @@ export class DiceRollingPage implements ViewDidEnter {
   public diceResults: number[] = [];
   public charName: string | null = '';
 
-  constructor(private activatedRoute: ActivatedRoute, public modalController: ModalController) {}
+  public attributeIsHigherOrLowerThanZero = false;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public modalController: ModalController
+  ) {}
 
   ionViewDidEnter(): void {
     this.diceRolling = false;
@@ -39,9 +44,22 @@ export class DiceRollingPage implements ViewDidEnter {
     this.rollname = String(
       this.activatedRoute.snapshot.paramMap.get('rollname')
     );
-    this.rollvalue = Number(
-      this.activatedRoute.snapshot.paramMap.get('rollvalue')
-    ) + 1;
+
+    const realRollValue = Number(this.activatedRoute.snapshot.paramMap.get('rollvalue'));
+
+    if (realRollValue <= 0) {this.attributeIsHigherOrLowerThanZero = true};
+
+    if (realRollValue === 0) {
+      this.rollvalue = 2;
+    } else if (realRollValue === -1) {
+      this.rollvalue = 3;
+    } else if (realRollValue < -1) {
+      this.rollvalue = Math.abs(realRollValue) + 2;
+    } else {
+      this.rollvalue = Math.max(realRollValue + 1, 1);
+    }
+
+
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));
 
     this.charName = localStorage.getItem('name');
@@ -75,5 +93,9 @@ export class DiceRollingPage implements ViewDidEnter {
 
       this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
     }, 2000);
+  }
+
+  public getMinDiceResult(): number {
+    return Math.min(...this.diceResults);
   }
 }

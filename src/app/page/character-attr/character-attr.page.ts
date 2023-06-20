@@ -207,7 +207,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public increaseOrDecreaseSkill(type: number | string) {
-    if (type === 0 && this.skillValue > 0) this.skillValue--;
+    if (type === 0) this.skillValue--;
     else this.skillValue++;
 
     if (this.timeoutId !== null) {

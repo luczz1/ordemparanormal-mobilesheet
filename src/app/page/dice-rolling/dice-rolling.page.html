@@ -13,8 +13,6 @@
           </ion-col>
         </ion-row>
 
-
-
         <ion-row>
           <ion-col class="ion-margin">
             <span
@@ -31,7 +29,6 @@
         <ion-row style="margin-top: 0.1em; text-align: center">
           <ion-col> Total: {{diceResultTotal}} </ion-col>
         </ion-row>
-
 
         <div>
           <ion-button
@@ -72,7 +69,11 @@
                   transform: translate(-50%, -50%);
                 "
               >
-                <span style="font-size: 1.1em">{{diceResult}}</span>
+                <span
+                  style="font-size: 1.1em"
+                  [style]="attributeIsHigherOrLowerThanZero && !diceRolling && diceResult === getMinDiceResult() ? 'color: var(--ion-color-danger)' : ''"
+                  >{{diceResult}}</span
+                >
               </div>
             </ion-col>
           </ng-container>
@@ -84,7 +85,7 @@
           <ion-row class="ion-align-items-center" style="margin-top: 2em">
             <ion-col class="ion-text-center">
               <ion-label color="light" style="font-size: 32px"
-                >Bônus +{{bonus}}
+                >Bônus {{bonus >= 0 ? '+' + bonus : bonus}}
                 <ion-text *ngIf="clickedNumber"
                   >({{clickedNumber + bonus}})</ion-text
                 ></ion-label
