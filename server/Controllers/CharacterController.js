@@ -71,7 +71,7 @@ class CharacterController {
       } = newCharacter;
 
       const [characterResult] = await pool.execute(
-        "INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, occupation, `path`, player, displacement, hidden_life, hidden_sanity, hidden_effort, origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO characters (name, current_life, max_life, current_sanity, max_sanity, current_effort, max_effort, class, image_url, nex, weight, age, occupation, `path`, player, displacement, hidden_life, hidden_sanity, hidden_effort, origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         [
           name,
           current_life,
@@ -130,6 +130,7 @@ class CharacterController {
         "tática",
         "tecnologia",
         "vontade",
+        "crime",
       ];
 
       const skillsData = skillsName.map((skill) => [
@@ -154,7 +155,7 @@ class CharacterController {
       );
 
       await pool.execute(
-        "INSERT INTO character_about (`history`, personality, appearance, character_id) VALUES (?, ?, ?, ?)",
+        "INSERT INTO character_about (`history`, personality, goals, character_id) VALUES (?, ?, ?, ?)",
         ["", "", "", newCharacterId]
       );
 
