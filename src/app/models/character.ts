@@ -42,8 +42,15 @@ export interface AbilitiesListModel {
   name: string;
   description: string;
   id: number;
-  price: string;
-  pages: string;
+  price?: string;
+  pages?: string;
+  element?: string;
+  circle?: number;
+  target?: string;
+  duration?: string;
+  resistance?: string;
+  execution?: number;
+  reach?: number;
 }
 
 export interface InventoryModel {

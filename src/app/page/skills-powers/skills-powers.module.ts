@@ -7,12 +7,14 @@ import { SkillsPowersPageRoutingModule } from './skills-powers-routing.module';
 
 import { SkillsPowersPage } from './skills-powers.page';
 import { TabsPageModule } from '../../tabs/tabs.module';
+import { PipesModule } from 'src/app/services/pipes/pipes.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
+    PipesModule,
     SkillsPowersPageRoutingModule,
     TabsPageModule
   ],

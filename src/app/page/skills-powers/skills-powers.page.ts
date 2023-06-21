@@ -18,14 +18,17 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public openStatusModal = false;
   public characterId = 0;
 
+  public DTValue = '0';
+
   public currentAddName = '';
   public charName: string | null = '';
+
+  public hiddenAbilities = false;
+  public hiddenRituals = false;
 
   public newSkill = {
     name: '',
     description: '',
-    price: '',
-    pages: '',
   };
 
   public newPower = {
@@ -33,6 +36,13 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     description: '',
     price: '',
     pages: '',
+    element: '',
+    circle: 0,
+    target: '',
+    duration: '',
+    resistance: '',
+    execution: 0,
+    reach: 0,
   };
 
   constructor(
@@ -50,7 +60,14 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
 
     this.charName = localStorage.getItem('name');
 
-    if (localStorage.getItem('skillsList') && localStorage.getItem('powersList')) {
+    if (localStorage.getItem('ritualsDT')) {
+      this.DTValue = localStorage.getItem('ritualsDT');
+    }
+
+    if (
+      localStorage.getItem('skillsList') &&
+      localStorage.getItem('powersList')
+    ) {
       this.skillsList = JSON.parse(localStorage.getItem('skillsList'));
       this.powersList = JSON.parse(localStorage.getItem('powersList'));
 
@@ -62,14 +79,17 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   }
 
   ionViewDidLeave() {
-      this.pageLoaded = false;
+    this.pageLoaded = false;
   }
 
   public getSkill(id: number) {
     this.charactersService.getCharacterAbilitiesListByID(id).subscribe(
       (res) => {
         this.skillsList = res.abilities;
-        localStorage.setItem('skillsList', JSON.stringify(res.abilities) ?? '[]');
+        localStorage.setItem(
+          'skillsList',
+          JSON.stringify(res.abilities) ?? '[]'
+        );
         this.getPower(id);
       },
       (error) => {
@@ -82,7 +102,16 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public getPower(id: number) {
     this.charactersService.getCharacterPowersListByID(id).subscribe(
       (res) => {
+        if (res.powers) {
+          res.powers.forEach((item) => {
+            if (item.element) {
+              item.element = JSON.parse(item.element);
+            }
+          });
+        }
+
         this.powersList = res.powers;
+
         localStorage.setItem('powersList', JSON.stringify(res.powers) ?? '[]');
         this.pageLoaded = true;
         this.generic.multLoading(false);
@@ -98,8 +127,6 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     this.newSkill = {
       name: '',
       description: '',
-      price: '',
-      pages: '',
     };
 
     this.newPower = {
@@ -107,6 +134,13 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       description: '',
       price: '',
       pages: '',
+      element: '',
+      circle: 0,
+      target: '',
+      duration: '',
+      resistance: '',
+      execution: 0,
+      reach: 0,
     };
 
     this.currentAddName = type;
@@ -130,8 +164,6 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             this.newSkill = {
               name: '',
               description: '',
-              price: '',
-              pages: '',
             };
 
             this.openStatusModal = false;
@@ -157,6 +189,13 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
               description: '',
               price: '',
               pages: '',
+              element: '',
+              circle: 0,
+              target: '',
+              duration: '',
+              resistance: '',
+              execution: 0,
+              reach: 0,
             };
 
             this.openStatusModal = false;
@@ -189,5 +228,13 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         }
       );
     }
+  }
+
+  public saveDT() {
+    if (Number(this.DTValue) <= 0 || !this.DTValue && localStorage.getItem('DT')) {
+      localStorage.removeItem('ritualsDT');
+      return;
+    }
+    localStorage.setItem('ritualsDT', this.DTValue);
   }
 }

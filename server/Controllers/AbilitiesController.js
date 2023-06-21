@@ -1,4 +1,4 @@
-import pool from '../../connection.js';
+import pool from "../../connection.js";
 
 class AbilitiesController {
   async getAbilities(req, res) {
@@ -6,12 +6,12 @@ class AbilitiesController {
       const characterId = req.params.id;
 
       const [abilitiesResult] = await pool.execute(
-        'SELECT * FROM abilities WHERE character_id = ?',
+        "SELECT * FROM abilities WHERE character_id = ?",
         [characterId]
       );
 
       if (abilitiesResult.length === 0) {
-        res.status(200).json('Habilidades não encontradas');
+        res.status(200).json("Habilidades não encontradas");
         return;
       }
 
@@ -19,8 +19,8 @@ class AbilitiesController {
 
       res.json({ abilities });
     } catch (error) {
-      console.error('Erro ao obter habilidades:', error);
-      res.status(500).json('Erro ao obter habilidades');
+      console.error("Erro ao obter habilidades:", error);
+      res.status(500).json("Erro ao obter habilidades");
     }
   }
 
@@ -29,12 +29,12 @@ class AbilitiesController {
       const characterId = req.params.id;
 
       const [powersResult] = await pool.execute(
-        'SELECT * FROM powers WHERE character_id = ?',
+        "SELECT * FROM powers WHERE character_id = ?",
         [characterId]
       );
 
       if (powersResult.length === 0) {
-        res.status(200).json('Rituais não encontrados');
+        res.status(200).json("Rituais não encontrados");
         return;
       }
 
@@ -42,8 +42,8 @@ class AbilitiesController {
 
       res.json({ powers });
     } catch (error) {
-      console.error('Erro ao obter rituais:', error);
-      res.status(500).json('Erro ao obter rituais');
+      console.error("Erro ao obter rituais:", error);
+      res.status(500).json("Erro ao obter rituais");
     }
   }
 
@@ -53,14 +53,14 @@ class AbilitiesController {
       const ability = req.body;
 
       await pool.execute(
-        'INSERT INTO abilities (character_id, name, description, price, pages) VALUES (?, ?, ?, ?, ?)',
-        [characterId, ability.name, ability.description, ability.price, ability.pages]
+        "INSERT INTO abilities (character_id, name, description) VALUES (?, ?, ?)",
+        [characterId, ability.name, ability.description]
       );
 
-      res.status(200).json({ message: 'Habilidade criada com sucesso' });
+      res.status(200).json({ message: "Habilidade criada com sucesso" });
     } catch (error) {
-      console.error('Erro ao criar nova habilidade:', error);
-      res.status(500).json('Erro ao criar nova habilidade');
+      console.error("Erro ao criar nova habilidade:", error);
+      res.status(500).json("Erro ao criar nova habilidade");
     }
   }
 
@@ -70,14 +70,27 @@ class AbilitiesController {
       const power = req.body;
 
       await pool.execute(
-        'INSERT INTO powers (character_id, name, description, price, pages) VALUES (?, ?, ?, ?, ?)',
-        [characterId, power.name, power.description, power.price, power.pages]
+        "INSERT INTO powers (character_id, name, description, price, pages, element, circle, target, duration, resistance, execution, reach) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+          characterId,
+          power.name,
+          power.description,
+          power.price,
+          power.pages,
+          power.element,
+          power.circle,
+          power.target,
+          power.duration,
+          power.resistance,
+          power.execution,
+          power.reach,
+        ]
       );
 
-      res.status(200).json({ message: 'Ritual criado com sucesso' });
+      res.status(200).json({ message: "Ritual criado com sucesso" });
     } catch (error) {
-      console.error('Erro ao criar novo ritual:', error);
-      res.status(500).json('Erro ao criar novo ritual');
+      console.error("Erro ao criar novo ritual:", error);
+      res.status(500).json("Erro ao criar novo ritual");
     }
   }
 
@@ -87,14 +100,14 @@ class AbilitiesController {
       const itemId = req.params.itemId;
 
       await pool.execute(
-        'DELETE FROM abilities WHERE character_id = ? AND id = ?',
+        "DELETE FROM abilities WHERE character_id = ? AND id = ?",
         [characterId, itemId]
       );
 
-      res.status(200).json({ message: 'Habilidade excluída com sucesso' });
+      res.status(200).json({ message: "Habilidade excluída com sucesso" });
     } catch (error) {
-      console.error('Erro ao excluir habilidade:', error);
-      res.status(500).json('Erro ao excluir habilidade');
+      console.error("Erro ao excluir habilidade:", error);
+      res.status(500).json("Erro ao excluir habilidade");
     }
   }
 
@@ -103,15 +116,15 @@ class AbilitiesController {
       const characterId = req.params.id;
       const itemId = req.params.itemId;
 
-      await pool.execute('DELETE FROM powers WHERE character_id = ? AND id = ?', [
-        characterId,
-        itemId,
-      ]);
+      await pool.execute(
+        "DELETE FROM powers WHERE character_id = ? AND id = ?",
+        [characterId, itemId]
+      );
 
-      res.status(200).json({ message: 'Ritual excluído com sucesso' });
+      res.status(200).json({ message: "Ritual excluído com sucesso" });
     } catch (error) {
-      console.error('Erro ao excluir um ritual:', error);
-      res.status(500).json('Erro ao excluir ritual');
+      console.error("Erro ao excluir um ritual:", error);
+      res.status(500).json("Erro ao excluir ritual");
     }
   }
 }

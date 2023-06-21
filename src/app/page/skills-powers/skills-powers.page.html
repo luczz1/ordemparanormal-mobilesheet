@@ -22,6 +22,17 @@
                 -webkit-text-stroke-color: var(--ion-color-main);
               "
               >Habilidades
+
+              <ion-text
+                style="font-size: 0.7em"
+                color="medium"
+                (click)="hiddenAbilities = !hiddenAbilities"
+              >
+                <ion-icon
+                  [name]="hiddenAbilities ? 'eye-off-outline' : 'eye-outline'"
+                ></ion-icon>
+              </ion-text>
+
               <ion-text (click)="openSkillOrPowerModal('skill')">
                 <ion-icon
                   style="float: right; font-size: 1em"
@@ -30,11 +41,23 @@
                 >
                 </ion-icon> </ion-text
             ></span>
+            <br />
+            <span
+              style="
+                font-size: 1.1em;
+                color: var(--ion-color-medium);
+                text-decoration: underline;
+                cursor: pointer;
+              "
+              >Proficiências</span
+            >
           </ion-col>
         </ion-row>
         <div
+          *ngIf="!hiddenAbilities"
           class="abilities-rituals-list"
           style="max-height: 280px; overflow: auto"
+          [style]="hiddenRituals ? 'max-height: 50vh' : 'max-height: 280px'"
         >
           <div *ngFor="let skill of skillsList" class="card-char">
             <p>
@@ -46,21 +69,6 @@
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
             </p>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 0.7em;
-              "
-            >
-              <span style="color: var(--ion-color-medium)"
-                ><strong>Custo: {{skill.price ? skill.price : '---'}}</strong></span
-              >
-              <span style="color: var(--ion-color-medium)"
-                ><strong>Pagína: {{skill.pages ? skill.pages : '---'}}</strong></span
-              >
-            </div>
-
             <span style="color: var(--ion-color-medium)"
               >{{skill.description}}</span
             >
@@ -76,6 +84,28 @@
                 -webkit-text-stroke-color: var(--ion-color-main);
               "
               >Rituais
+
+              <ion-text style="font-size: 0.7em" color="medium">
+                <ion-text
+                  >DT:
+                  <input
+                    (input)="saveDT()"
+                    type="number"
+                    [(ngModel)]="DTValue"
+                    style="
+                      width: 40px;
+                      outline: none;
+                      border: none;
+                      background: none;
+                    "
+                    #iptDT
+                /></ion-text>
+                <ion-icon
+                  (click)="hiddenRituals = !hiddenRituals"
+                  [name]="hiddenRituals ? 'eye-off-outline' : 'eye-outline'"
+                ></ion-icon>
+              </ion-text>
+
               <ion-text (click)="openSkillOrPowerModal('power')">
                 <ion-icon
                   style="float: right; font-size: 1em"
@@ -88,8 +118,10 @@
         </ion-row>
 
         <div
+          *ngIf="!hiddenRituals"
           class="abilities-rituals-list"
-          style="max-height: 280px; overflow: auto"
+          style="overflow: auto"
+          [style]="hiddenAbilities ? 'max-height: 60vh' : 'max-height: 280px'"
         >
           <div *ngFor="let power of powersList" class="card-char">
             <p>
@@ -109,15 +141,82 @@
               "
             >
               <span style="color: var(--ion-color-medium)"
-                ><strong>Custo: {{power.price ? power.price : '---'}}</strong></span
+                ><strong
+                  >Custo: {{power.price ? power.price : '---'}}</strong
+                ></span
               >
               <span style="color: var(--ion-color-medium)"
-                ><strong>Pagína: {{power.pages ? power.pages : '---'}}</strong></span
+                ><strong
+                  >Pagína: {{power.pages ? power.pages : '---'}}</strong
+                ></span
               >
             </div>
             <span style="color: var(--ion-color-medium)"
               >{{power.description}}</span
             >
+
+            <ion-accordion-group style="width: 100%; margin-top: 1em">
+              <ion-accordion style="background: none !important">
+                <ion-item slot="header" style="--background: transparent">
+                  <ion-label>Ver mais</ion-label>
+                </ion-item>
+                <div slot="content">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong
+                            >{{power.element.length > 1 ? 'Elementos' :
+                            'Elemento'}}:</strong
+                          >
+                          <span *ngFor="let elem of power.element">
+                            {{elem | elementFormat}}
+                          </span>
+                          <span *ngIf="!power.element.length"> --- </span>
+                        </span>
+                      </ion-col>
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong>Círculo: </strong>{{power.circle ?
+                          power.circle : '---'}}</span
+                        >
+                      </ion-col>
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong>Alvo: </strong>{{ power.target ? power.target
+                          : '---'}}</span
+                        ></ion-col
+                      >
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong>Duração: </strong>{{power.duration ?
+                          power.duration : '---'}}</span
+                        ></ion-col
+                      >
+
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong>Execução:</strong> {{power.execution ?
+                          (power.execution | executionFormat) : '---'}}</span
+                        ></ion-col
+                      >
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong>Alcance: </strong>{{power.reach ?
+                          (power.reach | reactFormat) : '---'}}</span
+                        ></ion-col
+                      >
+                      <ion-col size="12">
+                        <span style="color: var(--ion-color-medium)"
+                          ><strong>Resistência:</strong> {{power.resistance ?
+                          power.resistance : '---'}}</span
+                        ></ion-col
+                      >
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
           </div>
         </div>
       </div>
@@ -159,33 +258,50 @@
               type="text"
             ></ion-input>
 
-            <ion-input
-              *ngIf="currentAddName === 'skill'"
-              placeholder="Custo"
-              [(ngModel)]="newSkill.price"
-              type="text"
-            ></ion-input>
+            <ion-row>
+              <ion-col size="6">
+                <ion-input
+                  *ngIf="currentAddName === 'power'"
+                  placeholder="Custo"
+                  [(ngModel)]="newPower.price"
+                  type="text"
+                ></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-input
+                  placeholder="Página"
+                  *ngIf="currentAddName === 'power'"
+                  [(ngModel)]="newPower.pages"
+                  type="text"
+                ></ion-input>
+              </ion-col>
+            </ion-row>
 
             <ion-input
+              placeholder="Alvo"
               *ngIf="currentAddName === 'power'"
-              placeholder="Custo"
-              [(ngModel)]="newPower.price"
+              [(ngModel)]="newPower.target"
               type="text"
             ></ion-input>
 
-            <ion-input
-              placeholder="Página"
-              *ngIf="currentAddName === 'skill'"
-              [(ngModel)]="newSkill.pages"
-              type="text"
-            ></ion-input>
-
-            <ion-input
-              placeholder="Página"
-              *ngIf="currentAddName === 'power'"
-              [(ngModel)]="newPower.pages"
-              type="text"
-            ></ion-input>
+            <ion-row>
+              <ion-col size="6">
+                <ion-input
+                  placeholder="Duração"
+                  *ngIf="currentAddName === 'power'"
+                  [(ngModel)]="newPower.duration"
+                  type="text"
+                ></ion-input>
+              </ion-col>
+              <ion-col size="6">
+                <ion-input
+                  placeholder="Resistência"
+                  *ngIf="currentAddName === 'power'"
+                  [(ngModel)]="newPower.resistance"
+                  type="text"
+                ></ion-input>
+              </ion-col>
+            </ion-row>
 
             <ion-textarea
               class="text-area-st"
@@ -200,13 +316,77 @@
               placeholder="Descrição"
               [(ngModel)]="newPower.description"
             ></ion-textarea>
+
+            <div *ngIf="currentAddName === 'power'">
+              <ion-select
+                placeholder="Escolha os elementos"
+                label="Elemento"
+                [multiple]="true"
+                style="padding: 1em; width: 100%"
+                [(ngModel)]="newPower.element"
+              >
+                <ion-select-option value="knowledge"
+                  >Conhecimento</ion-select-option
+                >
+                <ion-select-option value="energy">Energia</ion-select-option>
+                <ion-select-option value="death">Morte</ion-select-option>
+                <ion-select-option value="blood">Sangue</ion-select-option>
+                <ion-select-option value="fear">Medo</ion-select-option>
+              </ion-select>
+            </div>
+
+            <ion-item *ngIf="currentAddName === 'power'" lines="none">
+              <ion-select
+                slot="start"
+                placeholder="Execução"
+                [(ngModel)]="newPower.execution"
+              >
+                <ion-select-option [value]="1">Ação Livre</ion-select-option>
+                <ion-select-option [value]="2">Reação</ion-select-option>
+                <ion-select-option [value]="3">Ação Padrão</ion-select-option>
+                <ion-select-option [value]="4">Ação Completa</ion-select-option>
+              </ion-select>
+
+              <ion-select
+                slot="end"
+                placeholder="Alcance"
+                style="padding-left: 2em"
+                [(ngModel)]="newPower.reach"
+              >
+                <ion-select-option [value]="1">Pessoal</ion-select-option>
+                <ion-select-option [value]="2">Toque</ion-select-option>
+                <ion-select-option [value]="3">Curto (9m)</ion-select-option>
+                <ion-select-option [value]="4">Médio (18m)</ion-select-option>
+                <ion-select-option [value]="5">Longo (36m)</ion-select-option>
+                <ion-select-option [value]="6">Extremo (90m)</ion-select-option>
+                <ion-select-option [value]="7">Ilimitado</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <div
+              class="ion-text-center"
+              style="margin-top: 1em"
+              *ngIf="currentAddName === 'power'"
+            >
+              <ion-label> Círculo </ion-label>
+              <ion-radio-group
+                style="display: flex; justify-content: space-around"
+                [value]="null"
+                [(ngModel)]="newPower.circle"
+              >
+                <ion-radio [value]="1">1°</ion-radio>
+                <ion-radio [value]="2">2°</ion-radio>
+                <ion-radio [value]="3">3°</ion-radio>
+                <ion-radio [value]="4">4°</ion-radio>
+              </ion-radio-group>
+            </div>
           </ion-list>
           <ion-button
             class="btn-outline"
             style="
               --background: none;
               --border-color: var(--ion-color-main);
-              --color: var(--ion-color-main)
+              --color: var(--ion-color-main);
             "
             shape="round"
             expand="block"
