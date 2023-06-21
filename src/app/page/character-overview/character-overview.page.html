@@ -194,7 +194,7 @@
 
     <ion-modal
       style="
-        --height: 120px;
+        --height: 215px;
         --width: 320px;
         --border-radius: 40px;
         --background: #161616;
@@ -270,6 +270,61 @@
             >
               <ion-icon name="add"></ion-icon>
             </ion-button>
+          </div>
+          <div class="ion-text-center" style="margin-top: 1em">
+            <ion-label> Calculadora </ion-label>
+            <div
+              style="display: flex; justify-content: center"
+              style="margin-top: 0.5em"
+            >
+              <input
+                type="number"
+                style="
+                  background: #121212;
+                  border: 1px solid var(--ion-color-dark);
+                  width: 50px;
+                  height: 30px !important;
+                  border-radius: 0.5em;
+                "
+                #value1
+                (input)="calculator(value1.value, value2.value, op.value)"
+              />
+              <select
+                style="
+                  width: 40px;
+                  height: 30px;
+                  background: #161616;
+                  border: none;
+                  outline: none;
+                  margin: 0 0.5em 0;
+                "
+                #op
+                (change)="calculator(value1.value, value2.value, op.value)"
+              >
+                <option [value]="0" selected>-</option>
+                <option [value]="1">+</option>
+                <option [value]="2">*</option>
+                <option [value]="3">/</option>
+              </select>
+              <input
+                type="number"
+                style="
+                  background: #121212;
+                  border: 1px solid var(--ion-color-dark);
+                  width: 50px;
+                  height: 30px !important;
+                  border-radius: 0.5em;
+                "
+                #value2
+                (input)="calculator(value1.value, value2.value, op.value)"
+              />
+            </div>
+            <div style="margin-top: 0.5em">
+              <ion-text>
+                Resultado =
+                <ion-text color="primary">{{calculatorRes}}</ion-text>
+              </ion-text>
+            </div>
           </div>
         </div>
       </ng-template>

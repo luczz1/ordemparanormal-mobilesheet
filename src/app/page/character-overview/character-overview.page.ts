@@ -27,6 +27,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public weightShow = '';
   public characterID = 0;
 
+  public calculatorRes = 0;
+
   public pageLoaded = false;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
 
@@ -146,6 +148,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.diceResults = [];
     this.diceRolling = false;
 
+    this.calculatorRes = 0;
+
     this.openStatusModal = true;
     this.modalType = type;
   }
@@ -234,5 +238,29 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
           );
         }
       );
+  }
+
+  public calculator(
+    fValue: number | string,
+    sValue: number | string,
+    operation: number | string
+  ) {
+    fValue = Number(fValue);
+    sValue = Number(sValue);
+
+    switch (Number(operation)) {
+      case 0:
+        this.calculatorRes = fValue - sValue || 0;
+        break;
+      case 1:
+        this.calculatorRes = fValue + sValue || 0;
+        break;
+      case 2:
+        this.calculatorRes = fValue * sValue || 0;
+        break;
+      case 3:
+        this.calculatorRes = fValue / sValue || 0;
+        break;
+    }
   }
 }
