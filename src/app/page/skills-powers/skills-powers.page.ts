@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
 import { AbilitiesListModel } from 'src/app/models/character';
@@ -20,11 +20,23 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
 
   public DTValue = '0';
 
+  public proficiencyModalIsOpen = false;
+
   public currentAddName = '';
   public charName: string | null = '';
 
   public hiddenAbilities = false;
   public hiddenRituals = false;
+
+  public proficiences = {
+    id: 0,
+    simple_weapon: 0,
+    tactical_weapon: 0,
+    heavy_weapon: 0,
+    light_armor: 0,
+    heavy_armor: 0,
+    character_id: 0,
+  };
 
   public newSkill = {
     name: '',
@@ -231,10 +243,61 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public saveDT() {
-    if (Number(this.DTValue) <= 0 || !this.DTValue && localStorage.getItem('DT')) {
+    if (
+      Number(this.DTValue) <= 0 ||
+      (!this.DTValue && localStorage.getItem('DT'))
+    ) {
       localStorage.removeItem('ritualsDT');
       return;
     }
     localStorage.setItem('ritualsDT', this.DTValue);
+  }
+
+  public getProciciences(openModal = true) {
+    if (localStorage.getItem('proficiences')) {
+      this.proficiences = JSON.parse(localStorage.getItem('proficiences'));
+      this.proficiencyModalIsOpen = openModal;
+      return;
+    }
+
+    this.generic.multLoading(true);
+
+    this.charactersService
+      .getCharacterProficiences(this.characterId)
+      .subscribe({
+        next: (res) => {
+          this.proficiences = res[0];
+          this.proficiencyModalIsOpen = openModal;
+          localStorage.setItem(
+            'proficiences',
+            JSON.stringify(this.proficiences)
+          );
+          this.generic.multLoading(false);
+        },
+        error: (err) => {
+          this.generic.presentToast(err, 3);
+          this.generic.multLoading(false);
+        },
+      });
+  }
+
+  public editProficiences() {
+    const storageObj = JSON.parse(localStorage.getItem('proficiences'));
+    const storageObjString = JSON.stringify(storageObj);
+    const proficiencesString = JSON.stringify(this.proficiences);
+
+    if (proficiencesString !== storageObjString) {
+      this.charactersService
+        .editCharacterProficiences(this.proficiences)
+        .subscribe({
+          next: () => {
+            localStorage.removeItem('proficiences');
+            this.getProciciences(false);
+          },
+          error: (err) => {
+            this.generic.presentToast(err, 3);
+          },
+        });
+    }
   }
 }

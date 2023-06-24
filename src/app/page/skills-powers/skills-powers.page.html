@@ -43,6 +43,7 @@
             ></span>
             <br />
             <span
+              (click)="getProciciences();"
               style="
                 font-size: 1.1em;
                 color: var(--ion-color-medium);
@@ -395,6 +396,70 @@
           >
             Adicionar
           </ion-button>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal
+      [isOpen]="proficiencyModalIsOpen"
+      (willDismiss)="proficiencyModalIsOpen = false; editProficiences()"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Proficiências</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="proficiencyModalIsOpen = false">
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <div class="ion-text-center">
+            <ion-list>
+              <ion-label color="primary">Armas</ion-label>
+              <ion-item>
+                <ion-checkbox
+                  labelPlacement="start"
+                  [(ngModel)]="proficiences.simple_weapon"
+                  >Simples</ion-checkbox
+                >
+              </ion-item>
+              <ion-item>
+                <ion-checkbox
+                  labelPlacement="start"
+                  [(ngModel)]="proficiences.tactical_weapon"
+                  >Táticas</ion-checkbox
+                >
+              </ion-item>
+              <ion-item>
+                <ion-checkbox
+                  labelPlacement="start"
+                  [(ngModel)]="proficiences.heavy_weapon"
+                  >Pesadas</ion-checkbox
+                >
+              </ion-item>
+            </ion-list>
+
+            <ion-list style="margin-top: 2em;">
+              <ion-label color="primary">Armaduras</ion-label>
+              <ion-item>
+                <ion-checkbox
+                  labelPlacement="start"
+                  [(ngModel)]="proficiences.light_armor"
+                  >Leves</ion-checkbox
+                >
+              </ion-item>
+              <ion-item>
+                <ion-checkbox
+                  labelPlacement="start"
+                  [(ngModel)]="proficiences.heavy_armor"
+                  >Pesadas</ion-checkbox
+                >
+              </ion-item>
+            </ion-list>
+          </div>
         </ion-content>
       </ng-template>
     </ion-modal>

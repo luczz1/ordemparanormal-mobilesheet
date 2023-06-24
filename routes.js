@@ -6,6 +6,7 @@ import CharacterController from "./server/Controllers/CharacterController.js";
 import AttributtesController from "./server/Controllers/AttributtesController.js";
 import AbilitiesController from "./server/Controllers/AbilitiesController.js";
 import AboutController from "./server/Controllers/AboutController.js";
+import ProficiencyController from "./server/Controllers/ProficiencyController.js";
 
 
 const routes = Router();
@@ -59,5 +60,9 @@ routes.delete("/characters/powers/:id/:itemId", AbilitiesController.deleteRitual
 //sobre
 routes.get("/characters/about/:characterId", AboutController.getCharacterAbout);
 routes.put("/characters/about/:characterId", AboutController.editCharacterAbout);
+
+//proficiências
+routes.get("/characters/proficiency/:id", ProficiencyController.getProficiencies);
+routes.put("/characters/proficiency/:id", ProficiencyController.editProficiences);
 
 export default routes;

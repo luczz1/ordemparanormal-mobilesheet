@@ -89,3 +89,13 @@ export interface AboutModel {
   goals: string;
   character_id: number;
 }
+
+export interface ProficiencyModel {
+  id: number;
+  simple_weapon: number;
+  tactical_weapon: number;
+  heavy_weapon: number;
+  light_armor: number;
+  heavy_armor: number;
+  character_id: number;
+}

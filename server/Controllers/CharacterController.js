@@ -92,7 +92,7 @@ class CharacterController {
           0,
           0,
           0,
-          origin
+          origin,
         ]
       );
 
@@ -159,6 +159,11 @@ class CharacterController {
         ["", "", "", newCharacterId]
       );
 
+      await pool.execute(
+        "INSERT INTO proficiency (simple_weapon, tactical_weapon, heavy_weapon, light_armor, heavy_armor, character_id) VALUES (?, ?, ?, ?, ?, ?)",
+        [0, 0, 0, 0, 0, newCharacterId]
+      );
+
       res.json({
         character: {
           id: newCharacterId,
@@ -202,6 +207,9 @@ class CharacterController {
         [characterId]
       );
       await pool.execute("DELETE FROM character_about WHERE character_id = ?", [
+        characterId,
+      ]);
+      await pool.execute("DELETE FROM proficiency WHERE character_id = ?", [
         characterId,
       ]);
       await pool.execute("DELETE FROM characters WHERE id = ?", [characterId]);

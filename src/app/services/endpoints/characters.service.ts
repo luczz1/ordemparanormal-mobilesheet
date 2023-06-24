@@ -8,6 +8,7 @@ import {
   CharacterModel,
   InventoryInfosModel,
   InventoryModel,
+  ProficiencyModel,
 } from 'src/app/models/character';
 
 @Injectable({
@@ -123,13 +124,13 @@ export class CharactersService extends BaseService {
       description: string;
       price: string;
       pages: string;
-      element: string,
-      circle: number,
-      target: string,
-      duration: string,
-      resistance: string,
-      execution: number,
-      reach: number
+      element: string;
+      circle: number;
+      target: string;
+      duration: string;
+      resistance: string;
+      execution: number;
+      reach: number;
     }
   ): Observable<any> {
     return this.http.post(
@@ -364,5 +365,24 @@ export class CharactersService extends BaseService {
     return this.http.put(`${this.Basepath()}characters/about/${id}`, data, {
       headers: this.Headers(),
     });
+  }
+
+  public getCharacterProficiences(id: number): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters/proficiency/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public editCharacterProficiences(
+    proficiencyModel: ProficiencyModel
+  ): Observable<any> {
+    const proficiencyID = proficiencyModel.id;
+    return this.http.put(
+      `${this.Basepath()}characters/proficiency/${proficiencyID}`,
+      proficiencyModel,
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 }

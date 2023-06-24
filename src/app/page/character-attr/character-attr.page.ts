@@ -99,12 +99,14 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.pageLoaded = false;
 }
 
-  public getCharacterAttributes(id: number) {
+  public getCharacterAttributes(id: number, getSkills = true) {
     this.charactersService.getCharacterAttributesByID(id).subscribe(
       (res) => {
         localStorage.setItem('attr', JSON.stringify(res.attributes))
         this.attrForm.patchValue(res.attributes);
-        this.getCharacterSkills(id);
+        if (getSkills) {
+          this.getCharacterSkills(id);
+        }
         this.cdr.detectChanges();
       },
       (error) => this.generic.presentToast(error.error, 3)
@@ -197,7 +199,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         .updateAttributeValue(this.characterID, attribute, Number(value))
         .subscribe({
           next: () => {
-            this.getCharacterAttributes(this.characterID);
+            this.getCharacterAttributes(this.characterID, false);
           },
           error: (err) => this.generic.presentToast(err.error, 3),
         });
