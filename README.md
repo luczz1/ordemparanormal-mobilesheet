@@ -20,8 +20,9 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ✅ Editar informações do personagem (nex, deslocamento, etc.)
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
 - ✅ Atributos de combate (pontos de defesa, ataques, resistências, etc)
+- ✅ Proficiências
 - ✅ Tela de anotações, um bloco de texto com diversas opção de fonte, anexar imagem, cores, e +
-- ✅ Tela de "sobre" da personagem, com infos da sua história, personalidade e aparência.
+- ✅ Tela de "sobre" da personagem, com infos da sua história, personalidade e objetivos.
 
 ### Adicionais
 
@@ -60,7 +61,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js, lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
 
-[Dump20230620.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11810738/Dump20230620.zip)
+[Dump20230624.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11857393/Dump20230624.zip)
+
 
 
 
