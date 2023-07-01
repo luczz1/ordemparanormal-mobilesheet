@@ -11,7 +11,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ✅ Criação de personagem 
 - ✅ Seleção/exclusão de personagem
 - ✅ Visualização de personagem
-- ✅ Editar vida/sanidade/esforço
+- ✅ Editar pontos de vida/sanidade/esforço
 - ✅ Atributos e perícias editáveis
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
