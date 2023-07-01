@@ -45,9 +45,13 @@ export class DiceRollingPage implements ViewDidEnter {
       this.activatedRoute.snapshot.paramMap.get('rollname')
     );
 
-    const realRollValue = Number(this.activatedRoute.snapshot.paramMap.get('rollvalue'));
+    const realRollValue = Number(
+      this.activatedRoute.snapshot.paramMap.get('rollvalue')
+    );
 
-    if (realRollValue <= 0) {this.attributeIsHigherOrLowerThanZero = true};
+    if (realRollValue <= 0) {
+      this.attributeIsHigherOrLowerThanZero = true;
+    }
 
     if (realRollValue === 0) {
       this.rollvalue = 2;
@@ -59,12 +63,13 @@ export class DiceRollingPage implements ViewDidEnter {
       this.rollvalue = Math.max(realRollValue + 1, 1);
     }
 
-
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));
 
     this.charName = localStorage.getItem('name');
 
     this.pageLoaded = true;
+
+    this.rollDice(this.rollvalue);
   }
 
   public rollDice(numberOfDice: number | any, faces: any = 20) {

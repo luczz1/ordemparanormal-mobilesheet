@@ -253,21 +253,21 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     localStorage.setItem('ritualsDT', this.DTValue);
   }
 
-  public getProciciences(openModal = true) {
+  public getProciciences(openModalOrStartLoading = true) {
     if (localStorage.getItem('proficiences')) {
       this.proficiences = JSON.parse(localStorage.getItem('proficiences'));
-      this.proficiencyModalIsOpen = openModal;
+      this.proficiencyModalIsOpen = openModalOrStartLoading;
       return;
     }
 
-    this.generic.multLoading(true);
+    this.generic.multLoading(openModalOrStartLoading);
 
     this.charactersService
       .getCharacterProficiences(this.characterId)
       .subscribe({
         next: (res) => {
           this.proficiences = res[0];
-          this.proficiencyModalIsOpen = openModal;
+          this.proficiencyModalIsOpen = openModalOrStartLoading;
           localStorage.setItem(
             'proficiences',
             JSON.stringify(this.proficiences)
