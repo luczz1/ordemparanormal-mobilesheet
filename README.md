@@ -7,7 +7,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 >Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
 
 
-### Progresso
+## Progresso
 
 - ✅ Criação de personagem 
 - ✅ Seleção/exclusão de personagem
@@ -30,12 +30,12 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ⌛ Painel do(a) mestre
 - ⌛ Atualização de dados em tempo real para o(a) mestre
 
-# Tecnologias utilizadas:
+## Tecnologias utilizadas:
 - Angular com Ionic (frontend, adaptação e importação mobile)
 - NodeJS com Express (backend)
 - MySQL (banco de dados)
 
-# Imagens
+## Imagens
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
