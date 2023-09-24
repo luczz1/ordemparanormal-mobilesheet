@@ -1,7 +1,7 @@
 # Ordem Paranormal - Ficha Mobile
 
 <div style="margin: auto; text-align: center">
-<img src="https://static.wikia.nocookie.net/ordemparanormal/images/e/ef/Equipe_E.png/revision/latest/scale-to-width-down/1200?cb=20211214191223&path-prefix=pt-br" style="width: 100%;" />
+<img src="https://static.wikia.nocookie.net/ordemparanormal/images/e/ef/Equipe_E.png/revision/latest/scale-to-width-down/1200?cb=20211214191223&path-prefix=pt-br" style="width: 50%; margin: auto" />
 </div>
 
 ### Sobre
