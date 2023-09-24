@@ -6,7 +6,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 
 [!NOTE]
 Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
-
+ [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
 ### Progresso
 
 - ✅ Criação de personagem 
