@@ -1,5 +1,7 @@
 # Ordem Paranormal - Ficha Mobile
 
+https://static.wikia.nocookie.net/ordemparanormal/images/e/ef/Equipe_E.png/revision/latest/scale-to-width-down/1200?cb=20211214191223&path-prefix=pt-br
+
 ### Sobre
 
 Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de Ordem Paranormal, com o intuito de proporcionar uma maneira conveniente e acessível de criar fichas de personagens.
