@@ -65,7 +65,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 [Dump20230624.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11857393/Dump20230624.zip)
 
   ## Iniciando o projeto
-  Abra o projeto com um editor de código, em seguida abra o terminar e digite 'npm install' para instalar as depêndencias.
+  Abra o projeto com um editor de código, em seguida abra o terminal e digite 'npm install' para instalar as depêndencias.
   Logo após isso, digite 'npm run server' para rodar o servidor (ceritifique-se de ter configurado o banco de dados)
   E para iniciar o projeto de fato, digite 'ionic s' para começar a rodá-lo.
 
