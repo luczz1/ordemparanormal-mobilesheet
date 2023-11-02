@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController, ViewDidEnter } from '@ionic/angular';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-dice-rolling',
@@ -30,8 +31,9 @@ export class DiceRollingPage implements ViewDidEnter {
   public attributeIsHigherOrLowerThanZero = false;
 
   constructor(
+    public modalController: ModalController,
     private activatedRoute: ActivatedRoute,
-    public modalController: ModalController
+    private generic: GenericService
   ) {}
 
   ionViewDidEnter(): void {
@@ -78,6 +80,12 @@ export class DiceRollingPage implements ViewDidEnter {
     this.diceResultTotal = 0;
 
     if (this.numberOfDice > 100 || this.numberOfDice <= 0) {
+      this.generic.presentToast('Quantidade de dados inválida', 3);
+      return;
+    }
+
+    if (faces > 1000 || faces <= 0) {
+      this.generic.presentToast('Número de faces inválido', 3);
       return;
     }
 

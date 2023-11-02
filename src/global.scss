@@ -118,7 +118,8 @@ ion-scroll[direction="y"] {
 }
 
 .NgxEditor__MenuBar,
-.NgxEditor, .NgxEditor__MenuItem--Button,
+.NgxEditor,
+.NgxEditor__MenuItem--Button,
 .NgxEditor__Popup--Form > button {
   background: none !important;
 }
@@ -163,11 +164,12 @@ ion-modal {
   --max-width: 800px !important;
 }
 
-ion-icon:hover {cursor: pointer;}
+ion-icon:hover {
+  cursor: pointer;
+}
 
 @media (min-width: 500px) {
   ion-modal {
-    --min-width: 500px
+    --min-width: 500px;
   }
 }
-

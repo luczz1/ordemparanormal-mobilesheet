@@ -13,12 +13,28 @@
       </ion-col>
     </ion-row>
 
+    <ion-searchbar
+      class="ion-padding"
+      placeholder="Pesquisar personagem"
+      (ionInput)="filterCharacters($event)"
+      style="--box-shadow: 0 0 .2em var(--ion-color-medium);"
+      #search
+    ></ion-searchbar>
+
     <div style="overflow: auto">
-      <ion-grid *ngFor="let char of charactersList">
-        <span style="float: right" (click)="deleteCharacter(char.id, char.name)">
+      <ion-grid
+        *ngFor="let char of search.value ? filteredCharactersList : charactersList"
+      >
+        <span
+          style="float: right"
+          (click)="deleteCharacter(char.id, char.name)"
+        >
           <ion-icon color="danger" name="trash-bin-outline"></ion-icon
         ></span>
-        <div class="card-char" (click)="setLocalStorageAndEnterChar(char.id, char.name)">
+        <div
+          class="card-char"
+          (click)="setLocalStorageAndEnterChar(char.id, char.name)"
+        >
           <div class="left" style="max-width: 200px; min-width: 200px">
             <ion-row>
               <ion-col>
@@ -94,8 +110,16 @@
 
           <div class="right">
             <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col class="ion-text-center" >
-                <img [src]="char.image_url" style="max-width: 100px; max-height: 160px; min-width: 60px; min-height: 160px;" />
+              <ion-col class="ion-text-center">
+                <img
+                  [src]="char.image_url"
+                  style="
+                    max-width: 100px;
+                    max-height: 160px;
+                    min-width: 60px;
+                    min-height: 160px;
+                  "
+                />
               </ion-col>
             </ion-row>
           </div>
@@ -103,8 +127,18 @@
       </ion-grid>
     </div>
 
+    <div
+      *ngIf="pageLoaded && !charactersList.length || search.value && !filteredCharactersList.length"
+    >
+    <p style="color: var(--ion-color-light); font-family: SpecialFont; font-size: 1.2em">
+      Nada encontrado...
+    </p>
+      <img src="/assets/image/not_found.png" style="width: 100%" />
+    </div>
 
-    <div style="position: relative; margin-top: 2em; padding: 0 0 2em; width: 100%">
+    <div
+      style="position: relative; margin-top: 2em; padding: 0 0 2em; width: 100%"
+    >
       <ion-button
         class="btn-outline"
         style="margin-bottom: 2em"

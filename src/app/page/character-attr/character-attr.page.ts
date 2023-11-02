@@ -154,7 +154,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       return;
     }
 
-    if (faces > 100 || faces <= 0) {
+    if (faces > 1000 || faces <= 0) {
       this.generic.presentToast('Número de faces inválido', 3);
       return;
     }

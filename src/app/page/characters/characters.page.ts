@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ViewDidEnter, ViewDidLeave } from '@ionic/angular';
+import { ModalController, ViewDidEnter, ViewDidLeave } from '@ionic/angular';
 import { CharacterModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
@@ -12,10 +12,15 @@ import { GenericService } from 'src/app/services/generic.service';
 })
 export class CharactersPage implements ViewDidEnter, ViewDidLeave {
   public charactersList: CharacterModel[] = [];
+  public filteredCharactersList: CharacterModel[] = [];
+
   public pageLoaded = false;
+
+  public search = '';
 
   constructor(
     public router: Router,
+    public modalController: ModalController,
     private characterService: CharactersService,
     private generic: GenericService
   ) {}
@@ -56,6 +61,19 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
     localStorage.setItem('name', `${charName}`);
     this.router.navigateByUrl(`/character/${charID}`);
   }
+
+  public filterCharacters = (ev: any) => {
+    const queryLower = ev.target.value.toLowerCase();
+
+    if (queryLower === '') {
+      this.filteredCharactersList = [];
+      return;
+    }
+
+    this.filteredCharactersList = this.charactersList.filter((attr) =>
+      attr.name.toLowerCase().includes(queryLower)
+    );
+  };
 
   public async deleteCharacter(characterID: number, characterName: string) {
     const ok = await this.generic.alertBox(
