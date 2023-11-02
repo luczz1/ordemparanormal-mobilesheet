@@ -4,14 +4,15 @@
 
 Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de Ordem Paranormal, com o intuito de proporcionar uma maneira conveniente e acessível de criar fichas de personagens.
 
- Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
+>Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
 
-### Progresso
+
+## Progresso
 
 - ✅ Criação de personagem 
 - ✅ Seleção/exclusão de personagem
 - ✅ Visualização de personagem
-- ✅ Editar vida/sanidade/esforço
+- ✅ Editar pontos de vida/sanidade/esforço
 - ✅ Atributos e perícias editáveis
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
@@ -29,12 +30,12 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ⌛ Painel do(a) mestre
 - ⌛ Atualização de dados em tempo real para o(a) mestre
 
-# Tecnologias utilizadas:
+## Tecnologias utilizadas:
 - Angular com Ionic (frontend, adaptação e importação mobile)
 - NodeJS com Express (backend)
 - MySQL (banco de dados)
 
-# Imagens
+## Imagens
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
@@ -62,6 +63,11 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   e password de acordo com as credenciais do seu banco.
 
 [Dump20230624.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11857393/Dump20230624.zip)
+
+  ## Iniciando o projeto
+  Abra o projeto com um editor de código, em seguida abra o terminal e digite 'npm install' para instalar as depêndencias.
+  Logo após isso, digite 'npm run server' para rodar o servidor (ceritifique-se de ter configurado o banco de dados)
+  E para iniciar o projeto de fato, digite 'ionic s' para começar a rodá-lo.
 
 
 
