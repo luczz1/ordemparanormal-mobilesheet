@@ -56,6 +56,9 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/a11976d7-cc60-4596-8ddd-f1e85a9cc076" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/3a81db23-a154-477f-978f-9554c6884dac" style="width: 20%"/>
   </div>
+
+  ## Backend do projeto
+  Baixe o backend do projeto aqui: https://github.com/luczz1/ordemparanormal-api
   
   ## Download tabelas do banco de dados
   Caso você queira rodar o projeto, precisará do banco de dados, abaixo estarei disponibilizando as tabelas, é só criar um banco de dados e importar essas tabelas.
@@ -68,6 +71,10 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   ## Iniciando o projeto
   Você precisará ter instalado o node (abra o site e faça o download).
   Com o node instalado, abra o cmd e digite: npm install @ionic/cli
+
+  No backend, de npm i, e depois npm run server para iniciar a api.
+
+  Deixe a api rodando e volte ao frontend.
 
   Abra o projeto com um editor de código, em seguida abra o terminal e digite 'npm install' para instalar as depêndencias.
   Logo após isso, digite 'npm run server' para rodar o servidor (ceritifique-se de ter configurado o banco de dados)
