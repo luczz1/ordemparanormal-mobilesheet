@@ -304,6 +304,59 @@ class CharacterController {
       res.status(500).json("Erro ao atualizar personagem");
     }
   }
+
+  async getClasses(req, res) {
+    try {
+      const [classesResults] = await pool.execute("SELECT * FROM classes");
+
+      if (classesResults.length === 0) {
+        res.status(200).json("Nenhuma classe encontrada");
+        return;
+      }
+
+      res.json(classesResults);
+    } catch (error) {
+      console.error("Erro ao obter classe:", error);
+      res.status(500).json("Erro ao obter classes");
+    }
+  }
+
+  async getTracks(req, res) {
+    try {
+      const classId = req.params.id;
+
+      const [trackResult] = await pool.execute(
+        "SELECT * FROM tracks WHERE class_id = ?",
+        [classId]
+      );
+
+      if (trackResult.length === 0) {
+        res.status(404).json("Trilha não encontrada");
+        return;
+      }
+
+      res.json(trackResult);
+    } catch (error) {
+      console.error("Erro ao obter trilha:", error);
+      res.status(500).json("Erro ao obter trilhas");
+    }
+  }
+
+  async getOrigins(req, res) {
+    try {
+      const [originsResults] = await pool.execute("SELECT * FROM origins");
+
+      if (originsResults.length === 0) {
+        res.status(200).json("Nenhuma origem encontrada");
+        return;
+      }
+
+      res.json(originsResults);
+    } catch (error) {
+      console.error("Erro ao obter origem:", error);
+      res.status(500).json("Erro ao obter origens");
+    }
+  }
 }
 
 export default new CharacterController();

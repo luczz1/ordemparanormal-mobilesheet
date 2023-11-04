@@ -99,3 +99,14 @@ export interface ProficiencyModel {
   heavy_armor: number;
   character_id: number;
 }
+
+export interface ClassesModel {
+  id: number;
+  name: string;
+}
+
+export interface TracksModel {
+  id: number;
+  name: string;
+  class_id: number;
+}

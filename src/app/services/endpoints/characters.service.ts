@@ -6,9 +6,11 @@ import {
   AboutModel,
   AttackModel,
   CharacterModel,
+  ClassesModel,
   InventoryInfosModel,
   InventoryModel,
   ProficiencyModel,
+  TracksModel,
 } from 'src/app/models/character';
 
 @Injectable({
@@ -384,5 +386,23 @@ export class CharactersService extends BaseService {
         headers: this.Headers(),
       }
     );
+  }
+
+  public getClasses(): Observable<any> {
+    return this.http.get<ClassesModel>(`${this.Basepath()}classes`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public getTracks(class_id: number): Observable<any> {
+    return this.http.get<TracksModel>(`${this.Basepath()}tracks/${class_id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public getOrigins(): Observable<any> {
+    return this.http.get<ClassesModel>(`${this.Basepath()}origins`, {
+      headers: this.Headers(),
+    });
   }
 }

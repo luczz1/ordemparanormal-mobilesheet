@@ -23,8 +23,8 @@
   --color: var(--ion-color-medium);
 }
 
-
-ion-input, ion-textarea {
+ion-input,
+ion-textarea {
   border-radius: 16px;
   background: #121212;
   border: 1px solid var(--ion-color-medium);
@@ -39,7 +39,9 @@ input {
   outline: none;
 }
 
-ion-label {color: var(--ion-color-medium)}
+ion-label {
+  color: var(--ion-color-medium);
+}
 
 .has-focus {
   outline: none;
@@ -63,4 +65,17 @@ ion-label {color: var(--ion-color-medium)}
   border-radius: 0.5em;
   height: 25px;
   position: relative;
+}
+
+.suggestions-list {
+  position: absolute;
+  z-index: 10;
+  width: 95%;
+  border: 1px solid var(--ion-color-dark);
+  max-height: 120px;
+  overflow: auto;
+}
+
+.suggestions-list ion-item:hover {
+  --color: var(--ion-color-primary);
 }

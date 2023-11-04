@@ -52,8 +52,8 @@
                   <div
                     class="progress"
                     style="background-color: var(--ion-color-danger)"
-                    [style.width.%]="(char.current_life / char.max_life) * 100"
-                  ></div>
+                    [style.width.%]="((char.current_life / char.max_life) * 100) > 100 ? 100 : ((char.current_life / char.max_life) * 100)"
+                    ></div>
                   <span class="progress-text"
                     >{{char.current_life}} / {{char.max_life}}</span
                   >
@@ -71,8 +71,8 @@
                   <div
                     class="progress"
                     style="background-color: var(--ion-color-tertiary)"
-                    [style.width.%]="(char.current_sanity / char.max_sanity) * 100"
-                  ></div>
+                    [style.width.%]="((char.current_sanity / char.max_sanity) * 100) > 100 ? 100 : ((char.current_sanity / char.max_sanity) * 100)"
+                    ></div>
                   <span class="progress-text"
                     >{{char.current_sanity}} / {{char.max_sanity}}</span
                   >
@@ -90,8 +90,8 @@
                   <div
                     class="progress"
                     style="background-color: var(--ion-color-success)"
-                    [style.width.%]="(char.current_effort / char.max_effort) * 100"
-                  ></div>
+                    [style.width.%]="((char.current_effort / char.max_effort) * 100) > 100 ? 100 : ((char.current_effort / char.max_effort) * 100)"
+                    ></div>
                   <span class="progress-text"
                     >{{char.current_effort}} / {{char.max_effort}}</span
                   >

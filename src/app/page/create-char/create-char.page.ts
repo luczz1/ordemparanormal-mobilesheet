@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, ViewDidEnter, ViewDidLeave } from '@ionic/angular';
+import { ClassesModel, TracksModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
 
@@ -39,6 +40,14 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   public imagesModalIsOpen = false;
 
   public pageLoaded = false;
+
+  public classesGroup: ClassesModel[] = [];
+  public tracksGroup: TracksModel[] = [];
+  public originsGroup: ClassesModel[] = [];
+
+  public hideClassesSuggestions = true;
+  public hideTracksSuggestions = true;
+  public hideOriginsSuggestions = true;
 
   public imagesArray = [
     { name: 'Aaron', url: '/assets/char/aaron.png' },
@@ -90,6 +99,9 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     this.characterId = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
+
+    this.getClasses();
+    this.getOrigins();
 
     if (this.characterId) {
       this.pageLoaded = false;
@@ -175,7 +187,10 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       localStorage.setItem('name', obj.name);
 
       this.characterService.editCharacter(this.characterId, obj).subscribe({
-        next: () => {this.router.navigate([`/character/${this.characterId}`]); localStorage.setItem('updatedChar', 'true')},
+        next: () => {
+          this.router.navigate([`/character/${this.characterId}`]);
+          localStorage.setItem('updatedChar', 'true');
+        },
         error: (err) => {
           console.log(err), this.generic.presentToast(err.error, 3);
         },
@@ -188,6 +203,20 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     }
   }
 
+  public getTracks(class_id: number, classname: string) {
+    this.characterForm.get('charClass').patchValue(classname);
+    this.characterForm.get('path').patchValue('')
+
+    this.characterService.getTracks(class_id).subscribe({
+      next: (response: TracksModel[]) => {
+        this.tracksGroup = response;
+      },
+      error: (err) => {
+        this.generic.presentToast(err.error, 3);
+      },
+    });
+  }
+
   public redirectToBackScreen() {
     if (this.editingMode) {
       this.router.navigateByUrl(`/character/${this.characterId}`);
@@ -195,5 +224,33 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     }
 
     this.router.navigateByUrl('/characters');
+  }
+
+  public hideSuggestion(name: string) {
+    setTimeout(() => {
+      this[name] = true
+    }, 50);
+  }
+
+  private getClasses() {
+    this.characterService.getClasses().subscribe({
+      next: (response: ClassesModel[]) => {
+        this.classesGroup = response;
+      },
+      error: (err) => {
+        this.generic.presentToast(err.error, 3);
+      },
+    });
+  }
+
+  private getOrigins() {
+    this.characterService.getOrigins().subscribe({
+      next: (response: ClassesModel[]) => {
+        this.originsGroup = response;
+      },
+      error: (err) => {
+        this.generic.presentToast(err.error, 3);
+      },
+    });
   }
 }

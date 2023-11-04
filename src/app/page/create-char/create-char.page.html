@@ -42,31 +42,23 @@
 
         <ion-row style="margin-top: 1em">
           <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em">Origem</ion-label>
-            <ion-input
-              formControlName="origin"
-              style="width: 100%; text-indent: 12px"
-            >
-            </ion-input>
-          </ion-col>
-          <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em">Trilha</ion-label>
-            <ion-input
-              formControlName="path"
-              style="width: 100%; text-indent: 12px"
-            >
-            </ion-input>
-          </ion-col>
-        </ion-row>
-
-        <ion-row style="margin-top: 1em">
-          <ion-col class="ion-text-left" size="6">
             <ion-label style="padding-left: 0.6em">Classe</ion-label>
             <ion-input
               formControlName="charClass"
+              (ionFocus)="hideClassesSuggestions = false"
+              (ionBlur)="hideSuggestion('hideClassesSuggestions');"
+              (ionInput)="tracksGroup = []; characterForm.get('path').patchValue('')"
               style="width: 100%; text-indent: 12px"
             >
             </ion-input>
+
+            <ion-list *ngIf="!hideClassesSuggestions && classesGroup.length" class="suggestions-list">
+              <ion-item *ngFor="let class of classesGroup">
+                <ion-label (click)="getTracks(class.id, class.name)">
+                  {{class.name}}
+                </ion-label>
+              </ion-item>
+            </ion-list>
           </ion-col>
           <ion-col class="ion-text-left" size="6">
             <ion-label style="padding-left: 0.6em">Deslocamento</ion-label>
@@ -76,6 +68,47 @@
               style="width: 100%; text-align: center"
             >
             </ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em">
+          <ion-col class="ion-text-left" size="6">
+            <ion-label style="padding-left: 0.6em">Trilha</ion-label>
+            <ion-input
+              (ionFocus)="hideTracksSuggestions = false"
+              (ionBlur)="hideSuggestion('hideTracksSuggestions');"
+              formControlName="path"
+              style="width: 100%; text-indent: 12px"
+            >
+            </ion-input>
+            <ion-list *ngIf="!hideTracksSuggestions && tracksGroup.length" class="suggestions-list">
+              <ion-item *ngFor="let track of tracksGroup">
+                <ion-label
+                  (click)="characterForm.get('path').patchValue(track.name)"
+                >
+                  {{track.name}}
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          <ion-col class="ion-text-left" size="6">
+            <ion-label style="padding-left: 0.6em">Origem</ion-label>
+            <ion-input
+            (ionFocus)="hideOriginsSuggestions = false"
+            (ionBlur)="hideSuggestion('hideOriginsSuggestions');"
+              formControlName="origin"
+              style="width: 100%; text-indent: 12px"
+            >
+            </ion-input>
+            <ion-list *ngIf="!hideOriginsSuggestions && originsGroup.length" class="suggestions-list">
+              <ion-item *ngFor="let origin of originsGroup">
+                <ion-label
+                  (click)="characterForm.get('origin').patchValue(origin.name)"
+                >
+                  {{origin.name}}
+                </ion-label>
+              </ion-item>
+            </ion-list>
           </ion-col>
         </ion-row>
 
