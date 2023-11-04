@@ -66,7 +66,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 
 
   ## Iniciando o projeto
-  Você precisará ter instalado a cli do ionic. Uma pesquisa rápida por ionic no google e você consegue
+  Você precisará ter instalado o node (abra o site e faça o download).
+  Com o node instalado, abra o cmd e digite: npm install @ionic/cli
 
   Abra o projeto com um editor de código, em seguida abra o terminal e digite 'npm install' para instalar as depêndencias.
   Logo após isso, digite 'npm run server' para rodar o servidor (ceritifique-se de ter configurado o banco de dados)
