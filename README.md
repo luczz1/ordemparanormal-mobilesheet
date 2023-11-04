@@ -62,9 +62,12 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js, lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
 
-[Dump20230624.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/11857393/Dump20230624.zip)
+[Dump20231104.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/13257733/Dump20231104.zip)
+
 
   ## Iniciando o projeto
+  Você precisará ter instalado a cli do ionic. Uma pesquisa rápida por ionic no google e você consegue
+
   Abra o projeto com um editor de código, em seguida abra o terminal e digite 'npm install' para instalar as depêndencias.
   Logo após isso, digite 'npm run server' para rodar o servidor (ceritifique-se de ter configurado o banco de dados)
   E para iniciar o projeto de fato, digite 'ionic s' para começar a rodá-lo.
