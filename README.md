@@ -58,7 +58,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   </div>
 
   ## Backend do projeto
-  Baixe o backend do projeto aqui: https://github.com/luczz1/ordemparanormal-api
+  Clone o backend do projeto aqui: https://github.com/luczz1/ordemparanormal-api
   
   ## Download tabelas do banco de dados
   Caso você queira rodar o projeto, precisará do banco de dados, abaixo estarei disponibilizando as tabelas, é só criar um banco de dados e importar essas tabelas.
