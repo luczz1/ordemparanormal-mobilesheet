@@ -22,7 +22,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     current_effort: new FormControl(null),
     current_life: new FormControl(null),
     current_sanity: new FormControl(null),
-    displacement: new FormControl(null, [Validators.required]),
+    displacement: new FormControl(null, [Validators.required, Validators.maxLength(8)]),
     image_url: new FormControl(null, [Validators.required]),
     max_effort: new FormControl(null, [Validators.required]),
     max_life: new FormControl(null, [Validators.required]),
@@ -163,8 +163,6 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       obj.max_sanity = Number(obj.max_sanity);
       obj.max_effort = Number(obj.max_effort);
 
-      obj.displacement = Number(obj.displacement);
-
       this.characterService.createNewCharacter(obj).subscribe({
         next: () => this.router.navigate(['/characters']),
         error: (err) => {
@@ -183,7 +181,6 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     if (this.characterForm.valid) {
       const obj = this.characterForm.getRawValue();
 
-      obj.displacement = Number(obj.displacement);
       localStorage.setItem('name', obj.name);
 
       this.characterService.editCharacter(this.characterId, obj).subscribe({
@@ -206,6 +203,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   public getTracks(class_id: number, classname: string) {
     this.characterForm.get('charClass').patchValue(classname);
     this.characterForm.get('path').patchValue('')
+
+    if (classname === 'Mundano') { this.tracksGroup = []; return; }
 
     this.characterService.getTracks(class_id).subscribe({
       next: (response: TracksModel[]) => {

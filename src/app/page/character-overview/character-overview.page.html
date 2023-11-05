@@ -161,8 +161,7 @@
               <ion-text
                 [color]="generic.weightStatus === 'Sobrecarga' ?
               'danger' : ''"
-                >{{generic.weightStatus === 'Sobrecarga' ? (attr.displacement -
-                3) : attr.displacement}}</ion-text
+                >{{attr.displacement}}</ion-text
               ></span
             >
           </ion-col>
@@ -322,7 +321,9 @@
             <div style="margin-top: 0.5em">
               <ion-text>
                 Resultado =
-                <ion-text color="primary">{{calculatorRes.toFixed(1)}}</ion-text>
+                <ion-text color="primary"
+                  >{{calculatorRes.toFixed(1)}}</ion-text
+                >
               </ion-text>
             </div>
           </div>
