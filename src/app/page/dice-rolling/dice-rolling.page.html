@@ -21,7 +21,13 @@
                 color: var(--ion-color-light-main);
                 -webkit-text-stroke-color: var(--ion-color-main);
               "
-              >Rolagem de {{rollname}}</span
+              >Rolagem de {{rollname | titlecase}}</span
+            >
+            <br />
+            <ion-text
+              *ngIf="attrname && !['nAttr', 'normally'].includes(attrname)"
+              color="medium"
+              >Com {{attrname | attrFormat}}</ion-text
             >
           </ion-col>
         </ion-row>

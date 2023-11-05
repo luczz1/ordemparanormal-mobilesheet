@@ -10,8 +10,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "server": "nodemon server.js"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {

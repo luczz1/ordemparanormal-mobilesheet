@@ -7,6 +7,7 @@ import { DiceRollingPageRoutingModule } from './dice-rolling-routing.module';
 
 import { DiceRollingPage } from './dice-rolling.page';
 import { TabsPageModule } from '../../tabs/tabs.module';
+import { PipesModule } from 'src/app/services/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { TabsPageModule } from '../../tabs/tabs.module';
     FormsModule,
     DiceRollingPageRoutingModule,
     TabsPageModule,
+    PipesModule
   ],
   declarations: [DiceRollingPage]
 })

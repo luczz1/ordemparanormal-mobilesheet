@@ -29,6 +29,7 @@ export class DiceRollingPage implements ViewDidEnter {
   public charName: string | null = '';
 
   public attributeIsHigherOrLowerThanZero = false;
+  public attrname = '';
 
   constructor(
     public modalController: ModalController,
@@ -47,22 +48,28 @@ export class DiceRollingPage implements ViewDidEnter {
       this.activatedRoute.snapshot.paramMap.get('rollname')
     );
 
-    const realRollValue = Number(
-      this.activatedRoute.snapshot.paramMap.get('rollvalue')
-    );
+    const rollValueStr = this.activatedRoute.snapshot.paramMap
+      .get('rollvalue')
+      .split('&');
+    this.attrname = rollValueStr[1];
+    const realRollValue = rollValueStr[0];
 
-    if (realRollValue <= 0) {
+    const numRollValue =
+      this.attrname !== 'normally' ? Number(realRollValue) : 1;
+
+    if (numRollValue <= 0) {
       this.attributeIsHigherOrLowerThanZero = true;
     }
 
-    if (realRollValue === 0) {
+    if (numRollValue === 0) {
       this.rollvalue = 2;
-    } else if (realRollValue === -1) {
+    } else if (numRollValue === -1) {
       this.rollvalue = 3;
-    } else if (realRollValue < -1) {
-      this.rollvalue = Math.abs(realRollValue) + 2;
+    } else if (numRollValue < -1) {
+      this.rollvalue = Math.abs(numRollValue) + 2;
     } else {
-      this.rollvalue = Math.max(realRollValue + 1, 1);
+      const sum = this.attrname === 'normally' ? 0 : 1;
+      this.rollvalue = Math.max(numRollValue + sum, 1);
     }
 
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));

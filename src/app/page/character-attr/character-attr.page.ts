@@ -80,8 +80,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.charName = localStorage.getItem('name');
 
     if (localStorage.getItem('attr') && localStorage.getItem('skills')) {
-      this.attrForm.patchValue(JSON.parse(localStorage.getItem('attr')))
-      this.skills = JSON.parse(localStorage.getItem('skills'))
+      this.attrForm.patchValue(JSON.parse(localStorage.getItem('attr')));
+      this.skills = JSON.parse(localStorage.getItem('skills'));
 
       this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
       this.skills.sort((a, b) => (a.favorite > b.favorite ? -1 : 1));
@@ -92,17 +92,16 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
 
       this.getCharacterAttributes(characterID);
     }
-
   }
 
   ionViewDidLeave() {
     this.pageLoaded = false;
-}
+  }
 
   public getCharacterAttributes(id: number, getSkills = true) {
     this.charactersService.getCharacterAttributesByID(id).subscribe(
       (res) => {
-        localStorage.setItem('attr', JSON.stringify(res.attributes))
+        localStorage.setItem('attr', JSON.stringify(res.attributes));
         this.attrForm.patchValue(res.attributes);
         if (getSkills) {
           this.getCharacterSkills(id);
@@ -117,7 +116,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     this.charactersService.getCharacterSkillsByID(id).subscribe(
       (res) => {
         this.skills = res.skills;
-        localStorage.setItem('skills', JSON.stringify(res.skills))
+        localStorage.setItem('skills', JSON.stringify(res.skills));
 
         this.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
         this.skills.sort((a, b) => (a.favorite > b.favorite ? -1 : 1));
@@ -248,7 +247,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     rollType: string
   ) {
     const attrValue = this.attrForm.get(rollType)?.value;
-    const url = `/character/dice-rolling/${this.characterID}/${skillName}/${attrValue}/${skillValue}`;
+    const url = `/character/dice-rolling/${this.characterID}/${skillName}/${attrValue}&${rollType}/${skillValue}`;
     this.router.navigateByUrl(url);
   }
 
@@ -258,7 +257,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     bonus: number
   ) {
     this.router.navigateByUrl(
-      `/character/dice-rolling/${this.characterID}/${skillName}/${skillValue}/${bonus}`
+      `/character/dice-rolling/${this.characterID}/${skillName}/${skillValue}&nAttr/${bonus}`
     );
   }
 }
