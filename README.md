@@ -58,11 +58,11 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   </div>
 
   ## Backend do projeto
-  Baixe o backend do projeto aqui: https://github.com/luczz1/ordemparanormal-api
+  Clone o backend do projeto aqui: https://github.com/luczz1/ordemparanormal-api
   
   ## Download tabelas do banco de dados
   Caso você queira rodar o projeto, precisará do banco de dados, abaixo estarei disponibilizando as tabelas, é só criar um banco de dados e importar essas tabelas.
-  O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js, lembre-se de no connection.js também mudar o host, user
+  O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js (no backend), lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
 
 [Dump20231104.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/13257733/Dump20231104.zip)
@@ -70,15 +70,14 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 
   ## Iniciando o projeto
   Você precisará ter instalado o node (abra o site e faça o download).
-  Com o node instalado, abra o cmd e digite: npm install @ionic/cli
+  Com o node instalado, abra o cmd e digite: ```npm install @ionic/cli```
 
-  No backend, de npm i, e depois npm run server para iniciar a api.
+  No projeto backend, abra-o e digite ```npm i```, e depois ```npm run server``` para iniciar a api. (ceritifique-se de ter configurado o banco de dados)
 
   Deixe a api rodando e volte ao frontend.
 
-  Abra o projeto com um editor de código, em seguida abra o terminal e digite 'npm install' para instalar as depêndencias.
-  Logo após isso, digite 'npm run server' para rodar o servidor (ceritifique-se de ter configurado o banco de dados)
-  E para iniciar o projeto de fato, digite 'ionic s' para começar a rodá-lo.
+  Abra o projeto, em seguida abra o terminal do editor de código e digite ```npm install``` para instalar as depêndencias.
+  E para iniciar o projeto de fato, digite ```ionic s``` para começar a rodá-lo.
 
 
 
