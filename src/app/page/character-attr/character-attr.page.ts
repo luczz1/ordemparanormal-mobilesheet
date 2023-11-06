@@ -36,8 +36,10 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public characterID = 0;
   public diceResultTotal = 0;
   public timeoutId: ReturnType<typeof setTimeout> | null = null;
+  public timeoutTrainingId: ReturnType<typeof setTimeout> | null = null;
 
   public pageWidth = 0;
+  public currentSkillTrainingLevel = 0;
 
   public attrForm = new FormGroup({
     id: new FormControl(0),
@@ -180,11 +182,13 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   public openModalAndSaveSkill(
     skillname: string,
     skillvalue: number,
-    id: number
+    id: number,
+    trainingLvl: number
   ) {
     this.selectedSkill = skillname;
     this.skillValue = skillvalue;
     this.skillID = id;
+    this.currentSkillTrainingLevel = trainingLvl;
     this.openStatusModal = true;
   }
 
@@ -228,6 +232,30 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         });
 
       this.timeoutId = null;
+    }, 500);
+  }
+
+  public selectTraining(ev: any) {
+    const trainingLvl = ev.detail.value;
+    this.skillValue = trainingLvl;
+
+    if (this.timeoutTrainingId !== null) {
+      clearTimeout(this.timeoutTrainingId);
+    }
+
+    this.timeoutTrainingId = setTimeout(() => {
+      this.charactersService
+        .updateTrainingSkillValue(this.characterID, this.skillID, trainingLvl)
+        .subscribe({
+          next: () => {
+            setTimeout(() => {
+              this.getCharacterSkills(this.characterID);
+            }, 50);
+          },
+          error: (err) => this.generic.presentToast(err.error, 3),
+        });
+
+      this.timeoutTrainingId = null;
     }, 500);
   }
 

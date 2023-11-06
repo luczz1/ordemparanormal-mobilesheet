@@ -36,6 +36,7 @@ export interface CharacterSkillsModel {
   value: number;
   id: number;
   favorite: number;
+  training: number;
 }
 
 export interface AbilitiesListModel {

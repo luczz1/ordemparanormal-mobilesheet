@@ -181,6 +181,19 @@ export class CharactersService extends BaseService {
     );
   }
 
+  public updateTrainingSkillValue(
+    characterId: number,
+    skillId: number,
+    newValue: number
+  ): Observable<any> {
+    return this.http.put(
+      `${this.Basepath()}characters/skills/t/${characterId}/${skillId}/${newValue}`,
+      {
+        headers: this.Headers(),
+      }
+    );
+  }
+
   public favoriteSkill(skillId: number, newValue: number): Observable<any> {
     return this.http.put(
       `${this.Basepath()}characters/skills/${skillId}/${newValue}`,

@@ -31,7 +31,7 @@
             >
           </ion-col>
         </ion-row>
-        <ion-row class="ion-align-items-center"  *ngIf="pageWidth >= 340">
+        <ion-row class="ion-align-items-center" *ngIf="pageWidth >= 340">
           <ion-col class="ion-text-center">
             <form [formGroup]="attrForm">
               <div style="position: relative">
@@ -179,7 +179,11 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center" *ngIf="pageWidth < 340" style="margin-bottom: 2em;">
+        <ion-row
+          class="ion-align-items-center"
+          *ngIf="pageWidth < 340"
+          style="margin-bottom: 2em"
+        >
           <ion-col class="ion-text-center">
             <form [formGroup]="attrForm">
               <div
@@ -317,9 +321,11 @@
                   [class]="!skill.favorite ? 'to-favorite-star' : 'already-favorite-star'"
                 ></ion-icon
               ></ion-text>
-              <span style="cursor: pointer;"
-                (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id) : openModal(skill)"
-                >{{skill.name | titlecase}} {{skill.value >= 0 ? '+' + skill.value : skill.value}}</span
+              <span
+                style="cursor: pointer"
+                (click)="editingMode ? openModalAndSaveSkill(skill.name, skill.value, skill.id, skill.training) : openModal(skill)"
+                >{{skill.name | titlecase}} {{skill.value >= 0 ? '+' +
+                skill.value : skill.value}}</span
               >
             </span>
           </div>
@@ -421,7 +427,7 @@
 
     <ion-modal
       style="
-        --height: 140px;
+        --height: 180px;
         --width: 300px;
         --border-radius: 40px;
         --background: #161616;
@@ -445,16 +451,33 @@
             <ion-button fill="clear" (click)="increaseOrDecreaseSkill(0)">
               <ion-icon name="remove"></ion-icon>
             </ion-button>
-              <ion-input
-                type="number"
-                style="max-width: 40px; text-align: center"
-                [(ngModel)]="skillValue"
-                readonly
-              ></ion-input>
+            <ion-input
+              type="number"
+              style="max-width: 40px; text-align: center"
+              [(ngModel)]="skillValue"
+              readonly
+            ></ion-input>
 
             <ion-button fill="clear" (click)="increaseOrDecreaseSkill(1)">
               <ion-icon name="add"></ion-icon>
             </ion-button>
+          </div>
+
+          <div style="width: 100%">
+            <ion-item lines="none" style="--background: none">
+              <ion-select
+                [value]="currentSkillTrainingLevel"
+                cancelText="cancelar"
+                (ionChange)="selectTraining($event)"
+              >
+                <ion-select-option [value]="0"
+                  >Destreinado (+0)</ion-select-option
+                >
+                <ion-select-option [value]="5">Treinado (+5)</ion-select-option>
+                <ion-select-option [value]="10">Veterano (+10)</ion-select-option>
+                <ion-select-option [value]="15">Expert (+15)</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
         </div>
       </ng-template>

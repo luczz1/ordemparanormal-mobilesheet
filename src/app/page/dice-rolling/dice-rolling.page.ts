@@ -68,8 +68,7 @@ export class DiceRollingPage implements ViewDidEnter {
     } else if (numRollValue < -1) {
       this.rollvalue = Math.abs(numRollValue) + 2;
     } else {
-      const sum = this.attrname === 'normally' ? 0 : 1;
-      this.rollvalue = Math.max(numRollValue + sum, 1);
+      this.rollvalue = numRollValue
     }
 
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));
