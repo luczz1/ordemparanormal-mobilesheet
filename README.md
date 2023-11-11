@@ -39,7 +39,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/21354434-ea9c-40ad-be78-df7464a2a861" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/579af0d4-fa7b-40e4-b6b1-94cc38e580eb" style="width: 20%" />
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/8223772d-99ba-4074-9da6-1e61f6e818a0" style="width: 20%" />
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/0f2303a1-2f87-4121-b2d6-66305f1d592e" style="width: 20%"/>
   </div>
   
