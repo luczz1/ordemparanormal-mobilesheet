@@ -37,7 +37,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - MySQL (banco de dados)
 
 ## Imagens
-> [!IMPORTANT]
+
+> [!NOTE]
 > As imagens podem estar desatualizadas.
 
 <div style="display: flex; flex-direction: row">
