@@ -5,7 +5,9 @@
     </div>
 
     <ion-item lines="none">
-      <ion-label class="text-creator" style="font-family: SpecialFont;"> Ficha de Agente </ion-label>
+      <ion-label class="text-creator" style="font-family: SpecialFont">
+        Ficha de Agente
+      </ion-label>
     </ion-item>
 
     <ion-button
@@ -13,7 +15,7 @@
       color="success"
       shape="round"
       expand="block"
-      routerLink="/characters"
+      (click)="redirectToCharOrLogin()"
     >
       Iniciar
     </ion-button>
@@ -26,6 +28,18 @@
     >
       Sobre
     </ion-button>
-  </div>
 
+    <div style="margin-top: 2em;" *ngIf="username">
+      <ion-label
+        >Logado como {{username}}.
+        <ion-text
+          color="primary"
+          style="text-decoration: underline"
+          (click)="logout()"
+          >Sair</ion-text
+        ></ion-label
+      >
+
+    </div>
+  </div>
 </ion-content>

@@ -1,0 +1,81 @@
+.menu {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  height: 100%;
+}
+
+.btn-outline {
+  margin-top: 2em;
+  --border-style: solid;
+  --border-width: 1px;
+  --background: none;
+  --border-color: var(--ion-color-success);
+  --color: var(--ion-color-success-tint);
+}
+
+.btn-outline-back {
+  margin-top: 2em;
+  --background: none;
+  --border-color: var(--ion-color-medium);
+  --border-style: solid;
+  --border-width: 1px;
+  --color: var(--ion-color-medium);
+}
+
+ion-input,
+ion-textarea {
+  border-radius: 16px;
+  background: #121212;
+  border: 1px solid var(--ion-color-medium);
+  outline: none !important;
+}
+
+input {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: center;
+  outline: none;
+}
+
+ion-label {
+  color: var(--ion-color-medium);
+}
+
+.has-focus {
+  outline: none;
+}
+
+.progress {
+  border-radius: 0.5em;
+  height: 25px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--ion-color-light);
+}
+
+.progress-bar {
+  border-radius: 0.5em;
+  height: 25px;
+  position: relative;
+}
+
+.suggestions-list {
+  position: absolute;
+  z-index: 10;
+  width: 95%;
+  border: 1px solid var(--ion-color-dark);
+  max-height: 120px;
+  overflow: auto;
+}
+
+.suggestions-list ion-item:hover {
+  --color: var(--ion-color-primary);
+}

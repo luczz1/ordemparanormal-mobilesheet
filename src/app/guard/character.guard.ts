@@ -15,7 +15,7 @@ export class CharacterGuard {
     next?: ActivatedRouteSnapshot,
     state?: RouterStateSnapshot
   ): boolean {
-    if (!localStorage.getItem('character')) {
+    if (!localStorage.getItem('token') || !localStorage.getItem('character')) {
       this.router.navigateByUrl(`/home`);
       return false;
     }

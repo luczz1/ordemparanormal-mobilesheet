@@ -128,7 +128,7 @@
     </div>
 
     <div
-      *ngIf="pageLoaded && !charactersList.length || search.value && !filteredCharactersList.length"
+      *ngIf="pageLoaded && charactersList.length <= 0 || search.value && filteredCharactersList.length <= 0"
     >
     <p style="color: var(--ion-color-light); font-family: SpecialFont; font-size: 1.2em">
       Nada encontrado...

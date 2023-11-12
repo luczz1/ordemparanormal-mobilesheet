@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./page/create-char/create-char.module').then(m => m.CreateCharPageModule),
     canActivate: [RouterGuard]
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./page/auth/login/login.module').then(m => m.LoginPageModule),
+    canActivate: [RouterGuard]
+  },
 ];
 @NgModule({
   imports: [

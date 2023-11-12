@@ -1,0 +1,86 @@
+<ion-content>
+  <div class="menu" *ngIf="pageLoaded">
+    <ion-grid>
+      <ion-row style="display: flex; align-items: center">
+        <ion-col size="1" (click)="redirectToBackScreen()">
+          <span style="font-size: 1.8em"
+            ><ion-icon
+              name="chevron-back-outline"
+              style="margin-top: 0.4em"
+            ></ion-icon
+          ></span>
+        </ion-col>
+        <ion-col>
+          <span style="font-size: 1.8em; font-family: SpecialFont"
+            >{{newAcc ? 'Registrar' : 'Login'}}</span
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <form [formGroup]="loginForm">
+      <ion-grid style="margin: auto; width: 100%">
+        <ion-row *ngIf="newAcc">
+          <ion-col class="ion-text-left">
+            <ion-label style="padding-left: 0.6em">Nome</ion-label>
+            <ion-input
+              formControlName="name"
+              style="width: 100%; text-indent: 12px"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em">
+          <ion-col class="ion-text-left">
+            <ion-label style="padding-left: 0.6em">Email</ion-label>
+            <ion-input
+              formControlName="email"
+              style="width: 100%; text-indent: 12px"
+              type="email"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em">
+          <ion-col class="ion-text-left">
+            <ion-label style="padding-left: 0.6em">Senha</ion-label>
+            <ion-input
+              formControlName="password"
+              style="width: 100%; text-indent: 12px"
+              type="password"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em">
+          <ion-col class="ion-text-left">
+            <ion-label style="padding-left: 0.6em"
+              >{{newAcc ? 'Já possui' : 'Não possui'}} uma conta?
+              <ion-text
+                color="primary"
+                (click)="newAcc = !newAcc"
+                style="text-decoration: underline"
+                >{{newAcc ? 'Logar' : 'Registrar'}}</ion-text
+              ></ion-label
+            >
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em">
+          <ion-col size="12">
+            <ion-button
+              class="btn-outline"
+              style="--background: none"
+              shape="round"
+              expand="block"
+              fill="clear"
+              (click)="createAccount()"
+            >
+              Entrar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>
