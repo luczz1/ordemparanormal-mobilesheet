@@ -62,6 +62,11 @@ ion-scroll[direction="y"] {
   --background: #0e0d0d;
 }
 
+.custom-loading-backdrop {
+  --background: #0e0d0d;
+  --backdrop-opacity: 1;
+}
+
 .alert-wrapper {
   width: 90% !important;
   max-width: 90% !important;

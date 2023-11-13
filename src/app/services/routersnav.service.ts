@@ -18,8 +18,6 @@ export class RoutersnavService {
       const nextRoute = this.routes.shift();
       await this.router.navigateByUrl(nextRoute);
     }
-
-    localStorage.setItem('loaded', 'true');
   }
 
   clearRoutes() {

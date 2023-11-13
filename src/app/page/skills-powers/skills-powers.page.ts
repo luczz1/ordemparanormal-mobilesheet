@@ -85,7 +85,9 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
 
       this.pageLoaded = true;
     } else {
+      if (localStorage.getItem('loaded')) {
       this.generic.multLoading(true);
+      }
       this.getSkill(characterID);
     }
   }
@@ -126,7 +128,9 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
 
         localStorage.setItem('powersList', JSON.stringify(res.powers) ?? '[]');
         this.pageLoaded = true;
+        if (localStorage.getItem('loaded')) {
         this.generic.multLoading(false);
+        }
       },
       (error) => {
         this.generic.multLoading(false);

@@ -63,7 +63,9 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
 
       this.pageLoaded = true;
     } else {
-      this.generic.multLoading(true);
+      if (localStorage.getItem('loaded')) {
+        this.generic.multLoading(true);
+      }
       this.getTotalDefense();
     }
 
@@ -165,7 +167,9 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
           this.attacksList = [];
           localStorage.setItem('attacksList', '[]');
         }
+        if (localStorage.getItem('loaded')) {
         this.generic.multLoading(false);
+        }
 
         this.pageLoaded = true;
       },

@@ -90,7 +90,9 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
 
       this.pageLoaded = true;
     } else {
-      this.generic.multLoading(true);
+      if (localStorage.getItem('loaded')) {
+        this.generic.multLoading(true);
+      }
 
       this.getCharacterAttributes(characterID);
     }
@@ -124,7 +126,9 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         this.skills.sort((a, b) => (a.favorite > b.favorite ? -1 : 1));
 
         this.pageLoaded = true;
+        if (localStorage.getItem('loaded')) {
         this.generic.multLoading(false);
+        }
         this.cdr.detectChanges();
       },
       (error) => this.generic.multLoading(false)

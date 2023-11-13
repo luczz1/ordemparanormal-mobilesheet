@@ -39,6 +39,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     hidden_effort: 0,
   };
 
+  public endedLoaded = false;
+
   constructor(
     private charactersService: CharactersService,
     private activatedRoute: ActivatedRoute,
@@ -52,7 +54,13 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     const characterID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.characterID = characterID;
 
+    if (this.endedLoaded && !localStorage.getItem('loaded')) {
+      localStorage.setItem('loaded', 'true');
+    }
+
     if (!localStorage.getItem('loaded')) {
+      this.generic.multLoading(true, true);
+
       this.routesnav.addRoute(`character/attributes/${characterID}`);
       this.routesnav.addRoute(`character/inventory/${characterID}`);
       this.routesnav.addRoute(`character/skills-powers/${characterID}`);
@@ -61,6 +69,8 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
       this.routesnav.addRoute(`character/${characterID}`);
 
       this.routesnav.navigateToNextRoute();
+      this.endedLoaded = true;
+      return;
     }
 
     this.generic.getInventoryWeight().then((res) => {
@@ -89,7 +99,9 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
 
           this.pageLoaded = true;
         } else {
-          this.generic.multLoading(true);
+          if (localStorage.getItem('loaded')) {
+            this.generic.multLoading(true);
+          }
           this.getCharacterByID(characterID);
         }
       } else {
@@ -198,7 +210,14 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     this.router.navigateByUrl(`/character/${screen}/${this.characterID}`);
   }
 
-  public backToInitialScreen() {
+  public async backToInitialScreen() {
+    const ok = await this.generic.alertBox(
+      'ATENÇÃO',
+      `Deseja mesmo voltar a tela inicial?`
+    );
+
+    if (!ok) {return;}
+
     const notation = localStorage.getItem(`notation-${this.characterID}`);
     const token = localStorage.getItem(`token`);
     localStorage.clear();
@@ -206,7 +225,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     notation && localStorage.setItem(`notation-${this.characterID}`, notation);
     token && localStorage.setItem(`token`, token);
 
-    this.router.navigate(['/home']);
+    window.location.replace('home');
   }
 
   public updateCharacterInDatabase() {

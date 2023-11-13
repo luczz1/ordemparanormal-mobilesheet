@@ -46,7 +46,9 @@ export class CharacterAboutPage implements ViewDidEnter, ViewDidLeave {
 
       this.pageLoaded = true;
     } else {
+      if (localStorage.getItem('loaded')) {
       this.generic.multLoading(true);
+      }
       this.getAboutInfos();
     }
   }
@@ -63,7 +65,9 @@ export class CharacterAboutPage implements ViewDidEnter, ViewDidLeave {
           localStorage.setItem('characterAbout', JSON.stringify(res));
         }
 
+        if (localStorage.getItem('loaded')) {
         this.generic.multLoading(false);
+        }
         this.pageLoaded = true;
       },
       (error) => {

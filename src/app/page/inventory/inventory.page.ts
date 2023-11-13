@@ -59,7 +59,9 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
           this.pageLoaded = true;
         } else {
+          if (localStorage.getItem('loaded')) {
           this.generic.multLoading(true);
+          }
 
           this.getInventoryInfos();
         }
@@ -98,6 +100,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
     this.timeoutId = setTimeout(() => {
     let obj = this.inventoryInfos.getRawValue();
+    this.generic.weightGet = false;
 
     obj.prestige_points = Number(obj.prestige_points);
 
@@ -134,7 +137,9 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         );
         this.pageLoaded = true;
 
+        if (localStorage.getItem('loaded')) {
         this.generic.multLoading(false);
+        }
       },
       (error) => {
         this.generic.presentToast(error.error);
@@ -150,6 +155,8 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     category: string | any,
     slots: number | any
   ) {
+    this.generic.weightGet = false;
+
     let data = {
       item_id: 0,
       item_name,
@@ -181,6 +188,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     );
 
     if (ok) {
+      this.generic.weightGet = false;
       this.charactersService.deleteInventoryItems(itemId).subscribe({
         next: () => {
           this.generic.getInventoryWeight().then((res) => {

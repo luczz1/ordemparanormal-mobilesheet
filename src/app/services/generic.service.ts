@@ -18,6 +18,8 @@ export class GenericService {
 
   public weightStatus = '';
 
+  public weightGet = false;
+
   constructor(
     private alertController: AlertController,
     private loadingCtrl: LoadingController,
@@ -54,7 +56,7 @@ export class GenericService {
     return alertHandler;
   }
 
-  public async multLoading(activate: boolean) {
+  public async multLoading(activate: boolean, fullBackdrop = false) {
     const mult = activate ? 1 : -1;
     this.loadingQueue += mult;
 
@@ -62,7 +64,7 @@ export class GenericService {
       if (activate) {
         this.loading = true;
         const loading = await this.loadingCtrl.create({
-          cssClass: 'custom-loading',
+          cssClass: `${fullBackdrop ? 'custom-loading-backdrop' : 'custom-loading'}`,
           mode: 'md',
           message: 'Carregando...'
         });
@@ -124,6 +126,10 @@ export class GenericService {
 
   public getInventoryWeight(): Promise<boolean> {
     return new Promise((resolve, reject) => {
+      if (this.weightGet) {
+        return resolve(true);
+      }
+
       this.charactersService
         .getInventoryWeight(Number(localStorage.getItem('character')))
         .subscribe(
@@ -132,6 +138,8 @@ export class GenericService {
             this.totalWeight = res.total;
 
             this.weightStatus = res.status;
+
+            this.weightGet = true;
 
             resolve(true);
           },
