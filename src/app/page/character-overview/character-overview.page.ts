@@ -9,6 +9,7 @@ import {
 import { CharacterModel } from 'src/app/models/character';
 import { CharactersService } from 'src/app/services/endpoints/characters.service';
 import { GenericService } from 'src/app/services/generic.service';
+import { RoutersnavService } from 'src/app/services/routersnav.service';
 
 @Component({
   selector: 'app-character-overview',
@@ -43,12 +44,24 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     private activatedRoute: ActivatedRoute,
     public modalController: ModalController,
     public generic: GenericService,
-    private router: Router
+    private router: Router,
+    private routesnav: RoutersnavService
   ) {}
 
   ionViewDidEnter(): void {
     const characterID = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.characterID = characterID;
+
+    if (!localStorage.getItem('loaded')) {
+      this.routesnav.addRoute(`character/attributes/${characterID}`);
+      this.routesnav.addRoute(`character/inventory/${characterID}`);
+      this.routesnav.addRoute(`character/skills-powers/${characterID}`);
+      this.routesnav.addRoute(`character/combat-attr/${characterID}`);
+      this.routesnav.addRoute(`character/about/${characterID}`);
+      this.routesnav.addRoute(`character/${characterID}`);
+
+      this.routesnav.navigateToNextRoute();
+    }
 
     this.generic.getInventoryWeight().then((res) => {
       if (res) {
