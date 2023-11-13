@@ -74,16 +74,12 @@ export class CharactersService extends BaseService {
       headers: this.Headers(),
     });
   }
-
   public updateCharacter(character: CharacterModel): Observable<any> {
     const characterID = character.id;
-    return this.http.put(
-      `${this.Basepath()}characters/${characterID}`,
-      character,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/${characterID}`;
+    return this.http.put(url, character, {
+      headers: this.Headers(),
+    });
   }
 
   public hiddenCharacterStatus(
@@ -94,13 +90,10 @@ export class CharactersService extends BaseService {
     },
     characterID: number
   ): Observable<any> {
-    return this.http.put(
-      `${this.Basepath()}characters/hidden-status/${characterID}`,
-      status,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/hidden-status/${characterID}`;
+    return this.http.put(url, status, {
+      headers: this.Headers(),
+    });
   }
 
   public updateCharacterAbilitiesList(
@@ -110,13 +103,10 @@ export class CharactersService extends BaseService {
       description: string;
     }
   ): Observable<any> {
-    return this.http.post(
-      `${this.Basepath()}characters/abilities/${characterId}`,
-      skillsList,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/abilities/${characterId}`;
+    return this.http.post(url, skillsList, {
+      headers: this.Headers(),
+    });
   }
 
   public updateCharacterPowersList(
@@ -135,37 +125,30 @@ export class CharactersService extends BaseService {
       reach: number;
     }
   ): Observable<any> {
-    return this.http.post(
-      `${this.Basepath()}characters/powers/${characterId}`,
-      powersList,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/powers/${characterId}`;
+    return this.http.post(url, powersList, {
+      headers: this.Headers(),
+    });
   }
 
   public deleteCharacterPower(
     characterId: number,
     itemid: number
   ): Observable<any> {
-    return this.http.delete(
-      `${this.Basepath()}characters/powers/${characterId}/${itemid}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/powers/${characterId}/${itemid}`;
+    return this.http.delete(url, {
+      headers: this.Headers(),
+    });
   }
 
   public deleteCharacterSkill(
     characterId: number,
     itemid: number
   ): Observable<any> {
-    return this.http.delete(
-      `${this.Basepath()}characters/abilities/${characterId}/${itemid}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/abilities/${characterId}/${itemid}`;
+    return this.http.delete(url, {
+      headers: this.Headers(),
+    });
   }
 
   public updateSkillValue(
@@ -173,12 +156,10 @@ export class CharactersService extends BaseService {
     skillId: number,
     newValue: number
   ): Observable<any> {
-    return this.http.put(
-      `${this.Basepath()}characters/skills/${characterId}/${skillId}/${newValue}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/skills/${characterId}/${skillId}/${newValue}`;
+    return this.http.put(url, {}, {
+      headers: this.Headers(),
+    });
   }
 
   public updateTrainingSkillValue(
@@ -186,21 +167,17 @@ export class CharactersService extends BaseService {
     skillId: number,
     newValue: number
   ): Observable<any> {
-    return this.http.put(
-      `${this.Basepath()}characters/skills/t/${characterId}/${skillId}/${newValue}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/skills/t/${characterId}/${skillId}/${newValue}`;
+    return this.http.put(url, {}, {
+      headers: this.Headers(),
+    });
   }
 
   public favoriteSkill(skillId: number, newValue: number): Observable<any> {
-    return this.http.put(
-      `${this.Basepath()}characters/skills/${skillId}/${newValue}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/skills/${skillId}/${newValue}`;
+    return this.http.put(url, {}, {
+      headers: this.Headers(),
+    });
   }
 
   public updateAttributeValue(
@@ -208,13 +185,12 @@ export class CharactersService extends BaseService {
     attribute: string,
     value: number
   ): Observable<any> {
-    return this.http.put(
-      `${this.Basepath()}characters/attributes/${characterId}/${attribute}/${value}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/attributes/${characterId}/${attribute}/${value}`;
+    return this.http.put(url, {}, {
+      headers: this.Headers(),
+    });
   }
+
 
   public getInventoryInfos(characterId: number): Observable<any> {
     return this.http.get(
@@ -288,12 +264,10 @@ export class CharactersService extends BaseService {
     id: number,
     defense_total: number
   ): Observable<any> {
-    return this.http.put(
-      `${this.Basepath()}characters/defense/${id}/${defense_total}`,
-      {
-        headers: this.Headers(),
-      }
-    );
+    const url = `${this.Basepath()}characters/defense/${id}/${defense_total}`;
+    return this.http.put(url, {}, {
+      headers: this.Headers(),
+    });
   }
 
   public getCharacterDefenses(id: number): Observable<any> {
