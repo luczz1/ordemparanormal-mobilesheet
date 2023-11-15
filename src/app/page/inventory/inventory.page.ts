@@ -25,10 +25,16 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   public inventoryInfos = new FormGroup({
     prestige_points: new FormControl(),
     patent: new FormControl(),
-    item_limit: new FormControl(),
+    item_limit_1: new FormControl(),
+    item_limit_2: new FormControl(),
+    item_limit_3: new FormControl(),
+    item_limit_4: new FormControl(),
     credit_limit: new FormControl(),
     max_load: new FormControl(),
+    max_spc_load: new FormControl(),
   });
+
+  public hideInventoryInfos = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,6 +49,8 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     this.characterID = Number(
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
+
+    this.hideInventoryInfos = localStorage.getItem('hideInventoryInfos') === 'true'
 
     this.generic.getInventoryWeight().then((res) => {
       if (res) {
@@ -174,6 +182,8 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
       slots,
     };
 
+    localStorage.removeItem('totalWeight');
+
     this.charactersService.addInventoryItems(this.characterID, data).subscribe({
       next: () => {
         this.generic.getInventoryWeight().then((res) => {
@@ -199,6 +209,8 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
     if (ok) {
       this.generic.weightGet = false;
+      localStorage.removeItem('totalWeight');
+
       this.charactersService.deleteInventoryItems(itemId).subscribe({
         next: () => {
           this.generic.getInventoryWeight().then((res) => {
@@ -217,5 +229,10 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         error: (err) => this.generic.presentToast(err.error, 3),
       });
     }
+  }
+
+  public toHideInventoryInfos() {
+    this.hideInventoryInfos = !this.hideInventoryInfos;
+    localStorage.setItem('hideInventoryInfos', String(this.hideInventoryInfos))
   }
 }

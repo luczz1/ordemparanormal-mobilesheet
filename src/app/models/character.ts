@@ -64,9 +64,13 @@ export interface InventoryModel {
 export interface InventoryInfosModel {
   prestige_points: number;
   patent: string;
-  item_limit: number;
+  item_limit_1: number;
+  item_limit_2: number;
+  item_limit_3: number;
+  item_limit_4: number;
   credit_limit: number;
   max_load: number;
+  max_spc_load: number;
 }
 
 export interface AttackModel {
