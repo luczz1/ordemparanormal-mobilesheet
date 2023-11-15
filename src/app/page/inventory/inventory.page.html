@@ -201,18 +201,14 @@
         >
           <ion-row>
             <ion-col class="ion-text-center">
-              <span
-                >{{item.item_name}}
-                <span
-                  style="position: absolute; right: 0; margin-right: 1em"
-                  (click)="deleteInventoryItems(item.item_id, item.item_name)"
-                >
-                  <ion-icon
-                    color="danger"
-                    name="trash-bin-outline"
-                  ></ion-icon></span
-              ></span>
+              <ion-label color="light">{{item.item_name}} </ion-label>
             </ion-col>
+            <ion-icon
+              style="padding: 0.3em"
+              color="danger"
+              (click)="deleteInventoryItems(item.item_id, item.item_name)"
+              name="trash-bin-outline"
+            ></ion-icon>
           </ion-row>
           <ion-row>
             <ion-col>
@@ -256,6 +252,7 @@
             style="margin-top: 1em; text-indent: 12px"
             max="80"
             min="0"
+            maxlength="100"
             #iptName
           ></ion-input>
           <ion-input
@@ -268,7 +265,7 @@
           <ion-input
             type="number"
             shape="round"
-            placeholder="Peso"
+            placeholder="Espaços"
             style="margin-top: 1em; text-indent: 12px"
             #iptSlots
           ></ion-input>

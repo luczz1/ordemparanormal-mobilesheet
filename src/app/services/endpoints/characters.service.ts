@@ -115,7 +115,7 @@ export class CharactersService extends BaseService {
       name: string;
       description: string;
       price: string;
-      pages: string;
+      page: string;
       element: string;
       circle: number;
       target: string;

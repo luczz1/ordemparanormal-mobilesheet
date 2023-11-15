@@ -41,13 +41,14 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public newSkill = {
     name: '',
     description: '',
+    page: '',
   };
 
   public newPower = {
     name: '',
     description: '',
     price: '',
-    pages: '',
+    page: '',
     element: '',
     circle: 0,
     target: '',
@@ -143,13 +144,14 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     this.newSkill = {
       name: '',
       description: '',
+      page: '',
     };
 
     this.newPower = {
       name: '',
       description: '',
       price: '',
-      pages: '',
+      page: '',
       element: '',
       circle: 0,
       target: '',
@@ -180,6 +182,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             this.newSkill = {
               name: '',
               description: '',
+              page: '',
             };
 
             this.openStatusModal = false;
@@ -204,7 +207,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
               name: '',
               description: '',
               price: '',
-              pages: '',
+              page: '',
               element: '',
               circle: 0,
               target: '',

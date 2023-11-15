@@ -69,7 +69,10 @@
               >
                 <ion-icon color="danger" name="trash-bin-outline"></ion-icon
               ></span>
+
             </p>
+            <p style="color: var(--ion-color-medium)"><strong>Página: {{skill.page}}</strong></p>
+
             <span style="color: var(--ion-color-medium)"
               >{{skill.description}}</span
             >
@@ -148,7 +151,7 @@
               >
               <span style="color: var(--ion-color-medium)"
                 ><strong
-                  >Pagína: {{power.pages ? power.pages : '---'}}</strong
+                  >Pagína: {{power.page ? power.page : '---'}}</strong
                 ></span
               >
             </div>
@@ -158,7 +161,7 @@
 
             <ion-accordion-group style="width: 100%; margin-top: 1em">
               <ion-accordion style="background: none !important">
-                <ion-item slot="header" style="--background: transparent;">
+                <ion-item slot="header" style="--background: transparent">
                   <ion-label>Ver mais</ion-label>
                 </ion-item>
                 <div slot="content">
@@ -250,12 +253,21 @@
               placeholder="Nome"
               [(ngModel)]="newSkill.name"
               type="text"
+              maxlength="100"
             ></ion-input>
 
             <ion-input
               *ngIf="currentAddName === 'power'"
               placeholder="Nome"
               [(ngModel)]="newPower.name"
+              type="text"
+              maxlength="100"
+            ></ion-input>
+
+            <ion-input
+              placeholder="Página"
+              *ngIf="currentAddName === 'skill'"
+              [(ngModel)]="newSkill.page"
               type="text"
             ></ion-input>
 
@@ -272,7 +284,7 @@
                 <ion-input
                   placeholder="Página"
                   *ngIf="currentAddName === 'power'"
-                  [(ngModel)]="newPower.pages"
+                  [(ngModel)]="newPower.page"
                   type="text"
                 ></ion-input>
               </ion-col>
@@ -442,7 +454,7 @@
               </ion-item>
             </ion-list>
 
-            <ion-list style="margin-top: 2em;">
+            <ion-list style="margin-top: 2em">
               <ion-label color="primary">Armaduras</ion-label>
               <ion-item>
                 <ion-checkbox

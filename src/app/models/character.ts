@@ -44,7 +44,7 @@ export interface AbilitiesListModel {
   description: string;
   id: number;
   price?: string;
-  pages?: string;
+  page?: string;
   element?: string;
   circle?: number;
   target?: string;
