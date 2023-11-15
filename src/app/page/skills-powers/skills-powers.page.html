@@ -62,16 +62,31 @@
         >
           <div *ngFor="let skill of skillsList" class="card-char">
             <p>
-              {{skill.name}}
+              <ion-text>{{skill.name}}</ion-text>
               <span
-                style="float: right"
-                (click)="deleteItem('Skill', skill.id, skill.name)"
+                style="
+                  float: right;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                "
               >
-                <ion-icon color="danger" name="trash-bin-outline"></ion-icon
-              ></span>
-
+                <ion-icon
+                  color="danger"
+                  (click)="deleteItem('Skill', skill.id, skill.name)"
+                  name="trash-bin-outline"
+                ></ion-icon>
+                <ion-icon
+                  color="tertiary"
+                  style="padding-right: 0.5em; padding-bottom: 0.1em"
+                  (click)="getPowerOrAbilityByID(skill.id, 0)"
+                  name="create-outline"
+                ></ion-icon>
+              </span>
             </p>
-            <p style="color: var(--ion-color-medium)"><strong>Página: {{skill.page}}</strong></p>
+            <p style="color: var(--ion-color-medium)">
+              <strong>Página: {{skill.page}}</strong>
+            </p>
 
             <span style="color: var(--ion-color-medium)"
               >{{skill.description}}</span
@@ -131,11 +146,25 @@
             <p>
               {{power.name}}
               <span
-                style="float: right"
-                (click)="deleteItem('Power', power.id, power.name)"
+                style="
+                  float: right;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                "
               >
-                <ion-icon color="danger" name="trash-bin-outline"></ion-icon
-              ></span>
+                <ion-icon
+                  (click)="deleteItem('Power', power.id, power.name)"
+                  color="danger"
+                  name="trash-bin-outline"
+                ></ion-icon>
+                <ion-icon
+                  color="tertiary"
+                  style="padding-right: 0.5em; padding-bottom: 0.1em"
+                  (click)="getPowerOrAbilityByID(power.id, 1)"
+                  name="create-outline"
+                ></ion-icon>
+              </span>
             </p>
             <div
               style="
@@ -404,9 +433,9 @@
             shape="round"
             expand="block"
             fill="clear"
-            (click)="addSkillOrPower(currentAddName)"
+            (click)="editingMode ? updateAbilityOrRitual(currentAddName, currentAddName === 'power' ? newPower.id : newSkill.id) : addSkillOrPower(currentAddName)"
           >
-            Adicionar
+            {{editingMode ? 'Editar' : 'Adicionar'}}
           </ion-button>
         </ion-content>
       </ng-template>

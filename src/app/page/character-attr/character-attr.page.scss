@@ -13,9 +13,10 @@ input {
   outline: none;
   max-width: 50px;
   border: none;
-  font-size: 1.8em;
+  font-size: 1.6em;
   text-align: center;
   opacity: 0.7;
+  font-family: SpecialFont !important;
 }
 
 .input-attr:hover {cursor: pointer;}

@@ -39,12 +39,14 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   };
 
   public newSkill = {
+    id: 0,
     name: '',
     description: '',
     page: '',
   };
 
   public newPower = {
+    id: 0,
     name: '',
     description: '',
     price: '',
@@ -57,6 +59,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     execution: 0,
     reach: 0,
   };
+
+  public editingMode = false;
 
   constructor(
     private charactersService: CharactersService,
@@ -87,7 +91,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       this.pageLoaded = true;
     } else {
       if (localStorage.getItem('loaded')) {
-      this.generic.multLoading(true);
+        this.generic.multLoading(true);
       }
       this.getSkill(characterID);
     }
@@ -130,7 +134,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         localStorage.setItem('powersList', JSON.stringify(res.powers) ?? '[]');
         this.pageLoaded = true;
         if (localStorage.getItem('loaded')) {
-        this.generic.multLoading(false);
+          this.generic.multLoading(false);
         }
       },
       (error) => {
@@ -141,27 +145,10 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public openSkillOrPowerModal(type: string) {
-    this.newSkill = {
-      name: '',
-      description: '',
-      page: '',
-    };
-
-    this.newPower = {
-      name: '',
-      description: '',
-      price: '',
-      page: '',
-      element: '',
-      circle: 0,
-      target: '',
-      duration: '',
-      resistance: '',
-      execution: 0,
-      reach: 0,
-    };
+    this.clearItems();
 
     this.currentAddName = type;
+    this.editingMode = false;
     this.openStatusModal = true;
   }
 
@@ -173,17 +160,21 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     }
   }
 
+    public updateAbilityOrRitual(type: string, id: number) {
+    if (type === 'skill') {
+      this.updateAbility(id);
+    } else if (type === 'power') {
+      this.updateRitual(id);
+    }
+  }
+
   public addSkill() {
     if (this.newSkill.name) {
       this.charactersService
         .updateCharacterAbilitiesList(this.characterId, this.newSkill)
         .subscribe(
           () => {
-            this.newSkill = {
-              name: '',
-              description: '',
-              page: '',
-            };
+            this.clearItems();
 
             this.openStatusModal = false;
             this.getSkill(this.characterId);
@@ -203,19 +194,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         .updateCharacterPowersList(this.characterId, this.newPower)
         .subscribe(
           (res) => {
-            this.newPower = {
-              name: '',
-              description: '',
-              price: '',
-              page: '',
-              element: '',
-              circle: 0,
-              target: '',
-              duration: '',
-              resistance: '',
-              execution: 0,
-              reach: 0,
-            };
+            this.clearItems();
 
             this.openStatusModal = false;
             this.getPower(this.characterId);
@@ -224,6 +203,44 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
             this.generic.presentToast(error.error, 3);
           }
         );
+    } else {
+      this.generic.presentToast('O nome é obrigatório.', 3);
+    }
+  }
+
+  public updateAbility(id: number) {
+    if (this.newSkill.name) {
+      this.charactersService
+        .updateCharacterAbility(id, this.newSkill)
+        .subscribe(
+          () => {
+            this.clearItems();
+
+            this.openStatusModal = false;
+            this.getSkill(this.characterId);
+          },
+          (error: any) => {
+            this.generic.presentToast(error.error, 3);
+          }
+        );
+    } else {
+      this.generic.presentToast('O nome é obrigatório.', 3);
+    }
+  }
+
+  public updateRitual(id: number) {
+    if (this.newPower.name) {
+      this.charactersService.updateCharacterRitual(id, this.newPower).subscribe(
+        (res) => {
+          this.clearItems();
+
+          this.openStatusModal = false;
+          this.getPower(this.characterId);
+        },
+        (error: any) => {
+          this.generic.presentToast(error.error, 3);
+        }
+      );
     } else {
       this.generic.presentToast('O nome é obrigatório.', 3);
     }
@@ -258,6 +275,29 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       return;
     }
     localStorage.setItem('ritualsDT', this.DTValue);
+  }
+
+  public getPowerOrAbilityByID(id: number, type: number) {
+    this.generic.multLoading(true);
+
+    const list = type === 0 ? 'newSkill' : 'newPower';
+    const endpoint = type === 0 ? 'getAbilityByID' : 'getPowerByID';
+
+    this.editingMode = true;
+
+    this.charactersService[endpoint](id).subscribe({
+      next: (res) => {
+        if (res.element) {
+          res.element = JSON.parse(res.element);
+        }
+
+        this[list] = res;
+        this.currentAddName = type === 0 ? 'skill' : 'power';
+
+        this.openStatusModal = true;
+        this.generic.multLoading(false);
+      },
+    });
   }
 
   public getProciciences(openModalOrStartLoading = true) {
@@ -306,5 +346,29 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
           },
         });
     }
+  }
+
+  private clearItems() {
+    this.newSkill = {
+      id: 0,
+      name: '',
+      description: '',
+      page: '',
+    };
+
+    this.newPower = {
+      id: 0,
+      name: '',
+      description: '',
+      price: '',
+      page: '',
+      element: '',
+      circle: 0,
+      target: '',
+      duration: '',
+      resistance: '',
+      execution: 0,
+      reach: 0,
+    };
   }
 }

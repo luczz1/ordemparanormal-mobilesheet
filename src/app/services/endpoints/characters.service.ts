@@ -69,6 +69,18 @@ export class CharactersService extends BaseService {
     });
   }
 
+  public getAbilityByID(id: number): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters/abilities/q/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
+  public getPowerByID(id: number): Observable<any> {
+    return this.http.get(`${this.Basepath()}characters/powers/q/${id}`, {
+      headers: this.Headers(),
+    });
+  }
+
   public createNewCharacter(data: CharacterModel): Observable<any> {
     return this.http.post(`${this.Basepath()}characters/create`, data, {
       headers: this.Headers(),
@@ -104,7 +116,22 @@ export class CharactersService extends BaseService {
     }
   ): Observable<any> {
     const url = `${this.Basepath()}characters/abilities/${characterId}`;
+
     return this.http.post(url, skillsList, {
+      headers: this.Headers(),
+    });
+  }
+
+  public updateCharacterAbility(
+    id: number,
+    skillsList: {
+      name: string;
+      description: string;
+    }
+  ): Observable<any> {
+    const url = `${this.Basepath()}abilities/${id}`;
+
+    return this.http.put(url, skillsList, {
       headers: this.Headers(),
     });
   }
@@ -126,7 +153,31 @@ export class CharactersService extends BaseService {
     }
   ): Observable<any> {
     const url = `${this.Basepath()}characters/powers/${characterId}`;
+
     return this.http.post(url, powersList, {
+      headers: this.Headers(),
+    });
+  }
+
+  public updateCharacterRitual(
+    id: number,
+    powersList: {
+      name: string;
+      description: string;
+      price: string;
+      page: string;
+      element: string;
+      circle: number;
+      target: string;
+      duration: string;
+      resistance: string;
+      execution: number;
+      reach: number;
+    }
+  ): Observable<any> {
+    const url = `${this.Basepath()}rituals/${id}`;
+
+    return this.http.put(url, powersList, {
       headers: this.Headers(),
     });
   }
@@ -157,9 +208,13 @@ export class CharactersService extends BaseService {
     newValue: number
   ): Observable<any> {
     const url = `${this.Basepath()}characters/skills/${characterId}/${skillId}/${newValue}`;
-    return this.http.put(url, {}, {
-      headers: this.Headers(),
-    });
+    return this.http.put(
+      url,
+      {},
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 
   public updateTrainingSkillValue(
@@ -168,16 +223,24 @@ export class CharactersService extends BaseService {
     newValue: number
   ): Observable<any> {
     const url = `${this.Basepath()}characters/skills/t/${characterId}/${skillId}/${newValue}`;
-    return this.http.put(url, {}, {
-      headers: this.Headers(),
-    });
+    return this.http.put(
+      url,
+      {},
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 
   public favoriteSkill(skillId: number, newValue: number): Observable<any> {
     const url = `${this.Basepath()}characters/skills/${skillId}/${newValue}`;
-    return this.http.put(url, {}, {
-      headers: this.Headers(),
-    });
+    return this.http.put(
+      url,
+      {},
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 
   public updateAttributeValue(
@@ -186,11 +249,14 @@ export class CharactersService extends BaseService {
     value: number
   ): Observable<any> {
     const url = `${this.Basepath()}characters/attributes/${characterId}/${attribute}/${value}`;
-    return this.http.put(url, {}, {
-      headers: this.Headers(),
-    });
+    return this.http.put(
+      url,
+      {},
+      {
+        headers: this.Headers(),
+      }
+    );
   }
-
 
   public getInventoryInfos(characterId: number): Observable<any> {
     return this.http.get(
@@ -265,9 +331,13 @@ export class CharactersService extends BaseService {
     defense_total: number
   ): Observable<any> {
     const url = `${this.Basepath()}characters/defense/${id}/${defense_total}`;
-    return this.http.put(url, {}, {
-      headers: this.Headers(),
-    });
+    return this.http.put(
+      url,
+      {},
+      {
+        headers: this.Headers(),
+      }
+    );
   }
 
   public getCharacterDefenses(id: number): Observable<any> {
