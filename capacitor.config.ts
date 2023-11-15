@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'mobile-op-rpg',
+  appName: 'Ordem - Ficha',
   webDir: 'www',
   bundledWebRuntime: false
 };

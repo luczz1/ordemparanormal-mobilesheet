@@ -123,20 +123,29 @@
             <img
               [src]="attr.image_url"
               style="
-                max-width: 400px;
-                max-height: 400px;
+                max-width: 330px;
+                max-height: 330px;
                 min-width: 150px;
-                min-height: 400px;
+                min-height: 330px;
               "
             />
           </ion-col>
         </ion-row>
 
         <ion-row style="width: 100%">
-          <ion-col class="ion-text-left" style="font-size: 1.1em">
-            <span>NEX: {{attr.nex}}%</span>
+          <ion-col class="ion-text-center" size="12" style="font-size: 1.1em">
+            <span
+              style="
+                color: var(--ion-color-light);
+                font-family: SpecialFont;
+                text-shadow: 0 0 10px var(--ion-color-main);
+              "
+              >NEX: {{attr.nex}}%</span
+            >
           </ion-col>
-          <ion-col class="ion-text-right" style="font-size: 1.1em">
+        </ion-row>
+        <ion-row style="width: 100%">
+          <ion-col class="ion-text-center" size="12" style="font-size: 1.1em">
             <span>{{attr.occupation}}</span>
           </ion-col>
         </ion-row>
@@ -157,7 +166,7 @@
         <ion-row style="width: 100%">
           <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span
-              >Deslocamento:
+              >Desloc.:
               <ion-text
                 [color]="generic.weightStatus === 'Sobrecarga' ?
               'danger' : ''"
