@@ -130,6 +130,18 @@ export class GenericService {
         return resolve(true);
       }
 
+      const jsonTotalWeight = JSON.parse(localStorage.getItem('totalWeight'));
+
+      if (jsonTotalWeight) {
+        this.currentWeight = jsonTotalWeight.atual;
+        this.totalWeight = jsonTotalWeight.total;
+
+        this.weightStatus = jsonTotalWeight.status;
+
+        this.weightGet = true;
+        return resolve(true);
+      }
+
       this.charactersService
         .getInventoryWeight(Number(localStorage.getItem('character')))
         .subscribe(
@@ -140,6 +152,8 @@ export class GenericService {
             this.weightStatus = res.status;
 
             this.weightGet = true;
+
+            localStorage.setItem('totalWeight', JSON.stringify(res));
 
             resolve(true);
           },

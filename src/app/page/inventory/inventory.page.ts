@@ -49,7 +49,10 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.totalWeight =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
 
-        if (localStorage.getItem('inventoryInfos') && localStorage.getItem('inventoryItems')) {
+        if (
+          localStorage.getItem('inventoryInfos') &&
+          localStorage.getItem('inventoryItems')
+        ) {
           this.inventoryInfos.patchValue(
             JSON.parse(localStorage.getItem('inventoryInfos'))
           );
@@ -60,7 +63,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
           this.pageLoaded = true;
         } else {
           if (localStorage.getItem('loaded')) {
-          this.generic.multLoading(true);
+            this.generic.multLoading(true);
           }
 
           this.getInventoryInfos();
@@ -74,7 +77,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
   ionViewDidLeave() {
     this.pageLoaded = false;
-}
+  }
 
   public getInventoryInfos() {
     this.charactersService.getInventoryInfos(this.characterID).subscribe(
@@ -99,32 +102,39 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     }
 
     this.timeoutId = setTimeout(() => {
-    let obj = this.inventoryInfos.getRawValue();
-    this.generic.weightGet = false;
+      let obj = this.inventoryInfos.getRawValue();
 
-    obj.prestige_points = Number(obj.prestige_points);
+      this.generic.weightGet = false;
+      localStorage.removeItem('totalWeight');
 
-    this.charactersService.editInventoryInfos(this.characterID, obj).subscribe(
-      (res) => {
-        this.generic.getInventoryWeight().then((res) => {
-          if (res) {
-            this.totalWeight =
-              this.generic.currentWeight + '/' + this.generic.totalWeight;
+      obj.prestige_points = Number(obj.prestige_points);
 
-            localStorage.removeItem('inventoryInfos');
+      this.charactersService
+        .editInventoryInfos(this.characterID, obj)
+        .subscribe(
+          (res) => {
+            this.generic.getInventoryWeight().then((res) => {
+              if (res) {
+                this.totalWeight =
+                  this.generic.currentWeight + '/' + this.generic.totalWeight;
 
-            localStorage.setItem('inventoryInfos', JSON.stringify(obj));
-          } else {
-            this.generic.presentToast('Ocorreu um erro ao carregar dados.', 3);
+                localStorage.removeItem('inventoryInfos');
+
+                localStorage.setItem('inventoryInfos', JSON.stringify(obj));
+              } else {
+                this.generic.presentToast(
+                  'Ocorreu um erro ao carregar dados.',
+                  3
+                );
+              }
+            });
+          },
+          (error) => {
+            this.generic.presentToast(error.error, 3);
+            this.generic.multLoading(false);
           }
-        });
-      },
-      (error) => {
-        this.generic.presentToast(error.error, 3);
-        this.generic.multLoading(false);
-      }
-    );
-  }, 1000);
+        );
+    }, 1000);
   }
 
   public getInventoryItems() {
@@ -138,7 +148,7 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         this.pageLoaded = true;
 
         if (localStorage.getItem('loaded')) {
-        this.generic.multLoading(false);
+          this.generic.multLoading(false);
         }
       },
       (error) => {
