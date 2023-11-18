@@ -21,6 +21,29 @@
       #search
     ></ion-searchbar>
 
+    <ion-row style="margin-bottom: 2em;">
+      <ion-col size="4">
+        <ion-button
+        class="btn-outline-back"
+        style="--background: none; --border-color: var(--ion-color-medium)"
+        expand="block"
+        (click)="router.navigate(['/home']);"
+      >
+        Voltar
+      </ion-button>
+      </ion-col>
+      <ion-col size="8">
+        <ion-button
+        class="btn-outline"
+        expand="block"
+        routerLink="/create"
+      >
+        Novo Agente
+      </ion-button>
+      </ion-col>
+    </ion-row>
+
+
     <div style="overflow: auto">
       <ion-grid
         *ngFor="let char of search.value ? filteredCharactersList : charactersList"
@@ -110,13 +133,13 @@
 
           <div class="right">
             <ion-row class="ion-align-items-center ion-justify-content-center">
-              <ion-col class="ion-text-center" style="margin-top: 2em">
+              <ion-col class="ion-text-center" style="margin-top: 2.5em">
                 <div
                   style="
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    border: 1px solid var(--ion-color-primary);
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 16px;
+                    border: 1px solid var(--ion-color-dark-tint);
                     overflow: hidden;
                   "
                 >
@@ -145,29 +168,6 @@
         Nada encontrado...
       </p>
       <img src="/assets/image/not_found.png" style="width: 100%" />
-    </div>
-
-    <div
-      style="position: relative; margin-top: 2em; padding: 0 0 2em; width: 100%"
-    >
-      <ion-button
-        class="btn-outline"
-        style="margin-bottom: 2em"
-        shape="round"
-        expand="block"
-        routerLink="/create"
-      >
-        Criar nova ficha
-      </ion-button>
-      <ion-button
-        class="btn-outline-back"
-        style="--background: none; --border-color: var(--ion-color-medium)"
-        shape="round"
-        expand="block"
-        (click)="router.navigate(['/home']);"
-      >
-        Voltar
-      </ion-button>
     </div>
   </div>
 </ion-content>

@@ -169,7 +169,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public compressFile() {
-    const MAX_MEGABYTE = 0.350;
+    const MAX_MEGABYTE = 0.500;
 
     this.imageCompress.uploadAndGetImageWithMaxSize(MAX_MEGABYTE).then(
       (result: string) => {
@@ -185,6 +185,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         );
 
         this.imageResult = result;
+        this.characterForm.get('image_url').patchValue(this.imageResult);
       }
     );
 

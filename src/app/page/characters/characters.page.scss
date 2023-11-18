@@ -6,21 +6,21 @@
 }
 
 .btn-outline {
-  margin-top: 2em;
   --border-style: solid;
   --border-width: 1px;
   --background: none;
   --border-color: var(--ion-color-main);
   --color: var(--ion-color-light-main);
+  --border-radius: 14px;
 }
 
 .btn-outline-back {
-  margin-top: 2em;
   --background: none;
   --border-color: var(--ion-color-medium);
   --border-style: solid;
   --border-width: 1px;
   --color: var(--ion-color-medium);
+  --border-radius: 14px;
 }
 
 
@@ -47,11 +47,6 @@
   position: relative;
 }
 
-.btn-outline {
-  --background: none;
-  --border-style: solid;
-  --border-width: 1px;
-}
 
 .progress {
   border-radius: 0.5em;

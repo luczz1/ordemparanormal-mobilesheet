@@ -68,7 +68,7 @@ export class DiceRollingPage implements ViewDidEnter {
     } else if (numRollValue < -1) {
       this.rollvalue = Math.abs(numRollValue) + 2;
     } else {
-      this.rollvalue = numRollValue
+      this.rollvalue = numRollValue;
     }
 
     this.bonus = Number(this.activatedRoute.snapshot.paramMap.get('bonus'));
@@ -95,6 +95,9 @@ export class DiceRollingPage implements ViewDidEnter {
       return;
     }
 
+    const audio = new Audio('/assets/sound/dice-roll.mp3');
+    audio.play();
+
     this.diceRolling = true;
 
     let diceInterval = setInterval(() => {
@@ -111,7 +114,7 @@ export class DiceRollingPage implements ViewDidEnter {
       this.diceRolling = false;
 
       this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
-    }, 500);
+    }, 600);
   }
 
   public getMinDiceResult(): number {

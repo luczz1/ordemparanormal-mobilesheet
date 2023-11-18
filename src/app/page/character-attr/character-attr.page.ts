@@ -164,6 +164,9 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       return;
     }
 
+    const audio = new Audio('/assets/sound/dice-roll.mp3');
+    audio.play();
+
     this.diceRolling = true;
 
     let diceInterval = setInterval(() => {
@@ -180,7 +183,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       this.diceRolling = false;
 
       this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
-    }, 500);
+    }, 600);
   }
 
   public openModalAndSaveSkill(
