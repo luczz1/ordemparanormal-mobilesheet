@@ -16,15 +16,18 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ✅ Atributos e perícias editáveis
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
-- ✅ Listar, adicionar e excluir rituais e habilidades
+- ✅ Listar, adicionar, editar e excluir rituais e habilidades
 - ✅ Sistema de inventário
 - ✅ Editar informações do personagem (nex, deslocamento, etc.)
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
 - ✅ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ✅ Proficiências
 - ✅ Tela de anotações, um bloco de texto com diversas opção de fonte, anexar imagem, cores, e +
-- ✅ Tela de "sobre" da personagem, com infos da sua história, personalidade e objetivos.
+- ✅ Tela de "sobre" da personagem, com infos da sua história, personalidade e objetivos
 - ✅ Sistema de login
+- ✅ Habilidades/perícias/proficiências/defesa automáticos com base na sua classe/trilha/origem
+- ✅ Pontos de vida/sanidade/esforço automáticos com base nas suas escolhas
+- ✅ Upload de imagens
 
 ### Adicionais
 
@@ -40,7 +43,9 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 
 > [!NOTE]
 > As imagens não representam todas as telas/funções presente no projeto.
-> Elas também podem estar desatualizadas.
+
+> [!WARNING]
+> As imagens estão desatualizadas.
 
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/44287f93-2725-4955-a736-d3cde88034c6" style="width: 20%"/>
