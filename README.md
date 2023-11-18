@@ -43,6 +43,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 
 > [!NOTE]
 > As imagens não representam todas as telas/funções presente no projeto.
+
 > [!WARNING]
 > As imagens estão desatualizadas.
 
