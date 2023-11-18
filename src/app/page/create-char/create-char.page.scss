@@ -10,8 +10,6 @@
   --border-style: solid;
   --border-width: 1px;
   --background: none;
-  --border-color: var(--ion-color-success);
-  --color: var(--ion-color-success-tint);
 }
 
 .btn-outline-back {
@@ -21,6 +19,30 @@
   --border-style: solid;
   --border-width: 1px;
   --color: var(--ion-color-medium);
+}
+
+.input-attr {
+  background: none;
+  outline: none;
+  max-width: 50px;
+  border: none;
+  font-size: 1.6em;
+  text-align: center;
+  opacity: 0.7;
+  font-family: SpecialFont !important;
+}
+
+.input-attr:hover {cursor: pointer;}
+
+.input-attr-max {
+  width: 80px;
+  height: 40px;
+  font-size: 1.2em;
+  background-color: var(--ion-background-color);
+  border-radius: 5px;
+  outline: none;
+  padding: 5px;
+  border: 1px solid var(--ion-color-dark-tint);
 }
 
 ion-input,

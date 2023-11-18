@@ -111,7 +111,7 @@ export class DiceRollingPage implements ViewDidEnter {
       this.diceRolling = false;
 
       this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
-    }, 2000);
+    }, 500);
   }
 
   public getMinDiceResult(): number {

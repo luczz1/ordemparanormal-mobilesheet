@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="menu" *ngIf="pageLoaded">
+  <div class="menu" *ngIf="pageLoaded && !editingAttr">
     <ion-grid>
       <ion-row style="display: flex; align-items: center">
         <ion-col size="1" (click)="redirectToBackScreen()">
@@ -41,6 +41,31 @@
         </ion-row>
 
         <ion-row style="margin-top: 1em">
+          <ion-col class="ion-text-left" size="12">
+            <ion-label style="padding-left: 0.6em">Origem</ion-label>
+            <ion-input
+              (ionFocus)="hideOriginsSuggestions = false"
+              (ionBlur)="hideSuggestion('hideOriginsSuggestions');"
+              formControlName="origin"
+              style="width: 100%; text-indent: 12px"
+            >
+            </ion-input>
+            <ion-list
+              *ngIf="!hideOriginsSuggestions && originsGroup.length"
+              class="suggestions-list"
+            >
+              <ion-item *ngFor="let origin of originsGroup">
+                <ion-label
+                  (click)="characterForm.get('origin').patchValue(origin.name)"
+                >
+                  {{origin.name}}
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em">
           <ion-col class="ion-text-left" size="6">
             <ion-label style="padding-left: 0.6em">Classe</ion-label>
             <ion-input
@@ -52,7 +77,10 @@
             >
             </ion-input>
 
-            <ion-list *ngIf="!hideClassesSuggestions && classesGroup.length" class="suggestions-list">
+            <ion-list
+              *ngIf="!hideClassesSuggestions && classesGroup.length"
+              class="suggestions-list"
+            >
               <ion-item *ngFor="let class of classesGroup">
                 <ion-label (click)="getTracks(class.id, class.name)">
                   {{class.name}}
@@ -60,19 +88,6 @@
               </ion-item>
             </ion-list>
           </ion-col>
-          <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em">Deslocamento</ion-label>
-            <ion-input
-              formControlName="displacement"
-              type="text"
-              style="width: 100%; text-align: center"
-              maxlength="8"
-            >
-            </ion-input>
-          </ion-col>
-        </ion-row>
-
-        <ion-row style="margin-top: 1em">
           <ion-col class="ion-text-left" size="6">
             <ion-label style="padding-left: 0.6em">Trilha</ion-label>
             <ion-input
@@ -82,31 +97,15 @@
               style="width: 100%; text-indent: 12px"
             >
             </ion-input>
-            <ion-list *ngIf="!hideTracksSuggestions && tracksGroup.length" class="suggestions-list">
+            <ion-list
+              *ngIf="!hideTracksSuggestions && tracksGroup.length"
+              class="suggestions-list"
+            >
               <ion-item *ngFor="let track of tracksGroup">
                 <ion-label
                   (click)="characterForm.get('path').patchValue(track.name)"
                 >
                   {{track.name}}
-                </ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-col>
-          <ion-col class="ion-text-left" size="6">
-            <ion-label style="padding-left: 0.6em">Origem</ion-label>
-            <ion-input
-            (ionFocus)="hideOriginsSuggestions = false"
-            (ionBlur)="hideSuggestion('hideOriginsSuggestions');"
-              formControlName="origin"
-              style="width: 100%; text-indent: 12px"
-            >
-            </ion-input>
-            <ion-list *ngIf="!hideOriginsSuggestions && originsGroup.length" class="suggestions-list">
-              <ion-item *ngFor="let origin of originsGroup">
-                <ion-label
-                  (click)="characterForm.get('origin').patchValue(origin.name)"
-                >
-                  {{origin.name}}
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -135,12 +134,12 @@
         <ion-row style="margin-top: 1em">
           <ion-col
             size="12"
-            (click)="imagesModalIsOpen = true"
             style="
               border: 1px solid var(--ion-color-medium);
               background: #121212;
               border-radius: 16px;
             "
+            (click)="compressFile()"
           >
             <ion-label
               style="
@@ -156,103 +155,37 @@
                 name="image-outline"
                 style="padding-right: 0.6em"
               ></ion-icon
-              >{{selectedImage ? selectedImage : 'Selecionar
-              imagem'}}</ion-label
+              >{{'Selecionar imagem'}}</ion-label
             >
           </ion-col>
         </ion-row>
 
-        <ion-row *ngIf="!editingMode">
+        <ion-row class="ion-align-items-center">
+          <ion-col
+            class="ion-text-center"
+            style="display: flex; justify-content: center"
+          >
+            <div
+              style="
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                border: 1px solid var(--ion-color-primary);
+                overflow: hidden;
+              "
+            >
+              <img
+                [src]="imageResult || '/assets/image/no-profile.png'"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="imageResult" (click)="characterForm.get('image_url').patchValue(''); imageResult = ''">
           <ion-col>
-            <ion-label
-              color="light"
-              style="font-family: SpecialFont; font-size: 1.8em"
-            >
-              Status
+            <ion-label color="danger" style="font-size: .8em;">
+              Remover imagem
             </ion-label>
-          </ion-col>
-        </ion-row>
-
-        <ion-row
-          style="margin: 0.6em; width: 100%; margin: auto"
-          *ngIf="!editingMode"
-        >
-          <ion-col
-            style="
-              border-radius: 0.5em;
-              margin: 0.4em;
-              height: 1.5em;
-              position: relative;
-            "
-          >
-            <div
-              class="progress-bar"
-              style="background-color: var(--ion-color-danger-shade)"
-            >
-              <div
-                class="progress"
-                style="background-color: var(--ion-color-danger)"
-              ></div>
-              <span class="progress-text">
-                <input placeholder="Vida" formControlName="max_life" type="number" />
-              </span>
-            </div>
-          </ion-col>
-          <ion-col
-            style="
-              border-radius: 0.5em;
-              margin: 0.4em;
-              height: 1.5em;
-              position: relative;
-            "
-          >
-            <div
-              class="progress-bar"
-              style="background-color: var(--ion-color-tertiary-shade)"
-            >
-              <div
-                class="progress"
-                style="background-color: var(--ion-color-tertiary)"
-              ></div>
-              <span class="progress-text">
-                <input placeholder="Sanidade" formControlName="max_sanity" type="number" />
-              </span>
-            </div>
-          </ion-col>
-        </ion-row>
-        <ion-row style="width: 100%; margin: auto" *ngIf="!editingMode">
-          <ion-col
-            style="
-              border-radius: 0.5em;
-              margin: 0.4em;
-              height: 1.5em;
-              position: relative;
-            "
-          >
-            <div
-              class="progress-bar"
-              style="background-color: var(--ion-color-success-shade)"
-            >
-              <div
-                class="progress"
-                style="background-color: var(--ion-color-success)"
-              ></div>
-              <span class="progress-text">
-                <input placeholder="Esforço" formControlName="max_effort" type="number" />
-              </span>
-            </div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row style="margin-top: 1em">
-          <ion-col size="12">
-            <ion-label style="padding-left: 0.6em">NEX</ion-label>
-            <ion-input
-              type="number"
-              formControlName="nex"
-              style="width: 100%; text-align: center"
-            >
-            </ion-input>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -264,6 +197,288 @@
       <ion-button
         class="btn-outline"
         style="--background: none"
+        [style]="
+        !editingMode ?
+        '--border-color: var(--ion-color-main);
+        --color: var(--ion-color-light-main);'
+        : '--border-color: var(--ion-color-success);
+        --color: var(--ion-color-success-tint)'
+        "
+        shape="round"
+        expand="block"
+        slot="bottom"
+        fill="clear"
+        (click)="editingMode ? saveCharacterEdit() : editingAttr = true"
+      >
+        {{editingMode ? 'Salvar' : 'Editar atributos'}}
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="menu" *ngIf="editingAttr">
+    <ion-grid class="ion-text-center">
+      <ion-row style="display: flex; align-items: center">
+        <ion-col size="1" (click)="editingAttr = false;">
+          <span style="font-size: 1.8em"
+            ><ion-icon
+              name="chevron-back-outline"
+              style="margin-top: 0.4em"
+            ></ion-icon
+          ></span>
+        </ion-col>
+        <ion-col>
+          <span style="font-size: 1.8em; font-family: SpecialFont"
+            >Editar atributos</span
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-row class="ion-align-items-center" *ngIf="pageWidth >= 340">
+      <ion-col class="ion-text-center">
+        <form [formGroup]="attrForm">
+          <div style="position: relative">
+            <img
+              src="/assets/image/attr1.png"
+              style="
+                width: 300px;
+                height: 300px;
+                margin-bottom: 10px;
+                pointer-events: none;
+              "
+            />
+
+            <form
+              [formGroup]="attrForm"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  margin-top: 2em;
+                "
+              >
+                <input
+                  type="number"
+                  id="agilidade"
+                  class="input-attr"
+                  formControlName="agility"
+                  #agilidadeIpt
+                />
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-around;
+                  margin-top: 1.3em;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-right: 104.2px;
+                  "
+                >
+                  <input
+                    type="number"
+                    id="forca"
+                    class="input-attr"
+                    formControlName="strength"
+                    #forcaIpt
+                  />
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  "
+                >
+                  <input
+                    type="number"
+                    id="intelecto"
+                    style="margin-left: 1em"
+                    class="input-attr"
+                    formControlName="intellect"
+                    #intelectoIpt
+                  />
+                </div>
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-evenly;
+                  margin-top: 4.5em;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-right: 80px;
+                  "
+                >
+                  <input
+                    type="number"
+                    id="presenca"
+                    class="input-attr"
+                    formControlName="presence"
+                    #presencaIpt
+                  />
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  "
+                >
+                  <input
+                    type="number"
+                    id="vigor"
+                    class="input-attr"
+                    formControlName="stamina"
+                    #vigorIpt
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+
+    <ion-row
+      class="ion-align-items-center"
+      *ngIf="pageWidth < 340"
+      style="margin-bottom: 2em"
+    >
+      <ion-col class="ion-text-center">
+        <form [formGroup]="attrForm">
+          <div style="margin-bottom: 10px">
+            <label for="agilidade" style="display: block; margin-bottom: 5px"
+              >Agilidade</label
+            >
+            <input
+              type="number"
+              id="agilidade"
+              class="input-attr-max"
+              formControlName="agility"
+              #agilidadeIpt
+            />
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+            "
+          >
+            <div style="margin-bottom: 10px">
+              <label for="forca" style="display: block; margin-bottom: 5px"
+                >Força</label
+              >
+              <input
+                type="number"
+                id="forca"
+                class="input-attr-max"
+                formControlName="strength"
+                #forcaIpt
+              />
+            </div>
+
+            <div style="margin-bottom: 10px">
+              <label for="intelecto" style="display: block; margin-bottom: 5px"
+                >Intelecto</label
+              >
+              <input
+                type="number"
+                id="intelecto"
+                class="input-attr-max"
+                formControlName="intellect"
+                #intelectoIpt
+              />
+            </div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+            "
+          >
+            <div style="margin-top: 10px">
+              <label for="presenca" style="display: block; margin-bottom: 5px"
+                >Presença</label
+              >
+              <input
+                type="number"
+                id="presenca"
+                class="input-attr-max"
+                formControlName="presence"
+                #presencaIpt
+              />
+            </div>
+
+            <div style="margin-top: 10px">
+              <label for="vigor" style="display: block; margin-bottom: 5px"
+                >Vigor</label
+              >
+              <input
+                type="number"
+                id="vigor"
+                class="input-attr-max"
+                formControlName="stamina"
+                #vigorIpt
+              />
+            </div>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+
+    <div>
+      <ion-label>
+        Ao criar um personagem, cada um de seus atributos inicia com um ponto, e
+        você tem à disposição 4 pontos para distribuir entre eles conforme sua
+        preferência. Adicionalmente, é possível reduzir um atributo a zero para
+        receber 1 ponto extra. O valor máximo inicial permitido para cada
+        atributo é 3.
+      </ion-label>
+    </div>
+
+    <div
+      style="position: relative; margin-top: 2em; padding: 0 0 2em; width: 100%"
+    >
+      <ion-button
+        class="btn-outline"
+        style="
+          --background: none;
+          --background: none;
+          --border-color: var(--ion-color-success);
+          --color: var(--ion-color-success-tint);
+        "
         shape="round"
         expand="block"
         slot="bottom"
@@ -273,44 +488,5 @@
         Finalizar
       </ion-button>
     </div>
-
-    <ion-modal
-      [isOpen]="imagesModalIsOpen"
-      (willDismiss)="imagesModalIsOpen= false"
-    >
-      <ng-template>
-        <ion-header>
-          <ion-toolbar>
-            <ion-title>Escolha uma imagem</ion-title>
-            <ion-buttons slot="end">
-              <ion-button (click)="imagesModalIsOpen = false">
-                <ion-icon name="close"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-header>
-        <ion-content class="ion-padding">
-          <ion-grid>
-            <ion-row>
-              <div style="margin: auto; text-align: center">
-                <ion-col *ngFor="let image of imagesArray">
-                  <img
-                    [src]="image.url"
-                    (click)="selectImage(image.url, image.name)"
-                    style="
-                      max-width: 100px;
-                      max-height: 160px;
-                      min-width: 60px;
-                      min-height: 160px;
-                      margin: 0.5em;
-                    "
-                  />
-                </ion-col>
-              </div>
-            </ion-row>
-          </ion-grid>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
   </div>
 </ion-content>

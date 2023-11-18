@@ -81,8 +81,10 @@ export class CharactersService extends BaseService {
     });
   }
 
-  public createNewCharacter(data: CharacterModel): Observable<any> {
-    return this.http.post(`${this.Basepath()}characters/create`, data, {
+  public createNewCharacter(data: CharacterModel, attr: any): Observable<any> {
+    const sendData = {...data, ...attr};
+
+    return this.http.post(`${this.Basepath()}characters/create`, sendData, {
       headers: this.Headers(),
     });
   }

@@ -119,16 +119,24 @@
         </ion-row>
 
         <ion-row class="ion-align-items-center">
-          <ion-col class="ion-text-center">
-            <img
-              [src]="attr.image_url"
+          <ion-col
+            class="ion-text-center"
+            style="display: flex; justify-content: center"
+          >
+            <div
               style="
-                max-width: 330px;
-                max-height: 330px;
-                min-width: 150px;
-                min-height: 330px;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                border: 1px solid var(--ion-color-primary);
+                overflow: hidden;
               "
-            />
+            >
+              <img
+                [src]="attr.image_url ? attr.image_url : '/assets/image/no-profile.png'"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
           </ion-col>
         </ion-row>
 

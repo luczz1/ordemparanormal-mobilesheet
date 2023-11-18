@@ -127,7 +127,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
 
         this.pageLoaded = true;
         if (localStorage.getItem('loaded')) {
-        this.generic.multLoading(false);
+          this.generic.multLoading(false);
         }
         this.cdr.detectChanges();
       },
@@ -180,7 +180,7 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       this.diceRolling = false;
 
       this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
-    }, 2000);
+    }, 500);
   }
 
   public openModalAndSaveSkill(
@@ -206,6 +206,10 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
         .updateAttributeValue(this.characterID, attribute, Number(value))
         .subscribe({
           next: () => {
+            if (attribute === 'agility') {
+              localStorage.removeItem('totalDefense');
+              localStorage.setItem('totalDefense', String(10 + Number(value)));
+            }
             this.getCharacterAttributes(this.characterID, false);
           },
           error: (err) => this.generic.presentToast(err.error, 3),
