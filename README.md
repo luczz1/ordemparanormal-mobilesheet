@@ -16,7 +16,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ✅ Atributos e perícias editáveis
 - ✅ Rolagem de dados para um atributo, uma perícia ou uma perícia + atributo (dinâmicos com base nos pontos)
 - ✅ Rolagem de dados personalizados
-- ✅ Listar, adicionar e excluir rituais e habilidades
+- ✅ Listar, adicionar, editar e excluir rituais e habilidades
 - ✅ Sistema de inventário
 - ✅ Editar informações do personagem (nex, deslocamento, etc.)
 - ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
