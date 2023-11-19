@@ -4,7 +4,7 @@
 
 Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de Ordem Paranormal, com o intuito de proporcionar uma maneira conveniente e acessível de criar fichas de personagens.
 
->Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
+>Ordem Paranormal é um produto de Jambô Editora e seus respectivos criadores, todos os direitos reservados.
 
 
 ## Progresso
