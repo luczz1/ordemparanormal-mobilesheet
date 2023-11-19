@@ -4,7 +4,7 @@
 
 Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de Ordem Paranormal, com o intuito de proporcionar uma maneira conveniente e acessível de criar fichas de personagens.
 
->Ordem Paranormal é um produto de <a style="text-decoration: none;" href="https://jamboeditora.com.br/" target="_blank">Jambô Editora</a> e seus respectivos criadores, todos os direitos reservados.
+>Ordem Paranormal é um produto de <a href="https://jamboeditora.com.br/" target="_blank">Jambô Editora</a> e seus respectivos criadores, todos os direitos reservados.
 
 
 ## Progresso
