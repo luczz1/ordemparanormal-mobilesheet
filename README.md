@@ -4,7 +4,7 @@
 
 Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de Ordem Paranormal, com o intuito de proporcionar uma maneira conveniente e acessível de criar fichas de personagens.
 
->Ordem Paranormal é criada por Rafael Lange e todos os direitos da marca pertencem a ele.
+>Ordem Paranormal é um produto de <a href="https://jamboeditora.com.br/" target="_blank">Jambô Editora</a> e seus respectivos criadores, todos os direitos reservados.
 
 
 ## Progresso
@@ -76,7 +76,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js (no backend), lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
 
-  Download: [Dump20231118.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/13400601/Dump20231118.zip)
+  Download: [Dump20231118 (1).zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/13401977/Dump20231118.1.zip)
 
   ## Iniciando o projeto
   Você precisará ter instalado o node (abra o site e faça o download).
