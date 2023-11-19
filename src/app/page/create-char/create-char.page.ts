@@ -23,7 +23,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     current_effort: new FormControl(0),
     current_life: new FormControl(0),
     current_sanity: new FormControl(0),
-    displacement: new FormControl('9m/6q'),
+    displacement: new FormControl('9m/6q', [Validators.required]),
     image_url: new FormControl(null),
     max_effort: new FormControl(0),
     max_life: new FormControl(0),

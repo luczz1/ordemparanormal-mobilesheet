@@ -1,19 +1,30 @@
 <ion-content>
   <div class="menu">
-    <div style="margin-top: 5em">
+    <div style="margin-top: 2em">
       <img src="/assets/image/ORDO_REALITAS.png" />
     </div>
 
-    <ion-item lines="none">
-      <ion-label class="text-creator" style="font-family: Girassol">
-        Ficha de Agente
-      </ion-label>
-    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-label class="text-creator" style="font-family: Girassol">
+          N.O.V.A
+        </ion-label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label class="text-creator" style="font-size: .8em">
+          Núcleo de Operações e Vigilância Anti-Paranormal
+        </ion-label>
+      </ion-col>
+    </ion-row>
 
     <ion-button
       class="btn-default"
       color="success"
       shape="round"
+      style="margin-top: 2em;"
       expand="block"
       (click)="redirectToCharOrLogin()"
     >
@@ -29,7 +40,7 @@
       Sobre
     </ion-button>
 
-    <div style="margin-top: 2em;" *ngIf="username">
+    <div style="margin-top: 2em" *ngIf="username">
       <ion-label
         >Logado como {{username}}.
         <ion-text
@@ -39,7 +50,6 @@
           >Sair</ion-text
         ></ion-label
       >
-
     </div>
   </div>
 </ion-content>

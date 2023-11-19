@@ -138,6 +138,15 @@
 
         <ion-row *ngIf="editingMode" style="margin-top: .5em">
           <ion-col class="ion-text-left" size="12">
+            <ion-label style="padding-left: 0.6em">Deslocamento</ion-label>
+            <ion-input
+              formControlName="displacement"
+              style="width: 100%; text-align: center;"
+              type="text"
+            >
+            </ion-input>
+          </ion-col>
+          <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">NEX</ion-label>
             <ion-input
               (ionFocus)="className !== 'Mundano' ? hideNexSuggestions = false : null"
