@@ -17,7 +17,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     id: new FormControl(0),
     name: new FormControl(null, [Validators.required]),
     age: new FormControl(null, [Validators.required]),
-    path: new FormControl(null, [Validators.required]),
+    path: new FormControl(null),
     charClass: new FormControl(null, [Validators.required]),
     occupation: new FormControl(''),
     current_effort: new FormControl(0),
@@ -32,6 +32,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     player: new FormControl(null, [Validators.required]),
     weight: new FormControl(0),
     origin: new FormControl('', [Validators.required]),
+    pe_round: new FormControl(0),
   });
 
   public attrForm = new FormGroup({
@@ -41,7 +42,6 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     intellect: new FormControl(1),
     stamina: new FormControl(1),
     presence: new FormControl(1),
-    normally: new FormControl(1),
   });
 
   public imageResult = '';
@@ -53,14 +53,21 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   public pageLoaded = false;
 
   public editingAttr = false;
+  public className = '';
 
   public classesGroup: ClassesModel[] = [];
   public tracksGroup: TracksModel[] = [];
   public originsGroup: ClassesModel[] = [];
 
+  public nexValues = [
+    5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
+    100,
+  ];
+
   public hideClassesSuggestions = true;
   public hideTracksSuggestions = true;
   public hideOriginsSuggestions = true;
+  public hideNexSuggestions = true;
 
   constructor(
     private characterService: CharactersService,
@@ -111,6 +118,17 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         this.characterForm.patchValue(res.character);
         this.characterForm.get('charClass').patchValue(res.character.class);
         this.imageResult = this.characterForm.get('image_url').getRawValue();
+
+        this.className = res.character.class;
+        if (this.className !== 'Mundano') {
+          const classId =
+            this.className === 'Combatente'
+              ? 1
+              : this.className === 'Especialista'
+              ? 2
+              : 3;
+          this.getTracks(classId, this.className, false);
+        }
 
         this.pageLoaded = true;
 
@@ -169,7 +187,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public compressFile() {
-    const MAX_MEGABYTE = 0.500;
+    const MAX_MEGABYTE = 0.5;
 
     this.imageCompress.uploadAndGetImageWithMaxSize(MAX_MEGABYTE).then(
       (result: string) => {
@@ -188,13 +206,15 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         this.characterForm.get('image_url').patchValue(this.imageResult);
       }
     );
-
-
   }
 
-  public getTracks(class_id: number, classname: string) {
-    this.characterForm.get('charClass').patchValue(classname);
-    this.characterForm.get('path').patchValue('');
+  public getTracks(class_id: number, classname: string, clearTrack = true) {
+    if (clearTrack) {
+      this.characterForm.get('charClass').patchValue(classname);
+      this.characterForm.get('path').patchValue('');
+    }
+
+    this.className = classname;
 
     if (classname === 'Mundano') {
       this.tracksGroup = [];

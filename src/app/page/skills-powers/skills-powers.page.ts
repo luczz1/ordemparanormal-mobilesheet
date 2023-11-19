@@ -160,7 +160,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     }
   }
 
-    public updateAbilityOrRitual(type: string, id: number) {
+  public updateAbilityOrRitual(type: string, id: number) {
     if (type === 'skill') {
       this.updateAbility(id);
     } else if (type === 'power') {
@@ -274,7 +274,17 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
       localStorage.removeItem('ritualsDT');
       return;
     }
-    localStorage.setItem('ritualsDT', this.DTValue);
+
+    this.charactersService
+      .updateCharacterRitualDT(this.characterId, Number(this.DTValue))
+      .subscribe({
+        next: () => {
+          localStorage.setItem('ritualsDT', this.DTValue);
+        },
+        error: (err) => {
+          this.generic.presentToast(err.error, 3);
+        },
+      });
   }
 
   public getPowerOrAbilityByID(id: number, type: number) {
@@ -300,7 +310,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     });
   }
 
-  public getProciciences(openModalOrStartLoading = true) {
+  public getProficiences(openModalOrStartLoading = true) {
     if (localStorage.getItem('proficiences')) {
       this.proficiences = JSON.parse(localStorage.getItem('proficiences'));
       this.proficiencyModalIsOpen = openModalOrStartLoading;
@@ -339,7 +349,7 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
         .subscribe({
           next: () => {
             localStorage.removeItem('proficiences');
-            this.getProciciences(false);
+            this.getProficiences(false);
           },
           error: (err) => {
             this.generic.presentToast(err, 3);

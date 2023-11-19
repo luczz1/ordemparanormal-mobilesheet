@@ -20,6 +20,7 @@ export interface CharacterModel {
   hidden_sanity: number;
   hidden_effort: number;
   origin: string;
+  pe_round: number;
 }
 
 export interface CharacterAttributesModel {

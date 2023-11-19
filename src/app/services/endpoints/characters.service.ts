@@ -184,6 +184,16 @@ export class CharactersService extends BaseService {
     });
   }
 
+  public updateCharacterRitualDT(
+    characterId: number,
+    dt: number
+  ): Observable<any> {
+
+    return this.http.put(`${this.Basepath()}characters/dt/${characterId}/${dt}`, null, {
+      headers: this.Headers(),
+    });
+  }
+
   public deleteCharacterPower(
     characterId: number,
     itemid: number

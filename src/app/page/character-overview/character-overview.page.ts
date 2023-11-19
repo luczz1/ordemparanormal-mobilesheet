@@ -118,6 +118,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   public getCharacterByID(id: number) {
     this.charactersService.getCharacterByID(id).subscribe(
       (res) => {
+        console.log(res);
         this.weightShow =
           this.generic.currentWeight + '/' + this.generic.totalWeight;
 
@@ -133,6 +134,7 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
         localStorage.removeItem('updatedChar');
 
         localStorage.setItem('characterInfos', JSON.stringify(res.character));
+        localStorage.setItem('ritualsDT', String(res.character.dt))
         localStorage.setItem('hiddenStatus', JSON.stringify(this.hiddenStatus));
 
         this.generic.multLoading(false);
@@ -228,7 +230,10 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
     window.location.replace('home');
   }
 
-  public updateCharacterInDatabase() {
+  public updateCharacterInDatabase(ev?: any) {
+    const pe_round_value = ev.target.value;
+    if (pe_round_value) { this.character[0].pe_round = Number(pe_round_value); }
+
     if (this.timeoutId !== null) {
       clearTimeout(this.timeoutId);
     }

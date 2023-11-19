@@ -41,11 +41,12 @@
                 justify-content: left;
                 margin-bottom: 0.3em;
               "
-              >História
+              >Histórico
             </span>
             <ion-textarea
               style="height: 150px !important"
               (keyup)="editAboutInfos()"
+              placeholder="Infância, relação com a família, contato com o Paranormal, eventos bons e ruins..."
               maxlength="250"
               formControlName="history"
             >
@@ -70,6 +71,7 @@
             <ion-textarea
               maxlength="250"
               style="height: 150px !important"
+              placeholder="Traços marcantes, opiniões, ideais..."
               (keyup)="editAboutInfos()"
               formControlName="personality"
             >
@@ -95,6 +97,7 @@
               maxlength="250"
               style="height: 150px !important"
               (keyup)="editAboutInfos()"
+              placeholder="Por que você faz parte da Ordem? Porque luta contra o Outro Lado?"
               formControlName="goals"
             >
             </ion-textarea>

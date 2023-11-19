@@ -50,15 +50,6 @@ import { ModalController } from '@ionic/angular';
       >
         Vigor
       </ion-button>
-      <ion-button
-        class="modal-button"
-        (click)="dismiss('normally')"
-        expand="block"
-        style=" --border-color: var(--ion-color-light);
-        --color: var(--ion-color-light);"
-      >
-        Normalmente
-      </ion-button>
     </ion-content>
   `,
   styles: [

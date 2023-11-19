@@ -48,7 +48,6 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
     intellect: new FormControl(0),
     stamina: new FormControl(0),
     presence: new FormControl(0),
-    normally: new FormControl(0),
   });
 
   public showModal = false;

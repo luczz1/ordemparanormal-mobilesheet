@@ -36,3 +36,26 @@
   width: 100%;
   text-align: center;
 }
+
+@keyframes shake {
+  0%, 100% { transform: translateY(0); }
+  25%, 75% { transform: translateY(-1px); }
+  50% { transform: translateY(1px); }
+}
+
+@keyframes alternateColor {
+  0% {
+    color: var(--ion-color-success);
+  }
+  50% {
+    color: var(--ion-color-success-tint);
+  }
+  100% {
+    color: var(--ion-color-success);
+  }
+}
+
+.shake-text {
+  display: inline-block;
+  animation: shake 0.5s infinite, alternateColor .5s infinite;
+}

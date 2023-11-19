@@ -40,7 +40,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: 1em">
+        <ion-row style="margin-top: .5em">
           <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">Origem</ion-label>
             <ion-input
@@ -48,6 +48,7 @@
               (ionBlur)="hideSuggestion('hideOriginsSuggestions');"
               formControlName="origin"
               style="width: 100%; text-indent: 12px"
+              [readonly]="true"
             >
             </ion-input>
             <ion-list
@@ -65,8 +66,8 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: 1em">
-          <ion-col class="ion-text-left" size="6">
+        <ion-row style="margin-top: .5em">
+          <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">Classe</ion-label>
             <ion-input
               formControlName="charClass"
@@ -74,6 +75,7 @@
               (ionBlur)="hideSuggestion('hideClassesSuggestions');"
               (ionInput)="tracksGroup = []; characterForm.get('path').patchValue('')"
               style="width: 100%; text-indent: 12px"
+              [readonly]="true"
             >
             </ion-input>
 
@@ -88,13 +90,16 @@
               </ion-item>
             </ion-list>
           </ion-col>
-          <ion-col class="ion-text-left" size="6">
+        </ion-row>
+        <ion-row style="margin-top: .5em">
+          <ion-col *ngIf="className && className !== 'Mundano'" class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">Trilha</ion-label>
             <ion-input
               (ionFocus)="hideTracksSuggestions = false"
               (ionBlur)="hideSuggestion('hideTracksSuggestions');"
               formControlName="path"
               style="width: 100%; text-indent: 12px"
+              [readonly]="true"
             >
             </ion-input>
             <ion-list
@@ -112,7 +117,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: 1em">
+        <ion-row style="margin-top: .5em">
           <ion-col class="ion-text-left" size="6">
             <ion-label style="padding-left: 0.6em">Ocupação</ion-label>
             <ion-input
@@ -131,7 +136,35 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: 1em">
+        <ion-row *ngIf="editingMode" style="margin-top: .5em">
+          <ion-col class="ion-text-left" size="12">
+            <ion-label style="padding-left: 0.6em">NEX</ion-label>
+            <ion-input
+              (ionFocus)="hideNexSuggestions = false"
+              (ionBlur)="hideSuggestion('hideNexSuggestions');"
+              formControlName="nex"
+              style="width: 100%; text-align: center;"
+              type="number"
+              [readonly]="true"
+            >
+            </ion-input>
+            <ion-list
+              *ngIf="!hideNexSuggestions"
+              class="suggestions-list"
+            >
+              <ion-item *ngFor="let nex of nexValues">
+                <ion-label
+                  (click)="characterForm.get('nex').patchValue(nex)"
+                >
+                  <strong>{{nex}}%</strong>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row style="margin-top: .5em">
           <ion-col
             size="12"
             style="
@@ -170,7 +203,7 @@
                 width: 200px;
                 height: 200px;
                 border-radius: 16px;
-                border: 1px solid var(--ion-color-dark-tint);
+                border: 1px solid var(--ion-color-dark);
                 overflow: hidden;
               "
             >

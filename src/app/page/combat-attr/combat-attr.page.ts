@@ -186,13 +186,17 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     this.editingMode = true;
     this.defenseMode = false;
 
+    this.generic.multLoading(true);
+
     this.charactersService.getCharacterAttackByID(attackID).subscribe(
       (res) => {
         this.attacksForm.patchValue(res[0]);
 
+        this.generic.multLoading(false);
         this.openStatusModal = true;
       },
       (error) => {
+        this.generic.multLoading(true);
         this.generic.presentToast(error.error, 3);
       }
     );
@@ -202,14 +206,18 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
     this.editingMode = true;
     this.defenseMode = true;
 
+    this.generic.multLoading(true);
+
     this.charactersService.getCharacterDefenseByID(defenseID).subscribe(
       (res) => {
         this.protectionValue = res[0].protection;
         this.selectedDefenseID = res[0].id;
 
+        this.generic.multLoading(false);
         this.openStatusModal = true;
       },
       (error) => {
+        this.generic.multLoading(false);
         this.generic.presentToast(error.error, 3);
       }
     );

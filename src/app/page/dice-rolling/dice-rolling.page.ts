@@ -18,6 +18,7 @@ export class DiceRollingPage implements ViewDidEnter {
   public pageLoaded = false;
 
   public diceNumber = 0;
+  public faces = 0;
 
   public diceRolling = false;
   public diceResultTotal = 0;
@@ -54,8 +55,7 @@ export class DiceRollingPage implements ViewDidEnter {
     this.attrname = rollValueStr[1];
     const realRollValue = rollValueStr[0];
 
-    const numRollValue =
-      this.attrname !== 'normally' ? Number(realRollValue) : 1;
+    const numRollValue = Number(realRollValue);
 
     if (numRollValue <= 0) {
       this.attributeIsHigherOrLowerThanZero = true;
@@ -82,6 +82,8 @@ export class DiceRollingPage implements ViewDidEnter {
 
   public rollDice(numberOfDice: number | any, faces: any = 20) {
     this.numberOfDice = Number(numberOfDice);
+    this.faces = faces;
+
     this.clickedNumber = 0;
     this.diceResultTotal = 0;
 
@@ -119,5 +121,9 @@ export class DiceRollingPage implements ViewDidEnter {
 
   public getMinDiceResult(): number {
     return Math.min(...this.diceResults);
+  }
+
+  public getMaxDiceResult(): number {
+    return Math.max(...this.diceResults);
   }
 }
