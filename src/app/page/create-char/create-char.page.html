@@ -140,12 +140,13 @@
           <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">NEX</ion-label>
             <ion-input
-              (ionFocus)="hideNexSuggestions = false"
+              (ionFocus)="className !== 'Mundano' ? hideNexSuggestions = false : null"
               (ionBlur)="hideSuggestion('hideNexSuggestions');"
               formControlName="nex"
               style="width: 100%; text-align: center;"
               type="number"
               [readonly]="true"
+              [placeholder]="className === 'Mundano' ? 'Escolha uma nova classe.' : ''"
             >
             </ion-input>
             <ion-list

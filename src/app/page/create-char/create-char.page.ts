@@ -128,6 +128,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
               ? 2
               : 3;
           this.getTracks(classId, this.className, false);
+        } else {
+          this.characterForm.get('nex').patchValue(null);
         }
 
         this.pageLoaded = true;
@@ -217,8 +219,13 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     this.className = classname;
 
     if (classname === 'Mundano') {
+      this.characterForm.get('nex').patchValue(null);
       this.tracksGroup = [];
       return;
+    } else {
+      if (this.characterForm.get('nex').getRawValue() === null) {
+        this.characterForm.get('nex').patchValue(5);
+      }
     }
 
     this.characterService.getTracks(class_id).subscribe({
