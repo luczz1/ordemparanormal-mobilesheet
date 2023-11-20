@@ -1,4 +1,4 @@
-# Ordem Paranormal - Ficha Mobile
+# N.O.V.A. - Ficha para Ordem Paranormal
 
 ### Sobre
 
