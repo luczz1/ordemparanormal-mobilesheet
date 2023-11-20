@@ -1,4 +1,4 @@
-# Ordem Paranormal - Ficha Mobile
+# N.O.V.A. - Ficha para Ordem Paranormal
 
 ### Sobre
 
@@ -45,7 +45,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 > As imagens não representam todas as telas/funções presente no projeto.
 
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/d1c344a4-a5ee-408f-991b-1e5fa3831c99" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/591530c4-8e75-4c0f-8399-1c71e8fd618e" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/e15e5058-e72f-4c20-895e-39715854640c" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c587962c-ad3e-4d12-af7f-b45ecf1f41e0" style="width: 20%" />
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9fd09fb0-0771-4cba-b08e-3a0d07fb9dac" style="width: 20%"/>
