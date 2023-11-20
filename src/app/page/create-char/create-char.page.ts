@@ -174,6 +174,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       this.characterService.editCharacter(this.characterId, obj).subscribe({
         next: () => {
           this.router.navigate([`/character/${this.characterId}`]);
+          localStorage.removeItem('skillsList');
           localStorage.setItem('updatedChar', 'true');
         },
         error: (err) => {

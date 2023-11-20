@@ -86,9 +86,6 @@
                 ></ion-icon>
               </span>
             </div>
-            <p style="color: var(--ion-color-medium)">
-              <strong>Página: {{skill.page}}</strong>
-            </p>
 
             <span style="color: var(--ion-color-medium)"
               >{{skill.description}}</span
@@ -295,13 +292,6 @@
               [(ngModel)]="newPower.name"
               type="text"
               maxlength="100"
-            ></ion-input>
-
-            <ion-input
-              placeholder="Página"
-              *ngIf="currentAddName === 'skill'"
-              [(ngModel)]="newSkill.page"
-              type="text"
             ></ion-input>
 
             <ion-row>

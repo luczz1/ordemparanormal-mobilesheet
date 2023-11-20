@@ -18,6 +18,11 @@ const routes: Routes = [
     canActivate: [RouterGuard]
   },
   {
+    path: 'nova',
+    loadChildren: () => import('./page/nova/nova.module').then(m => m.NovaPageModule),
+    canActivate: [RouterGuard]
+  },
+  {
     path: 'characters',
     loadChildren: () => import('./page/characters/characters.module').then(m => m.CharactersPageModule),
     canActivate: [RouterGuard]

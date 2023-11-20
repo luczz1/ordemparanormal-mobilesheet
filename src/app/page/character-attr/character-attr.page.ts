@@ -211,6 +211,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
             if (attribute === 'agility') {
               localStorage.removeItem('totalDefense');
               localStorage.setItem('totalDefense', String(10 + Number(value)));
+            } else if (attribute === 'stamina' || attribute === 'presence') {
+              localStorage.setItem('updatedChar', 'true');
             }
             this.getCharacterAttributes(this.characterID, false);
           },
