@@ -58,7 +58,7 @@
           *ngIf="!hiddenAbilities"
           class="abilities-rituals-list"
           style="max-height: 280px; overflow: auto"
-          [style]="hiddenRituals ? 'max-height: 50vh' : 'max-height: 280px'"
+          [style]="hiddenRituals ? 'max-height: 70vh' : 'max-height: 350px'"
         >
           <div *ngFor="let skill of skillsList" class="card-char">
             <p>
@@ -140,7 +140,7 @@
           *ngIf="!hiddenRituals"
           class="abilities-rituals-list"
           style="overflow: auto"
-          [style]="hiddenAbilities ? 'max-height: 60vh' : 'max-height: 280px'"
+          [style]="hiddenAbilities ? 'max-height: 70vh' : 'max-height: 350px'"
         >
           <div *ngFor="let power of powersList" class="card-char">
             <p>
