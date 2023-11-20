@@ -32,8 +32,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 ### Adicionais
 
 - ⌛ Painel do(a) mestre
-- ⌛ Atualização de dados em tempo real para o(a) mestre
-
+  
 ## Tecnologias utilizadas:
 - Angular com Ionic (frontend, adaptação e importação mobile)
 - NodeJS com Express (backend)
