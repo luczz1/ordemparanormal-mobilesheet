@@ -61,8 +61,10 @@
           [style]="hiddenRituals ? 'max-height: 70vh' : 'max-height: 350px'"
         >
           <div *ngFor="let skill of skillsList" class="card-char">
-            <p>
-              <ion-text>{{skill.name}}</ion-text>
+            <div style="display: flex; justify-content: space-between">
+              <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
+                {{skill.name}}
+              </p>
               <span
                 style="
                   float: right;
@@ -83,7 +85,7 @@
                   name="create-outline"
                 ></ion-icon>
               </span>
-            </p>
+            </div>
             <p style="color: var(--ion-color-medium)">
               <strong>Página: {{skill.page}}</strong>
             </p>
@@ -143,8 +145,10 @@
           [style]="hiddenAbilities ? 'max-height: 70vh' : 'max-height: 350px'"
         >
           <div *ngFor="let power of powersList" class="card-char">
-            <p>
-              {{power.name}}
+            <div style="display: flex; justify-content: space-between">
+              <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
+                {{power.name}}
+              </p>
               <span
                 style="
                   float: right;
@@ -165,7 +169,7 @@
                   name="create-outline"
                 ></ion-icon>
               </span>
-            </p>
+            </div>
             <div
               style="
                 display: flex;

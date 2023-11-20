@@ -46,7 +46,9 @@ export class LoginPage implements ViewDidEnter, ViewDidLeave {
       this.loginForm.get('name').updateValueAndValidity();
     } else {
       this.loginForm.get('name').setValidators([Validators.required]);
-      this.loginForm.get('email').setValidators([Validators.required, Validators.email]);
+      this.loginForm
+        .get('email')
+        .setValidators([Validators.required, Validators.email]);
 
       this.loginForm.get('name').updateValueAndValidity();
       this.loginForm.get('email').updateValueAndValidity();
@@ -59,18 +61,17 @@ export class LoginPage implements ViewDidEnter, ViewDidLeave {
       this.auth[endpoint](obj).subscribe({
         next: (token) => {
           localStorage.setItem('token', token);
-          this.generic.presentToast(`${this.newAcc ? 'Conta criada' : 'Logado'} com sucesso!`);
+          this.generic.presentToast(
+            `${this.newAcc ? 'Conta criada' : 'Logado'} com sucesso!`
+          );
           this.router.navigate(['/characters']);
         },
         error: (err) => {
-          console.log(err), this.generic.presentToast(err.error, 3);
+          this.generic.presentToast(err.error, 3);
         },
       });
     } else {
-      this.generic.presentToast(
-        'Formulário inválido.',
-        3
-      );
+      this.generic.presentToast('Formulário inválido.', 3);
     }
   }
 

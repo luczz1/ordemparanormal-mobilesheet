@@ -154,7 +154,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       this.characterService.createNewCharacter(obj, objAttr).subscribe({
         next: () => this.router.navigate(['/characters']),
         error: (err) => {
-          console.log(err), this.generic.presentToast(err.error, 3);
+          this.generic.presentToast(err.error, 3);
         },
       });
     } else {
@@ -177,7 +177,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
           localStorage.setItem('updatedChar', 'true');
         },
         error: (err) => {
-          console.log(err), this.generic.presentToast(err.error, 3);
+          this.generic.presentToast(err.error, 3);
         },
       });
     } else {
@@ -198,11 +198,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         this.characterForm.get('image_url').patchValue(this.imageResult);
       },
       (result: string) => {
-        console.error(
-          "The compression algorithm didn't succed! The best size we can do is",
-          this.imageCompress.byteCount(result),
-          'bytes'
-        );
+        console.error(this.imageCompress.byteCount(result), 'bytes');
 
         this.imageResult = result;
         this.characterForm.get('image_url').patchValue(this.imageResult);

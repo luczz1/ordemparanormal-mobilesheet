@@ -52,7 +52,7 @@
           (click)="editingMode = false; protectionValue = ''; defenseMode = true; openStatusModal = true"
         >
           <ion-icon
-            style="float: right; font-size: 1.3em;"
+            style="float: right; font-size: 1.3em"
             name="add-outline"
             color="light"
           >
@@ -66,7 +66,7 @@
             <span style="position: absolute; right: 0; margin-right: 1em">
               <ion-icon
                 color="tertiary"
-                style="padding-right: 0.5em; padding-bottom: .1em"
+                style="padding-right: 0.5em; padding-bottom: 0.1em"
                 name="create-outline"
                 (click)="getDefenseByID(defense.id)"
               ></ion-icon>
@@ -102,7 +102,7 @@
               <span style="position: absolute; right: 0; margin-right: 1em">
                 <ion-icon
                   color="tertiary"
-                  style="padding-right: 0.5em; padding-bottom: .02em"
+                  style="padding-right: 0.5em; padding-bottom: 0.02em"
                   name="create-outline"
                   (click)="getAttackByID(attack.id)"
                 ></ion-icon>
@@ -114,7 +114,12 @@
               ></span>
             </p>
             <p><strong>Teste:</strong> {{attack.test}}</p>
-            <p><strong>Dano:</strong> {{attack.damage}}</p>
+            <p
+              (click)="rollDice(attack.damage)"
+              style="color: var(--ion-color-danger); text-decoration: underline"
+            >
+              <strong>Dano:</strong> {{attack.damage}}
+            </p>
             <p>
               <strong style="font-size: 0.8em"
                 >Crítico, alcance ou especial:</strong
@@ -134,9 +139,7 @@
       <ng-template>
         <ion-header>
           <ion-toolbar>
-            <ion-title
-              >{{editingMode ? 'Editar' : 'Adicionar'}}</ion-title
-            >
+            <ion-title>{{editingMode ? 'Editar' : 'Adicionar'}}</ion-title>
             <ion-buttons slot="end">
               <ion-button (click)="openStatusModal = false">
                 <ion-icon name="close"></ion-icon>
@@ -162,7 +165,7 @@
             <ion-input
               formControlName="damage"
               type="text"
-              placeholder="Dano"
+              placeholder="Dano (ex: 3d8)"
             ></ion-input>
 
             <ion-input
@@ -173,7 +176,11 @@
           </form>
           <ion-button
             class="btn-outline"
-            style="--background: none; --border-color: var(--ion-color-main); --color: var(--ion-color-main)"
+            style="
+              --background: none;
+              --border-color: var(--ion-color-main);
+              --color: var(--ion-color-main);
+            "
             shape="round"
             expand="block"
             fill="clear"
@@ -193,7 +200,11 @@
           </div>
           <ion-button
             class="btn-outline"
-            style="--background: none; --border-color: var(--ion-color-main); --color: var(--ion-color-main)"
+            style="
+              --background: none;
+              --border-color: var(--ion-color-main);
+              --color: var(--ion-color-main);
+            "
             shape="round"
             expand="block"
             fill="clear"
@@ -205,4 +216,47 @@
       </ng-template>
     </ion-modal>
   </div>
+
+  <ion-modal
+    style="--height: 280px; --width: 300px"
+    [isOpen]="openDiceRollModal"
+    (willDismiss)="openDiceRollModal = false;"
+  >
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-row style="margin-top: 0.8em; text-align: center">
+          <ion-col>
+            <ion-label color="primary">
+              Total: {{diceRolling ? 0 : diceResultTotal + '+' + modifier + ' = '
+              + (diceResultTotal + modifier)}}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row
+          class="ion-align-items-center"
+          style="max-height: 220px; overflow: auto"
+        >
+          <ng-container *ngFor="let diceResult of diceResults; let i = index">
+            <ion-col size="6" class="ion-text-center">
+              <img
+                src="/assets/image/dice.png"
+                style="max-width: 70%; min-width: 60%"
+              />
+              <div
+                class="dice-result"
+                style="
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
+              >
+                <span style="font-size: 1.1em">{{diceResult}}</span>
+              </div>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

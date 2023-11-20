@@ -30,6 +30,18 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
 
   public selectedDefenseID = 0;
 
+  public numberOfDice: number = 1;
+  public diceResults: number[] = [];
+  public diceRolling = false;
+
+  public openDiceRollModal = false;
+
+  public diceResultTotal = 0;
+  public timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  public faces = 0;
+  public modifier = 0;
+
   public attacksForm: any = new FormGroup({
     id: new FormControl(0),
     attack_name: new FormControl('', [Validators.required]),
@@ -168,7 +180,7 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
           localStorage.setItem('attacksList', '[]');
         }
         if (localStorage.getItem('loaded')) {
-        this.generic.multLoading(false);
+          this.generic.multLoading(false);
         }
 
         this.pageLoaded = true;
@@ -295,5 +307,61 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
         error: (err) => this.generic.presentToast(err.error, 3),
       });
     }
+  }
+
+  rollDice(value: string) {
+    const sanitizedValue = value.replace(/\s/g, '');
+    const match = sanitizedValue.match(/^(\d+)d(\d+)(\+(\d+))?/);
+
+    if (!match) {
+      this.generic.presentToast('Formato de dados inválido', 3);
+      return;
+    }
+
+    this.numberOfDice = parseInt(match[1]);
+    this.faces = parseInt(match[2]);
+    this.diceResultTotal = 0;
+    this.modifier = 0;
+
+    if (match[4]) {
+      this.modifier = parseInt(match[4]);
+    }
+
+    this.diceRoll();
+  }
+
+  diceRoll() {
+    if (this.numberOfDice > 100 || this.numberOfDice <= 0) {
+      this.generic.presentToast('Quantidade de dados inválida', 3);
+      return;
+    }
+
+    if (this.faces > 1000 || this.faces <= 0) {
+      this.generic.presentToast('Número de faces inválido', 3);
+      return;
+    }
+
+    this.openDiceRollModal = true;
+
+    const audio = new Audio('/assets/sound/dice-roll.mp3');
+    audio.play();
+
+    this.diceRolling = true;
+
+    let diceInterval = setInterval(() => {
+      this.diceResults = [];
+
+      for (let i = 0; i < this.numberOfDice; i++) {
+        const diceNumber = Math.ceil(Math.random() * this.faces);
+        this.diceResults.push(diceNumber);
+      }
+    }, 50);
+
+    setTimeout(() => {
+      clearInterval(diceInterval);
+      this.diceRolling = false;
+
+      this.diceResults.forEach((dice) => (this.diceResultTotal += dice));
+    }, 600);
   }
 }
