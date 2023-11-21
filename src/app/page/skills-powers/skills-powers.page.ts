@@ -28,6 +28,9 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public hiddenAbilities = false;
   public hiddenRituals = false;
 
+  public expandedItems: { [key: number]: boolean } = {};
+  public maxLength: number = 90;
+
   public proficiences = {
     id: 0,
     simple_weapon: 0,
@@ -356,6 +359,10 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
           },
         });
     }
+  }
+
+  public toggleReadMore(itemId: number) {
+    this.expandedItems[itemId] = !this.expandedItems[itemId];
   }
 
   private clearItems() {

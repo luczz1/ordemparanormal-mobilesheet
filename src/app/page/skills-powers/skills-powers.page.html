@@ -86,10 +86,18 @@
                 ></ion-icon>
               </span>
             </div>
+              <span style="color: var(--ion-color-medium)">
+                {{ expandedItems[skill.id] ? skill.description :
+                skill.description.slice(0, maxLength) +
+                (skill.description.length > maxLength ? '...' : '') }}
+              </span>
 
-            <span style="color: var(--ion-color-medium)"
-              >{{skill.description}}</span
-            >
+              <ion-text
+                *ngIf="skill.description.length > maxLength"
+                (click)="toggleReadMore(skill.id)"
+              >
+                {{ expandedItems[skill.id] ? 'Mostrar menos' : 'Ler mais' }}
+              </ion-text>
           </div>
         </div>
 
@@ -344,6 +352,7 @@
               *ngIf="currentAddName === 'skill'"
               placeholder="Descrição"
               [(ngModel)]="newSkill.description"
+              maxlength="1000"
             ></ion-textarea>
 
             <ion-textarea
@@ -351,6 +360,7 @@
               *ngIf="currentAddName === 'power'"
               placeholder="Descrição"
               [(ngModel)]="newPower.description"
+              maxlength="200"
             ></ion-textarea>
 
             <div *ngIf="currentAddName === 'power'">
