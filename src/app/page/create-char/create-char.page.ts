@@ -61,7 +61,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
 
   public nexValues = [
     5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
-    100,
+    99,
   ];
 
   public hideClassesSuggestions = true;
