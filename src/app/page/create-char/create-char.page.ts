@@ -54,6 +54,7 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
 
   public editingAttr = false;
   public className = '';
+  public oldClassName = '';
 
   public classesGroup: ClassesModel[] = [];
   public tracksGroup: TracksModel[] = [];
@@ -120,6 +121,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         this.imageResult = this.characterForm.get('image_url').getRawValue();
 
         this.className = res.character.class;
+        this.oldClassName = res.character.class;
+
         if (this.className !== 'Mundano') {
           const classId =
             this.className === 'Combatente'
@@ -174,7 +177,9 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
       this.characterService.editCharacter(this.characterId, obj).subscribe({
         next: () => {
           this.router.navigate([`/character/${this.characterId}`]);
-          localStorage.removeItem('skillsList');
+          if (this.oldClassName !== obj.charClass) {
+            localStorage.removeItem('skillsList');
+          }
           localStorage.setItem('updatedChar', 'true');
         },
         error: (err) => {
