@@ -24,9 +24,7 @@
               >Rolagem de {{rollname | titlecase}}</span
             >
             <br />
-            <ion-text
-              *ngIf="attrname && attrname !== 'nAttr'"
-              color="medium"
+            <ion-text *ngIf="attrname && attrname !== 'nAttr'" color="medium"
               >Com {{attrname | attrFormat}}</ion-text
             >
           </ion-col>
@@ -79,7 +77,8 @@
                   style="font-size: 1.1em"
                   [class]="!diceRolling && diceResult === faces ? 'shake-text' : ''"
                   [style]="attributeIsHigherOrLowerThanZero && !diceRolling && diceResult === getMinDiceResult() ?
-                  'color: var(--ion-color-danger)' : !diceRolling && diceResult === getMaxDiceResult() ? 'color: var(--ion-color-success-tint)' : ''"
+                  'color: var(--ion-color-danger)' : !diceRolling && diceResult === getMaxDiceResult() &&  diceResults.length > 1 ?
+                   'color: var(--ion-color-success-tint)' : ''"
                   >{{diceResult}}</span
                 >
               </div>
