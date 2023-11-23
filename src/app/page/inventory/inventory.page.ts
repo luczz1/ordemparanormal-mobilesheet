@@ -35,6 +35,18 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
   });
 
   public hideInventoryInfos = false;
+  public hideCreditsSuggestions = true;
+  public hidePatentSuggestions = true;
+
+  public creditsGroup = ['Baixo', 'Médio', 'Alto', 'Ilimitado'];
+  public patentsGroup = [
+    'Mundano',
+    'Recruta',
+    'Operador',
+    'Agente Especial',
+    'Oficial de Operações',
+    'Agente de Elite',
+  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,7 +62,8 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
 
-    this.hideInventoryInfos = localStorage.getItem('hideInventoryInfos') === 'true'
+    this.hideInventoryInfos =
+      localStorage.getItem('hideInventoryInfos') === 'true';
 
     this.generic.getInventoryWeight().then((res) => {
       if (res) {
@@ -233,6 +246,12 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
 
   public toHideInventoryInfos() {
     this.hideInventoryInfos = !this.hideInventoryInfos;
-    localStorage.setItem('hideInventoryInfos', String(this.hideInventoryInfos))
+    localStorage.setItem('hideInventoryInfos', String(this.hideInventoryInfos));
+  }
+
+  public hideSuggestion(name: string) {
+    setTimeout(() => {
+      this[name] = true;
+    }, 50);
   }
 }

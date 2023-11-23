@@ -61,10 +61,24 @@
               <ion-input
                 type="string"
                 style="width: 100%; text-indent: 8px"
-                (input)="editInventoryInfos()"
                 formControlName="patent"
+                (ionFocus)="hidePatentSuggestions = false"
+                (ionBlur)="hideSuggestion('hidePatentSuggestions');"
+                [readonly]="true"
               >
               </ion-input>
+              <ion-list
+              *ngIf="!hidePatentSuggestions && patentsGroup.length"
+              class="suggestions-list"
+            >
+              <ion-item *ngFor="let patent of patentsGroup">
+                <ion-label
+                  (click)="inventoryInfos.get('patent').patchValue(patent); editInventoryInfos()"
+                >
+                  {{patent}}
+                </ion-label>
+              </ion-item>
+            </ion-list>
             </ion-col>
           </ion-row>
           <ion-row style="margin-top: 0.4em">
@@ -143,11 +157,25 @@
               >
               <ion-input
                 style="width: 100%; text-align: center"
-                (input)="editInventoryInfos()"
                 formControlName="credit_limit"
                 type="text"
+                (ionFocus)="hideCreditsSuggestions = false"
+                (ionBlur)="hideSuggestion('hideCreditsSuggestions');"
+                [readonly]="true"
               >
               </ion-input>
+              <ion-list
+                *ngIf="!hideCreditsSuggestions && creditsGroup.length"
+                class="suggestions-list"
+              >
+                <ion-item *ngFor="let credit of creditsGroup">
+                  <ion-label
+                    (click)="inventoryInfos.get('credit_limit').patchValue(credit); editInventoryInfos()"
+                  >
+                    {{credit}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
             </ion-col>
           </ion-row>
         </form>
@@ -199,20 +227,18 @@
           style="border: 1px solid var(--ion-color-dark)"
           *ngFor="let item of inventoryItems"
         >
-
           <ion-row>
             <ion-col class="ion-text-center" size="12">
               <ion-label color="light">{{item.item_name}} </ion-label>
             </ion-col>
-
           </ion-row>
           <ion-row>
             <ion-icon
-            style="padding: 0.3em"
-            color="danger"
-            (click)="deleteInventoryItems(item.item_id, item.item_name)"
-            name="trash-bin-outline"
-          ></ion-icon>
+              style="padding: 0.3em"
+              color="danger"
+              (click)="deleteInventoryItems(item.item_id, item.item_name)"
+              name="trash-bin-outline"
+            ></ion-icon>
             <ion-col>
               <span
                 ><ion-text color="medium">Categoria:</ion-text>

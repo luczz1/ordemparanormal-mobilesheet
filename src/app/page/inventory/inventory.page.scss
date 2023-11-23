@@ -42,6 +42,20 @@ input {
   outline: none;
 }
 
+.suggestions-list {
+  position: absolute;
+  z-index: 10;
+  width: 95%;
+  border: 1px solid var(--ion-color-dark);
+  max-height: 180px;
+  overflow: auto;
+}
+
+.suggestions-list ion-item:hover {
+  --color: var(--ion-color-primary);
+}
+
+
 
 ion-label {color: var(--ion-color-medium)}
 
