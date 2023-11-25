@@ -26,7 +26,7 @@
             ></ion-icon>
           </ion-col>
         </ion-row>
-        <ion-row style="margin: 0.6em; width: 100%; margin: auto">
+        <ion-row style="margin: 0.6em; width: 100%; margin: auto; cursor: pointer">
           <ion-col
             (click)="openModal('life')"
             style="
@@ -77,7 +77,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="width: 100%; margin: auto">
+        <ion-row style="width: 100%; margin: auto; cursor: pointer">
           <ion-col
             (click)="openModal('effort')"
             style="
@@ -211,7 +211,7 @@
             <div style="justify-content: space-between; display: flex">
               <ion-text
                 color="tertiary"
-                style="display: flex; align-items: center; gap: 10px"
+                style="display: flex; align-items: center; gap: 10px; cursor: pointer"
                 (click)="gotoNotesOrAboutScreen('notes')"
                 ><ion-icon
                   name="document-text-outline"
@@ -221,7 +221,7 @@
               >
               <ion-text
                 color="warning"
-                style="display: flex; align-items: center; gap: 10px"
+                style="display: flex; align-items: center; gap: 10px; cursor: pointer"
                 (click)="gotoNotesOrAboutScreen('about')"
                 >Sobre<ion-icon
                   name="information-circle-outline"

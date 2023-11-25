@@ -116,7 +116,11 @@
             <p><strong>Teste:</strong> {{attack.test}}</p>
             <p
               (click)="rollDice(attack.damage)"
-              style="color: var(--ion-color-danger); text-decoration: underline"
+              style="
+                color: var(--ion-color-danger);
+                text-decoration: underline;
+                cursor: pointer;
+              "
             >
               <strong>Dano:</strong> {{attack.damage}}
             </p>
@@ -218,7 +222,7 @@
   </div>
 
   <ion-modal
-    style="--height: 280px; --width: 300px"
+    style="--height: 300px; --width: 300px"
     [isOpen]="openDiceRollModal"
     (willDismiss)="openDiceRollModal = false;"
   >
@@ -227,8 +231,8 @@
         <ion-row style="margin-top: 0.8em; text-align: center">
           <ion-col>
             <ion-label color="primary">
-              Total: {{diceRolling ? 0 : diceResultTotal + '+' + modifier + ' = '
-              + (diceResultTotal + modifier)}}
+              Total: {{diceRolling ? 0 : diceResultTotal + '+' + modifier + ' =
+              ' + (diceResultTotal + modifier)}}
             </ion-label>
           </ion-col>
         </ion-row>
@@ -238,10 +242,7 @@
         >
           <ng-container *ngFor="let diceResult of diceResults; let i = index">
             <ion-col size="6" class="ion-text-center">
-              <img
-                src="/assets/image/dice.png"
-                style="max-width: 70%; min-width: 60%"
-              />
+              <img src="/assets/image/dice.png" style="max-width: 90px; min-width: 90px" />
               <div
                 class="dice-result"
                 style="

@@ -74,7 +74,7 @@
                 "
               >
                 <span
-                  style="font-size: 1.1em"
+                  style="font-size: 1.1em; cursor: pointer"
                   [class]="!diceRolling && diceResult === faces ? 'shake-text' : ''"
                   [style]="attributeIsHigherOrLowerThanZero && !diceRolling && diceResult === getMinDiceResult() ?
                   'color: var(--ion-color-danger)' : !diceRolling && diceResult === getMaxDiceResult() &&  diceResults.length > 1 ?
