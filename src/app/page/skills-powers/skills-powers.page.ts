@@ -26,10 +26,10 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
   public charName: string | null = '';
 
   public hiddenAbilities = false;
-  public hiddenRituals = false;
+  public hiddenRituals = true;
 
   public expandedItems: { [key: number]: boolean } = {};
-  public maxLength: number = 90;
+  public maxLength: number = 65;
 
   public proficiences = {
     id: 0,
@@ -77,6 +77,8 @@ export class SkillsPowersPage implements ViewDidEnter, ViewDidLeave {
     );
 
     this.characterId = characterID;
+    this.hiddenAbilities = false;
+    this.hiddenRituals = true;
 
     this.charName = localStorage.getItem('name');
 

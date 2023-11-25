@@ -13,252 +13,257 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col class="ion-margin">
-            <span
-              style="
-                font-size: 1.8em;
-                color: var(--ion-color-light-main);
-                -webkit-text-stroke-color: var(--ion-color-main);
-              "
-              >Habilidades
-
-              <ion-text
-                style="font-size: 0.7em"
-                color="medium"
-                (click)="hiddenAbilities = !hiddenAbilities"
+        <ion-header>
+          <ion-toolbar>
+            <ion-segment value="ability">
+              <ion-segment-button
+                value="ability"
+                style="width: 50%"
+                (click)="hiddenAbilities = false; hiddenRituals = true;"
               >
-                <ion-icon
-                  [name]="hiddenAbilities ? 'eye-off-outline' : 'eye-outline'"
-                ></ion-icon>
-              </ion-text>
+                <ion-label>Habilidades</ion-label>
+              </ion-segment-button>
+              <ion-segment-button
+                value="rituals"
+                style="width: 50%"
+                (click)="hiddenRituals = false; hiddenAbilities = true;"
+              >
+                <ion-label>Rituais</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </ion-toolbar>
+        </ion-header>
 
-              <ion-text (click)="openSkillOrPowerModal('skill')">
-                <ion-icon
-                  style="float: right; font-size: 1em"
-                  name="add-outline"
-                  color="light"
-                >
-                </ion-icon> </ion-text
-            ></span>
-            <br />
-            <span
-              (click)="getProficiences();"
-              style="
-                font-size: 1.1em;
-                color: var(--ion-color-medium);
-                text-decoration: underline;
-                cursor: pointer;
-              "
-              >Proficiências</span
-            >
-          </ion-col>
-        </ion-row>
-        <div
-          *ngIf="!hiddenAbilities"
-          class="abilities-rituals-list"
-          style="max-height: 280px; overflow: auto"
-          [style]="hiddenRituals ? 'max-height: 70vh' : 'max-height: 350px'"
-        >
-          <div *ngFor="let skill of skillsList" class="card-char">
-            <div style="display: flex; justify-content: space-between">
-              <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
-                {{skill.name}}
-              </p>
+        <div *ngIf="!hiddenAbilities">
+          <ion-row>
+            <ion-col class="ion-margin">
               <span
                 style="
-                  float: right;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
+                  font-size: 1.5em;
+                  color: var(--ion-color-light-main);
+                  -webkit-text-stroke-color: var(--ion-color-main);
                 "
-              >
-                <ion-icon
-                  color="danger"
-                  (click)="deleteItem('Skill', skill.id, skill.name)"
-                  name="trash-bin-outline"
-                ></ion-icon>
-                <ion-icon
-                  color="tertiary"
-                  style="padding-right: 0.5em; padding-bottom: 0.1em"
-                  (click)="getPowerOrAbilityByID(skill.id, 0)"
-                  name="create-outline"
-                ></ion-icon>
-              </span>
-            </div>
-              <span style="color: var(--ion-color-medium)">
-                {{ expandedItems[skill.id] ? skill.description :
-                skill.description.slice(0, maxLength) +
-                (skill.description.length > maxLength ? '...' : '') }}
-              </span>
+                >Habilidades
 
-              <ion-text
-                *ngIf="skill.description.length > maxLength"
-                (click)="toggleReadMore(skill.id)"
+                <ion-text (click)="openSkillOrPowerModal('skill')">
+                  <ion-icon
+                    style="float: right; font-size: 1em"
+                    name="add-outline"
+                    color="light"
+                  >
+                  </ion-icon> </ion-text
+              ></span>
+              <br />
+              <span
+                (click)="getProficiences();"
+                style="
+                  font-size: 1.1em;
+                  color: var(--ion-color-medium);
+                  text-decoration: underline;
+                  cursor: pointer;
+                "
+                >Proficiências</span
               >
-                {{ expandedItems[skill.id] ? 'Mostrar menos' : 'Ler mais' }}
-              </ion-text>
-          </div>
+            </ion-col>
+            </ion-row>
+
+            <div *ngIf="!hiddenAbilities" class="abilities-rituals-list">
+              <div *ngFor="let skill of skillsList" class="card-char">
+                <div style="display: flex; justify-content: space-between">
+                  <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
+                    {{skill.name}}
+                  </p>
+                  <span
+                    style="
+                      float: right;
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                    "
+                  >
+                    <ion-icon
+                      color="danger"
+                      (click)="deleteItem('Skill', skill.id, skill.name)"
+                      name="trash-bin-outline"
+                    ></ion-icon>
+                    <ion-icon
+                      color="tertiary"
+                      style="padding-right: 0.5em; padding-bottom: 0.1em"
+                      (click)="getPowerOrAbilityByID(skill.id, 0)"
+                      name="create-outline"
+                    ></ion-icon>
+                  </span>
+                </div>
+                <span style="color: var(--ion-color-medium)">
+                  {{ expandedItems[skill.id] ? skill.description :
+                  skill.description.slice(0, maxLength) +
+                  (skill.description.length > maxLength ? '...' : '') }}
+                </span>
+
+                <ion-text
+                  *ngIf="skill.description.length > maxLength"
+                  (click)="toggleReadMore(skill.id)"
+                >
+                  {{ expandedItems[skill.id] ? 'Mostrar menos' : 'Ler mais' }}
+                </ion-text>
+              </div>
+            </div>
         </div>
 
-        <ion-row>
-          <ion-col class="ion-margin">
-            <span
-              style="
-                font-size: 1.8em;
-                color: var(--ion-color-light-main);
-                -webkit-text-stroke-color: var(--ion-color-main);
-              "
-              >Rituais
-
-              <ion-text style="font-size: 0.7em" color="medium">
-                <ion-text
-                  >DT:
-                  <input
-                    (input)="saveDT()"
-                    type="number"
-                    [(ngModel)]="DTValue"
-                    style="
-                      width: 40px;
-                      outline: none;
-                      border: none;
-                      background: none;
-                    "
-                    #iptDT
-                /></ion-text>
-                <ion-icon
-                  (click)="hiddenRituals = !hiddenRituals"
-                  [name]="hiddenRituals ? 'eye-off-outline' : 'eye-outline'"
-                ></ion-icon>
-              </ion-text>
-
-              <ion-text (click)="openSkillOrPowerModal('power')">
-                <ion-icon
-                  style="float: right; font-size: 1em"
-                  name="add-outline"
-                  color="light"
-                >
-                </ion-icon> </ion-text
-            ></span>
-          </ion-col>
-        </ion-row>
-
-        <div
-          *ngIf="!hiddenRituals"
-          class="abilities-rituals-list"
-          style="overflow: auto"
-          [style]="hiddenAbilities ? 'max-height: 70vh' : 'max-height: 350px'"
-        >
-          <div *ngFor="let power of powersList" class="card-char">
-            <div style="display: flex; justify-content: space-between">
-              <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
-                {{power.name}}
-              </p>
+        <div *ngIf="!hiddenRituals">
+          <ion-row>
+            <ion-col class="ion-margin">
               <span
                 style="
-                  float: right;
+                  font-size: 1.5em;
+                  color: var(--ion-color-light-main);
+                  -webkit-text-stroke-color: var(--ion-color-main);
+                "
+                >Rituais
+
+                <ion-text style="font-size: 0.7em" color="medium">
+                  <ion-text
+                    >DT:
+                    <input
+                      (input)="saveDT()"
+                      type="number"
+                      [(ngModel)]="DTValue"
+                      style="
+                        width: 40px;
+                        outline: none;
+                        border: none;
+                        background: none;
+                      "
+                      #iptDT
+                  /></ion-text>
+                </ion-text>
+
+                <ion-text (click)="openSkillOrPowerModal('power')">
+                  <ion-icon
+                    style="float: right; font-size: 1em"
+                    name="add-outline"
+                    color="light"
+                  >
+                  </ion-icon> </ion-text
+              ></span>
+            </ion-col>
+          </ion-row>
+          <div
+            *ngIf="!hiddenRituals"
+            class="abilities-rituals-list"
+            style="overflow: auto"
+          >
+            <div *ngFor="let power of powersList" class="card-char">
+              <div style="display: flex; justify-content: space-between">
+                <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
+                  {{power.name}}
+                </p>
+                <span
+                  style="
+                    float: right;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                  "
+                >
+                  <ion-icon
+                    (click)="deleteItem('Power', power.id, power.name)"
+                    color="danger"
+                    name="trash-bin-outline"
+                  ></ion-icon>
+                  <ion-icon
+                    color="tertiary"
+                    style="padding-right: 0.5em; padding-bottom: 0.1em"
+                    (click)="getPowerOrAbilityByID(power.id, 1)"
+                    name="create-outline"
+                  ></ion-icon>
+                </span>
+              </div>
+              <div
+                style="
                   display: flex;
-                  align-items: center;
-                  gap: 10px;
+                  justify-content: space-between;
+                  margin-bottom: 0.7em;
                 "
               >
-                <ion-icon
-                  (click)="deleteItem('Power', power.id, power.name)"
-                  color="danger"
-                  name="trash-bin-outline"
-                ></ion-icon>
-                <ion-icon
-                  color="tertiary"
-                  style="padding-right: 0.5em; padding-bottom: 0.1em"
-                  (click)="getPowerOrAbilityByID(power.id, 1)"
-                  name="create-outline"
-                ></ion-icon>
-              </span>
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 0.7em;
-              "
-            >
+                <span style="color: var(--ion-color-medium)"
+                  ><strong
+                    >Custo: {{power.price ? power.price : '---'}}</strong
+                  ></span
+                >
+                <span style="color: var(--ion-color-medium)"
+                  ><strong
+                    >Pagína: {{power.page ? power.page : '---'}}</strong
+                  ></span
+                >
+              </div>
               <span style="color: var(--ion-color-medium)"
-                ><strong
-                  >Custo: {{power.price ? power.price : '---'}}</strong
-                ></span
+                >{{power.description}}</span
               >
-              <span style="color: var(--ion-color-medium)"
-                ><strong
-                  >Pagína: {{power.page ? power.page : '---'}}</strong
-                ></span
-              >
-            </div>
-            <span style="color: var(--ion-color-medium)"
-              >{{power.description}}</span
-            >
 
-            <ion-accordion-group style="width: 100%; margin-top: 1em">
-              <ion-accordion style="background: none !important">
-                <ion-item slot="header" style="--background: transparent">
-                  <ion-label>Ver mais</ion-label>
-                </ion-item>
-                <div slot="content">
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong
-                            >{{power.element.length > 1 ? 'Elementos' :
-                            'Elemento'}}:</strong
-                          >
-                          <span *ngFor="let elem of power.element">
-                            {{elem | elementFormat}}
+              <ion-accordion-group style="width: 100%; margin-top: 1em">
+                <ion-accordion style="background: none !important">
+                  <ion-item slot="header" style="--background: transparent">
+                    <ion-label>Ver mais</ion-label>
+                  </ion-item>
+                  <div slot="content">
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong
+                              >{{power.element.length > 1 ? 'Elementos' :
+                              'Elemento'}}:</strong
+                            >
+                            <span *ngFor="let elem of power.element">
+                              {{elem | elementFormat}}
+                            </span>
+                            <span *ngIf="!power.element.length"> --- </span>
                           </span>
-                          <span *ngIf="!power.element.length"> --- </span>
-                        </span>
-                      </ion-col>
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong>Círculo: </strong>{{power.circle ?
-                          power.circle : '---'}}</span
+                        </ion-col>
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong>Círculo: </strong>{{power.circle ?
+                            power.circle : '---'}}</span
+                          >
+                        </ion-col>
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong>Alvo: </strong>{{ power.target ?
+                            power.target : '---'}}</span
+                          ></ion-col
                         >
-                      </ion-col>
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong>Alvo: </strong>{{ power.target ? power.target
-                          : '---'}}</span
-                        ></ion-col
-                      >
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong>Duração: </strong>{{power.duration ?
-                          power.duration : '---'}}</span
-                        ></ion-col
-                      >
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong>Duração: </strong>{{power.duration ?
+                            power.duration : '---'}}</span
+                          ></ion-col
+                        >
 
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong>Execução:</strong> {{power.execution ?
-                          (power.execution | executionFormat) : '---'}}</span
-                        ></ion-col
-                      >
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong>Alcance: </strong>{{power.reach ?
-                          (power.reach | reactFormat) : '---'}}</span
-                        ></ion-col
-                      >
-                      <ion-col size="12">
-                        <span style="color: var(--ion-color-medium)"
-                          ><strong>Resistência:</strong> {{power.resistance ?
-                          power.resistance : '---'}}</span
-                        ></ion-col
-                      >
-                    </ion-row>
-                  </ion-grid>
-                </div>
-              </ion-accordion>
-            </ion-accordion-group>
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong>Execução:</strong> {{power.execution ?
+                            (power.execution | executionFormat) : '---'}}</span
+                          ></ion-col
+                        >
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong>Alcance: </strong>{{power.reach ?
+                            (power.reach | reactFormat) : '---'}}</span
+                          ></ion-col
+                        >
+                        <ion-col size="12">
+                          <span style="color: var(--ion-color-medium)"
+                            ><strong>Resistência:</strong> {{power.resistance ?
+                            power.resistance : '---'}}</span
+                          ></ion-col
+                        >
+                      </ion-row>
+                    </ion-grid>
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+            </div>
           </div>
         </div>
       </div>

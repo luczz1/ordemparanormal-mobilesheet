@@ -213,7 +213,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
               localStorage.setItem('totalDefense', String(10 + Number(value)));
             } else if (attribute === 'stamina' || attribute === 'presence') {
               localStorage.setItem('updatedChar', 'true');
-              if (attribute === 'presence') {localStorage.setItem('ritualsDT',  String(10 + Number(value)))}
+              const infos = JSON.parse(localStorage.getItem('characterInfos'));
+              if (attribute === 'presence') {localStorage.setItem('ritualsDT',  String(10 + Number(value) + (infos.nex / 5)))}
             }
             this.getCharacterAttributes(this.characterID, false);
           },
