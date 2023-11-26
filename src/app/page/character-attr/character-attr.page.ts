@@ -199,6 +199,9 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public changeAttributeValue(attribute: string, value: number | string) {
+     this.valueLimit(attribute);
+     if (Number(value) > 100) {value = 100;}
+
     if (this.timeoutId !== null) {
       clearTimeout(this.timeoutId);
     }
@@ -302,4 +305,13 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       `/character/dice-rolling/${this.characterID}/${skillName}/${skillValue}&nAttr/${bonus}`
     );
   }
+
+  public valueLimit(field: string) {
+    const control = this.attrForm.get(field);
+
+    if (control.value > 100) {
+      control.setValue(100);
+    }
+  }
+
 }

@@ -230,8 +230,10 @@ export class CharacterOverviewPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public updateCharacterInDatabase(ev?: any) {
-    const pe_round_value = ev.target.value;
-    if (pe_round_value) { this.character[0].pe_round = Number(pe_round_value); }
+    if (ev) {
+      const pe_round_value = ev.target.value;
+      if (pe_round_value) { this.character[0].pe_round = Number(pe_round_value); }
+    }
 
     if (this.timeoutId !== null) {
       clearTimeout(this.timeoutId);

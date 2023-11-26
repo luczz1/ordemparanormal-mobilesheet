@@ -255,6 +255,14 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
     }, 50);
   }
 
+  public valueLimit(field: string) {
+    const control = this.attrForm.get(field);
+
+    if (control.value > 100) {
+      control.setValue(100);
+    }
+  }
+
   private getClasses() {
     this.characterService.getClasses().subscribe({
       next: (response: ClassesModel[]) => {

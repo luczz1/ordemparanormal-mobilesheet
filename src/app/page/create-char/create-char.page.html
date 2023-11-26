@@ -40,7 +40,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: .5em">
+        <ion-row style="margin-top: 0.5em">
           <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">Origem</ion-label>
             <ion-input
@@ -66,7 +66,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: .5em">
+        <ion-row style="margin-top: 0.5em">
           <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">Classe</ion-label>
             <ion-input
@@ -91,8 +91,12 @@
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-row style="margin-top: .5em">
-          <ion-col *ngIf="className && className !== 'Mundano'" class="ion-text-left" size="12">
+        <ion-row style="margin-top: 0.5em">
+          <ion-col
+            *ngIf="className && className !== 'Mundano'"
+            class="ion-text-left"
+            size="12"
+          >
             <ion-label style="padding-left: 0.6em">Trilha</ion-label>
             <ion-input
               (ionFocus)="hideTracksSuggestions = false"
@@ -118,7 +122,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: .5em">
+        <ion-row style="margin-top: 0.5em">
           <ion-col class="ion-text-left" size="6">
             <ion-label style="padding-left: 0.6em">Ocupação</ion-label>
             <ion-input
@@ -137,12 +141,12 @@
           </ion-col>
         </ion-row>
 
-        <ion-row *ngIf="editingMode" style="margin-top: .5em">
+        <ion-row *ngIf="editingMode" style="margin-top: 0.5em">
           <ion-col class="ion-text-left" size="12">
             <ion-label style="padding-left: 0.6em">Deslocamento</ion-label>
             <ion-input
               formControlName="displacement"
-              style="width: 100%; text-align: center;"
+              style="width: 100%; text-align: center"
               type="text"
             >
             </ion-input>
@@ -153,20 +157,15 @@
               (ionFocus)="className !== 'Mundano' ? hideNexSuggestions = false : null"
               (ionBlur)="hideSuggestion('hideNexSuggestions');"
               formControlName="nex"
-              style="width: 100%; text-align: center;"
+              style="width: 100%; text-align: center"
               type="number"
               [readonly]="true"
               [placeholder]="className === 'Mundano' ? 'Escolha uma nova classe.' : ''"
             >
             </ion-input>
-            <ion-list
-              *ngIf="!hideNexSuggestions"
-              class="suggestions-list"
-            >
+            <ion-list *ngIf="!hideNexSuggestions" class="suggestions-list">
               <ion-item *ngFor="let nex of nexValues">
-                <ion-label
-                  (click)="characterForm.get('nex').patchValue(nex)"
-                >
+                <ion-label (click)="characterForm.get('nex').patchValue(nex)">
                   <strong>{{nex}}%</strong>
                 </ion-label>
               </ion-item>
@@ -174,8 +173,7 @@
           </ion-col>
         </ion-row>
 
-
-        <ion-row style="margin-top: .5em">
+        <ion-row style="margin-top: 0.5em">
           <ion-col
             size="12"
             style="
@@ -205,7 +203,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="ion-align-items-center" style="margin-top: .7em;">
+        <ion-row class="ion-align-items-center" style="margin-top: 0.7em">
           <ion-col
             class="ion-text-center"
             style="display: flex; justify-content: center"
@@ -225,9 +223,12 @@
             </div>
           </ion-col>
         </ion-row>
-        <ion-row *ngIf="imageResult" (click)="characterForm.get('image_url').patchValue(''); imageResult = ''">
+        <ion-row
+          *ngIf="imageResult"
+          (click)="characterForm.get('image_url').patchValue(''); imageResult = ''"
+        >
           <ion-col>
-            <ion-label color="danger" style="font-size: .8em;">
+            <ion-label color="danger" style="font-size: 0.8em">
               Remover imagem
             </ion-label>
           </ion-col>
@@ -317,6 +318,8 @@
                   id="agilidade"
                   class="input-attr"
                   formControlName="agility"
+                  max="100"
+                  (input)="valueLimit('agility')"
                   #agilidadeIpt
                 />
               </div>
@@ -342,6 +345,8 @@
                     id="forca"
                     class="input-attr"
                     formControlName="strength"
+                    max="100"
+                    (input)="valueLimit('strength')"
                     #forcaIpt
                   />
                 </div>
@@ -359,7 +364,9 @@
                     style="margin-left: 2em"
                     class="input-attr"
                     formControlName="intellect"
-                    #intelectoIpt
+                    max="100"
+                    (input)="valueLimit('intellect')"
+                    intelectoIpt
                   />
                 </div>
               </div>
@@ -385,6 +392,8 @@
                     id="presenca"
                     class="input-attr"
                     formControlName="presence"
+                    max="100"
+                    (input)="valueLimit('presence')"
                     #presencaIpt
                   />
                 </div>
@@ -401,6 +410,8 @@
                     id="vigor"
                     class="input-attr"
                     formControlName="stamina"
+                    max="100"
+                    (input)="valueLimit('stamina')"
                     #vigorIpt
                   />
                 </div>
@@ -427,6 +438,8 @@
               id="agilidade"
               class="input-attr-max"
               formControlName="agility"
+              max="100"
+              (input)="valueLimit('agility')"
               #agilidadeIpt
             />
           </div>
@@ -447,6 +460,8 @@
                 id="forca"
                 class="input-attr-max"
                 formControlName="strength"
+                max="100"
+                (input)="valueLimit('strength')"
                 #forcaIpt
               />
             </div>
@@ -460,6 +475,8 @@
                 id="intelecto"
                 class="input-attr-max"
                 formControlName="intellect"
+                max="100"
+                (input)="valueLimit('intellect')"
                 #intelectoIpt
               />
             </div>
@@ -481,6 +498,8 @@
                 id="presenca"
                 class="input-attr-max"
                 formControlName="presence"
+                max="100"
+                (input)="valueLimit('presence')"
                 #presencaIpt
               />
             </div>
@@ -494,6 +513,8 @@
                 id="vigor"
                 class="input-attr-max"
                 formControlName="stamina"
+                max="100"
+                (input)="valueLimit('stamina')"
                 #vigorIpt
               />
             </div>

@@ -1,7 +1,7 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
     <ion-row>
-      <ion-col class="ion-margin">
+      <ion-col style="margin-top: 1em;">
         <span
           style="
             font-size: 2em;
@@ -9,6 +9,20 @@
             font-family: Girassol;
           "
           >Meus agentes</span
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <span
+          style="
+            font-size: 1em;
+            color: var(--ion-color-light);
+            font-family: Girassol;
+          "
+          >(
+            {{charactersList.length}}
+            /10)</span
         >
       </ion-col>
     </ion-row>
@@ -34,6 +48,7 @@
       </ion-col>
       <ion-col size="8">
         <ion-button
+        [disabled]="charactersList.length > 10"
         class="btn-outline"
         expand="block"
         routerLink="/create"
