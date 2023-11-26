@@ -19,7 +19,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ✅ Listar, adicionar, editar e excluir rituais e habilidades
 - ✅ Sistema de inventário
 - ✅ Editar informações do personagem (nex, deslocamento, etc.)
-- ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
+- ✅ Sistema de carga (normal ou sobrepeso)
 - ✅ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ✅ Proficiências
 - ✅ Tela de anotações, um bloco de texto com diversas opção de fonte, anexar imagem, cores, e +
@@ -44,6 +44,9 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 
 > [!NOTE]
 > As imagens não representam todas as telas/funções presente no projeto.
+
+> [!WARNING]
+> As imagens estão desatualizadas.
 
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/591530c4-8e75-4c0f-8399-1c71e8fd618e" style="width: 20%"/>
