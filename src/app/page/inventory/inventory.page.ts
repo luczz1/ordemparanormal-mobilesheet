@@ -34,7 +34,9 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
     max_spc_load: new FormControl(),
   });
 
-  public hideInventoryInfos = false;
+  public hideItems = false;
+  public hideInventoryInfos = true;
+
   public hideCreditsSuggestions = true;
   public hidePatentSuggestions = true;
 
@@ -62,8 +64,8 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
       this.activatedRoute.snapshot.paramMap.get('characterid')
     );
 
-    this.hideInventoryInfos =
-      localStorage.getItem('hideInventoryInfos') === 'true';
+    this.hideItems = false;
+    this.hideInventoryInfos = true;
 
     this.generic.getInventoryWeight().then((res) => {
       if (res) {
@@ -242,11 +244,6 @@ export class InventoryPage implements ViewDidEnter, ViewDidLeave {
         error: (err) => this.generic.presentToast(err.error, 3),
       });
     }
-  }
-
-  public toHideInventoryInfos() {
-    this.hideInventoryInfos = !this.hideInventoryInfos;
-    localStorage.setItem('hideInventoryInfos', String(this.hideInventoryInfos));
   }
 
   public hideSuggestion(name: string) {

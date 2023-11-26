@@ -11,7 +11,7 @@
   padding: 0.6em;
   border-radius: 2em;
   margin: auto;
-  margin-top: .9em;
+  margin-top: 0.9em;
 }
 
 .card-char div {
@@ -26,12 +26,22 @@
   --border-width: 1px;
 }
 
-ion-input, ion-textarea {
+ion-input,
+ion-textarea {
   border-radius: 16px;
   background: #121212;
   border: 1px solid var(--ion-color-dark-tint);
   outline: none !important;
   height: 5px !important;
+}
+
+.inv-text {
+  font-size: 1.8em;
+  color: var(--ion-color-light-main);
+  -webkit-text-stroke-color: var(--ion-color-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
@@ -54,10 +64,6 @@ input {
 .suggestions-list ion-item:hover {
   --color: var(--ion-color-primary);
 }
-
-
-
-ion-label {color: var(--ion-color-medium)}
 
 .has-focus {
   outline: none;

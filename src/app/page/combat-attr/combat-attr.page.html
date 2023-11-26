@@ -1,139 +1,149 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
-    <ion-row style="margin-top: 0.3em">
-      <ion-col size="1" routerLink="/character/{{characterID}}">
-        <span style="font-size: 1.3em"
-          ><ion-icon name="chevron-back-outline"></ion-icon
-        ></span>
-      </ion-col>
-      <ion-col>
-        <span style="font-size: 1.3em">{{charName}}</span>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col class="ion-margin">
-        <span
+    <ion-grid>
+      <ion-row>
+        <ion-col
+          size="12"
           style="
-            font-size: 1.8em;
-            color: var(--ion-color-light-main);
-            -webkit-text-stroke-color: var(--ion-color-main);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
           "
-          >Atributos de combate</span
         >
-      </ion-col>
-    </ion-row>
-    <div class="protection-list">
-      <div class="shield-item">
-        <div class="shield"></div>
-        <span class="protection-number">
-          <input
-            type="number"
-            (change)="editTotalDefense()"
-            [(ngModel)]="totalDefense"
+          <span style="font-size: 1.3em" routerLink="/character/{{characterID}}"
+            ><ion-icon name="chevron-back-outline"></ion-icon
+          ></span>
+
+          <span style="font-size: 1.3em"
+            ><ion-icon name="help-circle-outline"></ion-icon
+          ></span>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-margin">
+          <span
             style="
-              width: 20%;
-              background: none;
-              outline: none;
-              text-align: center;
-              border: none;
+              font-size: 1.8em;
+              color: var(--ion-color-light-main);
+              -webkit-text-stroke-color: var(--ion-color-main);
             "
-          />
-        </span>
+            >Atributos de combate</span
+          >
+        </ion-col>
+      </ion-row>
+      <div class="protection-list">
+        <div class="shield-item">
+          <div class="shield"></div>
+          <span class="protection-number">
+            <input
+              type="number"
+              (change)="editTotalDefense()"
+              [(ngModel)]="totalDefense"
+              style="
+                width: 20%;
+                background: none;
+                outline: none;
+                text-align: center;
+                border: none;
+              "
+            />
+          </span>
+        </div>
+        <ion-text class="protection-legend" color="medium"
+          >= 10 + AGI + Equip + Outros</ion-text
+        >
       </div>
-      <ion-text class="protection-legend" color="medium"
-        >= 10 + AGI + Equip + Outros</ion-text
-      >
-    </div>
 
-    <div class="resistance-list">
-      <h3>
-        Proteções & Resistências<ion-text
-          (click)="editingMode = false; protectionValue = ''; defenseMode = true; openStatusModal = true"
-        >
-          <ion-icon
-            style="float: right; font-size: 1.3em"
-            name="add-outline"
-            color="light"
+      <div class="resistance-list">
+        <h3>
+          Proteções & Resistências<ion-text
+            (click)="editingMode = false; protectionValue = ''; defenseMode = true; openStatusModal = true"
           >
-          </ion-icon>
-        </ion-text>
-      </h3>
-      <ion-list>
-        <ion-item *ngFor="let defense of defensesList">
-          <ion-label>
-            {{defense.protection}}
-            <span style="position: absolute; right: 0; margin-right: 1em">
-              <ion-icon
-                color="tertiary"
-                style="padding-right: 0.5em; padding-bottom: 0.1em"
-                name="create-outline"
-                (click)="getDefenseByID(defense.id)"
-              ></ion-icon>
-              <ion-icon
-                (click)="deleteDefense(defense.id, defense.protection)"
-                color="danger"
-                name="trash-bin-outline"
-              ></ion-icon></span
-          ></ion-label>
-        </ion-item>
-      </ion-list>
-    </div>
-
-    <div class="attack-list">
-      <h3>
-        Ataques
-        <ion-text
-          (click)="editingMode = false; defenseMode = false; attacksForm.reset({id: 0}); openStatusModal = true"
-        >
-          <ion-icon
-            style="float: right; font-size: 1.3em"
-            name="add-outline"
-            color="light"
-          >
-          </ion-icon>
-        </ion-text>
-      </h3>
-      <ion-list>
-        <ion-item *ngFor="let attack of attacksList">
-          <ion-label>
-            <p>
-              {{attack.attack_name}}
+            <ion-icon
+              style="float: right; font-size: 1.3em"
+              name="add-outline"
+              color="light"
+            >
+            </ion-icon>
+          </ion-text>
+        </h3>
+        <ion-list>
+          <ion-item *ngFor="let defense of defensesList">
+            <ion-label>
+              {{defense.protection}}
               <span style="position: absolute; right: 0; margin-right: 1em">
                 <ion-icon
                   color="tertiary"
-                  style="padding-right: 0.5em; padding-bottom: 0.02em"
+                  style="padding-right: 0.5em; padding-bottom: 0.1em"
                   name="create-outline"
-                  (click)="getAttackByID(attack.id)"
+                  (click)="getDefenseByID(defense.id)"
                 ></ion-icon>
                 <ion-icon
-                  (click)="deleteAttack(attack.id, attack.attack_name)"
+                  (click)="deleteDefense(defense.id, defense.protection)"
                   color="danger"
                   name="trash-bin-outline"
-                ></ion-icon
-              ></span>
-            </p>
-            <p><strong>Teste:</strong> {{attack.test}}</p>
-            <p
-              (click)="rollDice(attack.damage)"
-              style="
-                color: var(--ion-color-danger);
-                text-decoration: underline;
-                cursor: pointer;
-              "
+                ></ion-icon></span
+            ></ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="attack-list" style="margin-bottom: 1em">
+        <h3>
+          Ataques
+          <ion-text
+            (click)="editingMode = false; defenseMode = false; attacksForm.reset({id: 0}); openStatusModal = true"
+          >
+            <ion-icon
+              style="float: right; font-size: 1.3em"
+              name="add-outline"
+              color="light"
             >
-              <strong>Dano:</strong> {{attack.damage}}
-            </p>
-            <p>
-              <strong style="font-size: 0.8em"
-                >Crítico, alcance ou especial:</strong
+            </ion-icon>
+          </ion-text>
+        </h3>
+        <ion-list>
+          <ion-item *ngFor="let attack of attacksList">
+            <ion-label>
+              <p>
+                {{attack.attack_name}}
+                <span style="position: absolute; right: 0; margin-right: 1em">
+                  <ion-icon
+                    color="tertiary"
+                    style="padding-right: 0.5em; padding-bottom: 0.02em"
+                    name="create-outline"
+                    (click)="getAttackByID(attack.id)"
+                  ></ion-icon>
+                  <ion-icon
+                    (click)="deleteAttack(attack.id, attack.attack_name)"
+                    color="danger"
+                    name="trash-bin-outline"
+                  ></ion-icon
+                ></span>
+              </p>
+              <p><strong>Teste:</strong> {{attack.test}}</p>
+              <p
+                (click)="rollDice(attack.damage)"
+                style="
+                  color: var(--ion-color-danger);
+                  text-decoration: underline;
+                  cursor: pointer;
+                "
               >
-              {{attack.critical_or_range_or_special}}
-            </p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </div>
+                <strong>Dano:</strong> {{attack.damage}}
+              </p>
+              <p>
+                <strong style="font-size: 0.8em"
+                  >Crítico, alcance ou especial:</strong
+                >
+                {{attack.critical_or_range_or_special}}
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-grid>
 
     <ion-modal
       [isOpen]="openStatusModal"
@@ -242,7 +252,10 @@
         >
           <ng-container *ngFor="let diceResult of diceResults; let i = index">
             <ion-col size="6" class="ion-text-center">
-              <img src="/assets/image/dice.png" style="max-width: 90px; min-width: 90px" />
+              <img
+                src="/assets/image/dice.png"
+                style="max-width: 90px; min-width: 90px"
+              />
               <div
                 class="dice-result"
                 style="

@@ -1,29 +1,47 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
     <ion-grid>
-      <div>
+      <div style="margin-bottom: 1em">
         <ion-row>
-          <ion-col size="1" routerLink="/character/{{characterID}}">
-            <span style="font-size: 1.3em"
+          <ion-col
+            size="12"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <span
+              style="font-size: 1.3em"
+              routerLink="/character/{{characterID}}"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
-          </ion-col>
-          <ion-col>
-            <span style="font-size: 1.3em">{{charName}}</span>
+
+            <span style="font-size: 1.3em"
+              ><ion-icon name="help-circle-outline"></ion-icon
+            ></span>
           </ion-col>
         </ion-row>
 
+        <ion-header>
+          <ion-toolbar>
+            <ion-segment
+              value="items"
+              (ionChange)="hideItems = !hideItems; hideInventoryInfos = !hideInventoryInfos;"
+            >
+              <ion-segment-button value="items" style="width: 50%">
+                <ion-label>Itens</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="infos" style="width: 50%">
+                <ion-label>Informações</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+          </ion-toolbar>
+        </ion-header>
+
         <ion-row>
           <ion-col style="margin-top: 1em">
-            <span
-              style="
-                font-size: 1.8em;
-                color: var(--ion-color-light-main);
-                -webkit-text-stroke-color: var(--ion-color-main);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              "
+            <span class="inv-text"
               >Inventário
               <ion-text
                 [color]="generic.weightStatus === 'Normal' ? 'light' : 'medium'"
@@ -37,7 +55,7 @@
         <ion-row style="margin-bottom: 0.5em">
           <ion-col>
             <ion-text
-              [color]="generic.weightStatus === 'Normal' ? 'light' : 'danger'"
+              [color]="generic.weightStatus === 'Normal' ? 'medium' : 'danger'"
               style="font-size: 1em"
               >{{generic.weightStatus}}</ion-text
             >
@@ -68,17 +86,17 @@
               >
               </ion-input>
               <ion-list
-              *ngIf="!hidePatentSuggestions && patentsGroup.length"
-              class="suggestions-list"
-            >
-              <ion-item *ngFor="let patent of patentsGroup">
-                <ion-label
-                  (click)="inventoryInfos.get('patent').patchValue(patent); editInventoryInfos()"
-                >
-                  {{patent}}
-                </ion-label>
-              </ion-item>
-            </ion-list>
+                *ngIf="!hidePatentSuggestions && patentsGroup.length"
+                class="suggestions-list"
+              >
+                <ion-item *ngFor="let patent of patentsGroup">
+                  <ion-label
+                    (click)="inventoryInfos.get('patent').patchValue(patent); editInventoryInfos()"
+                  >
+                    {{patent}}
+                  </ion-label>
+                </ion-item>
+              </ion-list>
             </ion-col>
           </ion-row>
           <ion-row style="margin-top: 0.4em">
@@ -125,32 +143,6 @@
               >
               </ion-input>
             </ion-col>
-            <ion-col class="ion-text-left" size="6">
-              <ion-label style="padding-left: 0.6em"
-                >Carga max. categ.</ion-label
-              >
-              <ion-input
-                type="number"
-                style="width: 100%; text-align: center"
-                (input)="editInventoryInfos()"
-                formControlName="max_load"
-                type="number"
-              >
-              </ion-input>
-            </ion-col>
-            <ion-col class="ion-text-left" size="6">
-              <ion-label style="padding-left: 0.6em"
-                >Carga max. espaç.</ion-label
-              >
-              <ion-input
-                type="number"
-                style="width: 100%; text-align: center"
-                (input)="editInventoryInfos()"
-                formControlName="max_spc_load"
-                type="number"
-              >
-              </ion-input>
-            </ion-col>
             <ion-col class="ion-text-left" size="12">
               <ion-label style="padding-left: 0.6em"
                 >Limite de créditos</ion-label
@@ -177,81 +169,98 @@
                 </ion-item>
               </ion-list>
             </ion-col>
+            <ion-col class="ion-text-left" size="6">
+              <ion-label style="padding-left: 0.6em"
+                >Carga max. categ.</ion-label
+              >
+              <ion-input
+                type="number"
+                style="width: 100%; text-align: center"
+                (input)="editInventoryInfos()"
+                formControlName="max_load"
+                type="number"
+              >
+              </ion-input>
+            </ion-col>
+            <ion-col class="ion-text-left" size="6">
+              <ion-label style="padding-left: 0.6em"
+                >Carga max. espaç.</ion-label
+              >
+              <ion-input
+                type="number"
+                style="width: 100%; text-align: center"
+                (input)="editInventoryInfos()"
+                formControlName="max_spc_load"
+                type="number"
+              >
+              </ion-input>
+            </ion-col>
           </ion-row>
         </form>
 
-        <ion-row>
-          <ion-col size="1" style="margin-top: 1em">
-            <ion-text
-              style="font-size: 1.4em; display: flex; align-items: center"
-            >
-              <strong
-                ><ion-icon
-                  [name]="hideInventoryInfos ? 'chevron-down-outline' : 'chevron-up-outline'"
-                  color="light"
-                  (click)="toHideInventoryInfos()"
+        <div *ngIf="!hideItems">
+          <ion-row>
+            <ion-col style="margin-top: 1em">
+              <span
+                style="
+                  font-size: 1.2em;
+                  color: var(--ion-color-light-main);
+                  -webkit-text-stroke-color: var(--ion-color-main);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+                >Itens
+                <ion-text>
+                  <strong
+                    ><ion-icon
+                      style="
+                        float: right;
+                        font-size: 1.4em;
+                        padding-left: 0.6em;
+                      "
+                      name="add-outline"
+                      color="light"
+                      (click)="openAddInventoryItemModal = true;"
+                    >
+                    </ion-icon
+                  ></strong>
+                </ion-text>
+              </span>
+            </ion-col>
+          </ion-row>
+
+          <div
+            class="card-char"
+            style="border: 1px solid var(--ion-color-dark)"
+            *ngFor="let item of inventoryItems"
+          >
+            <ion-row>
+              <ion-col class="ion-text-center" size="12">
+                <ion-label color="light">{{item.item_name}} </ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-icon
+                style="padding: 0.3em"
+                color="danger"
+                (click)="deleteInventoryItems(item.item_id, item.item_name)"
+                name="trash-bin-outline"
+              ></ion-icon>
+              <ion-col>
+                <span
+                  ><ion-text color="medium">Categoria:</ion-text>
+                  {{item.category}}</span
                 >
-                </ion-icon
-              ></strong>
-            </ion-text>
-          </ion-col>
-
-          <ion-col style="margin-top: 1em">
-            <span
-              style="
-                font-size: 1.2em;
-                color: var(--ion-color-light-main);
-                -webkit-text-stroke-color: var(--ion-color-main);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              "
-              >Itens
-              <ion-text>
-                <strong
-                  ><ion-icon
-                    style="float: right; font-size: 1.4em; padding-left: 0.6em"
-                    name="add-outline"
-                    color="light"
-                    (click)="openAddInventoryItemModal = true;"
-                  >
-                  </ion-icon
-                ></strong>
-              </ion-text>
-            </span>
-          </ion-col>
-        </ion-row>
-
-        <div
-          class="card-char"
-          style="border: 1px solid var(--ion-color-dark)"
-          *ngFor="let item of inventoryItems"
-        >
-          <ion-row>
-            <ion-col class="ion-text-center" size="12">
-              <ion-label color="light">{{item.item_name}} </ion-label>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-icon
-              style="padding: 0.3em"
-              color="danger"
-              (click)="deleteInventoryItems(item.item_id, item.item_name)"
-              name="trash-bin-outline"
-            ></ion-icon>
-            <ion-col>
-              <span
-                ><ion-text color="medium">Categoria:</ion-text>
-                {{item.category}}</span
-              >
-            </ion-col>
-            <ion-col>
-              <span
-                ><ion-text color="medium">Espaços:</ion-text>
-                {{item.slots}}</span
-              >
-            </ion-col>
-          </ion-row>
+              </ion-col>
+              <ion-col>
+                <span
+                  ><ion-text color="medium">Espaços:</ion-text>
+                  {{item.slots}}</span
+                >
+              </ion-col>
+            </ion-row>
+          </div>
         </div>
       </div>
     </ion-grid>

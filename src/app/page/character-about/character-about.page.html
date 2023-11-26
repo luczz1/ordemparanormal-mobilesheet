@@ -2,13 +2,21 @@
   <div class="menu" *ngIf="pageLoaded">
     <ion-grid>
       <ion-row>
-        <ion-col size="1" routerLink="/character/{{characterID}}">
-          <span style="font-size: 1.3em"
+        <ion-col
+          size="12"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <span style="font-size: 1.3em" routerLink="/character/{{characterID}}"
             ><ion-icon name="chevron-back-outline"></ion-icon
           ></span>
-        </ion-col>
-        <ion-col>
-          <span style="font-size: 1.3em">{{charName}}</span>
+
+          <span style="font-size: 1.3em"
+            ><ion-icon name="help-circle-outline"></ion-icon
+          ></span>
         </ion-col>
       </ion-row>
 

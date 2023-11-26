@@ -3,30 +3,28 @@
     <ion-grid>
       <div *ngFor="let attr of character">
         <ion-row>
-          <ion-col style="display: flex; align-items: center">
+          <ion-col
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
             <ion-icon
               name="log-out-outline"
               color="danger"
-              style="float: left; font-size: 1.1em"
+              style="font-size: 1.1em"
               (click)="backToInitialScreen()"
             ></ion-icon>
-            <span
-              style="
-                font-size: 1.3em;
-                margin: auto;
-                display: flex;
-                align-items: center;
-              "
-              >{{attr.name}}
-            </span>
             <ion-icon
               name="build-outline"
-              style="float: right"
               (click)="gotoEditScreen(attr.id)"
             ></ion-icon>
           </ion-col>
         </ion-row>
-        <ion-row style="margin: 0.6em; width: 100%; margin: auto; cursor: pointer">
+        <ion-row
+          style="margin: 0.6em; width: 100%; margin: auto; cursor: pointer"
+        >
           <ion-col
             (click)="openModal('life')"
             style="
@@ -127,8 +125,7 @@
               style="
                 width: 210px;
                 height: 210px;
-                border-radius: 16px;
-                border: 1px solid var(--ion-color-dark);
+                border: 1px solid var(--ion-color-light);
                 overflow: hidden;
               "
             >
@@ -150,22 +147,11 @@
 
         <ion-row style="width: 100%">
           <ion-col class="ion-text-center" size="6" style="font-size: 1.1em">
-            <span
-              style="
-                font-size: 1.3em;
-              "
-              >NEX: {{attr.nex}}%</span
-            >
+            <span style="font-size: 1.3em">NEX: {{attr.nex}}%</span>
           </ion-col>
           <ion-col class="ion-text-center" size="6" style="font-size: 1.1em">
             <input
-              style="
-                border: 1px solid var(--ion-color-dark-tint);
-                width: 60%;
-                background: none;
-                text-align: center;
-                height: 30px;
-              "
+              class="pe-ipt"
               (input)="updateCharacterInDatabase($event)"
               [value]="attr.pe_round"
               type="number"
@@ -206,12 +192,17 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="width: 100%;">
+        <ion-row style="width: 100%">
           <ion-col class="ion-text-center" style="font-size: 1.1em" size="12">
             <div style="justify-content: space-between; display: flex">
               <ion-text
                 color="tertiary"
-                style="display: flex; align-items: center; gap: 10px; cursor: pointer"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                "
                 (click)="gotoNotesOrAboutScreen('notes')"
                 ><ion-icon
                   name="document-text-outline"
@@ -221,7 +212,12 @@
               >
               <ion-text
                 color="warning"
-                style="display: flex; align-items: center; gap: 10px; cursor: pointer"
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  cursor: pointer;
+                "
                 (click)="gotoNotesOrAboutScreen('about')"
                 >Sobre<ion-icon
                   name="information-circle-outline"

@@ -3,31 +3,36 @@
     <ion-grid>
       <div>
         <ion-row>
-          <ion-col size="1" routerLink="/character/{{characterId}}">
-            <span style="font-size: 1.3em"
+          <ion-col
+            size="12"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <span
+              style="font-size: 1.3em"
+              routerLink="/character/{{characterId}}"
               ><ion-icon name="chevron-back-outline"></ion-icon
             ></span>
-          </ion-col>
-          <ion-col class="ion-text-center">
-            <span style="font-size: 1.3em">{{charName}}</span>
+
+            <span style="font-size: 1.3em"
+              ><ion-icon name="help-circle-outline"></ion-icon
+            ></span>
           </ion-col>
         </ion-row>
 
         <ion-header>
           <ion-toolbar>
-            <ion-segment value="ability">
-              <ion-segment-button
-                value="ability"
-                style="width: 50%"
-                (click)="hiddenAbilities = false; hiddenRituals = true;"
-              >
+            <ion-segment
+              value="ability"
+              (ionChange)="hiddenAbilities = !hiddenAbilities; hiddenRituals = !hiddenRituals;"
+            >
+              <ion-segment-button value="ability" style="width: 50%">
                 <ion-label>Habilidades</ion-label>
               </ion-segment-button>
-              <ion-segment-button
-                value="rituals"
-                style="width: 50%"
-                (click)="hiddenRituals = false; hiddenAbilities = true;"
-              >
+              <ion-segment-button value="rituals" style="width: 50%">
                 <ion-label>Rituais</ion-label>
               </ion-segment-button>
             </ion-segment>
@@ -65,49 +70,49 @@
                 >Proficiências</span
               >
             </ion-col>
-            </ion-row>
+          </ion-row>
 
-            <div *ngIf="!hiddenAbilities" class="abilities-rituals-list">
-              <div *ngFor="let skill of skillsList" class="card-char">
-                <div style="display: flex; justify-content: space-between">
-                  <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
-                    {{skill.name}}
-                  </p>
-                  <span
-                    style="
-                      float: right;
-                      display: flex;
-                      align-items: center;
-                      gap: 10px;
-                    "
-                  >
-                    <ion-icon
-                      color="danger"
-                      (click)="deleteItem('Skill', skill.id, skill.name)"
-                      name="trash-bin-outline"
-                    ></ion-icon>
-                    <ion-icon
-                      color="tertiary"
-                      style="padding-right: 0.5em; padding-bottom: 0.1em"
-                      (click)="getPowerOrAbilityByID(skill.id, 0)"
-                      name="create-outline"
-                    ></ion-icon>
-                  </span>
-                </div>
-                <span style="color: var(--ion-color-medium)">
-                  {{ expandedItems[skill.id] ? skill.description :
-                  skill.description.slice(0, maxLength) +
-                  (skill.description.length > maxLength ? '...' : '') }}
-                </span>
-
-                <ion-text
-                  *ngIf="skill.description.length > maxLength"
-                  (click)="toggleReadMore(skill.id)"
+          <div *ngIf="!hiddenAbilities" class="abilities-rituals-list">
+            <div *ngFor="let skill of skillsList" class="card-char">
+              <div style="display: flex; justify-content: space-between">
+                <p style="max-width: 70%; overflow: auto; text-wrap: nowrap">
+                  {{skill.name}}
+                </p>
+                <span
+                  style="
+                    float: right;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                  "
                 >
-                  {{ expandedItems[skill.id] ? 'Mostrar menos' : 'Ler mais' }}
-                </ion-text>
+                  <ion-icon
+                    color="danger"
+                    (click)="deleteItem('Skill', skill.id, skill.name)"
+                    name="trash-bin-outline"
+                  ></ion-icon>
+                  <ion-icon
+                    color="tertiary"
+                    style="padding-right: 0.5em; padding-bottom: 0.1em"
+                    (click)="getPowerOrAbilityByID(skill.id, 0)"
+                    name="create-outline"
+                  ></ion-icon>
+                </span>
               </div>
+              <span style="color: var(--ion-color-medium)">
+                {{ expandedItems[skill.id] ? skill.description :
+                skill.description.slice(0, maxLength) +
+                (skill.description.length > maxLength ? '...' : '') }}
+              </span>
+
+              <ion-text
+                *ngIf="skill.description.length > maxLength"
+                (click)="toggleReadMore(skill.id)"
+              >
+                {{ expandedItems[skill.id] ? 'Mostrar menos' : 'Ler mais' }}
+              </ion-text>
             </div>
+          </div>
         </div>
 
         <div *ngIf="!hiddenRituals">

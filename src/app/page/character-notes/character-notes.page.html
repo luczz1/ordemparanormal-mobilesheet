@@ -1,15 +1,24 @@
 <ion-content>
   <div class="menu" *ngIf="pageLoaded">
     <ion-row>
-      <ion-col class="ion-text-center" size="1" routerLink="/character/{{characterID}}">
-        <span style="font-size: 1.3em"
+      <ion-col
+        size="12"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <span style="font-size: 1.3em" routerLink="/character/{{characterID}}"
           ><ion-icon name="chevron-back-outline"></ion-icon
         ></span>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <span style="font-size: 1.3em">{{charName}}</span>
+
+        <span style="font-size: 1.3em"
+          ><ion-icon name="help-circle-outline"></ion-icon
+        ></span>
       </ion-col>
     </ion-row>
+
     <ion-row>
       <ion-col class="ion-margin ion-text-center">
         <span
@@ -24,7 +33,7 @@
     </ion-row>
 
     <div class="NgxEditor__Wrapper">
-      <ngx-editor-menu [editor]="editor" > </ngx-editor-menu>
+      <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
       <ngx-editor
         [editor]="editor"
         [(ngModel)]="html"
