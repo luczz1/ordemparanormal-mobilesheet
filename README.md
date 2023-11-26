@@ -32,6 +32,8 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 ### Adicionais
 
 - ⌛ Painel do(a) mestre
+- ⌛ Criação de campanhas
+- ⌛ Homebrew
   
 ## Tecnologias utilizadas:
 - Angular com Ionic (frontend, adaptação e importação mobile)
