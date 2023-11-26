@@ -19,7 +19,7 @@
         </ion-row>
 
         <ion-row>
-          <ion-col class="ion-margin">
+          <ion-col>
             <span
               style="
                 font-size: 1.8em;
@@ -35,7 +35,7 @@
             <form [formGroup]="attrForm" >
               <div style="position: relative;">
                 <img
-                  src="/assets/image/attr1.png"
+                  src="/assets/image/attr2.png"
                   style="
                     width: 300px;
                     height: 300px;
@@ -81,7 +81,7 @@
                       display: flex;
                       flex-direction: row;
                       justify-content: space-around;
-                      margin-top: 1.3em;
+                      margin-top: 1.8em;
                     "
                   >
                     <div
@@ -89,7 +89,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        margin-right: 104.2px;
+                        margin-right: 80px;
                       "
                       (click)="editingMode ? null : gotoDiceRolling('força', forcaIpt.value, 0)"
                     >
@@ -115,7 +115,7 @@
                       <input
                         type="number"
                         id="intelecto"
-                        style="margin-left: 1em"
+                        style="margin-left: 2.2em"
                         class="input-attr"
                         formControlName="intellect"
                         [readonly]="!editingMode"
@@ -130,7 +130,7 @@
                       display: flex;
                       flex-direction: row;
                       justify-content: space-evenly;
-                      margin-top: 4.5em;
+                      margin-top: 4.8em;
                     "
                   >
                     <div
@@ -138,7 +138,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
-                        margin-right: 80px;
+                        margin-right: 75px;
                       "
                       (click)="editingMode ? null : gotoDiceRolling('presença', presencaIpt.value, 0)"
                     >
