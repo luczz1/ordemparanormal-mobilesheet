@@ -19,7 +19,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 - ✅ Listar, adicionar, editar e excluir rituais e habilidades
 - ✅ Sistema de inventário
 - ✅ Editar informações do personagem (nex, deslocamento, etc.)
-- ✅ Sistema de carga (normal ou sobrepeso, sobrepeso -3 deslocamento)
+- ✅ Sistema de carga (normal ou sobrepeso)
 - ✅ Atributos de combate (pontos de defesa, ataques, resistências, etc)
 - ✅ Proficiências
 - ✅ Tela de anotações, um bloco de texto com diversas opção de fonte, anexar imagem, cores, e +
