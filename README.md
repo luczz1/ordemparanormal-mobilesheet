@@ -45,28 +45,25 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 > [!NOTE]
 > As imagens não representam todas as telas/funções presente no projeto.
 
-> [!WARNING]
-> As imagens estão desatualizadas.
-
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/591530c4-8e75-4c0f-8399-1c71e8fd618e" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/e15e5058-e72f-4c20-895e-39715854640c" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c587962c-ad3e-4d12-af7f-b45ecf1f41e0" style="width: 20%" />
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9fd09fb0-0771-4cba-b08e-3a0d07fb9dac" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/0c1be251-0b75-4cd6-8d12-d8c603beba48" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/1384ea74-be77-409f-ad8e-e6342378ee44" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/c735839a-d84b-45a2-8826-b21ea5821c9e" style="width: 20%" />
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/d1a5fd1c-a84f-4832-9a86-ed36722e7cf1" style="width: 20%"/>
   </div>
   
 <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/e368d319-88ed-4814-97f3-43a55a53e10e" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/40b0ee26-dd03-4a16-9a96-d8c5d4482bc0" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/934fb4ce-8579-4a1c-bcea-988a0e27f30a" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/76d03004-3a39-4bdf-8478-7aaa3ef85b4e" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/9776223e-8b6a-4a21-9e9c-85c7f7dff7cf" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/81d7a8af-f574-4538-b2c7-4e3c85ed0253" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/0963f892-e0c6-4a53-8870-fda5d2a2a2e5" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/fcffede0-a400-4de8-b562-c6c59fa982fc" style="width: 20%"/>
   </div>
   
   <div style="display: flex; flex-direction: row">
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/cfecf829-1c1c-45ed-bcc0-b041068d86d7" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/31c25b53-9cd3-43d3-af3a-f9f26f2e615c" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/2da44d5a-8a1f-40e5-82c1-669830a83a7d" style="width: 20%"/>
-    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/81827e1f-9bb5-4ce9-a672-0ac158f72e6b" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/58dcb9f0-c59b-4b61-aee3-f983ba910761" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/1c0f4de2-9c5f-47fa-a3d1-a159659b808e" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/25c2578c-2a95-46bb-88c1-86e25d9193d8" style="width: 20%"/>
+    <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/4dc79b6f-e5d2-44bd-a643-fb02a1c17a8a" style="width: 20%"/>
   </div>
 
   ## Backend do projeto
@@ -77,7 +74,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
   O nome de seu banco de dados deverá ser 'ordem-sheet', caso queira outro, terá que mudar o nome no connection.js (no backend), lembre-se de no connection.js também mudar o host, user
   e password de acordo com as credenciais do seu banco.
 
-  Download: [Dump20231120.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/13420143/Dump20231120.zip)
+  Download: [Dump20231126.zip](https://github.com/luczz1/ordemparanormal-mobilesheet/files/13468513/Dump20231126.zip)
 
   ## Iniciando o projeto
   Você precisará ter instalado o node (abra o site e faça o download).
