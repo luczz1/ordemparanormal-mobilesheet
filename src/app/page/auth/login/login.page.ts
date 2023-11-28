@@ -15,7 +15,11 @@ export class LoginPage implements ViewDidEnter, ViewDidLeave {
     id: new FormControl(0),
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(/\d/),
+    ]),
   });
 
   public pageLoaded = false;
@@ -41,19 +45,6 @@ export class LoginPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public createAccount() {
-    if (!this.newAcc) {
-      this.loginForm.get('name').clearValidators();
-      this.loginForm.get('name').updateValueAndValidity();
-    } else {
-      this.loginForm.get('name').setValidators([Validators.required]);
-      this.loginForm
-        .get('email')
-        .setValidators([Validators.required, Validators.email]);
-
-      this.loginForm.get('name').updateValueAndValidity();
-      this.loginForm.get('email').updateValueAndValidity();
-    }
-
     if (this.loginForm.valid) {
       const obj = this.loginForm.getRawValue();
       const endpoint = this.newAcc ? 'createAccount' : 'login';
@@ -77,5 +68,39 @@ export class LoginPage implements ViewDidEnter, ViewDidLeave {
 
   public redirectToBackScreen() {
     this.router.navigateByUrl('/home');
+  }
+
+  public setValidators() {
+    this.loginForm.get('password').reset();
+
+    if (!this.newAcc) {
+      this.loginForm.get('name').clearValidators();
+      this.loginForm.get('name').updateValueAndValidity();
+
+      this.loginForm.get('email').clearValidators();
+      this.loginForm.get('email').updateValueAndValidity();
+
+      this.loginForm.get('password').clearValidators();
+      this.loginForm.get('password').updateValueAndValidity();
+
+      return;
+    }
+
+    this.loginForm.get('name').setValidators([Validators.required]);
+    this.loginForm
+      .get('email')
+      .setValidators([Validators.required, Validators.email]);
+
+    this.loginForm.get('name').updateValueAndValidity();
+    this.loginForm.get('email').updateValueAndValidity();
+
+    this.loginForm
+      .get('password')
+      .setValidators([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(/\d/),
+      ]);
+    this.loginForm.get('password').updateValueAndValidity();
   }
 }

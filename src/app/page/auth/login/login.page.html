@@ -41,7 +41,33 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-top: 1em">
+        <ion-row style="margin-top: 1em" *ngIf="newAcc">
+          <ion-col class="ion-text-left">
+            <ion-label style="padding-left: 0.6em">Senha</ion-label>
+            <ion-input
+              formControlName="password"
+              style="width: 100%; text-indent: 12px"
+              type="password"
+            ></ion-input>
+
+            <div *ngIf="loginForm.get('password').dirty">
+              <p
+                *ngIf="loginForm.get('password').hasError('minlength')"
+                style="color: var(--ion-color-danger)"
+              >
+                A senha deve ter pelo menos 8 caracteres.
+              </p>
+              <p
+                *ngIf="loginForm.get('password').hasError('pattern')"
+                style="color: var(--ion-color-danger)"
+              >
+                A senha deve conter pelo menos um número.
+              </p>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-top: 1em" *ngIf="!newAcc">
           <ion-col class="ion-text-left">
             <ion-label style="padding-left: 0.6em">Senha</ion-label>
             <ion-input
@@ -58,7 +84,7 @@
               >{{newAcc ? 'Já possui' : 'Não possui'}} uma conta?
               <ion-text
                 color="primary"
-                (click)="newAcc = !newAcc"
+                (click)="newAcc = !newAcc; setValidators()"
                 style="text-decoration: underline"
                 >{{newAcc ? 'Logar' : 'Registrar'}}</ion-text
               ></ion-label
