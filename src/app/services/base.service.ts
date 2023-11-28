@@ -9,7 +9,7 @@ export class BaseService {
   constructor() { }
 
   public Basepath() {
-    return 'http://localhost:3000/'
+    return 'http://luczzzz.duckdns.org:3000/'
   }
 
   public Headers() {
