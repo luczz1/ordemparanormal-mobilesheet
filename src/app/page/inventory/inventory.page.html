@@ -89,12 +89,11 @@
                 *ngIf="!hidePatentSuggestions && patentsGroup.length"
                 class="suggestions-list"
               >
-                <ion-item *ngFor="let patent of patentsGroup">
-                  <ion-label
-                    (click)="inventoryInfos.get('patent').patchValue(patent); editInventoryInfos()"
-                  >
-                    {{patent}}
-                  </ion-label>
+                <ion-item
+                  *ngFor="let patent of patentsGroup"
+                  (click)="inventoryInfos.get('patent').patchValue(patent); editInventoryInfos()"
+                >
+                  <ion-label> {{patent}} </ion-label>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -160,12 +159,11 @@
                 *ngIf="!hideCreditsSuggestions && creditsGroup.length"
                 class="suggestions-list"
               >
-                <ion-item *ngFor="let credit of creditsGroup">
-                  <ion-label
-                    (click)="inventoryInfos.get('credit_limit').patchValue(credit); editInventoryInfos()"
-                  >
-                    {{credit}}
-                  </ion-label>
+                <ion-item
+                  *ngFor="let credit of creditsGroup"
+                  (click)="inventoryInfos.get('credit_limit').patchValue(credit); editInventoryInfos()"
+                >
+                  <ion-label> {{credit}} </ion-label>
                 </ion-item>
               </ion-list>
             </ion-col>

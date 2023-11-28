@@ -55,12 +55,11 @@
               *ngIf="!hideOriginsSuggestions && originsGroup.length"
               class="suggestions-list"
             >
-              <ion-item *ngFor="let origin of originsGroup">
-                <ion-label
-                  (click)="characterForm.get('origin').patchValue(origin.name)"
-                >
-                  {{origin.name}}
-                </ion-label>
+              <ion-item
+                *ngFor="let origin of originsGroup"
+                (click)="characterForm.get('origin').patchValue(origin.name)"
+              >
+                <ion-label> {{origin.name}} </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -83,10 +82,11 @@
               *ngIf="!hideClassesSuggestions && classesGroup.length"
               class="suggestions-list"
             >
-              <ion-item *ngFor="let class of classesGroup">
-                <ion-label (click)="getTracks(class.id, class.name)">
-                  {{class.name}}
-                </ion-label>
+              <ion-item
+                *ngFor="let class of classesGroup"
+                (click)="getTracks(class.id, class.name)"
+              >
+                <ion-label> {{class.name}} </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -110,12 +110,11 @@
               *ngIf="!hideTracksSuggestions && tracksGroup.length"
               class="suggestions-list"
             >
-              <ion-item *ngFor="let track of tracksGroup">
-                <ion-label
-                  (click)="characterForm.get('path').patchValue(track.name)"
-                >
-                  {{track.name}}
-                </ion-label>
+              <ion-item
+                *ngFor="let track of tracksGroup"
+                (click)="characterForm.get('path').patchValue(track.name)"
+              >
+                <ion-label> {{track.name}} </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>
