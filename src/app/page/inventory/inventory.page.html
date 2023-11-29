@@ -77,7 +77,7 @@
             <ion-col class="ion-text-left" size="8">
               <ion-label style="padding-left: 0.6em">Patente</ion-label>
               <ion-input
-                type="string"
+                type="text"
                 style="width: 100%; text-indent: 8px"
                 formControlName="patent"
                 (ionFocus)="hidePatentSuggestions = false"
@@ -94,6 +94,33 @@
                   (click)="inventoryInfos.get('patent').patchValue(patent); editInventoryInfos()"
                 >
                   <ion-label> {{patent}} </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 0.4em">
+            <ion-col class="ion-text-left" size="12">
+              <ion-label style="padding-left: 0.6em"
+                >Limite de créditos</ion-label
+              >
+              <ion-input
+                type="text"
+                style="width: 100%; text-indent: 8px"
+                formControlName="credit_limit"
+                (ionFocus)="hideCreditsSuggestions = false"
+                (ionBlur)="hideSuggestion('hideCreditsSuggestions');"
+                [readonly]="true"
+              >
+              </ion-input>
+              <ion-list
+                *ngIf="!hideCreditsSuggestions && creditsGroup.length"
+                class="suggestions-list"
+              >
+                <ion-item
+                  *ngFor="let credit of creditsGroup"
+                  (click)="inventoryInfos.get('credit_limit').patchValue(credit); editInventoryInfos()"
+                >
+                  <ion-label> {{credit}} </ion-label>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -142,31 +169,8 @@
               >
               </ion-input>
             </ion-col>
-            <ion-col class="ion-text-left" size="12">
-              <ion-label style="padding-left: 0.6em"
-                >Limite de créditos</ion-label
-              >
-              <ion-input
-                style="width: 100%; text-align: center"
-                formControlName="credit_limit"
-                type="text"
-                (ionFocus)="hideCreditsSuggestions = false"
-                (ionBlur)="hideSuggestion('hideCreditsSuggestions');"
-                [readonly]="true"
-              >
-              </ion-input>
-              <ion-list
-                *ngIf="!hideCreditsSuggestions && creditsGroup.length"
-                class="suggestions-list"
-              >
-                <ion-item
-                  *ngFor="let credit of creditsGroup"
-                  (click)="inventoryInfos.get('credit_limit').patchValue(credit); editInventoryInfos()"
-                >
-                  <ion-label> {{credit}} </ion-label>
-                </ion-item>
-              </ion-list>
-            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 0.4em;">
             <ion-col class="ion-text-left" size="6">
               <ion-label style="padding-left: 0.6em"
                 >Carga max. categ.</ion-label
