@@ -133,11 +133,11 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
       (error) => this.generic.multLoading(false)
     );
   }
-  async openModal(skill: any) {
+  async openModal(skill: CharacterSkillsModel) {
     const modal = await this.modalController.create({
       component: RollQuestionComponent,
       componentProps: {
-        skill: skill,
+        skill
       },
     });
 
