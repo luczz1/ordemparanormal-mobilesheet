@@ -550,8 +550,16 @@
         slot="bottom"
         fill="clear"
         (click)="editingMode ? saveCharacterEdit() : createCharacter()"
+        [disabled]="creatingCharLoading"
       >
-        Finalizar
+
+        <ion-text *ngIf="creatingCharLoading">
+          <ion-spinner name="crescent"></ion-spinner>
+        </ion-text>
+        <ion-text *ngIf="!creatingCharLoading">
+          Finalizar
+        </ion-text>
+
       </ion-button>
     </div>
   </div>

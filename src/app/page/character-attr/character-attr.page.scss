@@ -36,7 +36,7 @@ input {
 .skills-container {
   max-height: 230px;
   overflow: auto;
-  scrollbar-color: #490142 #565656;
+  scrollbar-color: var(--ion-color-primary) #565656;
   scrollbar-width: thin;
   margin-top: 0.2em;
 }

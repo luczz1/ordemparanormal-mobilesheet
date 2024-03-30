@@ -70,6 +70,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   public hideOriginsSuggestions = true;
   public hideNexSuggestions = true;
 
+  public creatingCharLoading = false;
+
   constructor(
     private characterService: CharactersService,
     private activatedRoute: ActivatedRoute,
@@ -150,6 +152,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public createCharacter() {
+    this.creatingCharLoading = true;
+
     if (this.characterForm.valid && this.attrForm.valid) {
       const obj = this.characterForm.getRawValue();
       const objAttr = this.attrForm.getRawValue();
@@ -159,8 +163,9 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         error: (err) => {
           this.generic.presentToast(err.error, 3);
         },
-      });
+      }).add(() => this.creatingCharLoading = false);
     } else {
+      this.creatingCharLoading = false;
       this.generic.presentToast(
         'Formulário inválido. Certifique-se de que não esqueceu nada.',
         3
@@ -169,6 +174,8 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public saveCharacterEdit() {
+    this.creatingCharLoading = true;
+
     if (this.characterForm.valid) {
       const obj = this.characterForm.getRawValue();
 
@@ -185,8 +192,9 @@ export class CreateCharPage implements ViewDidEnter, ViewDidLeave {
         error: (err) => {
           this.generic.presentToast(err.error, 3);
         },
-      });
+      }).add(() => this.creatingCharLoading = false);
     } else {
+      this.creatingCharLoading = false;
       this.generic.presentToast(
         'Formulário inválido. Certifique-se de que não esqueceu nada.',
         3
