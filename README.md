@@ -45,7 +45,7 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 > [!NOTE]
 > As imagens não representam todas as telas/funções presente no projeto.
 
-> [!WARN]
+> [!WARNING]
 > As imagens estão desatualizadas.
 
 <div style="display: flex; flex-direction: row">
