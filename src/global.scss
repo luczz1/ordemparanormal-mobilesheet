@@ -168,10 +168,15 @@ ion-scroll[direction="y"] {
 
 .alert-wrapper {
   max-width: 800px !important;
+  border: 2px solid var(--ion-color-dark);
 }
 
 ion-modal {
   --max-width: 800px !important;
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: var(--ion-color-dark);
+  --backdrop-opacity: 0.8;
 }
 
 ion-icon:hover {

@@ -22,8 +22,54 @@
             ></ion-icon>
           </ion-col>
         </ion-row>
+        <!-- <ion-row>
+          <ion-col>
+              <img src="/assets/image/nova.png" style="width: 30%;"/>
+          </ion-col>
+        </ion-row> -->
+
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <span style="font-size: 2em; font-family: Girassol"
+              >{{attr.name}}</span
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col
+            class="ion-text-center"
+            style="display: flex; justify-content: center"
+          >
+            <div
+              style="
+                width: 210px;
+                height: 210px;
+                border: 1px solid var(--ion-color-dark);
+                overflow: hidden;
+              "
+            >
+              <img
+                [src]="attr.image_url ? attr.image_url : '/assets/image/no-profile.png'"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span
+              style="
+                font-size: 2.1em;
+                color: var(--ion-color-light);
+                font-family: SpecialFont;
+                text-shadow: 0 0 10px var(--ion-color-main);
+              "
+              >{{attr.class}}</span
+            >
+          </ion-col>
+        </ion-row>
         <ion-row
-          style="margin: 0.6em; width: 100%; margin: auto; cursor: pointer"
+          style="margin-top: 2em; width: 100%; cursor: pointer"
         >
           <ion-col
             (click)="openModal('life')"
@@ -102,50 +148,9 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col class="ion-margin">
-            <span
-              style="
-                font-size: 2.1em;
-                color: var(--ion-color-light);
-                font-family: SpecialFont;
-                text-shadow: 0 0 10px var(--ion-color-main);
-              "
-              >{{attr.class}}</span
-            >
-          </ion-col>
-        </ion-row>
 
-        <ion-row class="ion-align-items-center">
-          <ion-col
-            class="ion-text-center"
-            style="display: flex; justify-content: center"
-          >
-            <div
-              style="
-                width: 210px;
-                height: 210px;
-                border: 1px solid var(--ion-color-dark);
-                overflow: hidden;
-              "
-            >
-              <img
-                [src]="attr.image_url ? attr.image_url : '/assets/image/no-profile.png'"
-                style="width: 100%; height: 100%; object-fit: cover"
-              />
-            </div>
-          </ion-col>
-        </ion-row>
 
-        <ion-row>
-          <ion-col class="ion-text-center">
-            <span style="font-size: 2em; font-family: Girassol"
-              >{{attr.name}}</span
-            >
-          </ion-col>
-        </ion-row>
-
-        <ion-row style="width: 100%">
+        <ion-row style="width: 100%; margin-top: 2em">
           <ion-col class="ion-text-center" size="6" style="font-size: 1.1em">
             <span style="font-size: 1.3em">NEX: {{attr.nex}}%</span>
           </ion-col>
@@ -162,6 +167,7 @@
             </p>
           </ion-col>
         </ion-row>
+        <div style="border-bottom: 1px solid var(--ion-color-dark);"></div>
         <ion-row style="width: 100%; margin-top: 0.5em">
           <ion-col class="ion-text-left" style="font-size: 1.1em">
             <span
@@ -173,7 +179,7 @@
             >
           </ion-col>
           <ion-col class="ion-text-right" style="font-size: 1.1em">
-            <span>{{attr.path}}</span>
+            <span>{{attr.path || 'Sem trilha'}}</span>
           </ion-col>
         </ion-row>
         <ion-row style="width: 100%">
@@ -317,13 +323,7 @@
             >
               <input
                 type="number"
-                style="
-                  background: #121212;
-                  border: 1px solid var(--ion-color-dark);
-                  width: 50px;
-                  height: 30px !important;
-                  border-radius: 0.5em;
-                "
+                class="calc-ipt"
                 #value1
                 (input)="calculator(value1.value, value2.value, op.value)"
               />
@@ -346,13 +346,7 @@
               </select>
               <input
                 type="number"
-                style="
-                  background: #121212;
-                  border: 1px solid var(--ion-color-dark);
-                  width: 50px;
-                  height: 30px !important;
-                  border-radius: 0.5em;
-                "
+                class="calc-ipt"
                 #value2
                 (input)="calculator(value1.value, value2.value, op.value)"
               />

@@ -122,7 +122,15 @@
                   ></ion-icon
                 ></span>
               </p>
-              <p><strong>Teste:</strong> {{attack.test}}</p>
+              <p
+              (click)="rollDice(attack.test)"
+              style="
+                text-decoration: underline;
+                cursor: pointer;
+              "
+            >
+              <strong>Teste:</strong> {{attack.test}}
+            </p>
               <p
                 (click)="rollDice(attack.damage)"
                 style="

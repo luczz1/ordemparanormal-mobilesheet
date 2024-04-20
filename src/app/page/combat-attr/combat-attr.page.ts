@@ -311,24 +311,30 @@ export class CombatAttrPage implements ViewDidEnter, ViewDidLeave {
 
   rollDice(value: string) {
     const sanitizedValue = value.replace(/\s/g, '');
-    const match = sanitizedValue.match(/^(\d+)d(\d+)(\+(\d+))?/);
 
-    if (!match) {
-      this.generic.presentToast('Formato de dados inválido', 3);
-      return;
+    const matchSingleDice = sanitizedValue.match(/^d(\d+)$/);
+    if (matchSingleDice) {
+        this.numberOfDice = 1;
+        this.faces = parseInt(matchSingleDice[1]);
+        this.diceResultTotal = 0;
+        this.modifier = 0;
+        this.diceRoll();
+        return;
     }
 
-    this.numberOfDice = parseInt(match[1]);
+    const match = sanitizedValue.match(/^(\d*)d(\d+)(\+(\d+))?/);
+    if (!match) {
+        this.generic.presentToast('Formato de dados inválido', 3);
+        return;
+    }
+
+    this.numberOfDice = match[1] ? parseInt(match[1]) : 1;
     this.faces = parseInt(match[2]);
     this.diceResultTotal = 0;
-    this.modifier = 0;
-
-    if (match[4]) {
-      this.modifier = parseInt(match[4]);
-    }
+    this.modifier = match[4] ? parseInt(match[4]) : 0;
 
     this.diceRoll();
-  }
+}
 
   diceRoll() {
     if (this.numberOfDice > 100 || this.numberOfDice <= 0) {
