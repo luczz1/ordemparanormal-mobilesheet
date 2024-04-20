@@ -45,6 +45,9 @@ Este projeto sem fins lucrativos foi desenvolvido especialmente para os fãs de 
 > [!NOTE]
 > As imagens não representam todas as telas/funções presente no projeto.
 
+> [!WARN]
+> As imagens estão desatualizadas.
+
 <div style="display: flex; flex-direction: row">
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/0c1be251-0b75-4cd6-8d12-d8c603beba48" style="width: 20%"/>
     <img src="https://github.com/luczz1/ordemparanormal-mobilesheet/assets/63828861/1384ea74-be77-409f-ad8e-e6342378ee44" style="width: 20%"/>
