@@ -27,11 +27,16 @@
               <img src="/assets/image/nova.png" style="width: 30%;"/>
           </ion-col>
         </ion-row> -->
-
         <ion-row>
-          <ion-col class="ion-text-center">
-            <span style="font-size: 2em; font-family: Girassol"
-              >{{attr.name}}</span
+          <ion-col>
+            <span
+              style="
+                font-size: 2.1em;
+                color: var(--ion-color-light);
+                font-family: SpecialFont;
+                text-shadow: 0 0 10px var(--ion-color-main);
+              "
+              >{{attr.class}}</span
             >
           </ion-col>
         </ion-row>
@@ -55,21 +60,17 @@
             </div>
           </ion-col>
         </ion-row>
+
         <ion-row>
-          <ion-col>
-            <span
-              style="
-                font-size: 2.1em;
-                color: var(--ion-color-light);
-                font-family: SpecialFont;
-                text-shadow: 0 0 10px var(--ion-color-main);
-              "
-              >{{attr.class}}</span
+          <ion-col class="ion-text-center">
+            <span style="font-size: 2em; font-family: Girassol"
+              >{{attr.name}}</span
             >
           </ion-col>
         </ion-row>
+
         <ion-row
-          style="margin-top: 2em; width: 100%; cursor: pointer"
+          style="margin-top: 1em; width: 100%; cursor: pointer"
         >
           <ion-col
             (click)="openModal('life')"

@@ -41,11 +41,6 @@
 
     <div style="overflow: auto">
       <ion-grid *ngFor="let char of search.value ? filteredCharactersList : charactersList">
-        <span style="float: left; font-size: 1.4em" (click)="deleteCharacter(char.id, char.name)">
-          <ion-icon color="light" name="heart-outline"></ion-icon></span>
-
-
-
         <span style="float: right" (click)="deleteCharacter(char.id, char.name)">
           <ion-icon color="danger" name="trash-bin-outline"></ion-icon></span>
         <div class="card-char" (click)="setLocalStorageAndEnterChar(char.id, char.name)">

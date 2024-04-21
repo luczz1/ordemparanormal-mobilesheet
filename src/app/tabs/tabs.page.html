@@ -1,23 +1,27 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" style="--background: none">
-    <ion-tab-button [ngClass]="{ 'active-tab': currentRoute === 'attributes' || currentRoute === 'dice-rolling' }" (click)="redirectTo('/character/attributes/')">
-      <ion-icon aria-hidden="true" name="dice-outline"></ion-icon>
+    <ion-tab-button [ngClass]="currentRoute === 'attributes' || currentRoute === 'dice-rolling' ? 'active-tab' : 'tab'" (click)="redirectTo('/character/attributes/')">
+      <!-- <ion-icon aria-hidden="true" name="dice-outline"></ion-icon> -->
+      <ion-icon [src]="d20"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button [ngClass]="{ 'active-tab': currentRoute === 'skills-powers'}" (click)="redirectTo('/character/skills-powers/')">
-      <ion-icon aria-hidden="true" name="eye-outline"></ion-icon>
+    <ion-tab-button [ngClass]="currentRoute === 'skills-powers' ? 'active-tab' : 'tab'" (click)="redirectTo('/character/skills-powers/')">
+      <!-- <ion-icon aria-hidden="true" name="eye-outline"></ion-icon> -->
+      <ion-icon [src]="eye"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button style="margin-bottom: .5em;" [ngClass]="{ 'active-tab': currentRoute === currentID}" (click)="redirectTo('/character/')">
-      <ion-img src="/assets/image/ORDO_REALITAS.png" style="width: 50px; min-width: 50px"></ion-img>
+    <ion-tab-button [ngClass]="currentRoute === currentID ? 'active-tab-img' : 'tab-img'" (click)="redirectTo('/character/')">
+      <ion-img src="/assets/image/ORDO_REALITAS.png"></ion-img>
     </ion-tab-button>
 
-    <ion-tab-button [ngClass]="{ 'active-tab': currentRoute === 'inventory'}" (click)="redirectTo('/character/inventory/')">
-      <ion-icon aria-hidden="true" name="bag-outline"></ion-icon>
+    <ion-tab-button [ngClass]="currentRoute === 'inventory' ? 'active-tab' : 'tab'" (click)="redirectTo('/character/inventory/')">
+      <!-- <ion-icon aria-hidden="true" name="bag-outline"></ion-icon> -->
+      <ion-icon [src]="backpack"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button [ngClass]="{ 'active-tab': currentRoute === 'combat-attr'}" (click)="redirectTo('/character/combat-attr/')">
-      <ion-icon aria-hidden="true" name="color-wand-outline"></ion-icon>
+    <ion-tab-button [ngClass]="currentRoute === 'combat-attr' ? 'active-tab' : 'tab'" (click)="redirectTo('/character/combat-attr/')">
+      <!-- <ion-icon aria-hidden="true" name="shield-outline"></ion-icon> -->
+      <ion-icon [src]="attack"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

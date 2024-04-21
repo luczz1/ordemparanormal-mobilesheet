@@ -10,6 +10,11 @@ export class TabsPage {
   public currentRoute: string = '';
   public currentCharacterId: string | null = '';
 
+  backpack = 'assets/icon/backpack.svg';
+  eye = 'assets/icon/eye.svg';
+  d20 = 'assets/icon/d20.svg';
+  attack = 'assets/icon/attack.svg';
+
   constructor(public router: Router, private activatedRoute: ActivatedRoute) {
     router.events.subscribe((val) => {
       this.currentID = localStorage.getItem('character');
