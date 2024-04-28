@@ -199,6 +199,8 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
   }
 
   public changeAttributeValue(attribute: string, value: number | string) {
+    if (!value) {return;}
+
      this.valueLimit(attribute);
      if (Number(value) > 100) {value = 100;}
 
@@ -213,7 +215,6 @@ export class CharacterAttrPage implements ViewDidEnter, ViewDidLeave {
           next: () => {
             if (attribute === 'agility') {
               localStorage.removeItem('totalDefense');
-              localStorage.setItem('totalDefense', String(10 + Number(value)));
             } else if (attribute === 'stamina' || attribute === 'presence') {
               localStorage.setItem('updatedChar', 'true');
               const infos = JSON.parse(localStorage.getItem('characterInfos'));

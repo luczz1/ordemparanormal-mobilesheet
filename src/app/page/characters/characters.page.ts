@@ -82,12 +82,13 @@ export class CharactersPage implements ViewDidEnter, ViewDidLeave {
     );
 
     if (ok) {
+      this.generic.multLoading(true);
       this.characterService.deleteCharacterByID(characterID).subscribe({
         next: () => {
           this.getCharacters();
         },
         error: (err) => this.generic.presentToast(err.error, 3),
-      });
+      }).add(() => this.generic.multLoading(false));
     }
   }
 }
