@@ -259,7 +259,8 @@
             "
           >
             <ion-text
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
+              [style]="modalType === 'life' ? 'color: var(--ion-color-danger-tint)' : modalType === 'sanity' ? 'color: var(--ion-color-tertiary-tint)'
+               : 'color: var(--ion-color-success-tint)'"
               style="font-size: 1.1em; padding-right: 0.5em"
               >{{modalType === 'life' ? 'Vida' : modalType === 'sanity' ?
               'Sanidade' : 'Esforço'}}</ion-text
@@ -275,7 +276,7 @@
           <div class="buttons" style="display: flex">
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
+              color="light"
               (click)="increaseOrDecreaseCurrent(1, 'current')"
             >
               <ion-icon name="remove"></ion-icon>
@@ -285,18 +286,18 @@
               [(ngModel)]="character[0]['current_' + modalType]"
               (input)="updateCharacterInDatabase()"
               [debounce]="200"
-              style="max-width: 45px; text-align: center"
+              style="max-width: 45px; text-align: center; color: var(--ion-color-medium)"
             ></ion-input>
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
+              color="light"
               (click)="increaseOrDecreaseCurrent(0, 'current')"
             >
               <ion-icon name="add"></ion-icon>
             </ion-button>
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
+              color="light"
               (click)="increaseOrDecreaseCurrent(1, 'max')"
             >
               <ion-icon name="remove"></ion-icon>
@@ -306,11 +307,11 @@
               [(ngModel)]="character[0]['max_' + modalType]"
               (input)="updateCharacterInDatabase()"
               [debounce]="200"
-              style="max-width: 45px; text-align: center"
+              style="max-width: 45px; text-align: center; color: var(--ion-color-medium)"
             ></ion-input>
             <ion-button
               fill="clear"
-              [color]="modalType === 'life' ? 'danger' : modalType === 'sanity' ? 'tertiary' : 'success'"
+              color="light"
               (click)="increaseOrDecreaseCurrent(0, 'max')"
             >
               <ion-icon name="add"></ion-icon>
